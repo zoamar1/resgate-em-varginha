@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build com Makefile",
+            "type": "shell",
+            "command": "make",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "Limpar Build (Clean)",
+            "type": "shell",
+            "command": "make clean",
+            "problemMatcher": []
+        },
+        {
+            "label": "Rodar Projeto",
+            "type": "shell",
+            "command": "make run",
+            "group": "test",
+            "dependsOn": "Build com Makefile",
+            "problemMatcher": []
+        }
+    ]
+}
