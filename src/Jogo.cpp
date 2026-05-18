@@ -1,7 +1,6 @@
 #include "Jogo.hpp"
 
-Jogo::Jogo() : 
-pGG(Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico()), pGE(Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos())
+Jogo::Jogo() : pGG(Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico()), pGE(Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos())
 {
     pGE->setGerenciador_Grafico(pGG);
 };
@@ -17,11 +16,10 @@ void Jogo::executar()
     {
         while (pGG->janelaAberta())
         {
-            
-            pGE->executar();
-            pGG->getWindow()->clear(sf::Color::Black);
 
-            pGG->getWindow()->display();
+            pGE->executar();
+            pGG->limpaJanela();
+            pGG->desenhaJanela();
         }
     }
 };
