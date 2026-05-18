@@ -33,4 +33,28 @@ namespace Gerenciadores
     {
         window.close();
     }
+
+    void Gerenciador_Grafico::desenhaRect(sf::RectangleShape rect)
+    {
+        if (window.isOpen())
+        {
+            window.draw(rect);
+        }
+    }
+
+    void Gerenciador_Grafico::desenhaJanela()
+    {
+        if(window.isOpen())
+        {
+            window.display();
+        }
+    }
+
+    void Gerenciador_Grafico::limpaJanela()
+    {
+        if (window.isOpen())
+        {
+            window.clear();
+        }
+    }
 } 

@@ -15,5 +15,8 @@ namespace Gerenciadores
             bool janelaAberta();
             sf::RenderWindow* getWindow();
             void fecharJanela();
+            void desenhaRect(sf::RectangleShape rect);
+            void desenhaJanela();
+            void limpaJanela();
     };
 };
