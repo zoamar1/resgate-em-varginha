@@ -1,18 +1,17 @@
-#include "Gerenciador_Grafico.hpp"
+#include "gerenciadores/Gerenciador_Grafico.hpp"
 
 namespace Gerenciadores
 {
-    Gerenciador_Grafico* Gerenciador_Grafico::pGrafico = NULL;
+    Gerenciador_Grafico *Gerenciador_Grafico::pGrafico = NULL;
 
-    Gerenciador_Grafico::Gerenciador_Grafico() : 
-        window(sf::VideoMode(LARGURA, ALTURA), "Jogo mais foda de todos os tempos")
+    Gerenciador_Grafico::Gerenciador_Grafico() : window(sf::VideoMode(LARGURA, ALTURA), "Jogo mais foda de todos os tempos")
     {
         window.setFramerateLimit(60);
     }
 
-    Gerenciador_Grafico* Gerenciador_Grafico::getGerenciador_Grafico()
+    Gerenciador_Grafico *Gerenciador_Grafico::getGerenciador_Grafico()
     {
-        if(!pGrafico) 
+        if (!pGrafico)
         {
             pGrafico = new Gerenciador_Grafico();
         }
@@ -22,9 +21,9 @@ namespace Gerenciadores
     bool Gerenciador_Grafico::janelaAberta()
     {
         return window.isOpen();
-    }   
+    }
 
-    sf::RenderWindow* Gerenciador_Grafico::getWindow()
+    sf::RenderWindow *Gerenciador_Grafico::getWindow()
     {
         return &window;
     }
@@ -44,7 +43,7 @@ namespace Gerenciadores
 
     void Gerenciador_Grafico::desenhaJanela()
     {
-        if(window.isOpen())
+        if (window.isOpen())
         {
             window.display();
         }
@@ -57,4 +56,4 @@ namespace Gerenciadores
             window.clear();
         }
     }
-} 
+}
