@@ -4,7 +4,7 @@ namespace Gerenciadores
 {
     Gerenciador_Grafico *Gerenciador_Grafico::pGrafico = NULL;
 
-    Gerenciador_Grafico::Gerenciador_Grafico() : window(sf::VideoMode(LARGURA, ALTURA), "Jogo mais foda de todos os tempos")
+    Gerenciador_Grafico::Gerenciador_Grafico() : window(sf::VideoMode(LARGURA, ALTURA), "Resgate em Varginha")
     {
         window.setFramerateLimit(60);
     }
