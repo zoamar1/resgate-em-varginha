@@ -31,14 +31,18 @@ namespace Gerenciadores
         {
             if (evento.type == sf::Event::Closed)
                 pGG->fecharJanela();
-            if (evento.type == sf::Event::KeyPressed)
+            verificaTeclaPressionada(evento);
+        }
+    }
+    
+    void Gerenciador_Eventos::verificaTeclaPressionada(sf::Event &evento)
+    {
+        if (evento.type == sf::Event::KeyPressed)
             {
                 if(evento.key.code == sf::Keyboard::Escape)
                 {
                     pGG->fecharJanela();
                 }
             }
-        }
     }
-
 }
