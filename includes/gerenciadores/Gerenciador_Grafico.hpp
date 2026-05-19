@@ -1,6 +1,8 @@
 #pragma once
 #include "Header.hpp"
 
+class Ente;
+
 namespace Gerenciadores
 {
     class Gerenciador_Grafico
@@ -16,6 +18,7 @@ namespace Gerenciadores
             sf::RenderWindow* getWindow();
             void fecharJanela();
             void desenhaRect(sf::RectangleShape rect);
+            void desenhaEnte(Ente* pE);
             void desenhaJanela();
             void limpaJanela();
     };

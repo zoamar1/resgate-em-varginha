@@ -12,8 +12,19 @@ Ente::Ente() : id(-1), pFig(NULL)
 
 Ente::~Ente()
 {
+    if (pFig)
+    {
+        delete pFig; 
+        pFig = NULL;
+    }
     id = -1;
 }
+
+void Ente::desenhar()
+{
+    pGG->desenhaEnte(this);
+}
+
 
 void Ente::setGG(Gerenciadores::Gerenciador_Grafico *pG)
 {
