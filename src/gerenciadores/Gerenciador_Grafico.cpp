@@ -1,4 +1,5 @@
 #include "gerenciadores/Gerenciador_Grafico.hpp"
+#include "entidades/Ente.hpp"
 
 namespace Gerenciadores
 {
@@ -38,6 +39,15 @@ namespace Gerenciadores
         if (window.isOpen())
         {
             window.draw(rect);
+        }
+    }
+
+    void Gerenciador_Grafico::desenhaEnte(Ente* pE)
+    {
+        if(pE)
+        {
+            sf::RectangleShape pFig = *(pE->getpFig());
+            window.draw(pFig);
         }
     }
 
