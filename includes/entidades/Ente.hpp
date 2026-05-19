@@ -7,8 +7,8 @@ class Ente
 protected:
     int id;
     static Gerenciadores::Gerenciador_Grafico *pGG;
-    // Figura *pFig;
-
+    sf::RectangleShape* pFig;
+    
 public:
     Ente();
     virtual ~Ente();
