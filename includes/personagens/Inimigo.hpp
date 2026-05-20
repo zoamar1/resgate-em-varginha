@@ -1,10 +1,11 @@
 #pragma once
 #include "Header.hpp"
 #include "Personagem.hpp"
-#include "Jogador.hpp"
 
 namespace Personagens
 {
+    class Jogador;
+
     class Inimigo : public Personagem
     {
     protected:

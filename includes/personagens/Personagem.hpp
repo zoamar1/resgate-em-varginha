@@ -4,7 +4,7 @@
 
 namespace Personagens
 {
-    class Personagem : public Entidade
+    class Personagem : public Entidades::Entidade
     {
     protected:
         int num_vidas;
