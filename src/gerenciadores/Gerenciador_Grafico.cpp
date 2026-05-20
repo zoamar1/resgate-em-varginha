@@ -46,8 +46,11 @@ namespace Gerenciadores
     {
         if(pE)
         {
-            sf::RectangleShape pFig = *(pE->getpFig());
-            window.draw(pFig);
+            sf::RectangleShape* pFig = pE->getpFig();
+            if (pFig)
+            {
+                window.draw(*pFig);
+            }
         }
     }
 

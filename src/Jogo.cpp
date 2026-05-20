@@ -12,7 +12,7 @@ Jogo::~Jogo()
 
 void Jogo::executar()
 {
-    if (pGG)
+    if (pGG && pGE)
     {
         while (pGG->janelaAberta())
         {
