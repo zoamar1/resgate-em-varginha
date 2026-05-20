@@ -1,32 +1,35 @@
 #include "entidades/Ente.hpp"
-using namespace Gerenciadores;  
+using namespace Gerenciadores;
 
-// FALTA IMPLEMENTAR FUNCOES
+int Ente::cont_id = 1;
 
 Gerenciador_Grafico *Ente::pGG = NULL;
 
-Ente::Ente() : id(-1), pFig(NULL)
+Ente::Ente() : id(cont_id++), pFig(NULL)
 {
-
 }
 
 Ente::~Ente()
 {
     if (pFig)
     {
-        delete pFig; 
+        delete pFig;
         pFig = NULL;
     }
-    id = -1;
 }
 
 void Ente::desenhar()
 {
-    pGG->desenhaEnte(this);
+    if (pGG)
+    {
+        pGG->desenhaEnte(this);
+    }
 }
-
 
 void Ente::setGG(Gerenciadores::Gerenciador_Grafico *pG)
 {
-    pGG = pG;
+    if (pG)
+    {
+        pGG = pG;
+    }
 }
