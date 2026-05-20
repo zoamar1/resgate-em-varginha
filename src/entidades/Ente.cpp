@@ -33,3 +33,8 @@ void Ente::setGG(Gerenciadores::Gerenciador_Grafico *pG)
         pGG = pG;
     }
 }
+
+sf::RectangleShape *Ente::getpFig()
+{
+    return pFig;
+}
