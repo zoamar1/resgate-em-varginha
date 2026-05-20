@@ -3,21 +3,24 @@
 #include "Ente.hpp"
 // using namespace std;
 
-class Entidade : public Ente
+namespace Entidades
 {
-protected:
-    int x;
-    int y;
+    class Entidade : public Ente
+    {
+    protected:
+        int x;
+        int y;
 
-    // ostream buffer;
+        // ostream buffer;
 
-public:
-    Entidade(int posX = 0, int posY = 0);
-    virtual ~Entidade();
+    public:
+        Entidade(int posX = 0, int posY = 0);
+        virtual ~Entidade();
 
-    virtual void executar() = 0;
-    virtual void salvar() = 0;
+        virtual void executar() = 0;
+        virtual void salvar() = 0;
 
-    // protected:
-    // void salvarDataBuffer();
-};
+        // protected:
+        // void salvarDataBuffer();
+    };
+}

@@ -2,15 +2,18 @@
 #include "Header.hpp"
 #include "entidades/Entidade.hpp"
 
-class Projetil : public Entidade
+namespace Entidades
 {
-protected:
-    bool ativo;
+    class Projetil : public Entidade
+    {
+    protected:
+        bool ativo;
 
-public:
-    Projetil(int posX = 0, int posY = 0, bool flag = true);
-    ~Projetil();
+    public:
+        Projetil(int posX = 0, int posY = 0, bool flag = true);
+        ~Projetil();
 
-    void executar();
-    void salvar();
-};
+        void executar();
+        void salvar();
+    };
+}
