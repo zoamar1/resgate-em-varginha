@@ -1,6 +1,6 @@
 #pragma once
 #include "Header.hpp"
-#include "Entidade.hpp"
+#include "entidades/Entidade.hpp"
 
 namespace Personagens
 {

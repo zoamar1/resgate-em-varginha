@@ -1,4 +1,4 @@
-#include "entidades/Personagem.hpp"
+#include "personagens/Personagem.hpp"
 
 namespace Personagens
 {
