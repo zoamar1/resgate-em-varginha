@@ -16,8 +16,8 @@ namespace Personagens
         Jogador(int posX = 0, int posY = 0, int n = 3, int p = 0);
         ~Jogador();
 
-        void colidir(Inimigo *pI);
-        void executar();
-        void salvar();
+        //void colidir(Inimigo *pI);
+        //void executar();
+        //void salvar();
     };
 }

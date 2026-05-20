@@ -13,7 +13,7 @@ namespace Entidades
         Projetil(int posX = 0, int posY = 0, bool flag = true);
         ~Projetil();
 
-        void executar();
-        void salvar();
+        //void executar();
+        //void salvar();
     };
 }
