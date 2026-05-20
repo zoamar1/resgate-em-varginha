@@ -12,12 +12,12 @@ protected:
     // ostream buffer;
 
 public:
-    Entidade(int posX, int posY);
+    Entidade(int posX = 0, int posY = 0);
     virtual ~Entidade();
 
     virtual void executar() = 0;
     virtual void salvar() = 0;
 
-//protected:
-    //void salvarDataBuffer();
+    // protected:
+    // void salvarDataBuffer();
 };

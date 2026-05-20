@@ -9,7 +9,7 @@ protected:
 
 public:
     Personagem(int posX = 0, int posY = 0, int n = 0);
-    ~Personagem();
+    virtual ~Personagem();
 
     // void salvarDataBuffer();
     virtual void executar() = 0;

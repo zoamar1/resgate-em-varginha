@@ -8,7 +8,7 @@ protected:
     bool ativo;
 
 public:
-    Projetil(int posX, int posY, bool flag);
+    Projetil(int posX = 0, int posY = 0, bool flag = true);
     ~Projetil();
 
     void executar();
