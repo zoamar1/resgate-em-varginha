@@ -5,8 +5,10 @@ int Ente::cont_id = 1;
 
 Gerenciador_Grafico *Ente::pGG = NULL;
 
-Ente::Ente() : id(cont_id++), pFig(NULL)
+Ente::Ente() : id(cont_id++), pFig(NULL), textura()
 {
+    pFig = new sf::RectangleShape();
+
 }
 
 Ente::~Ente()
@@ -18,13 +20,13 @@ Ente::~Ente()
     }
 }
 
-void Ente::desenhar()
-{
-    if (pGG)
+    void Ente::desenhar()
     {
-        pGG->desenhaEnte(this);
+        if (pGG)
+        {
+            pGG->desenhaEnte(this);
+        }
     }
-}
 
 void Ente::setGG(Gerenciadores::Gerenciador_Grafico *pG)
 {

@@ -3,7 +3,8 @@
 namespace Gerenciadores
 {
     Gerenciador_Eventos *Gerenciador_Eventos::pEvento(NULL);
-    Gerenciador_Eventos::Gerenciador_Eventos() : pGG(NULL) {
+    Gerenciador_Eventos::Gerenciador_Eventos() : pGG(NULL) 
+    {
 
                                                  };
 

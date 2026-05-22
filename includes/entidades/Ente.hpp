@@ -9,6 +9,7 @@ protected:
     static int cont_id;
     static Gerenciadores::Gerenciador_Grafico *pGG;
     sf::RectangleShape *pFig;
+    sf::Texture textura;    
 
 public:
     Ente();

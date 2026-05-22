@@ -1,15 +1,26 @@
 #pragma once
 #include "gerenciadores/Gerenciador_Grafico.hpp"
 #include "gerenciadores/Gerenciador_Eventos.hpp"
+#include "Menu.hpp"
 
 class Jogo
 {
+public:
+    enum Estados 
+        {
+            MENU,
+            FASE1,
+            FASE2
+        };
 private:
     Gerenciadores::Gerenciador_Grafico *pGG;
     Gerenciadores::Gerenciador_Eventos *pGE;
-
+    Estados estado;
+    Menu menu;
 public:
     Jogo();
     ~Jogo();
     void executar();
+    int getEstado();
+    void setEstado(const int valor);
 };

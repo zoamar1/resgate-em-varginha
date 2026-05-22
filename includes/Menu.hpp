@@ -1,7 +1,8 @@
 #pragma once
 #include "Header.hpp"
-#include "Jogo.hpp"
 #include "entidades/Ente.hpp"
+
+class Jogo;
 
 class Menu : public Ente
 {
