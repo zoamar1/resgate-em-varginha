@@ -2,6 +2,10 @@
 #include "Header.hpp"
 #include "Gerenciador_Grafico.hpp"
 
+
+class Jogo;
+
+
 namespace Gerenciadores 
 {
     class Gerenciador_Eventos
@@ -9,10 +13,11 @@ namespace Gerenciadores
         private:
             static Gerenciador_Eventos* pEvento;
             Gerenciador_Grafico* pGG;
+            Jogo* pJogo;
         public:
-            Gerenciador_Eventos();
+            Gerenciador_Eventos(Jogo* pJ);
             ~Gerenciador_Eventos();
-            static Gerenciador_Eventos* getGerenciador_Eventos();
+            static Gerenciador_Eventos* getGerenciador_Eventos(Jogo* pJ);
             void setGerenciador_Grafico(Gerenciador_Grafico* pGG);
             void executar();
             void verificaTeclaPressionada(sf::Event &evento);

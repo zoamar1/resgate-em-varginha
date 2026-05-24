@@ -21,6 +21,6 @@ public:
     Jogo();
     ~Jogo();
     void executar();
-    int getEstado();
-    void setEstado(const int valor);
+    Estados getEstado();
+    void setEstado(Estados valor);
 };

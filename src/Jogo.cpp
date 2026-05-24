@@ -2,7 +2,7 @@
 
 Jogo::Jogo() : 
     pGG(Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico()), 
-    pGE(Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos()), 
+    pGE(Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos(this)), 
     estado(MENU),
     menu()
 {
@@ -31,6 +31,7 @@ void Jogo::executar()
                 }
                 case FASE1:
                 {
+                    
                     break;
                 }        
                 case FASE2:
@@ -43,11 +44,12 @@ void Jogo::executar()
     }
 };
 
-int Jogo::getEstado()
+Jogo::Estados Jogo::getEstado()
 {
-    return static_cast<int>(estado);
+    return estado;
 }
-void Jogo::setEstado(const int valor)
+
+void Jogo::setEstado(Estados valor)
 {
-    estado = static_cast<Estados>(valor);
+    estado = valor;
 }
