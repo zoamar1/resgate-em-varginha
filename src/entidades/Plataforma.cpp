@@ -8,6 +8,11 @@ Plataforma::Plataforma(int posicaoX, int posicaoY, int largura, int altura)
     retangulo.setFillColor(sf::Color(120, 120, 120));
 }
 
+sf::FloatRect Plataforma::getLimites() const
+{
+    return retangulo.getGlobalBounds();
+}
+
 void Plataforma::desenhar()
 {
     Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico()->desenhaRect(retangulo);

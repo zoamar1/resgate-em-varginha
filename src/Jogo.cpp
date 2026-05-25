@@ -41,6 +41,7 @@ void Jogo::executar()
                 {
                     if (!pJog1) pJog1 = new Personagens::Jogador(300, 300);
                     pGE->setJogador1(pJog1);
+                    pJog1->definirPlataforma(&plataforma);
                     plataforma.desenhar();
                     pJog1->executar();
 

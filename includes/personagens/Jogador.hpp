@@ -2,6 +2,8 @@
 #include "Header.hpp"
 #include "Personagem.hpp"
 
+class Plataforma;
+
 namespace Personagens
 {
     class Inimigo;
@@ -10,13 +12,14 @@ namespace Personagens
     {
     protected:
         int pontos;
+        const ::Plataforma* pPlataforma;
     public:
-        // lembrar de mudar n(numero de vidas) para o padrao do jogador!!!!
         Jogador(int posX = 0, int posY = 0, int n = 3, int p = 0);
         ~Jogador();
 
         void executar();
         void salvar();
         void mover();
+        void definirPlataforma(const ::Plataforma* plataforma);
     };
 }
