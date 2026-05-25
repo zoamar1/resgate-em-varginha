@@ -2,6 +2,7 @@
 #include "gerenciadores/Gerenciador_Grafico.hpp"
 #include "gerenciadores/Gerenciador_Eventos.hpp"
 #include "personagens/Jogador.hpp"
+#include "entidades/Plataforma.hpp"
 #include "Menu.hpp"
 
 class Jogo
@@ -18,6 +19,7 @@ private:
     Gerenciadores::Gerenciador_Eventos *pGE;
     Estados estado;
     Menu menu;
+    Plataforma plataforma;
     Personagens::Jogador *pJog1;
 public:
     Jogo();

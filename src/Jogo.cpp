@@ -5,6 +5,7 @@ Jogo::Jogo() :
     pGE(Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos(this)), 
     estado(MENU),
     menu(),
+    plataforma(LARGURA / 2, ALTURA - 20, LARGURA, 40),
     pJog1(NULL)
 {
     pGE->setGerenciador_Grafico(pGG);
@@ -40,6 +41,7 @@ void Jogo::executar()
                 {
                     if (!pJog1) pJog1 = new Personagens::Jogador(300, 300);
                     pGE->setJogador1(pJog1);
+                    plataforma.desenhar();
                     pJog1->executar();
 
                     break;
