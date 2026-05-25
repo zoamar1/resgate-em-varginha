@@ -4,7 +4,8 @@ Jogo::Jogo() :
     pGG(Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico()), 
     pGE(Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos(this)), 
     estado(MENU),
-    menu()
+    menu(),
+    pJog1(NULL)
 {
     pGE->setGerenciador_Grafico(pGG);
     Ente::setGG(pGG);
@@ -12,6 +13,11 @@ Jogo::Jogo() :
 
 Jogo::~Jogo()
 {
+    if (pJog1)
+    {
+        delete pJog1;
+        pJog1 = NULL;
+    }
     pGG = NULL;
 };
 
@@ -28,10 +34,14 @@ void Jogo::executar()
                 case MENU:
                 {
                     menu.executar();
+                    break;
                 }
                 case FASE1:
                 {
-                    
+                    if (!pJog1) pJog1 = new Personagens::Jogador(300, 300);
+                    pGE->setJogador1(pJog1);
+                    pJog1->executar();
+
                     break;
                 }        
                 case FASE2:

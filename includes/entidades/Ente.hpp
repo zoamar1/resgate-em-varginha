@@ -9,8 +9,6 @@ protected:
     static int cont_id;
     static Gerenciadores::Gerenciador_Grafico *pGG;
     sf::RectangleShape *pFig;
-    sf::Texture textura;    
-
 public:
     Ente();
     virtual ~Ente();
@@ -18,4 +16,5 @@ public:
     void desenhar();
     static void setGG(Gerenciadores::Gerenciador_Grafico *pG);
     sf::RectangleShape *getpFig();
+
 };

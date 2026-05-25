@@ -5,10 +5,10 @@ int Ente::cont_id = 1;
 
 Gerenciador_Grafico *Ente::pGG = NULL;
 
-Ente::Ente() : id(cont_id++), pFig(NULL), textura()
+Ente::Ente() : id(cont_id++), pFig(NULL)
 {
     pFig = new sf::RectangleShape();
-
+    pFig->setFillColor(sf::Color::Blue);
 }
 
 Ente::~Ente()

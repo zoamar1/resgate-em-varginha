@@ -1,7 +1,7 @@
 #pragma once
 #include "Header.hpp"
 #include "Gerenciador_Grafico.hpp"
-
+#include "personagens/Jogador.hpp"
 
 class Jogo;
 
@@ -14,11 +14,13 @@ namespace Gerenciadores
             static Gerenciador_Eventos* pEvento;
             Gerenciador_Grafico* pGG;
             Jogo* pJogo;
+            Personagens::Jogador* pJog1;
         public:
             Gerenciador_Eventos(Jogo* pJ);
             ~Gerenciador_Eventos();
             static Gerenciador_Eventos* getGerenciador_Eventos(Jogo* pJ);
             void setGerenciador_Grafico(Gerenciador_Grafico* pGG);
+            void setJogador1(Personagens::Jogador* pJogador1);
             void executar();
             void verificaTeclaPressionada(sf::Event &evento);
     };
