@@ -4,8 +4,7 @@
 namespace Gerenciadores
 {
     Gerenciador_Eventos *Gerenciador_Eventos::pEvento(NULL);
-    Gerenciador_Eventos::Gerenciador_Eventos(Jogo *pJ) : pGG(NULL), pJogo(pJ), pJog1(NULL) {
-                                                         };
+    Gerenciador_Eventos::Gerenciador_Eventos(Jogo *pJ) : pGG(NULL), pJogo(pJ), pJog1(NULL) { }
 
     Gerenciador_Eventos::~Gerenciador_Eventos()
     {
@@ -45,63 +44,32 @@ namespace Gerenciadores
     void Gerenciador_Eventos::verificaTeclaPressionada(sf::Event &evento)
     {
         Jogo::Estados estado = pJogo->getEstado();
-        if (evento.key.code == sf::Keyboard::Escape)
+        if (evento.type == sf::Event::KeyPressed && evento.key.code == sf::Keyboard::Escape)
         {
             pGG->fecharJanela();
+            return;
         }
-        if (evento.key.code == sf::Keyboard::Enter)
+        if (evento.type == sf::Event::KeyPressed && evento.key.code == sf::Keyboard::Enter)
         {
             if (estado == Jogo::MENU)
             {
                 pJogo->setEstado(Jogo::FASE1);
             }
         }
+
         if (pJog1)
         {
-            float velMax = pJog1->getVel_Max();
+            bool cima = sf::Keyboard::isKeyPressed(sf::Keyboard::W);
+            bool baixo = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
+            bool esquerda = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
+            bool direita = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
 
-            if (evento.type == sf::Event::KeyPressed)
-            {
-                if (evento.key.code == sf::Keyboard::W)
-                    pJog1->setVelY(-velMax);
-                if (evento.key.code == sf::Keyboard::S)
-                    pJog1->setVelY(velMax);
-                if (evento.key.code == sf::Keyboard::A)
-                    pJog1->setVelX(-velMax);
-                if (evento.key.code == sf::Keyboard::D)
-                    pJog1->setVelX(velMax);
-            }
-            else if (evento.type == sf::Event::KeyReleased)
-            {
-                if (evento.key.code == sf::Keyboard::W)
-                {
-                    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-                        pJog1->setVelY(velMax);
-                    else
-                        pJog1->setVelY(0);
-                }
-                if (evento.key.code == sf::Keyboard::S)
-                {
-                    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-                        pJog1->setVelY(-velMax);
-                    else
-                        pJog1->setVelY(0);
-                }
-                if (evento.key.code == sf::Keyboard::A)
-                {
-                    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-                        pJog1->setVelX(velMax);
-                    else
-                        pJog1->setVelX(0);
-                }
-                if (evento.key.code == sf::Keyboard::D)
-                {
-                    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-                        pJog1->setVelX(-velMax);
-                    else
-                        pJog1->setVelX(0);
-                }
-            }
+            int x = (direita ? 1 : 0) + (esquerda ? -1 : 0);
+            int y = (baixo ? 1 : 0) + (cima ? -1 : 0);
+
+            float velMax = pJog1->getVel_Max();
+            pJog1->setVelX(x * velMax);
+            pJog1->setVelY(y * velMax);
         }
     }
 }
