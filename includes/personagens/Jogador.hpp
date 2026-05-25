@@ -2,7 +2,7 @@
 #include "Header.hpp"
 #include "Personagem.hpp"
 
-class Plataforma;
+namespace Entidades { namespace Obstaculos { class Plataforma; } }
 
 namespace Personagens
 {
@@ -12,7 +12,7 @@ namespace Personagens
     {
     protected:
         int pontos;
-        const ::Plataforma* pPlataforma;
+        const Entidades::Obstaculos::Plataforma* pPlataforma;
     public:
         Jogador(int posX = 0, int posY = 0, int n = 3, int p = 0);
         ~Jogador();
@@ -20,6 +20,6 @@ namespace Personagens
         void executar();
         void salvar();
         void mover();
-        void definirPlataforma(const ::Plataforma* plataforma);
+        void definirPlataforma(const Entidades::Obstaculos::Plataforma* plataforma);
     };
 }

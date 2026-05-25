@@ -22,7 +22,7 @@ namespace Personagens
     {
     }
 
-    void Jogador::definirPlataforma(const ::Plataforma* plataforma)
+    void Jogador::definirPlataforma(const Entidades::Obstaculos::Plataforma* plataforma)
     {
         pPlataforma = plataforma;
     }
@@ -30,7 +30,8 @@ namespace Personagens
     void Jogador::mover()
     {
         int deslocamentoX = velx;
-        int deslocamentoY = vely;
+        int deslocamentoY = 0;
+        (vely<0)? deslocamentoY = vely : deslocamentoY = 4;
         float novoX = (float)getX() + deslocamentoX;
         float novoY = (float)getY() + deslocamentoY;
        

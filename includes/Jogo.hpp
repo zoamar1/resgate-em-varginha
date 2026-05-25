@@ -19,7 +19,7 @@ private:
     Gerenciadores::Gerenciador_Eventos *pGE;
     Estados estado;
     Menu menu;
-    Plataforma plataforma;
+    Entidades::Obstaculos::Plataforma plataforma;
     Personagens::Jogador *pJog1;
 public:
     Jogo();
