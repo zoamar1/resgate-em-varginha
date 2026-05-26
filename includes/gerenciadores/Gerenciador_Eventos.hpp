@@ -5,7 +5,6 @@
 
 class Jogo;
 
-
 namespace Gerenciadores 
 {
     class Gerenciador_Eventos

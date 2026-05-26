@@ -1,4 +1,5 @@
 #include "gerenciadores/Gerenciador_Eventos.hpp"
+#include "gerenciadores/Gerenciador_Grafico.hpp"
 #include "Jogo.hpp"
 
 namespace Gerenciadores
