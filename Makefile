@@ -2,7 +2,7 @@
 CXX = g++
 # Atualizado para C++17 (exigido pelo SFML 2.6 e para aceitar nullptr)
 # -Iincludes e -Isrc mapeiam as pastas para simplificar os #include no código
-CXXFLAGS = -std=c++17 -Wall -Wextra -Iincludes -Isrc
+CXXFLAGS = -std=c++17 -Wall -Wextra -Iincludes -Iincludes/entidades -Isrc
 LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system
 
 # Diretórios
@@ -12,8 +12,8 @@ BUILD_DIR = build
 # Nome do executável
 TARGET = app_sfml
 
-# Encontra todos os arquivos .cpp na raiz de src e também nas subpastas (entidades, gerenciadores, etc.)
-SOURCES = $(wildcard $(SRC_DIR)/*.cpp) $(wildcard $(SRC_DIR)/*/*.cpp)
+# Encontra todos os arquivos .cpp recursivamente em src (inclui subpastas como entidades/personagens)
+SOURCES = $(shell find $(SRC_DIR) -name '*.cpp')
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(SOURCES))
 
 # Regra principal

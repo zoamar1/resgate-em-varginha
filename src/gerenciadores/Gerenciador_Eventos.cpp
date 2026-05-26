@@ -25,7 +25,7 @@ namespace Gerenciadores
         this->pGG = pGG;
     }
 
-    void Gerenciador_Eventos::setJogador1(Personagens::Jogador* pJogador1)
+    void Gerenciador_Eventos::setJogador1(Entidades::Personagens::Jogador* pJogador1)
     {
         pJog1 = pJogador1;
     }

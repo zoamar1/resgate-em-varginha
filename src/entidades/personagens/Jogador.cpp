@@ -1,8 +1,10 @@
 #include "personagens/Jogador.hpp"
 
-namespace Personagens
+namespace Entidades
 {
-    Jogador::Jogador(int posX, int posY, int n, int p) : Personagem(posX, posY, 40, 40, n), pontos(p)
+    namespace Personagens
+    {
+        Jogador::Jogador(int posX, int posY, int n, int p) : Personagem(posX, posY, 40, 40, n), pontos(p)
     {
         setVel_Max(4);
     }
@@ -33,5 +35,6 @@ namespace Personagens
 
             setPosicao(novoX, novoY);
         }
+    }
     }
 }

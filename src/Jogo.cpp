@@ -38,7 +38,7 @@ void Jogo::executar()
                 }
                 case FASE1:
                 {
-                    if (!pJog1) pJog1 = new Personagens::Jogador(300, 300);
+                    if (!pJog1) pJog1 = new Entidades::Personagens::Jogador(300, 300);
                     pGE->setJogador1(pJog1);
                     pJog1->executar();
 
