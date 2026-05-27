@@ -2,13 +2,23 @@
 
 namespace Gerenciadores
 {
-
+    Gerenciador_Colisoes *Gerenciador_Colisoes::pColisao = NULL;
+    
     Gerenciador_Colisoes::Gerenciador_Colisoes()
     {
     }
 
     Gerenciador_Colisoes::~Gerenciador_Colisoes()
     {
+    }
+
+    Gerenciador_Colisoes *Gerenciador_Colisoes::getGerenciador_Colisoes()
+    {
+        if (!pColisao)
+        {
+            pColisao = new Gerenciador_Colisoes();
+        }
+        return pColisao;
     }
 
     void Gerenciador_Colisoes::incluirInimigo(Entidades::Personagens::Inimigo *pi)

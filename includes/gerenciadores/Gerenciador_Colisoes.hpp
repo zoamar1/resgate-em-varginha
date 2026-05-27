@@ -9,14 +9,17 @@ namespace Gerenciadores
     class Gerenciador_Colisoes
     {
     private:
+        static Gerenciador_Colisoes* pColisao;
         std::vector<Entidades::Personagens::Inimigo *> LIs;
         std::set<Entidades::Projetil *> LPs;
         Entidades::Personagens::Jogador *pJog1;
-
-    public:
+    
+    private:
         Gerenciador_Colisoes();
+    public:
         ~Gerenciador_Colisoes();
 
+        static Gerenciador_Colisoes* getGerenciador_Colisoes();
         void incluirInimigo(Entidades::Personagens::Inimigo *pi);
         // void incluirObstaculo(Entidades::Obstaculos::Obstaculo *po);
         void incluirProjetil(Entidades::Projetil *pj);

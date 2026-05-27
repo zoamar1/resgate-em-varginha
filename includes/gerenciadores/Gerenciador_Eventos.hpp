@@ -14,8 +14,8 @@ namespace Gerenciadores
             Gerenciador_Grafico* pGG;
             Jogo* pJogo;
             Entidades::Personagens::Jogador* pJog1;
-        public:
             Gerenciador_Eventos(Jogo* pJ);
+        public:
             ~Gerenciador_Eventos();
             static Gerenciador_Eventos* getGerenciador_Eventos(Jogo* pJ);
             void setGerenciador_Grafico(Gerenciador_Grafico* pGG);
