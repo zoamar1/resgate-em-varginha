@@ -6,13 +6,13 @@ namespace Entidades
 {
     namespace Obstaculos
     {
-        class Obstaculo
+        class Obstaculo : public Entidade
         {
         protected:
             bool danoso;
 
         public:
-            Obstaculo();
+            Obstaculo(int posX = 0, int posY = 0, int tamanhoX = 0, int tamanhoY = 0, bool danoso = false);
             virtual ~Obstaculo();
             void salvarDataBuffer();
             virtual void executar() = 0;
