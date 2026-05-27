@@ -32,6 +32,10 @@ namespace Listas {
             Elemento<TE>* getProximo() const { 
                 return pProx;
             }
+            
+            TE* getInfo() const {
+                return pInfo;
+            }
         };
 
         Elemento<TL>* pPrimeiro;

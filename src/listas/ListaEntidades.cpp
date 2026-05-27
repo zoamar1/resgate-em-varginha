@@ -2,11 +2,12 @@
 
 namespace Listas
 {
-    ListaEntidades::ListaEntidades()
+    ListaEntidades::ListaEntidades() : LE()
     {
     }
     ListaEntidades::~ListaEntidades()
     {
+        LE.limpar();
     }
     void ListaEntidades::incluir(Entidades::Entidade *pE)
     {
