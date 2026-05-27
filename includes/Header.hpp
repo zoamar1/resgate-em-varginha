@@ -7,4 +7,5 @@
 #include <time.h>
 #include <list>
 #include <vector>
+#include <set>
 #include <SFML/Graphics.hpp>
