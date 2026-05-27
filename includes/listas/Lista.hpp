@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Header.hpp"
 namespace Listas {
 
     template<class TL>
@@ -36,11 +36,12 @@ namespace Listas {
 
         Elemento<TL>* pPrimeiro;
         Elemento<TL>* pUltimo;
-
+        Elemento<TL>* pAtual;
     public:
         Lista() {
             pPrimeiro = NULL;
             pUltimo = NULL;
+            pAtual = NULL;
         }
         
         ~Lista() {
@@ -74,6 +75,26 @@ namespace Listas {
             pPrimeiro = NULL;
             pUltimo = NULL;
         }
+
+        TL* getPrimeiro() {
+            pAtual = pPrimeiro;
+            if (pAtual) {
+                return pAtual->getInfo();
+            }
+            return NULL;
+        }
+
+        TL* getProximo() {
+            if (pAtual) {
+                pAtual = pAtual->getProximo(); 
+            }
+            
+            if (pAtual) {
+                return pAtual->getInfo();
+            }
+            return NULL;
+        }
+
     };
 
 }
