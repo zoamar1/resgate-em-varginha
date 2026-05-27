@@ -1,16 +1,17 @@
 #include "Jogo.hpp"
 
-Jogo::Jogo() : 
-    pGG(Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico()), 
-    pGE(Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos(this)), 
-    estado(MENU),
-    menu(),
-    pJog1(NULL)
+Jogo::Jogo() : pGG(Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico()),
+               pGE(Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos(this)),
+               pGC(Gerenciadores::Gerenciador_Colisoes::getGerenciador_Colisoes()),
+               estado(MENU),
+               menu(),
+               pJog1(NULL)
 {
     pGE->setGerenciador_Grafico(pGG);
     Ente::setGG(pGG);
-    if (!pJog1) pJog1 = new Entidades::Personagens::Jogador(300, 300);
+    pJog1 = new Entidades::Personagens::Jogador(300, 300);
     pGE->setJogador1(pJog1);
+    pGC->setJogador1(pJog1);
 };
 
 Jogo::~Jogo()
@@ -26,28 +27,28 @@ Jogo::~Jogo()
 void Jogo::executar()
 {
     if (pGG && pGE)
-    {   
+    {
         while (pGG->janelaAberta())
         {
             pGE->executar();
             pGG->limpaJanela();
-            switch(getEstado())
+            switch (getEstado())
             {
-                case MENU:
-                {
-                    menu.executar();
-                    break;
-                }
-                case FASE1:
-                {
-
-                    pJog1->executar();
-                    break;
-                }        
-                case FASE2:
-                {
-                    break;
-                }
+            case MENU:
+            {
+                menu.executar();
+                break;
+            }
+            case FASE1:
+            {
+                Fases::FasePrimeira* fase1 = new Fases::FasePrimeira(pGC);
+                pJog1->executar();
+                break;
+            }
+            case FASE2:
+            {
+                break;
+            }
             }
             pGG->desenhaJanela();
         }

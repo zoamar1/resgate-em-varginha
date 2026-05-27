@@ -14,7 +14,7 @@ namespace Fases {
         void criarInimMedios();
         void criarObstMedios();
 
-        void criarInimgos(); 
+        void criarInimigos(); 
         void criarObstaculo();
     };
 }

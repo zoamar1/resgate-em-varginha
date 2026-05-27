@@ -20,6 +20,7 @@ namespace Gerenciadores
         ~Gerenciador_Colisoes();
 
         static Gerenciador_Colisoes* getGerenciador_Colisoes();
+        void setJogador1(Entidades::Personagens::Jogador *pJ);
         void incluirInimigo(Entidades::Personagens::Inimigo *pi);
         // void incluirObstaculo(Entidades::Obstaculos::Obstaculo *po);
         void incluirProjetil(Entidades::Projetil *pj);

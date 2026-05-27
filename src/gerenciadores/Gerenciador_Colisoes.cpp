@@ -3,7 +3,7 @@
 namespace Gerenciadores
 {
     Gerenciador_Colisoes *Gerenciador_Colisoes::pColisao = NULL;
-    
+
     Gerenciador_Colisoes::Gerenciador_Colisoes()
     {
     }
@@ -19,6 +19,11 @@ namespace Gerenciadores
             pColisao = new Gerenciador_Colisoes();
         }
         return pColisao;
+    }
+
+    void Gerenciador_Colisoes::setJogador1(Entidades::Personagens::Jogador *pJ)
+    {
+        pJog1 = pJ;
     }
 
     void Gerenciador_Colisoes::incluirInimigo(Entidades::Personagens::Inimigo *pi)

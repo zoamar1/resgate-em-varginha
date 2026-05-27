@@ -17,8 +17,9 @@ namespace Fases
     {
     }
 
-    void FasePrimeira::criarInimgos()
+    void FasePrimeira::criarInimigos()
     {
+        std::cout << "teste" << std::endl;
     }
     void FasePrimeira::criarObstaculo()
     {
