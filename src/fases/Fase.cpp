@@ -8,7 +8,7 @@ namespace Fases
     }
     Fase::~Fase()
     {
-
+        GC = NULL;
     }
     void Fase::executar()
     {
