@@ -51,7 +51,7 @@ namespace Gerenciadores
     }
 
     // falta verificar
-    const bool Gerenciador_Colisoes::verificarColisao(Entidades::Entidade *pe1, Entidades::Entidade *pe2) const
+    bool Gerenciador_Colisoes::verificarColisao(Entidades::Entidade *pe1, Entidades::Entidade *pe2) const
     {
         if (pe1 && pe2)
         {
@@ -73,13 +73,13 @@ namespace Gerenciadores
         {
             std::list<Entidades::Obstaculos::Obstaculo *>::iterator it;
 
-            for (it = LOs.begin(); it != LOs.end(); it++)
+            for (auto it = LOs.begin(); it != LOs.end(); it++)
             {
                 Entidades::Obstaculos::Obstaculo *pObstaculo = *it;
                 if (verificarColisao(pJog1, pObstaculo))
                 {
-                    pObstaculo->obstaculizar(pJog1);
-                    // falta corrigir posicao
+                    // pObstaculo->obstaculizar(pJog1);
+                    //  falta corrigir posicao
                 }
             }
         }
@@ -91,12 +91,12 @@ namespace Gerenciadores
         {
             std::vector<Entidades::Personagens::Personagem *>::iterator it;
 
-            for (it = LOs.begin(); it != LOs.end(); it++)
+            for (auto it = LIs.begin(); it != LIs.end(); it++)
             {
-                Entidades::Personagens::Inimigo *pInimigo = *it;
+                Entidades::Personagens::Personagem *pInimigo = *it;
                 if (verificarColisao(pJog1, pInimigo))
                 {
-                    pInimigo->danificar(pJog1); // verificar se faz sentido
+                    // pInimigo->danificar(pJog1); // verificar se faz sentido
                 }
             }
         }

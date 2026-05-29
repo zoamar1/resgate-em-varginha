@@ -30,7 +30,7 @@ namespace Gerenciadores
         void executar();
 
     private:
-        const bool verificarColisao(Entidades::Entidade *pe1, Entidades::Entidade *pe2) const;
+        bool verificarColisao(Entidades::Entidade *pe1, Entidades::Entidade *pe2) const;
         void tratarColisoesJogsObstacs();
         void tratarColisoesJogsInimgs();
         void tratarColisoesJogsProjeteis();
