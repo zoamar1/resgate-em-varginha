@@ -3,6 +3,7 @@
 #include "entidades/personagens/Jogador.hpp"
 #include "entidades/personagens/Inimigo.hpp"
 #include "entidades/Projetil.hpp"
+#include "entidades/obstaculos/Obstaculo.hpp"
 
 namespace Gerenciadores
 {
@@ -11,6 +12,7 @@ namespace Gerenciadores
     private:
         static Gerenciador_Colisoes* pColisao;
         std::vector<Entidades::Personagens::Inimigo *> LIs;
+        std::list<Entidades::Obstaculos::Obstaculo *> LOs;
         std::set<Entidades::Projetil *> LPs;
         Entidades::Personagens::Jogador *pJog1;
     
@@ -22,7 +24,7 @@ namespace Gerenciadores
         static Gerenciador_Colisoes* getGerenciador_Colisoes();
         void setJogador1(Entidades::Personagens::Jogador *pJ);
         void incluirInimigo(Entidades::Personagens::Inimigo *pi);
-        // void incluirObstaculo(Entidades::Obstaculos::Obstaculo *po);
+        void incluirObstaculo(Entidades::Obstaculos::Obstaculo *po);
         void incluirProjetil(Entidades::Projetil *pj);
         void executar();
 

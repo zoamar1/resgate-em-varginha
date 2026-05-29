@@ -30,9 +30,10 @@ namespace Gerenciadores
     {
     }
 
-    /* void Gerenciador_Colisoes::incluirObstaculo(Obstaculo *po)
+    void Gerenciador_Colisoes::incluirObstaculo(Entidades::Obstaculos::Obstaculo *po)
     {
-    } */
+        
+    }
 
     void Gerenciador_Colisoes::incluirProjetil(Entidades::Projetil *pj)
     {
