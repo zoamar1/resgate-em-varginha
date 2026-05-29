@@ -26,30 +26,80 @@ namespace Gerenciadores
         pJog1 = pJ;
     }
 
-    void Gerenciador_Colisoes::incluirInimigo(Entidades::Personagens::Inimigo *pi)
+    void Gerenciador_Colisoes::incluirInimigo(Entidades::Personagens::Inimigo *pI)
     {
+        if (pI)
+        {
+            LIs.push_back(pI);
+        }
     }
 
-    void Gerenciador_Colisoes::incluirObstaculo(Entidades::Obstaculos::Obstaculo *po)
+    void Gerenciador_Colisoes::incluirObstaculo(Entidades::Obstaculos::Obstaculo *pO)
     {
-        
+        if (pO)
+        {
+            LOs.push_back(pO);
+        }
     }
 
-    void Gerenciador_Colisoes::incluirProjetil(Entidades::Projetil *pj)
+    void Gerenciador_Colisoes::incluirProjetil(Entidades::Projetil *pP)
     {
+        if (pP)
+        {
+            LPs.insert(pP);
+        }
     }
 
+    // falta verificar
     const bool Gerenciador_Colisoes::verificarColisao(Entidades::Entidade *pe1, Entidades::Entidade *pe2) const
     {
+        if (pe1 && pe2)
+        {
+            if (pe1->getX() == pe2->getX())
+            {
+                return true;
+            }
+            if (pe1->getY() == pe2->getY())
+            {
+                return true;
+            }
+        }
         return false;
     }
 
     void Gerenciador_Colisoes::tratarColisoesJogsObstacs()
     {
+        if (pJog1)
+        {
+            std::list<Entidades::Obstaculos::Obstaculo *>::iterator it;
+
+            for (it = LOs.begin(); it != LOs.end(); it++)
+            {
+                Entidades::Obstaculos::Obstaculo *pObstaculo = *it;
+                if (verificarColisao(pJog1, pObstaculo))
+                {
+                    pObstaculo->obstaculizar(pJog1);
+                    // falta corrigir posicao
+                }
+            }
+        }
     }
 
     void Gerenciador_Colisoes::tratarColisoesJogsInimgs()
     {
+        if (pJog1)
+        {
+            std::vector<Entidades::Personagens::Personagem *>::iterator it;
+
+            for (it = LOs.begin(); it != LOs.end(); it++)
+            {
+                Entidades::Personagens::Inimigo *pInimigo = *it;
+                if (verificarColisao(pJog1, pInimigo))
+                {
+                    pInimigo->danificar(pJog1); // verificar se faz sentido
+                }
+            }
+        }
     }
 
     void Gerenciador_Colisoes::tratarColisoesJogsProjeteis()
@@ -58,6 +108,9 @@ namespace Gerenciadores
 
     void Gerenciador_Colisoes::executar()
     {
+        tratarColisoesJogsInimgs();
+        tratarColisoesJogsObstacs();
+        tratarColisoesJogsProjeteis();
     }
 
 }
