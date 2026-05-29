@@ -10,8 +10,14 @@ namespace Fases
     {
         GC = NULL;
     }
+    void Fase::criarChao()
+    {
+        Entidades::Chao *chao = new Entidades::Chao();
+        chao->executar();
+    }
     void Fase::executar()
     {
+        criarChao();
         lista_ents.percorrer();
     }
     void Fase::criarInimFaceis()

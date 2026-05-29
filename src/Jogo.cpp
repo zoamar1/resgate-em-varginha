@@ -43,6 +43,7 @@ void Jogo::executar()
             {
                 Fases::FasePrimeira* fase1 = new Fases::FasePrimeira(pGC);
                 pJog1->executar();
+                fase1->executar();
                 break;
             }
             case FASE2:

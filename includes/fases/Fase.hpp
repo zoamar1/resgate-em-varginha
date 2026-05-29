@@ -3,6 +3,7 @@
 #include "entidades/Ente.hpp"
 #include "gerenciadores/Gerenciador_Colisoes.hpp"
 #include "listas/ListaEntidades.hpp"
+#include "entidades/Chao.hpp"
 
 namespace Fases {
 
@@ -16,6 +17,7 @@ namespace Fases {
         virtual ~Fase();
         virtual void executar();
     protected:
+        void criarChao();
         void criarInimFaceis();
         void criarPlataformas();
         void criarCenario();
