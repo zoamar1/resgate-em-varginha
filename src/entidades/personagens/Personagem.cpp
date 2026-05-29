@@ -42,5 +42,10 @@ namespace Entidades
         Personagem::~Personagem()
         {
         }
+
+        void Personagem::recebeDano(int dano)
+        {
+            num_vidas -= dano;
+        }
     }
 }

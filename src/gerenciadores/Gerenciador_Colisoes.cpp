@@ -50,16 +50,24 @@ namespace Gerenciadores
         }
     }
 
-    // falta verificar
     bool Gerenciador_Colisoes::verificarColisao(Entidades::Entidade *pe1, Entidades::Entidade *pe2) const
     {
         if (pe1 && pe2)
         {
-            if (pe1->getX() == pe2->getX())
-            {
-                return true;
-            }
-            if (pe1->getY() == pe2->getY())
+            float x1 = pe1->getX();
+            float y1 = pe1->getY();
+            float larg1 = static_cast<float>(pe1->getpFig()->getSize().x);
+            float alt1 = static_cast<float>(pe1->getpFig()->getSize().y);
+
+            float x2 = pe2->getX();
+            float y2 = pe2->getY();
+            float larg2 = static_cast<float>(pe2->getpFig()->getSize().x);
+            float alt2 = static_cast<float>(pe2->getpFig()->getSize().y);
+
+            if (x1 < x2 + larg2 &&
+                x1 + larg1 > x2 &&
+                y1 < y2 + alt2 &&
+                y1 + alt1 > y2)
             {
                 return true;
             }
@@ -78,8 +86,7 @@ namespace Gerenciadores
                 Entidades::Obstaculos::Obstaculo *pObstaculo = *it;
                 if (verificarColisao(pJog1, pObstaculo))
                 {
-                    // pObstaculo->obstaculizar(pJog1);
-                    //  falta corrigir posicao
+                    pObstaculo->obstaculizar(pJog1);
                 }
             }
         }
@@ -93,10 +100,11 @@ namespace Gerenciadores
 
             for (auto it = LIs.begin(); it != LIs.end(); it++)
             {
-                Entidades::Personagens::Personagem *pInimigo = *it;
-                if (verificarColisao(pJog1, pInimigo))
+                Entidades::Personagens::Inimigo *pInimigo = dynamic_cast<Entidades::Personagens::Inimigo *>(*it);
+
+                if (verificarColisao(pJog1, pInimigo) && pInimigo)
                 {
-                    // pInimigo->danificar(pJog1); // verificar se faz sentido
+                    pInimigo->danificar(pJog1);
                 }
             }
         }
@@ -104,6 +112,19 @@ namespace Gerenciadores
 
     void Gerenciador_Colisoes::tratarColisoesJogsProjeteis()
     {
+        if (pJog1)
+        {
+            std::set<Entidades::Projetil *>::iterator it;
+
+            for (auto it = LPs.begin(); it != LPs.end(); it++)
+            {
+                Entidades::Projetil *pProjetil = *it;
+                if (verificarColisao(pJog1, pProjetil) && pProjetil->getAtivo())
+                {
+                    pJog1->recebeDano(pProjetil->getDano());
+                }
+            }
+        }
     }
 
     void Gerenciador_Colisoes::executar()

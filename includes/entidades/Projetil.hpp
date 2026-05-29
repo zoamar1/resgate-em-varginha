@@ -8,12 +8,16 @@ namespace Entidades
     {
     protected:
         bool ativo;
+        int dano;
 
     public:
-        Projetil(int posX = 0, int posY = 0, bool flag = true);
+        Projetil(int posX = 0, int posY = 0, bool flag = true, int dano = 0);
         ~Projetil();
 
-        //void executar();
-        //void salvar();
+        bool getAtivo() const;
+        bool getDano() const;
+
+        // void executar();
+        // void salvar();
     };
 }
