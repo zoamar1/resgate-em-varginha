@@ -20,13 +20,13 @@ namespace Entidades
         {
             if (p && p->getpFig())
             {
-                float pX = p->getX();
-                float pY = p->getY();
+                int pX = p->getX();
+                int pY = p->getY();
                 float pLarg = static_cast<float>(p->getpFig()->getSize().x);
                 float pAlt = static_cast<float>(p->getpFig()->getSize().y);
 
-                float platX = this->getX();
-                float platY = this->getY();
+                int platX = this->getX();
+                int platY = this->getY();
                 float platLarg = static_cast<float>(this->getpFig()->getSize().x);
                 float platAlt = static_cast<float>(this->getpFig()->getSize().y);
 
@@ -36,7 +36,7 @@ namespace Entidades
 
                 if (alinhadoX && alinhadoY)
                 {
-                    p->setY(platY - pAlt);
+                    p->setY((int)platY - pAlt);
                     p->setVelY(0.0f);
                 }
             }
