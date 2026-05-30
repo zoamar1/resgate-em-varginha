@@ -17,12 +17,12 @@ namespace Entidades
             {
                 p->recebeDano(nivel_maldade);
 
-                float distanciaTeletransporte = 150.0f;
+                int distanciaTeletransporte = 150;
 
-                float jogadorX = p->getX();
-                float jogadorY = p->getY();
+                int jogadorX = p->getX();
+                int jogadorY = p->getY();
 
-                float novaPosicaoX;
+                int novaPosicaoX;
 
                 if (this->getX() > jogadorX)
                 {
@@ -33,8 +33,8 @@ namespace Entidades
                     novaPosicaoX = jogadorX + distanciaTeletransporte;
                 }
 
-                this->setX((int)novaPosicaoX);
-                this->setY((int)jogadorY);
+                this->setX(novaPosicaoX);
+                this->setY(jogadorY);
             }
         }
 

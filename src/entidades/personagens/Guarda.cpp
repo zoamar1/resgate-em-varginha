@@ -17,19 +17,19 @@ namespace Entidades
             {
                 p->recebeDano(nivel_maldade);
 
-                float direcaoX;
+                int direcaoX;
 
                 if (p->getX() > this->getX())
                 {
-                    direcaoX = 1.0f;
+                    direcaoX = 1;
                 }
                 else
                 {
-                    direcaoX = -1.0f;
+                    direcaoX = -1;
                 }
 
-                p->setVelX(direcaoX * 8.0f);
-                p->setVelY(-5.0f);
+                p->setX(direcaoX * 8);
+                p->setY(-5);
             }
         }
 
