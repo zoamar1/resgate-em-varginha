@@ -3,11 +3,10 @@
 namespace Entidades
 {
     Entidade::Entidade(float posX, float posY, float tamanhoX, float tamanhoY) : Ente(),
-                                                                         x(posX), y(posY)
+                                                                                 x(posX), y(posY)
     {
         pFig->setSize({tamanhoX, tamanhoY});
-
-        pFig->setOrigin({tamanhoX / 2.0f, tamanhoY / 2.0f});
+        pFig->setOrigin({0.0f, 0.0f});
         pFig->setPosition({posX, posY});
     }
 
@@ -35,10 +34,12 @@ namespace Entidades
     void Entidade::setX(float posX)
     {
         x = posX;
+        pFig->setPosition({x, y});
     }
 
     void Entidade::setY(float posY)
     {
         y = posY;
+        pFig->setPosition({x, y});
     }
 }

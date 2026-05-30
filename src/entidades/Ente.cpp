@@ -20,13 +20,13 @@ Ente::~Ente()
     }
 }
 
-    void Ente::desenhar()
+void Ente::desenhar()
+{
+    if (pGG)
     {
-        if (pGG)
-        {
-            pGG->desenhaEnte(this);
-        }
+        pGG->desenhaEnte(this);
     }
+}
 
 void Ente::setGG(Gerenciadores::Gerenciador_Grafico *pG)
 {

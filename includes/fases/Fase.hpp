@@ -5,23 +5,28 @@
 #include "listas/ListaEntidades.hpp"
 #include "entidades/Chao.hpp"
 
-namespace Fases {
+namespace Fases
+{
 
-    class Fase : public Ente {
+    class Fase : public Ente
+    {
 
     protected:
         Listas::ListaEntidades lista_ents;
-        Gerenciadores::Gerenciador_Colisoes* GC;
+        Gerenciadores::Gerenciador_Colisoes *GC;
+        Entidades::Chao *pChao;
+
     public:
-        Fase(Gerenciadores::Gerenciador_Colisoes* pGC);
+        Fase(Gerenciadores::Gerenciador_Colisoes *pGC);
         virtual ~Fase();
         virtual void executar();
+
     protected:
         void criarChao();
         void criarInimFaceis();
         void criarPlataformas();
         void criarCenario();
-        virtual void criarInimigos() = 0; 
+        virtual void criarInimigos() = 0;
         virtual void criarObstaculo() = 0;
     };
 

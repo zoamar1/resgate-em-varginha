@@ -127,6 +127,28 @@ namespace Gerenciadores
         }
     }
 
+    void Gerenciador_Colisoes::colisaoPersonagemChao(Entidades::Personagens::Personagem *pPersonagem, Entidades::Chao *pChao)
+    {
+        if (pPersonagem && pChao)
+        {
+            if (verificarColisao(pPersonagem, pChao))
+            {
+                float pAlt = static_cast<float>(pPersonagem->getpFig()->getSize().y);
+
+                float chaoY = pChao->getY();
+
+                pPersonagem->setY(chaoY - pAlt);
+
+                pPersonagem->setVelY(0.0f);
+            }
+        }
+    }
+
+    Entidades::Personagens::Jogador *Gerenciador_Colisoes::getJogador1() const
+    {
+        return pJog1;
+    }
+
     void Gerenciador_Colisoes::executar()
     {
         tratarColisoesJogsInimgs();

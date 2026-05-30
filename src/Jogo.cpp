@@ -5,11 +5,12 @@ Jogo::Jogo() : pGG(Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico())
                pGC(Gerenciadores::Gerenciador_Colisoes::getGerenciador_Colisoes()),
                estado(MENU),
                menu(),
-               pJog1(NULL)
+               pJog1(NULL),
+               pFase1(NULL)
 {
     pGE->setGerenciador_Grafico(pGG);
     Ente::setGG(pGG);
-    pJog1 = new Entidades::Personagens::Jogador(300, 300);
+    pJog1 = new Entidades::Personagens::Jogador(300.0f, 300.0f);
     pGE->setJogador1(pJog1);
     pGC->setJogador1(pJog1);
 };
@@ -21,6 +22,13 @@ Jogo::~Jogo()
         delete pJog1;
         pJog1 = NULL;
     }
+
+    if (pFase1)
+    {
+        delete pFase1;
+        pFase1 = NULL;
+    }
+
     pGG = NULL;
 };
 
@@ -41,9 +49,13 @@ void Jogo::executar()
             }
             case FASE1:
             {
-                Fases::FasePrimeira* fase1 = new Fases::FasePrimeira(pGC);
+                if (!pFase1)
+                {
+                    pFase1 = new Fases::FasePrimeira(pGC);
+                }
+
                 pJog1->executar();
-                fase1->executar();
+                pFase1->executar();
                 break;
             }
             case FASE2:

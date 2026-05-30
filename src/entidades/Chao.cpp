@@ -2,11 +2,16 @@
 
 namespace Entidades
 {
-    Chao::Chao() : Entidade(LARGURA/2,ALTURA-10,LARGURA,20)
+    Chao::Chao() : Entidade(0.0f, static_cast<float>(ALTURA - 30), static_cast<float>(LARGURA), 30.0f)
     {
-        pFig->setFillColor(sf::Color::White);
+        if (pFig)
+        {
+            pFig->setFillColor(sf::Color::White);
+            pFig->setSize(sf::Vector2f(static_cast<float>(LARGURA), 30.0f));
+            pFig->setOrigin(0.0f, 0.0f);
+            pFig->setPosition(sf::Vector2f(x, y));
+        }
     }
-    
     Chao::~Chao()
     {
     }
@@ -17,6 +22,5 @@ namespace Entidades
     }
     void Chao::salvar()
     {
-
     }
 }

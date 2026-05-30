@@ -4,6 +4,8 @@
 #include "entidades/personagens/Inimigo.hpp"
 #include "entidades/Projetil.hpp"
 #include "entidades/obstaculos/Obstaculo.hpp"
+#include "entidades/Chao.hpp"
+#include "entidades/personagens/Personagem.hpp"
 
 namespace Gerenciadores
 {
@@ -28,6 +30,10 @@ namespace Gerenciadores
         void incluirObstaculo(Entidades::Obstaculos::Obstaculo *po);
         void incluirProjetil(Entidades::Projetil *pj);
         void executar();
+
+        Entidades::Personagens::Jogador *getJogador1() const;
+
+        void colisaoPersonagemChao(Entidades::Personagens::Personagem *pPersonagem, Entidades::Chao *chao);
 
     private:
         bool verificarColisao(Entidades::Entidade *pe1, Entidades::Entidade *pe2) const;

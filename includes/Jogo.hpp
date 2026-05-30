@@ -9,12 +9,13 @@
 class Jogo
 {
 public:
-    enum Estados 
-        {
-            MENU,
-            FASE1,
-            FASE2
-        };
+    enum Estados
+    {
+        MENU,
+        FASE1,
+        FASE2
+    };
+
 private:
     Gerenciadores::Gerenciador_Grafico *pGG;
     Gerenciadores::Gerenciador_Eventos *pGE;
@@ -22,6 +23,8 @@ private:
     Estados estado;
     Menu menu;
     Entidades::Personagens::Jogador *pJog1;
+    Fases::FasePrimeira *pFase1;
+
 public:
     Jogo();
     ~Jogo();
