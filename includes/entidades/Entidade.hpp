@@ -23,6 +23,8 @@ namespace Entidades
         void setPosicao(int posx, int posy);
         int getX() const;
         int getY() const;
+        void setX(int posX);
+        void setY(int posY);
         // protected:
         // void salvarDataBuffer();
     };

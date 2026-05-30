@@ -2,14 +2,13 @@
 
 namespace Entidades
 {
-    Entidade::Entidade(int posX, int posY, int tamanhoX, int tamanhoY) : 
-    Ente(), 
-    x(posX), y(posY)
+    Entidade::Entidade(int posX, int posY, int tamanhoX, int tamanhoY) : Ente(),
+                                                                         x(posX), y(posY)
     {
-           pFig->setSize({(float)tamanhoX,(float)tamanhoY});
+        pFig->setSize({(float)tamanhoX, (float)tamanhoY});
 
-           pFig->setOrigin({(float)tamanhoX/2.0f, (float)tamanhoY/2.0f});
-           pFig->setPosition({(float)posX, (float)posY});
+        pFig->setOrigin({(float)tamanhoX / 2.0f, (float)tamanhoY / 2.0f});
+        pFig->setPosition({(float)posX, (float)posY});
     }
 
     Entidade::~Entidade()
@@ -22,7 +21,7 @@ namespace Entidades
     {
         x = posx;
         y = posy;
-        pFig->setPosition({(float)posx,(float)posy});
+        pFig->setPosition({(float)posx, (float)posy});
     }
     int Entidade::getX() const
     {
@@ -31,5 +30,15 @@ namespace Entidades
     int Entidade::getY() const
     {
         return y;
+    }
+
+    void Entidade::setX(int posX)
+    {
+        x = posX;
+    }
+
+    void Entidade::setY(int posY)
+    {
+        y = posY;
     }
 }

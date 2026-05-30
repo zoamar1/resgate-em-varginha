@@ -52,7 +52,7 @@ namespace Gerenciadores
 
     bool Gerenciador_Colisoes::verificarColisao(Entidades::Entidade *pe1, Entidades::Entidade *pe2) const
     {
-        if (pe1 && pe2)
+        if (pe1 && pe2 && pe1->getpFig() && pe2->getpFig())
         {
             float x1 = pe1->getX();
             float y1 = pe1->getY();
@@ -100,7 +100,7 @@ namespace Gerenciadores
 
             for (auto it = LIs.begin(); it != LIs.end(); it++)
             {
-                Entidades::Personagens::Inimigo *pInimigo = dynamic_cast<Entidades::Personagens::Inimigo *>(*it);
+                Entidades::Personagens::Inimigo *pInimigo = static_cast<Entidades::Personagens::Inimigo *>(*it);
 
                 if (verificarColisao(pJog1, pInimigo) && pInimigo)
                 {
