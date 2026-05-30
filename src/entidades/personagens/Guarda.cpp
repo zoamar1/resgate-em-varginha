@@ -15,7 +15,21 @@ namespace Entidades
         {
             if (p)
             {
-                p->recebeDano(forca);
+                p->recebeDano(nivel_maldade);
+
+                float direcaoX;
+
+                if (p->getX() > this->getX())
+                {
+                    direcaoX = 1.0f;
+                }
+                else
+                {
+                    direcaoX = -1.0f;
+                }
+
+                p->setVelX(direcaoX * 8.0f);
+                p->setVelY(-5.0f);
             }
         }
 
