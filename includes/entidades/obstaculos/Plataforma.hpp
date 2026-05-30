@@ -9,10 +9,10 @@ namespace Entidades
         class Plataforma : public Obstaculo
         {
         private:
-            int altura;
+            float altura;
 
         public:
-            Plataforma(int posX = 0, int posY = 0, int tamanhoX = 0, int tamanhoY = 0);
+            Plataforma(float posX = 0.0f, float posY = 0.0f, float tamanhoX = 0.0f, float tamanhoY = 0.0f);
             ~Plataforma();
             void salvar();
             void executar(Entidades::Personagens::Jogador *p);

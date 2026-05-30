@@ -4,7 +4,7 @@ namespace Entidades
 {
     namespace Personagens
     {
-        Jogador::Jogador(int posX, int posY, int n, int p) : Personagem(posX, posY, 40, 40, n), pontos(p)
+        Jogador::Jogador(float posX, float posY, int n, int p) : Personagem(posX, posY, 40.0f, 40.0f, n), pontos(p)
         {
             setVel_Max(4);
         }
@@ -25,13 +25,13 @@ namespace Entidades
 
         void Jogador::mover()
         {
-            int deslocamentoX = velx;
-            int deslocamentoY = vely;
+            float deslocamentoX = velx;
+            float deslocamentoY = vely;
 
             if (deslocamentoX != 0 || deslocamentoY != 0)
             {
-                int novoX = getX() + deslocamentoX;
-                int novoY = getY() + deslocamentoY;
+                float novoX = getX() + deslocamentoX;
+                float novoY = getY() + deslocamentoY;
 
                 setPosicao(novoX, novoY);
             }

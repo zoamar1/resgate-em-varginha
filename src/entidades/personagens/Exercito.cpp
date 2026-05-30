@@ -5,7 +5,7 @@ namespace Entidades
 {
     namespace Personagens
     {
-        Exercito::Exercito(int posX, int posY, int n, int maldade, int p) : Inimigo(posX, posY, n, maldade), precisao(p)
+        Exercito::Exercito(float posX, float posY, int n, int maldade, int p) : Inimigo(posX, posY, n, maldade), precisao(p)
         {
         }
 

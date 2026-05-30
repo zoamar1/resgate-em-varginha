@@ -4,7 +4,7 @@ namespace Entidades
 {
     namespace Obstaculos
     {
-        Espinhos::Espinhos(int posX, int posY, int tamanhoX, int tamanhoY, short int dano) : Obstaculo(posX, posY, tamanhoX, tamanhoY), danosidade(dano)
+        Espinhos::Espinhos(float posX, float posY, float tamanhoX, float tamanhoY, short int dano) : Obstaculo(posX, posY, tamanhoX, tamanhoY), danosidade(dano)
         {
         }
 

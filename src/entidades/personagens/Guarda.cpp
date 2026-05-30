@@ -5,7 +5,7 @@ namespace Entidades
 {
     namespace Personagens
     {
-        Guarda::Guarda(int posX, int posY, int n, int maldade, int f) : Inimigo(posX, posY, n, maldade), forca(f)
+        Guarda::Guarda(float posX, float posY, int n, int maldade, int f) : Inimigo(posX, posY, n, maldade), forca(f)
         {
         }
 
@@ -17,7 +17,7 @@ namespace Entidades
             {
                 p->recebeDano(nivel_maldade);
 
-                int direcaoX;
+                float direcaoX;
 
                 if (p->getX() > this->getX())
                 {

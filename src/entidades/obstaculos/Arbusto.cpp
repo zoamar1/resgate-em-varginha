@@ -4,7 +4,7 @@ namespace Entidades
 {
     namespace Obstaculos
     {
-        Arbusto::Arbusto(int posX, int posY, int tamanhoX, int tamanhoY) : Obstaculo(posX, posY, tamanhoX, tamanhoY), largura(tamanhoX)
+        Arbusto::Arbusto(float posX, float posY, float tamanhoX, float tamanhoY) : Obstaculo(posX, posY, tamanhoX, tamanhoY), largura(tamanhoX)
         {
         }
 

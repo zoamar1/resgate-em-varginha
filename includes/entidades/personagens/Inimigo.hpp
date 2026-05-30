@@ -15,7 +15,7 @@ namespace Entidades
 
         public:
             // lembrar de mudar n(numero de vidas) para o padrao do INIMIGO!!!!
-            Inimigo(int posX = 0, int posY = 0, int n = 3, int maldade = 0);
+            Inimigo(float posX = 0.0f, float posY = 0.0f, int n = 3, int maldade = 0);
             virtual ~Inimigo();
 
             // void salvarDataBuffer();

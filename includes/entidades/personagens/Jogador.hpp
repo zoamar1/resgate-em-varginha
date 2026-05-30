@@ -15,7 +15,7 @@ namespace Entidades
 
         public:
             // lembrar de mudar n(numero de vidas) para o padrao do jogador!!!!
-            Jogador(int posX = 0, int posY = 0, int n = 3, int p = 0);
+            Jogador(float posX = 0.0f, float posY = 0.0f, int n = 3, int p = 0);
             ~Jogador();
 
             void executar();

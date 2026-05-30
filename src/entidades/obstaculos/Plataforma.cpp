@@ -4,7 +4,7 @@ namespace Entidades
 {
     namespace Obstaculos
     {
-        Plataforma::Plataforma(int posX, int posY, int tamanhoX, int tamanhoY) : Obstaculo(posX, posY, tamanhoX, tamanhoY), altura(tamanhoY)
+        Plataforma::Plataforma(float posX, float posY, float tamanhoX, float tamanhoY) : Obstaculo(posX, posY, tamanhoX, tamanhoY), altura(tamanhoY)
         {
         }
 
@@ -20,23 +20,21 @@ namespace Entidades
         {
             if (p && p->getpFig())
             {
-                int pX = p->getX();
-                int pY = p->getY();
-                float pLarg = static_cast<float>(p->getpFig()->getSize().x);
-                float pAlt = static_cast<float>(p->getpFig()->getSize().y);
+                float pX = p->getX();
+                float pY = p->getY();
+                float pLarg = p->getpFig()->getSize().x;
+                float pAlt = p->getpFig()->getSize().y;
 
-                int platX = this->getX();
-                int platY = this->getY();
-                float platLarg = static_cast<float>(this->getpFig()->getSize().x);
-                float platAlt = static_cast<float>(this->getpFig()->getSize().y);
-
+                float platX = this->getX();
+                float platY = this->getY();
+                float platLarg = this->getpFig()->getSize().x;
                 bool alinhadoY = (pY + pAlt) >= platY && (pY + pAlt) <= platY + altura;
 
                 bool alinhadoX = pX + pLarg > platX && pX < platX + platLarg;
 
                 if (alinhadoX && alinhadoY)
                 {
-                    p->setY((int)platY - pAlt);
+                    p->setY(platY - pAlt);
                     p->setVelY(0.0f);
                 }
             }

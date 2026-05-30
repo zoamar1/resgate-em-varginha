@@ -11,7 +11,7 @@ namespace Entidades
         int dano;
 
     public:
-        Projetil(int posX = 0, int posY = 0, bool flag = true, int dano = 0);
+        Projetil(float posX = 0.0f, float posY = 0.0f, bool flag = true, int dano = 0);
         ~Projetil();
 
         bool getAtivo() const;

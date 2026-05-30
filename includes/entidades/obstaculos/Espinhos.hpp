@@ -12,7 +12,7 @@ namespace Entidades
             short int danosidade;
 
         public:
-            Espinhos(int posX = 0, int posY = 0, int tamanhoX = 0, int tamanhoY = 0, short int dano = 0);
+            Espinhos(float posX = 0.0f, float posY = 0.0f, float tamanhoX = 0.0f, float tamanhoY = 0.0f, short int dano = 0);
             ~Espinhos();
             void salvar();
             void executar(Entidades::Personagens::Jogador *p);

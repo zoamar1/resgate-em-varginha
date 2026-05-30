@@ -5,7 +5,7 @@ namespace Entidades
 {
     namespace Personagens
     {
-        ET_Varginha::ET_Varginha(int posX, int posY, int n, int maldade, int ml) : Inimigo(posX, posY, n, maldade), multiplicador_laser(ml)
+        ET_Varginha::ET_Varginha(float posX, float posY, int n, int maldade, int ml) : Inimigo(posX, posY, n, maldade), multiplicador_laser(ml)
         {
         }
 
@@ -17,12 +17,12 @@ namespace Entidades
             {
                 p->recebeDano(nivel_maldade);
 
-                int distanciaTeletransporte = 150;
+                float distanciaTeletransporte = 150.0f;
 
-                int jogadorX = p->getX();
-                int jogadorY = p->getY();
+                float jogadorX = p->getX();
+                float jogadorY = p->getY();
 
-                int novaPosicaoX;
+                float novaPosicaoX;
 
                 if (this->getX() > jogadorX)
                 {

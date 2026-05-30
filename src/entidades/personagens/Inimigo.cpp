@@ -4,7 +4,7 @@ namespace Entidades
 {
     namespace Personagens
     {
-        Inimigo::Inimigo(int posX, int posY, int n, int maldade) : Personagem(posX, posY, n), nivel_maldade(maldade)
+        Inimigo::Inimigo(float posX, float posY, int n, int maldade) : Personagem(posX, posY, n), nivel_maldade(maldade)
         {
         }
 

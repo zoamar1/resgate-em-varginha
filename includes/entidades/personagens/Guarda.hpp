@@ -14,7 +14,7 @@ namespace Entidades
             int forca;
 
         public:
-            Guarda(int posX = 0, int posY = 0, int n = 3, int maldade = 0, int f = 0);
+            Guarda(float posX = 0.0f, float posY = 0.0f, int n = 3, int maldade = 0, int f = 0);
             ~Guarda();
 
             // void salvarDataBuffer();

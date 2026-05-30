@@ -4,7 +4,7 @@ namespace Entidades
 {
     namespace Personagens
     {
-        Personagem::Personagem(int posX, int posY, int tamanhoX, int tamanhoY, int n) : Entidade(posX, posY, tamanhoX, tamanhoY),
+        Personagem::Personagem(float posX, float posY, float tamanhoX, float tamanhoY, int n) : Entidade(posX, posY, tamanhoX, tamanhoY),
                                                                                         num_vidas(n), vel_max(0), velx(0), vely(0)
         {
         }

@@ -5,7 +5,7 @@ namespace Entidades
     namespace Obstaculos
     {
 
-        Obstaculo::Obstaculo(int posX, int posY, int tamanhoX, int tamanhoY, bool danoso) : Entidade(posX, posY, tamanhoX, tamanhoY),
+        Obstaculo::Obstaculo(float posX, float posY, float tamanhoX, float tamanhoY, bool danoso) : Entidade(posX, posY, tamanhoX, tamanhoY),
                                                                                             danoso(danoso)
         {
         }

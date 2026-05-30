@@ -2,7 +2,7 @@
 
 namespace Entidades
 {
-    Projetil::Projetil(int posX, int posY, bool flag, int dano) : Entidade(posX, posY), ativo(flag), dano(dano)
+    Projetil::Projetil(float posX, float posY, bool flag, int dano) : Entidade(posX, posY), ativo(flag), dano(dano)
     {
     }
 

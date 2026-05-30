@@ -14,7 +14,7 @@ namespace Entidades
             int precisao;
 
         public:
-            Exercito(int posX = 0, int posY = 0, int n = 3, int maldade = 0, int p = 0);
+            Exercito(float posX = 0.0f, float posY = 0.0f, int n = 3, int maldade = 0, int p = 0);
             ~Exercito();
 
             // void salvarDataBuffer();

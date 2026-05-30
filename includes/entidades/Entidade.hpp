@@ -8,23 +8,23 @@ namespace Entidades
     class Entidade : public Ente
     {
     protected:
-        int x;
-        int y;
+        float x;
+        float y;
 
         // ostream buffer;
 
     public:
-        Entidade(int posX = 0, int posY = 0, int tamanhoX = 0, int tamanhoY = 0);
+        Entidade(float posX = 0.0f, float posY = 0.0f, float tamanhoX = 0.0f, float tamanhoY = 0.0f);
         virtual ~Entidade();
 
         virtual void executar() = 0;
         virtual void salvar() = 0;
 
-        void setPosicao(int posx, int posy);
-        int getX() const;
-        int getY() const;
-        void setX(int posX);
-        void setY(int posY);
+        void setPosicao(float posx, float posy);
+        float getX() const;
+        float getY() const;
+        void setX(float posX);
+        void setY(float posY);
         // protected:
         // void salvarDataBuffer();
     };
