@@ -10,6 +10,9 @@ namespace Entidades
     protected:
         float x;
         float y;
+        float vel_max;
+        float velx;
+        float vely;
 
         // ostream buffer;
 
@@ -25,6 +28,12 @@ namespace Entidades
         float getY() const;
         void setX(float posX);
         void setY(float posY);
+        void setVelX(float x);
+        void setVelY(float y);
+        void setVel_Max(float max);
+        float getVelX() const;
+        float getVelY() const;
+        float getVel_Max() const;
         // protected:
         // void salvarDataBuffer();
     };

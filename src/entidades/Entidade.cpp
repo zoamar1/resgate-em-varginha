@@ -4,6 +4,10 @@ namespace Entidades
 {
     Entidade::Entidade(float posX, float posY, float tamanhoX, float tamanhoY) : Ente(), x(posX), y(posY)
 {
+    vel_max = 0.0f;
+    velx = 0.0f;
+    vely = 0.0f;
+
     pFig->setSize({tamanhoX, tamanhoY});
     pFig->setOrigin({0.0f, 0.0f});
     pFig->setPosition({posX, posY});
@@ -47,5 +51,35 @@ void Entidade::setPosicao(float posx, float posy)
         y = posY;
         pFig->setPosition({x, y});
         if (pSprite) pSprite->setPosition({x, y});
+    }
+
+    void Entidade::setVelX(float x)
+    {
+        velx = x;
+    }
+
+    void Entidade::setVelY(float y)
+    {
+        vely = y;
+    }
+
+    void Entidade::setVel_Max(float max)
+    {
+        vel_max = max;
+    }
+
+    float Entidade::getVelX() const
+    {
+        return velx;
+    }
+
+    float Entidade::getVelY() const
+    {
+        return vely;
+    }
+
+    float Entidade::getVel_Max() const
+    {
+        return vel_max;
     }
 }
