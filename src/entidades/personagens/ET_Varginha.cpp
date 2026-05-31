@@ -15,25 +15,7 @@ namespace Entidades
         {
             if (p)
             {
-                p->recebeDano(nivel_maldade);
-
-                float distanciaTeletransporte = 150.0f;
-
-                sf::Vector2f posJogador = p->getPosicao();
-                sf::Vector2f minhaPos = this->getPosicao();
-
-                float novaPosicaoX;
-
-                if (minhaPos.x > posJogador.x)
-                {
-                    novaPosicaoX = posJogador.x - distanciaTeletransporte;
-                }
-                else
-                {
-                    novaPosicaoX = posJogador.x + distanciaTeletransporte;
-                }
-
-                this->setPosicao(sf::Vector2f(novaPosicaoX, posJogador.y));
+                // falta concluir essa parte
             }
         }
 
