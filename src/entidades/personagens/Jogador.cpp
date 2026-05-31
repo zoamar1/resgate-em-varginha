@@ -75,19 +75,23 @@ namespace Entidades
             {
                 sf::Vector2f posJogador = this->getPosicao();
                 sf::Vector2f posInimigo = pI->getPosicao();
+                float largJogador = static_cast<float>(this->getpFig()->getSize().x);
+                float largInimigo = static_cast<float>(pI->getpFig()->getSize().x);
 
                 float direcaoX;
 
                 if (posJogador.x > posInimigo.x)
                 {
                     direcaoX = 1.0f;
+                    this->setPosicao(sf::Vector2f(posInimigo.x + largInimigo, posJogador.y));
                 }
                 else
                 {
                     direcaoX = -1.0f;
+                    this->setPosicao(sf::Vector2f(posInimigo.x - largJogador, posJogador.y));
                 }
-                this->setVelocidade(sf::Vector2f(direcaoX * 12.0f, -10.0f));
-                this->setNoChao(false);
+
+                this->setVelocidade(sf::Vector2f(direcaoX * 4.0f, this->getVelocidade().y));
             }
         }
 
