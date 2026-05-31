@@ -103,6 +103,7 @@ namespace Gerenciadores
                 if (pInimigo && verificarColisao(pJog1, pInimigo))
                 {
                     pInimigo->danificar(pJog1);
+                    pJog1->colidir(pInimigo);
                 }
             }
         }
