@@ -2,7 +2,7 @@
 
 namespace Entidades
 {
-    Chao::Chao() : Entidade(0.0f, static_cast<float>(ALTURA - 30), static_cast<float>(LARGURA), 30.0f)
+    Chao::Chao() : Entidade(0.0f, static_cast<float>(ALTURA - 90), static_cast<float>(LARGURA), 30.0f)
     {
         if (pFig)
         {
