@@ -1,10 +1,13 @@
 #include "personagens/Jogador.hpp"
+#include "entidades/Projetil.hpp"
 
 namespace Entidades
 {
     namespace Personagens
     {
-        Jogador::Jogador(float posX, float posY, int n, int p) : Personagem(posX, posY, 40.0f, 40.0f, n), pontos(p)
+        Jogador::Jogador(float posX, float posY, int n, int p) : Personagem(posX, posY, 40.0f, 40.0f, n), 
+        pontos(p),
+        direcao(1)
         {
             setVel_Max(4);
             aplicarTextura(Gerenciadores::Jogador);
@@ -37,6 +40,7 @@ namespace Entidades
 
         void Jogador::atirar()
         {
+
         }
 
         void Jogador::setDirecao(int num)
