@@ -16,6 +16,7 @@ namespace Entidades
 
         void Jogador::executar()
         {
+            aplicarGravidade();
             mover();
             desenhar();
         }
@@ -36,19 +37,20 @@ namespace Entidades
 
         void Jogador::atirar()
         {
-
         }
 
         void Jogador::setDirecao(int num)
         {
-            if (num < 0) direcao = -1;
-            else direcao = 1;
+            if (num < 0)
+                direcao = -1;
+            else
+                direcao = 1;
         }
 
         int Jogador::getDirecao() const
         {
             return direcao;
         }
-        
+
     }
 }

@@ -2,9 +2,9 @@
 
 namespace Entidades
 {
-    const float Entidade::valor_gravidade = 4.2f;
+    const float Entidade::valor_gravidade = 5.2f;
 
-    Entidade::Entidade(const sf::Vector2f& posicao, const sf::Vector2f& tamanho, bool sofreGravidade)
+    Entidade::Entidade(const sf::Vector2f &posicao, const sf::Vector2f &tamanho, bool sofreGravidade)
         : Ente(),
           posicao(posicao),
           vel_max(0.0f),
@@ -37,7 +37,7 @@ namespace Entidades
         return velocidade;
     }
 
-    void Entidade::setPosicao(const sf::Vector2f& posicao)
+    void Entidade::setPosicao(const sf::Vector2f &posicao)
     {
         this->posicao = posicao;
         pFig->setPosition(posicao);
@@ -45,7 +45,7 @@ namespace Entidades
             pSprite->setPosition(posicao);
     }
 
-    void Entidade::setVelocidade(const sf::Vector2f& velocidade)
+    void Entidade::setVelocidade(const sf::Vector2f &velocidade)
     {
         this->velocidade = velocidade;
     }
@@ -105,12 +105,11 @@ namespace Entidades
         return vel_max;
     }
 
-    void Entidade::aplicarGravidade(float g)
+    void Entidade::aplicarGravidade()
     {
         if (sofreEfeitoGravidade && !noChao)
         {
-            const float gravidade = (g == 0.0f) ? valor_gravidade : g;
-            velocidade.y += gravidade;
+            velocidade.y += valor_gravidade;
         }
     }
 

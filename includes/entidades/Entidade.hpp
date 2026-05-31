@@ -17,15 +17,15 @@ namespace Entidades
         // ostream buffer;
 
     public:
-        Entidade(const sf::Vector2f& posicao, const sf::Vector2f& tamanho, bool sofreGravidade);
+        Entidade(const sf::Vector2f &posicao, const sf::Vector2f &tamanho, bool sofreGravidade);
         virtual ~Entidade();
 
         virtual void executar() = 0;
         virtual void salvar() = 0;
 
-        void setPosicao(const sf::Vector2f& posicao);
+        void setPosicao(const sf::Vector2f &posicao);
         sf::Vector2f getPosicao() const;
-        void setVelocidade(const sf::Vector2f& velocidade);
+        void setVelocidade(const sf::Vector2f &velocidade);
         sf::Vector2f getVelocidade() const;
 
         void setPosicao(float posx, float posy);
@@ -45,6 +45,6 @@ namespace Entidades
         void setNoChao(bool flag);
         bool getNoChao() const;
         void setSofreEfeitoGravidade(bool flag);
-        void aplicarGravidade(float g = 0);
+        void aplicarGravidade();
     };
 }
