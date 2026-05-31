@@ -55,6 +55,14 @@ namespace Gerenciadores
         }
     }
 
+    void Gerenciador_Grafico::desenhaTexto(sf::Text texto)
+    {
+        if (window.isOpen())
+        {
+            window.draw(texto);
+        }
+    }
+
     void Gerenciador_Grafico::desenhaEnte(Ente *pE)
     {
         if (pE)
@@ -93,4 +101,5 @@ namespace Gerenciadores
     {
         return texturas[id];
     }
+
 }

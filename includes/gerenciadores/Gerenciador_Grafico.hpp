@@ -29,6 +29,7 @@ namespace Gerenciadores
             sf::RenderWindow* getWindow();
             void fecharJanela();
             void desenhaRect(sf::RectangleShape rect);
+            void desenhaTexto(sf::Text texto);
             void desenhaEnte(Ente* pE);
             void desenhaJanela();
             void limpaJanela();
