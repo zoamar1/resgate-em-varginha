@@ -69,5 +69,27 @@ namespace Entidades
             }
         }
 
+        void Jogador::colidir(Entidades::Personagens::Inimigo *pI)
+        {
+            if (pI)
+            {
+                sf::Vector2f posJogador = this->getPosicao();
+                sf::Vector2f posInimigo = pI->getPosicao();
+
+                float direcaoX;
+
+                if (posJogador.x > posInimigo.x)
+                {
+                    direcaoX = 1.0f;
+                }
+                else
+                {
+                    direcaoX = -1.0f;
+                }
+                this->setVelocidade(sf::Vector2f(direcaoX * 12.0f, -10.0f));
+                this->setNoChao(false);
+            }
+        }
+
     }
 }
