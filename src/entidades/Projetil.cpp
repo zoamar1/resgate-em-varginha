@@ -19,4 +19,14 @@ namespace Entidades
     {
         return dano;
     }
+
+    void Projetil::mover()
+    {
+        sf::Vector2f deslocamento = getVelocidade();
+
+        if (deslocamento.x != 0.0f || deslocamento.y != 0.0f)
+        {
+            setPosicao(getPosicao() + deslocamento);
+        }
+    }
 }
