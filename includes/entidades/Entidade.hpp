@@ -19,7 +19,7 @@ namespace Entidades
         // ostream buffer;
 
     public:
-        Entidade(float posX = 0.0f, float posY = 0.0f, float tamanhoX = 0.0f, float tamanhoY = 0.0f, bool noChao, bool sofreEfeitoGravidade, float velx = 0, float vely = 0);
+        Entidade(float posX, float posY, float tamanhoX, float tamanhoY, bool sofreGravidade);
         virtual ~Entidade();
 
         virtual void executar() = 0;

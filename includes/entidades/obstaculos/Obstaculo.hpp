@@ -12,7 +12,7 @@ namespace Entidades
             bool danoso;
 
         public:
-            Obstaculo(float posX = 0.0f, float posY = 0.0f, float tamanhoX = 0.0f, float tamanhoY = 0.0f, bool danoso = false);
+            Obstaculo(float posX = 0.0f, float posY = 0.0f, float tamanhoX = 0.0f, float tamanhoY = 0.0f, bool dano = false);
             virtual ~Obstaculo();
             void salvarDataBuffer();
             virtual void executar() = 0;

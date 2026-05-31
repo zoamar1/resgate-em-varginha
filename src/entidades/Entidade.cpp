@@ -4,12 +4,16 @@ namespace Entidades
 {
     const float Entidade::valor_gravidade = 4.2f;
 
-    Entidade::Entidade(float posX, float posY, float tamanhoX, float tamanhoY) : Ente(), x(posX), y(posY), 
+    Entidade::Entidade(float posX, float posY, float tamanhoX, float tamanhoY, bool sofreGravidade)
+        : Ente(),
+          x(posX),
+          y(posY),
+          vel_max(0.0f),
+          velx(0),
+          vely(0),
+          noChao(false),
+          sofreEfeitoGravidade(sofreGravidade)
     {
-        vel_max = 0.0f;
-        velx = 0.0f;
-        vely = 0.0f;
-
         pFig->setSize({tamanhoX, tamanhoY});
         pFig->setOrigin({0.0f, 0.0f});
         pFig->setPosition({posX, posY});
@@ -89,13 +93,12 @@ namespace Entidades
         return vel_max;
     }
 
-    void Entidade::aplicarGravidade(float dt)
+    void Entidade::aplicarGravidade(float g)
     {
-        if (temGravidade && !noChao)
+        if (sofreEfeitoGravidade && !noChao)
         {
-            velY += GRAVIDADE * dt;
-            y += velY * dt;
-            pFig->setPosition(x, y);
+            const float gravidade = (g == 0.0f) ? valor_gravidade : g;
+            vely += gravidade;
         }
     }
 
@@ -111,6 +114,6 @@ namespace Entidades
 
     void Entidade::setSofreEfeitoGravidade(bool flag)
     {
-        sofreEfeitoGravidad = flag;
+        sofreEfeitoGravidade = flag;
     }
 }
