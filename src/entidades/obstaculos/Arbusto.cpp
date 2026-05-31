@@ -20,7 +20,9 @@ namespace Entidades
         {
             if (p)
             {
-                p->setVelX(p->getVelX() * 0.5f);
+                sf::Vector2f vel = p->getVelocidade();
+                vel.x *= 0.5f;
+                p->setVelocidade(vel);
             }
         }
 

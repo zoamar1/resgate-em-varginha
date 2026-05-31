@@ -4,73 +4,85 @@ namespace Entidades
 {
     const float Entidade::valor_gravidade = 4.2f;
 
-    Entidade::Entidade(float posX, float posY, float tamanhoX, float tamanhoY, bool sofreGravidade)
+    Entidade::Entidade(const sf::Vector2f& posicao, const sf::Vector2f& tamanho, bool sofreGravidade)
         : Ente(),
-          x(posX),
-          y(posY),
+          posicao(posicao),
           vel_max(0.0f),
-          velx(0),
-          vely(0),
+          velocidade(0.0f, 0.0f),
           noChao(false),
           sofreEfeitoGravidade(sofreGravidade)
     {
-        pFig->setSize({tamanhoX, tamanhoY});
+        pFig->setSize(tamanho);
         pFig->setOrigin({0.0f, 0.0f});
-        pFig->setPosition({posX, posY});
+        pFig->setPosition(posicao);
 
         if (pSprite)
         {
-            pSprite->setPosition({posX, posY});
+            pSprite->setPosition(posicao);
         }
     }
 
     Entidade::~Entidade()
     {
-        x = -50;
-        y = -50;
+        posicao = sf::Vector2f(-50.0f, -50.0f);
     }
+
+    sf::Vector2f Entidade::getPosicao() const
+    {
+        return posicao;
+    }
+
+    sf::Vector2f Entidade::getVelocidade() const
+    {
+        return velocidade;
+    }
+
+    void Entidade::setPosicao(const sf::Vector2f& posicao)
+    {
+        this->posicao = posicao;
+        pFig->setPosition(posicao);
+        if (pSprite)
+            pSprite->setPosition(posicao);
+    }
+
+    void Entidade::setVelocidade(const sf::Vector2f& velocidade)
+    {
+        this->velocidade = velocidade;
+    }
+
     float Entidade::getX() const
     {
-        return x;
+        return posicao.x;
     }
+
     float Entidade::getY() const
     {
-        return y;
+        return posicao.y;
     }
 
     void Entidade::setPosicao(float posx, float posy)
     {
-        x = posx;
-        y = posy;
-        pFig->setPosition({posx, posy});
-        if (pSprite)
-            pSprite->setPosition({posx, posy});
+        setPosicao(sf::Vector2f(posx, posy));
     }
 
     void Entidade::setX(float posX)
     {
-        x = posX;
-        pFig->setPosition({x, y});
-        if (pSprite)
-            pSprite->setPosition({x, y});
+        setPosicao(sf::Vector2f(posX, posicao.y));
     }
 
     void Entidade::setY(float posY)
     {
-        y = posY;
-        pFig->setPosition({x, y});
-        if (pSprite)
-            pSprite->setPosition({x, y});
+        setPosicao(sf::Vector2f(posicao.x, posY));
     }
 
     void Entidade::setVelX(float x)
     {
-        velx = x;
+        velocidade.x = x;
     }
 
     void Entidade::setVelY(float y)
     {
-        vely = y;
+        velocidade.y = y;
     }
 
     void Entidade::setVel_Max(float max)
@@ -80,12 +92,12 @@ namespace Entidades
 
     float Entidade::getVelX() const
     {
-        return velx;
+        return velocidade.x;
     }
 
     float Entidade::getVelY() const
     {
-        return vely;
+        return velocidade.y;
     }
 
     float Entidade::getVel_Max() const
@@ -98,7 +110,7 @@ namespace Entidades
         if (sofreEfeitoGravidade && !noChao)
         {
             const float gravidade = (g == 0.0f) ? valor_gravidade : g;
-            vely += gravidade;
+            velocidade.y += gravidade;
         }
     }
 

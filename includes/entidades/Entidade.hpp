@@ -7,11 +7,9 @@ namespace Entidades
     class Entidade : public Ente
     {
     protected:
-        float x;
-        float y;
+        sf::Vector2f posicao;
         float vel_max;
-        float velx;
-        float vely;
+        sf::Vector2f velocidade;
         bool noChao;
         bool sofreEfeitoGravidade;
         static const float valor_gravidade;
@@ -19,11 +17,16 @@ namespace Entidades
         // ostream buffer;
 
     public:
-        Entidade(float posX, float posY, float tamanhoX, float tamanhoY, bool sofreGravidade);
+        Entidade(const sf::Vector2f& posicao, const sf::Vector2f& tamanho, bool sofreGravidade);
         virtual ~Entidade();
 
         virtual void executar() = 0;
         virtual void salvar() = 0;
+
+        void setPosicao(const sf::Vector2f& posicao);
+        sf::Vector2f getPosicao() const;
+        void setVelocidade(const sf::Vector2f& velocidade);
+        sf::Vector2f getVelocidade() const;
 
         void setPosicao(float posx, float posy);
         float getX() const;

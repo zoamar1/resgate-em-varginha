@@ -54,20 +54,18 @@ namespace Gerenciadores
     {
         if (pe1 && pe2 && pe1->getpFig() && pe2->getpFig())
         {
-            float x1 = pe1->getX();
-            float y1 = pe1->getY();
+            sf::Vector2f pos1 = pe1->getPosicao();
             float larg1 = static_cast<float>(pe1->getpFig()->getSize().x);
             float alt1 = static_cast<float>(pe1->getpFig()->getSize().y);
 
-            float x2 = pe2->getX();
-            float y2 = pe2->getY();
+            sf::Vector2f pos2 = pe2->getPosicao();
             float larg2 = static_cast<float>(pe2->getpFig()->getSize().x);
             float alt2 = static_cast<float>(pe2->getpFig()->getSize().y);
 
-            if (x1 < x2 + larg2 &&
-                x1 + larg1 > x2 &&
-                y1 < y2 + alt2 &&
-                y1 + alt1 > y2)
+            if (pos1.x < pos2.x + larg2 &&
+                pos1.x + larg1 > pos2.x &&
+                pos1.y < pos2.y + alt2 &&
+                pos1.y + alt1 > pos2.y)
             {
                 return true;
             }
@@ -134,12 +132,14 @@ namespace Gerenciadores
             if (verificarColisao(pJog1, pChao))
             {
                 float pAlt = static_cast<float>(pJog1->getpFig()->getSize().y);
+                sf::Vector2f posJog = pJog1->getPosicao();
+                sf::Vector2f velJog = pJog1->getVelocidade();
 
-                float chaoY = pChao->getY();
+                float chaoY = pChao->getPosicao().y;
 
-                pJog1->setY(chaoY - pAlt);
-
-                pJog1->setVelY(0.0f);
+                pJog1->setPosicao(sf::Vector2f(posJog.x, chaoY - pAlt));
+                velJog.y = 0.0f;
+                pJog1->setVelocidade(velJog);
             }
         }
     }
@@ -159,12 +159,14 @@ namespace Gerenciadores
                     if (verificarColisao(pInimigo, pChao))
                     {
                         float pAlt = static_cast<float>(pInimigo->getpFig()->getSize().y);
+                        sf::Vector2f posInimigo = pInimigo->getPosicao();
+                        sf::Vector2f velInimigo = pInimigo->getVelocidade();
 
-                        float chaoY = pChao->getY();
+                        float chaoY = pChao->getPosicao().y;
 
-                        pInimigo->setY(chaoY - pAlt);
-
-                        pInimigo->setVelY(0.0f);
+                        pInimigo->setPosicao(sf::Vector2f(posInimigo.x, chaoY - pAlt));
+                        velInimigo.y = 0.0f;
+                        pInimigo->setVelocidade(velInimigo);
                     }
                 }
             }

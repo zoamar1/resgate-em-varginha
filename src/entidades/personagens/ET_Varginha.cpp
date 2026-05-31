@@ -19,22 +19,21 @@ namespace Entidades
 
                 float distanciaTeletransporte = 150.0f;
 
-                float jogadorX = p->getX();
-                float jogadorY = p->getY();
+                sf::Vector2f posJogador = p->getPosicao();
+                sf::Vector2f minhaPos = this->getPosicao();
 
                 float novaPosicaoX;
 
-                if (this->getX() > jogadorX)
+                if (minhaPos.x > posJogador.x)
                 {
-                    novaPosicaoX = jogadorX - distanciaTeletransporte;
+                    novaPosicaoX = posJogador.x - distanciaTeletransporte;
                 }
                 else
                 {
-                    novaPosicaoX = jogadorX + distanciaTeletransporte;
+                    novaPosicaoX = posJogador.x + distanciaTeletransporte;
                 }
 
-                this->setX(novaPosicaoX);
-                this->setY(jogadorY);
+                this->setPosicao(sf::Vector2f(novaPosicaoX, posJogador.y));
             }
         }
 

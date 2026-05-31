@@ -53,8 +53,7 @@ namespace Gerenciadores
             
             float velMax = pJog1->getVel_Max();
             pJog1->setDirecao(x);
-            pJog1->setVelX(x * velMax);
-            pJog1->setVelY(y * velMax);
+            pJog1->setVelocidade(sf::Vector2f(x * velMax, y * velMax));
         }
     }
 

@@ -20,22 +20,22 @@ namespace Entidades
         {
             if (p && p->getpFig())
             {
-                float pX = p->getX();
-                float pY = p->getY();
+                sf::Vector2f posJog = p->getPosicao();
                 float pLarg = p->getpFig()->getSize().x;
                 float pAlt = p->getpFig()->getSize().y;
 
-                float platX = this->getX();
-                float platY = this->getY();
+                sf::Vector2f posPlat = this->getPosicao();
                 float platLarg = this->getpFig()->getSize().x;
-                bool alinhadoY = (pY + pAlt) >= platY && (pY + pAlt) <= platY + altura;
+                bool alinhadoY = (posJog.y + pAlt) >= posPlat.y && (posJog.y + pAlt) <= posPlat.y + altura;
 
-                bool alinhadoX = pX + pLarg > platX && pX < platX + platLarg;
+                bool alinhadoX = posJog.x + pLarg > posPlat.x && posJog.x < posPlat.x + platLarg;
 
                 if (alinhadoX && alinhadoY)
                 {
-                    p->setY(platY - pAlt);
-                    p->setVelY(0.0f);
+                    p->setPosicao(sf::Vector2f(posJog.x, posPlat.y - pAlt));
+                    sf::Vector2f velJog = p->getVelocidade();
+                    velJog.y = 0.0f;
+                    p->setVelocidade(velJog);
                 }
             }
         }

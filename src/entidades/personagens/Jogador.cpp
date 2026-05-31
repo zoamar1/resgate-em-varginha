@@ -26,15 +26,11 @@ namespace Entidades
 
         void Jogador::mover()
         {
-            float deslocamentoX = velx;
-            float deslocamentoY = vely;
+            sf::Vector2f deslocamento = getVelocidade();
 
-            if (deslocamentoX != 0 || deslocamentoY != 0)
+            if (deslocamento.x != 0.0f || deslocamento.y != 0.0f)
             {
-                float novoX = x + deslocamentoX;
-                float novoY = y + deslocamentoY;
-
-                setPosicao(novoX, novoY);
+                setPosicao(getPosicao() + deslocamento);
             }
         }
 
