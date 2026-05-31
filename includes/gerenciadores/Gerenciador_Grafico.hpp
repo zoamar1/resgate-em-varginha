@@ -5,11 +5,22 @@ class Ente;
 
 namespace Gerenciadores
 {
+    enum IDTextura {
+        Jogador,
+        Guarda,
+        Exercito,
+        ET_Varginha,
+        Plataforma,
+        Projetil,
+        Menu
+    };
+
     class Gerenciador_Grafico
     {
         private:
             static Gerenciador_Grafico* pGrafico;
             sf::RenderWindow window;
+            std::vector<sf::Texture> texturas;
         private:
             Gerenciador_Grafico();
         public:
@@ -21,5 +32,6 @@ namespace Gerenciadores
             void desenhaEnte(Ente* pE);
             void desenhaJanela();
             void limpaJanela();
+            sf::Texture& getTextura(IDTextura id);
     };
 };

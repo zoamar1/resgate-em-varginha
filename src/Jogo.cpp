@@ -4,12 +4,15 @@ Jogo::Jogo() : pGG(Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico())
                pGE(Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos(this)),
                pGC(Gerenciadores::Gerenciador_Colisoes::getGerenciador_Colisoes()),
                estado(MENU),
-               menu(),
+               pMenu(NULL),
                pJog1(NULL),
                pFase1(NULL)
 {
-    pGE->setGerenciador_Grafico(pGG);
     Ente::setGG(pGG);
+    pGE->setGerenciador_Grafico(pGG);
+
+    pMenu = new Menu();
+
     pJog1 = new Entidades::Personagens::Jogador(300.0f, 300.0f);
     pGE->setJogador1(pJog1);
     pGC->setJogador1(pJog1);
@@ -44,7 +47,7 @@ void Jogo::executar()
             {
             case MENU:
             {
-                menu.executar();
+                pMenu->executar();
                 break;
             }
             case FASE1:

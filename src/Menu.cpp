@@ -2,9 +2,9 @@
 
 Menu::Menu() : Ente()
 {
-    pFig->setSize({LARGURA-1, ALTURA-1});
+    pFig->setSize({LARGURA, ALTURA});
     pFig->setOrigin({0,0});
-    pFig->setFillColor(sf::Color(255,0,0));
+    aplicarTextura(Gerenciadores::Menu);
 };
 
 Menu::~Menu()

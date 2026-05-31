@@ -21,7 +21,7 @@ private:
     Gerenciadores::Gerenciador_Eventos *pGE;
     Gerenciadores::Gerenciador_Colisoes *pGC;
     Estados estado;
-    Menu menu;
+    Menu* pMenu;
     Entidades::Personagens::Jogador *pJog1;
     Fases::FasePrimeira *pFase1;
 

@@ -7,6 +7,7 @@ namespace Entidades
         Jogador::Jogador(float posX, float posY, int n, int p) : Personagem(posX, posY, 40.0f, 40.0f, n), pontos(p)
         {
             setVel_Max(4);
+            aplicarTextura(Gerenciadores::Jogador);
         }
 
         Jogador::~Jogador()

@@ -8,7 +8,6 @@ Gerenciador_Grafico *Ente::pGG = NULL;
 Ente::Ente() : id(cont_id++), pFig(NULL)
 {
     pFig = new sf::RectangleShape();
-    pFig->setFillColor(sf::Color::Blue);
 }
 
 Ente::~Ente()
@@ -39,4 +38,13 @@ void Ente::setGG(Gerenciadores::Gerenciador_Grafico *pG)
 sf::RectangleShape *Ente::getpFig()
 {
     return pFig;
+}
+
+void Ente::aplicarTextura(Gerenciadores::IDTextura idTextura) {
+    if (pGG != NULL && pFig != NULL) {
+        sf::Texture* tex = &(pGG->getTextura(idTextura));
+        pFig->setTexture(tex);
+    }
+        pFig->setOutlineColor(sf::Color::Green); 
+        pFig->setOutlineThickness(1.0f);
 }
