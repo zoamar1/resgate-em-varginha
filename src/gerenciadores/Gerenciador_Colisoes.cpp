@@ -141,9 +141,6 @@ namespace Gerenciadores
                 velJog.y = 0.0f;
                 pJog1->setVelocidade(velJog);
                 pJog1->setNoChao(true);
-            } else
-            {
-                pJog1->setNoChao(false);
             }
         }
     }

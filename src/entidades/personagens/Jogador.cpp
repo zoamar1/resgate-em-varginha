@@ -5,9 +5,9 @@ namespace Entidades
 {
     namespace Personagens
     {
-        Jogador::Jogador(float posX, float posY, int n, int p) : Personagem(posX, posY, 40.0f, 40.0f, n), 
-        pontos(p),
-        direcao(1)
+        Jogador::Jogador(float posX, float posY, int n, int p) : Personagem(posX, posY, 40.0f, 40.0f, n),
+                                                                 pontos(p),
+                                                                 direcao(1)
         {
             setVel_Max(4);
             aplicarTextura(Gerenciadores::Jogador);
@@ -20,6 +20,12 @@ namespace Entidades
         void Jogador::executar()
         {
             aplicarGravidade();
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+            {
+                pular();
+            }
+
             mover();
         }
 
@@ -39,7 +45,6 @@ namespace Entidades
 
         void Jogador::atirar()
         {
-
         }
 
         void Jogador::setDirecao(int num)
@@ -59,8 +64,8 @@ namespace Entidades
         {
             if (getNoChao())
             {
-                velocidade.y = -18.0f;
-                noChao = false;
+                setVelY(-18.0f);
+                setNoChao(false);
             }
         }
 

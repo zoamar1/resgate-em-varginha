@@ -21,22 +21,54 @@ namespace Entidades
             if (p && p->getpFig())
             {
                 sf::Vector2f posJog = p->getPosicao();
-                float pLarg = p->getpFig()->getSize().x;
-                float pAlt = p->getpFig()->getSize().y;
+                sf::Vector2f tamJog = p->getpFig()->getSize();
 
                 sf::Vector2f posPlat = this->getPosicao();
-                float platLarg = this->getpFig()->getSize().x;
-                bool alinhadoY = (posJog.y + pAlt) >= posPlat.y && (posJog.y + pAlt) <= posPlat.y + altura;
+                sf::Vector2f tamPlat = this->getpFig()->getSize();
 
-                bool alinhadoX = posJog.x + pLarg > posPlat.x && posJog.x < posPlat.x + platLarg;
+                sf::Vector2f centroJog = posJog + (tamJog / 2.0f);
+                sf::Vector2f centroPlat = posPlat + (tamPlat / 2.0f);
 
-                if (alinhadoX && alinhadoY)
+                float distX = std::abs(centroJog.x - centroPlat.x);//std::abs -> tira módulo
+                float distY = std::abs(centroJog.y - centroPlat.y);
+
+                float somaMetadeLargura = (tamJog.x + tamPlat.x) / 2.0f;
+                float somaMetadeAltura = (tamJog.y + tamPlat.y) / 2.0f;
+
+                float interX = somaMetadeLargura - distX;
+                float interY = somaMetadeAltura - distY;
+
+                if (interX > 0.0f && interY > 0.0f) 
                 {
-                    p->setPosicao(sf::Vector2f(posJog.x, posPlat.y - pAlt));
-                    sf::Vector2f velJog = p->getVelocidade();
-                    velJog.y = 0.0f;
-                    p->setVelocidade(velJog);
-                    p->setNoChao(true);
+                    
+                    if (interX > interY)
+                    {
+                        if (centroJog.y < centroPlat.y)
+                        {
+                            p->setPosicao(sf::Vector2f(posJog.x, posPlat.y - tamJog.y));
+                            p->setVelY(0.0f);
+                            p->setNoChao(true);
+                        }
+                        else
+                        {
+                            p->setPosicao(sf::Vector2f(posJog.x, posPlat.y + tamPlat.y));
+                            p->setVelY(0.0f); 
+                        }
+                    }
+                    else
+                    {
+                        if (centroJog.x < centroPlat.x)
+                        {
+                            
+                            p->setPosicao(sf::Vector2f(posPlat.x - tamJog.x, posJog.y));
+                            p->setVelX(0.0f);
+                        }
+                        else
+                        {
+                            p->setPosicao(sf::Vector2f(posPlat.x + tamPlat.x, posJog.y));
+                            p->setVelX(0.0f);
+                        }
+                    }
                 }
             }
         }

@@ -25,6 +25,11 @@ namespace Fases
 
         if (GC)
         {
+            if (GC->getJogador1())
+            {
+                GC->getJogador1()->setNoChao(false);
+            }
+
             GC->executar();
 
             if (pChao)

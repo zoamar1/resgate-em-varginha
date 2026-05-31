@@ -70,9 +70,5 @@ namespace Gerenciadores
                 pJogo->setEstado(Jogo::FASE1);
             }
         }
-        if (evento.type == sf::Event::KeyPressed && evento.key.code == sf::Keyboard::W)
-        {
-            pJog1->pular();
-        }
     }
 }
