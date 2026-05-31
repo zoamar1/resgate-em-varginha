@@ -2,20 +2,23 @@
 
 namespace Entidades
 {
-    Entidade::Entidade(float posX, float posY, float tamanhoX, float tamanhoY) : Ente(), x(posX), y(posY)
-{
-    vel_max = 0.0f;
-    velx = 0.0f;
-    vely = 0.0f;
+    const float Entidade::valor_gravidade = 4.2f;
 
-    pFig->setSize({tamanhoX, tamanhoY});
-    pFig->setOrigin({0.0f, 0.0f});
-    pFig->setPosition({posX, posY});
-    
-    if (pSprite) {
-        pSprite->setPosition({posX, posY});
+    Entidade::Entidade(float posX, float posY, float tamanhoX, float tamanhoY) : Ente(), x(posX), y(posY), 
+    {
+        vel_max = 0.0f;
+        velx = 0.0f;
+        vely = 0.0f;
+
+        pFig->setSize({tamanhoX, tamanhoY});
+        pFig->setOrigin({0.0f, 0.0f});
+        pFig->setPosition({posX, posY});
+
+        if (pSprite)
+        {
+            pSprite->setPosition({posX, posY});
+        }
     }
-}
 
     Entidade::~Entidade()
     {
@@ -31,26 +34,29 @@ namespace Entidades
         return y;
     }
 
-void Entidade::setPosicao(float posx, float posy)
+    void Entidade::setPosicao(float posx, float posy)
     {
         x = posx;
         y = posy;
         pFig->setPosition({posx, posy});
-        if (pSprite) pSprite->setPosition({posx, posy});
+        if (pSprite)
+            pSprite->setPosition({posx, posy});
     }
 
     void Entidade::setX(float posX)
     {
         x = posX;
         pFig->setPosition({x, y});
-        if (pSprite) pSprite->setPosition({x, y});
+        if (pSprite)
+            pSprite->setPosition({x, y});
     }
 
     void Entidade::setY(float posY)
     {
         y = posY;
         pFig->setPosition({x, y});
-        if (pSprite) pSprite->setPosition({x, y});
+        if (pSprite)
+            pSprite->setPosition({x, y});
     }
 
     void Entidade::setVelX(float x)
@@ -81,5 +87,30 @@ void Entidade::setPosicao(float posx, float posy)
     float Entidade::getVel_Max() const
     {
         return vel_max;
+    }
+
+    void Entidade::aplicarGravidade(float dt)
+    {
+        if (temGravidade && !noChao)
+        {
+            velY += GRAVIDADE * dt;
+            y += velY * dt;
+            pFig->setPosition(x, y);
+        }
+    }
+
+    void Entidade::setNoChao(bool flag)
+    {
+        noChao = flag;
+    }
+
+    bool Entidade::getNoChao() const
+    {
+        return noChao;
+    }
+
+    void Entidade::setSofreEfeitoGravidade(bool flag)
+    {
+        sofreEfeitoGravidad = flag;
     }
 }

@@ -1,7 +1,6 @@
 #pragma once
 #include "Header.hpp"
 #include "Ente.hpp"
-// using namespace std;
 
 namespace Entidades
 {
@@ -13,11 +12,14 @@ namespace Entidades
         float vel_max;
         float velx;
         float vely;
+        bool noChao;
+        bool sofreEfeitoGravidade;
+        static const float valor_gravidade;
 
         // ostream buffer;
 
     public:
-        Entidade(float posX = 0.0f, float posY = 0.0f, float tamanhoX = 0.0f, float tamanhoY = 0.0f);
+        Entidade(float posX = 0.0f, float posY = 0.0f, float tamanhoX = 0.0f, float tamanhoY = 0.0f, bool noChao, bool sofreEfeitoGravidade, float velx = 0, float vely = 0);
         virtual ~Entidade();
 
         virtual void executar() = 0;
@@ -36,5 +38,10 @@ namespace Entidades
         float getVel_Max() const;
         // protected:
         // void salvarDataBuffer();
+
+        void setNoChao(bool flag);
+        bool getNoChao() const;
+        void setSofreEfeitoGravidade(bool flag);
+        void aplicarGravidade(float g = 0);
     };
 }
