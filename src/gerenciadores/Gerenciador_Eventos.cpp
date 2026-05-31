@@ -50,8 +50,9 @@ namespace Gerenciadores
 
             int x = (direita ? 1 : 0) + (esquerda ? -1 : 0);
             int y = (baixo ? 1 : 0) + (cima ? -1 : 0);
-
+            
             float velMax = pJog1->getVel_Max();
+            pJog1->setDirecao(x);
             pJog1->setVelX(x * velMax);
             pJog1->setVelY(y * velMax);
         }

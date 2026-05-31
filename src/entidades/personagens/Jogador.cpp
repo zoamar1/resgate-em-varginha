@@ -31,11 +31,28 @@ namespace Entidades
 
             if (deslocamentoX != 0 || deslocamentoY != 0)
             {
-                float novoX = getX() + deslocamentoX;
-                float novoY = getY() + deslocamentoY;
+                float novoX = x + deslocamentoX;
+                float novoY = y + deslocamentoY;
 
                 setPosicao(novoX, novoY);
             }
         }
+
+        void Jogador::atirar()
+        {
+
+        }
+
+        void Jogador::setDirecao(int num)
+        {
+            if (num < 0) direcao = -1;
+            else direcao = 1;
+        }
+
+        int Jogador::getDirecao() const
+        {
+            return direcao;
+        }
+        
     }
 }
