@@ -64,7 +64,6 @@ namespace Gerenciadores
     }
 
     void Gerenciador_Grafico::desenhaEnte(Ente *pE)
-    void Gerenciador_Grafico::desenhaEnte(Ente *pE)
     {
         if (pE)
         {
