@@ -36,13 +36,13 @@ namespace Entidades
                     sf::Vector2f velJog = p->getVelocidade();
                     velJog.y = 0.0f;
                     p->setVelocidade(velJog);
+                    p->setNoChao(true);
                 }
             }
         }
 
-        void Plataforma::executar(Entidades::Personagens::Jogador *p)
+        void Plataforma::executar()
         {
-            obstaculizar(p);
             desenhar();
         }
     }

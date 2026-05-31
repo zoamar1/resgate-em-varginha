@@ -1,4 +1,5 @@
 #include "fases/Fase.hpp"
+#include "entidades/obstaculos/Plataforma.hpp"
 
 namespace Fases
 {
@@ -20,7 +21,6 @@ namespace Fases
     }
     void Fase::executar()
     {
-        criarChao();
         lista_ents.percorrer();
 
         if (GC)
@@ -37,11 +37,23 @@ namespace Fases
     void Fase::criarInimFaceis()
     {
     }
-    void Fase::criarPlataformas()
+    void Fase::criarPlataformas(const sf::Vector2f pos, const sf::Vector2f tam)
     {
+        Entidades::Obstaculos::Plataforma *pPlat = new Entidades::Obstaculos::Plataforma(pos.x, pos.y, tam.x, tam.y);
+
+        if (pPlat)
+        {
+            lista_ents.incluir(static_cast<Entidades::Entidade *>(pPlat));
+            if (GC)
+            {
+                GC->incluirObstaculo(pPlat);
+            }
+        }
     }
     void Fase::criarCenario()
     {
+        criarChao();
+        criarObstaculo();
     }
 
 }
