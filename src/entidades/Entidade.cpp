@@ -109,7 +109,10 @@ namespace Entidades
     {
         if (sofreEfeitoGravidade && !noChao)
         {
-            velocidade.y += valor_gravidade;
+            if (velocidade.y < 5)
+            {
+                velocidade.y += valor_gravidade;
+            }
         }
     }
 
