@@ -40,6 +40,21 @@ namespace Gerenciadores
             if (evento.type == sf::Event::KeyPressed || evento.type == sf::Event::KeyReleased)
                 verificaTeclaPressionada(evento);
         }
+
+        if (pJog1)
+        {
+            bool cima = sf::Keyboard::isKeyPressed(sf::Keyboard::W);
+            bool baixo = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
+            bool esquerda = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
+            bool direita = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
+
+            int x = (direita ? 1 : 0) + (esquerda ? -1 : 0);
+            int y = (baixo ? 1 : 0) + (cima ? -1 : 0);
+
+            float velMax = pJog1->getVel_Max();
+            pJog1->setVelX(x * velMax);
+            pJog1->setVelY(y * velMax);
+        }
     }
 
     void Gerenciador_Eventos::verificaTeclaPressionada(sf::Event &evento)
@@ -58,19 +73,5 @@ namespace Gerenciadores
             }
         }
 
-        if (pJog1)
-        {
-            bool cima = sf::Keyboard::isKeyPressed(sf::Keyboard::W);
-            bool baixo = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
-            bool esquerda = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
-            bool direita = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
-
-            int x = (direita ? 1 : 0) + (esquerda ? -1 : 0);
-            int y = (baixo ? 1 : 0) + (cima ? -1 : 0);
-
-            float velMax = pJog1->getVel_Max();
-            pJog1->setVelX(x * velMax);
-            pJog1->setVelY(y * velMax);
-        }
     }
 }
