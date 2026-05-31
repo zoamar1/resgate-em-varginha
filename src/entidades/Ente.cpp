@@ -5,9 +5,8 @@ int Ente::cont_id = 1;
 
 Gerenciador_Grafico *Ente::pGG = NULL;
 
-Ente::Ente() : id(cont_id++), pFig(NULL)
+Ente::Ente() : id(cont_id++), pFig(new sf::RectangleShape()), pSprite(new sf::Sprite())
 {
-    pFig = new sf::RectangleShape();
 }
 
 Ente::~Ente()
@@ -17,8 +16,12 @@ Ente::~Ente()
         delete pFig;
         pFig = NULL;
     }
+    if (pSprite)
+    {
+        delete pSprite;
+        pSprite = NULL;
+    }
 }
-
 void Ente::desenhar()
 {
     if (pGG)
@@ -40,11 +43,29 @@ sf::RectangleShape *Ente::getpFig()
     return pFig;
 }
 
+sf::Sprite *Ente::getpSprite()
+{
+    return pSprite;
+}
+
 void Ente::aplicarTextura(Gerenciadores::IDTextura idTextura) {
-    if (pGG != NULL && pFig != NULL) {
+    if (pGG != NULL && pSprite != NULL) {
         sf::Texture* tex = &(pGG->getTextura(idTextura));
-        pFig->setTexture(tex);
+        pSprite->setTexture(*tex);
+
+        if (pFig != NULL) {
+            float largSprite = pSprite->getLocalBounds().width;
+            float altSprite  = pSprite->getLocalBounds().height;
+            float largHitbox = pFig->getSize().x;
+            float altHitbox  = pFig->getSize().y;
+
+            pSprite->setScale(largHitbox / largSprite, altHitbox / altSprite);
+        }
     }
+    
+    if (pFig != NULL) {
+        pFig->setFillColor(sf::Color::Transparent); 
         pFig->setOutlineColor(sf::Color::Green); 
         pFig->setOutlineThickness(1.0f);
+    }
 }

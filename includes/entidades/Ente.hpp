@@ -9,6 +9,7 @@ protected:
     static int cont_id;
     static Gerenciadores::Gerenciador_Grafico *pGG;
     sf::RectangleShape *pFig;
+    sf::Sprite *pSprite;
     void aplicarTextura(Gerenciadores::IDTextura idTextura);
 public:
     Ente();
@@ -17,5 +18,5 @@ public:
     void desenhar();
     static void setGG(Gerenciadores::Gerenciador_Grafico *pG);
     sf::RectangleShape *getpFig();
-
+    sf::Sprite *getpSprite();
 };

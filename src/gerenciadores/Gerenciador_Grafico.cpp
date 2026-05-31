@@ -55,10 +55,16 @@ namespace Gerenciadores
         }
     }
 
-    void Gerenciador_Grafico::desenhaEnte(Ente *pE)
+void Gerenciador_Grafico::desenhaEnte(Ente *pE)
     {
         if (pE)
         {
+            sf::Sprite *pSprite = pE->getpSprite();
+            if (pSprite)
+            {
+                window.draw(*pSprite);
+            }
+
             sf::RectangleShape *pFig = pE->getpFig();
             if (pFig)
             {
