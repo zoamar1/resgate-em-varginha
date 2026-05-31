@@ -5,7 +5,7 @@
 namespace Gerenciadores
 {
     Gerenciador_Eventos *Gerenciador_Eventos::pEvento(NULL);
-    Gerenciador_Eventos::Gerenciador_Eventos(Jogo *pJ) : pGG(NULL), pJogo(pJ), pJog1(NULL) { }
+    Gerenciador_Eventos::Gerenciador_Eventos(Jogo *pJ) : pGG(NULL), pJogo(pJ), pJog1(NULL) {}
 
     Gerenciador_Eventos::~Gerenciador_Eventos()
     {
@@ -25,7 +25,7 @@ namespace Gerenciadores
         this->pGG = pGG;
     }
 
-    void Gerenciador_Eventos::setJogador1(Entidades::Personagens::Jogador* pJogador1)
+    void Gerenciador_Eventos::setJogador1(Entidades::Personagens::Jogador *pJogador1)
     {
         pJog1 = pJogador1;
     }
@@ -43,17 +43,15 @@ namespace Gerenciadores
 
         if (pJog1)
         {
-            bool cima = sf::Keyboard::isKeyPressed(sf::Keyboard::W);
-            bool baixo = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
             bool esquerda = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
             bool direita = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
 
             int x = (direita ? 1 : 0) + (esquerda ? -1 : 0);
-            int y = (baixo ? 1 : 0) + (cima ? -1 : 0);
-            
             float velMax = pJog1->getVel_Max();
+
+            float velY = pJog1->getVelY();
             pJog1->setDirecao(x);
-            pJog1->setVelocidade(sf::Vector2f(x * velMax, y * velMax));
+            pJog1->setVelocidade(sf::Vector2f(x * velMax, velY));
         }
     }
 
@@ -72,6 +70,9 @@ namespace Gerenciadores
                 pJogo->setEstado(Jogo::FASE1);
             }
         }
-
+        if (evento.type == sf::Event::KeyPressed && evento.key.code == sf::Keyboard::W)
+        {
+            pJog1->pular();
+        }
     }
 }

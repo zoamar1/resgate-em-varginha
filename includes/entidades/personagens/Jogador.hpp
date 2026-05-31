@@ -24,6 +24,7 @@ namespace Entidades
             void salvar();
             void mover();
             void atirar();
+            void pular();
             void setDirecao(int num);
             int getDirecao() const;
         };

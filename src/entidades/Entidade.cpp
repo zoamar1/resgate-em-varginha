@@ -2,7 +2,7 @@
 
 namespace Entidades
 {
-    const float Entidade::valor_gravidade = 3.5f;
+    const float Entidade::valor_gravidade = 1.0f;
 
     Entidade::Entidade(const sf::Vector2f &posicao, const sf::Vector2f &tamanho, bool sofreGravidade)
         : Ente(),

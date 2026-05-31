@@ -56,5 +56,14 @@ namespace Entidades
             return direcao;
         }
 
+        void Jogador::pular()
+        {
+            if (getNoChao())
+            {
+                velocidade.y = -18.0f;
+                noChao = false;
+            }
+        }
+
     }
 }

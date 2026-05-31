@@ -140,6 +140,10 @@ namespace Gerenciadores
                 pJog1->setPosicao(sf::Vector2f(posJog.x, chaoY - pAlt));
                 velJog.y = 0.0f;
                 pJog1->setVelocidade(velJog);
+                pJog1->setNoChao(true);
+            } else
+            {
+                pJog1->setNoChao(false);
             }
         }
     }
