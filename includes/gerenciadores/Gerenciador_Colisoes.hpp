@@ -33,7 +33,8 @@ namespace Gerenciadores
 
         Entidades::Personagens::Jogador *getJogador1() const;
 
-        void colisaoPersonagemChao(Entidades::Personagens::Personagem *pPersonagem, Entidades::Chao *chao);
+        void colisaoJogadorChao(Entidades::Chao *chao);
+        void colisaoInimigoChao(Entidades::Chao *chao);
 
     private:
         bool verificarColisao(Entidades::Entidade *pe1, Entidades::Entidade *pe2) const;

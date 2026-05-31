@@ -27,9 +27,10 @@ namespace Fases
         {
             GC->executar();
 
-            if (pChao && GC->getJogador1())
+            if (pChao)
             {
-                GC->colisaoPersonagemChao(GC->getJogador1(), pChao);
+                GC->colisaoJogadorChao(pChao);
+                GC->colisaoInimigoChao(pChao);
             }
         }
     }

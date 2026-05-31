@@ -84,7 +84,7 @@ namespace Gerenciadores
             for (auto it = LOs.begin(); it != LOs.end(); it++)
             {
                 Entidades::Obstaculos::Obstaculo *pObstaculo = *it;
-                if (verificarColisao(pJog1, pObstaculo))
+                if (pObstaculo && verificarColisao(pJog1, pObstaculo))
                 {
                     pObstaculo->obstaculizar(pJog1);
                 }
@@ -96,13 +96,13 @@ namespace Gerenciadores
     {
         if (pJog1)
         {
-            std::vector<Entidades::Personagens::Personagem *>::iterator it;
+            std::vector<Entidades::Personagens::Inimigo *>::iterator it;
 
             for (auto it = LIs.begin(); it != LIs.end(); it++)
             {
-                Entidades::Personagens::Inimigo *pInimigo = static_cast<Entidades::Personagens::Inimigo *>(*it);
+                Entidades::Personagens::Inimigo *pInimigo = *it;
 
-                if (verificarColisao(pJog1, pInimigo) && pInimigo)
+                if (pInimigo && verificarColisao(pJog1, pInimigo))
                 {
                     pInimigo->danificar(pJog1);
                 }
@@ -119,7 +119,7 @@ namespace Gerenciadores
             for (auto it = LPs.begin(); it != LPs.end(); it++)
             {
                 Entidades::Projetil *pProjetil = *it;
-                if (verificarColisao(pJog1, pProjetil) && pProjetil->getAtivo())
+                if (pProjetil && pProjetil->getAtivo() && verificarColisao(pJog1, pProjetil))
                 {
                     pJog1->recebeDano(pProjetil->getDano());
                 }
@@ -127,19 +127,46 @@ namespace Gerenciadores
         }
     }
 
-    void Gerenciador_Colisoes::colisaoPersonagemChao(Entidades::Personagens::Personagem *pPersonagem, Entidades::Chao *pChao)
+    void Gerenciador_Colisoes::colisaoJogadorChao(Entidades::Chao *pChao)
     {
-        if (pPersonagem && pChao)
+        if (pChao)
         {
-            if (verificarColisao(pPersonagem, pChao))
+            if (verificarColisao(pJog1, pChao))
             {
-                float pAlt = static_cast<float>(pPersonagem->getpFig()->getSize().y);
+                float pAlt = static_cast<float>(pJog1->getpFig()->getSize().y);
 
                 float chaoY = pChao->getY();
 
-                pPersonagem->setY(chaoY - pAlt);
+                pJog1->setY(chaoY - pAlt);
 
-                pPersonagem->setVelY(0.0f);
+                pJog1->setVelY(0.0f);
+            }
+        }
+    }
+
+    void Gerenciador_Colisoes::colisaoInimigoChao(Entidades::Chao *pChao)
+    {
+        if (pChao)
+        {
+            std::vector<Entidades::Personagens::Inimigo *>::iterator it;
+
+            for (auto it = LIs.begin(); it != LIs.end(); it++)
+            {
+                Entidades::Personagens::Inimigo *pInimigo = *it;
+
+                if (pInimigo)
+                {
+                    if (verificarColisao(pInimigo, pChao))
+                    {
+                        float pAlt = static_cast<float>(pInimigo->getpFig()->getSize().y);
+
+                        float chaoY = pChao->getY();
+
+                        pInimigo->setY(chaoY - pAlt);
+
+                        pInimigo->setVelY(0.0f);
+                    }
+                }
             }
         }
     }
