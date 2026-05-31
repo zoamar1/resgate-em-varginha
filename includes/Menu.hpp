@@ -11,5 +11,6 @@ class Menu : public Ente
     public:
         Menu();
         ~Menu();
+        void desenhaTexto();
         void executar();
 };
