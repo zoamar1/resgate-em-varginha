@@ -57,8 +57,7 @@ void Jogo::executar()
                     pFase1 = new Fases::FasePrimeira(pGC);
                     pFase1->incluirJogador(pJog1);
                 }
-
-                pJog1->executar();
+                
                 pFase1->executar();
                 break;
             }

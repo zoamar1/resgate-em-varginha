@@ -24,9 +24,9 @@ namespace Entidades
             }
         }
 
-        void Espinhos::executar(Entidades::Personagens::Jogador *p)
+        void Espinhos::executar()
         {
-            obstaculizar(p);
+            
         }
     }
 }

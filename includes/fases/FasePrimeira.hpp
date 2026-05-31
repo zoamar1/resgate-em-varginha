@@ -14,7 +14,7 @@ namespace Fases
 
     protected:
         void criarInimMedios();
-        void criarObstMedios();
+        void criarArbustos();
 
         void criarInimigos();
         void criarObstaculo();

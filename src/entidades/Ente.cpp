@@ -66,6 +66,6 @@ void Ente::aplicarTextura(Gerenciadores::IDTextura idTextura) {
     if (pFig != NULL) {
         pFig->setFillColor(sf::Color::Transparent); 
         pFig->setOutlineColor(sf::Color::Green); 
-        pFig->setOutlineThickness(1.0f);
+        pFig->setOutlineThickness(2.0f);
     }
 }

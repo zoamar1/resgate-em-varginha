@@ -1,4 +1,5 @@
 #include "fases/FasePrimeira.hpp"
+#include "entidades/obstaculos/Arbusto.hpp"
 
 namespace Fases
 {
@@ -14,8 +15,18 @@ namespace Fases
     void FasePrimeira::criarInimMedios()
     {
     }
-    void FasePrimeira::criarObstMedios()
+    void FasePrimeira::criarArbustos()
     {
+        Entidades::Obstaculos::Arbusto *pArbusto = new Entidades::Obstaculos::Arbusto(400,410,200,40);
+
+        if (pArbusto)
+        {
+            lista_ents.incluir(static_cast<Entidades::Entidade *>(pArbusto));
+            if (GC)
+            {
+                GC->incluirObstaculo(pArbusto);
+            }
+        }
     }
 
     void FasePrimeira::criarInimigos()
@@ -46,6 +57,8 @@ namespace Fases
         criarPlataformas(sf::Vector2f(1650.0f, 900.0f), sf::Vector2f(120.0f, 30.0f));
 
         criarPlataformas(sf::Vector2f(1750.0f, 750.0f), sf::Vector2f(120.0f, 30.0f));
+
+        criarArbustos();
     }
 
 }

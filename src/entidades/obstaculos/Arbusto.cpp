@@ -6,6 +6,10 @@ namespace Entidades
     {
         Arbusto::Arbusto(float posX, float posY, float tamanhoX, float tamanhoY) : Obstaculo(posX, posY, tamanhoX, tamanhoY), largura(tamanhoX)
         {
+            if (pFig)
+            {
+                pFig->setFillColor(sf::Color::Green);
+            }
         }
 
         Arbusto::~Arbusto()
@@ -20,15 +24,18 @@ namespace Entidades
         {
             if (p)
             {
+                sf::Vector2f pos = p->getPosicao();
                 sf::Vector2f vel = p->getVelocidade();
-                vel.x *= 0.5f;
-                p->setVelocidade(vel);
+                
+                pos.x -= vel.x * 0.5f;
+                pos.y -= vel.y * 0.5F;
+                p->setPosicao(pos);
             }
         }
 
-        void Arbusto::executar(Entidades::Personagens::Jogador *p)
+        void Arbusto::executar()
         {
-            obstaculizar(p);
+            
         }
     }
 }
