@@ -17,7 +17,7 @@ namespace Fases
     }
     void FasePrimeira::criarArbustos()
     {
-        Entidades::Obstaculos::Arbusto *pArbusto = new Entidades::Obstaculos::Arbusto(400,410,200,40);
+        Entidades::Obstaculos::Arbusto *pArbusto = new Entidades::Obstaculos::Arbusto(400, 410, 200, 40);
 
         if (pArbusto)
         {
@@ -31,8 +31,14 @@ namespace Fases
 
     void FasePrimeira::criarInimigos()
     {
-        std::cout << "teste" << std::endl;
+        criarInimFaceis(sf::Vector2f(300.0f, 890.0f));
+        criarInimFaceis(sf::Vector2f(800.0f, 890.0f));
+        criarInimFaceis(sf::Vector2f(700.0f, 590.0f));
+        criarInimFaceis(sf::Vector2f(450.0f, 390.0f));
+        criarInimFaceis(sf::Vector2f(1200.0f, 390.0f));
+        criarInimFaceis(sf::Vector2f(900.0f, 190.0f));
     }
+
     void FasePrimeira::criarObstaculo()
     {
         criarPlataformas(sf::Vector2f(550.0f, 100.0f), sf::Vector2f(200.0f, 30.0f));

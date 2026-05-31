@@ -7,6 +7,15 @@ namespace Entidades
     {
         Guarda::Guarda(float posX, float posY, int n, int maldade, int f) : Inimigo(posX, posY, n, maldade), forca(f)
         {
+            setVel_Max(0.0f);
+
+            if (pFig)
+            {
+                pFig->setSize(sf::Vector2f(45.0f, 60.0f));
+                pFig->setPosition(sf::Vector2f(posX, posY));
+            }
+
+            aplicarTextura(Gerenciadores::Guarda);
         }
 
         Guarda::~Guarda() {}
@@ -17,6 +26,14 @@ namespace Entidades
             {
                 p->recebeDano(nivel_maldade);
             }
+        }
+
+        void Guarda::mover()
+        {
+        }
+
+        void Guarda::salva()
+        {
         }
 
         void Guarda::executar()

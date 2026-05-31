@@ -9,5 +9,9 @@ namespace Entidades
         }
 
         Inimigo::~Inimigo() {}
+
+        void Inimigo::salvar()
+        {
+        }
     }
 }

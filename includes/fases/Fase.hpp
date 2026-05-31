@@ -24,7 +24,7 @@ namespace Fases
 
     protected:
         void criarChao();
-        void criarInimFaceis();
+        void criarInimFaceis(sf::Vector2f pos);
         void criarPlataformas(const sf::Vector2f pos, const sf::Vector2f tam);
         void criarCenario();
         virtual void criarInimigos() = 0;

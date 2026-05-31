@@ -17,10 +17,10 @@ namespace Gerenciadores
         {
             std::cout << "textura do menu nao carregou" << std::endl;
         }
-        /*if (!texturas[Guarda].loadFromFile("assets/guarda.png"))
+        if (!texturas[Guarda].loadFromFile("assets/guarda.png"))
         {
             std::cout << "textura do guarda nao carregou" << std::endl;
-        }*/
+        }
     }
 
     Gerenciador_Grafico *Gerenciador_Grafico::getGerenciador_Grafico()
@@ -55,7 +55,7 @@ namespace Gerenciadores
         }
     }
 
-void Gerenciador_Grafico::desenhaEnte(Ente *pE)
+    void Gerenciador_Grafico::desenhaEnte(Ente *pE)
     {
         if (pE)
         {
