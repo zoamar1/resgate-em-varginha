@@ -1,7 +1,7 @@
 #pragma once
 
-#define LARGURA 800
-#define ALTURA 600
+#define LARGURA 1920
+#define ALTURA 1080
 
 #include <iostream>
 #include <time.h>
