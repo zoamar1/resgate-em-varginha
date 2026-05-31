@@ -11,7 +11,7 @@ namespace Entidades
 
             if (pFig)
             {
-                pFig->setSize(sf::Vector2f(45.0f, 60.0f));
+                pFig->setSize(sf::Vector2f(70.0f, 127.0f));
                 pFig->setPosition(sf::Vector2f(posX, posY));
             }
 
