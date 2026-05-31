@@ -16,21 +16,6 @@ namespace Entidades
             if (p)
             {
                 p->recebeDano(nivel_maldade);
-
-                float direcaoX;
-                sf::Vector2f posJogador = p->getPosicao();
-                sf::Vector2f posGuarda = this->getPosicao();
-
-                if (posJogador.x > posGuarda.x)
-                {
-                    direcaoX = 1;
-                }
-                else
-                {
-                    direcaoX = -1;
-                }
-
-                p->setPosicao(sf::Vector2f(direcaoX * 8.0f, -5.0f));
             }
         }
 
