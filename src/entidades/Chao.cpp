@@ -18,7 +18,6 @@ namespace Entidades
 
     void Chao::executar()
     {
-        desenhar();
     }
     void Chao::salvar()
     {

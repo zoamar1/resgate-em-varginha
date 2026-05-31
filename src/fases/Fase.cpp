@@ -33,6 +33,8 @@ namespace Fases
                 GC->colisaoInimigoChao(pChao);
             }
         }
+
+        lista_ents.desenhar();
     }
     void Fase::criarInimFaceis()
     {
@@ -55,5 +57,8 @@ namespace Fases
         criarChao();
         criarObstaculo();
     }
-
+    void Fase::incluirJogador(Entidades::Personagens::Jogador *pJog1)
+    {
+        lista_ents.incluir(pJog1);
+    }
 }

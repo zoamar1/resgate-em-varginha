@@ -20,6 +20,7 @@ namespace Fases
         Fase(Gerenciadores::Gerenciador_Colisoes *pGC);
         virtual ~Fase();
         virtual void executar();
+        void incluirJogador(Entidades::Personagens::Jogador *pJog1);
 
     protected:
         void criarChao();

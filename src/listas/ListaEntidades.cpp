@@ -15,7 +15,7 @@ namespace Listas
     }
     void ListaEntidades::percorrer()
     {
-        Entidades::Entidade* aux = LE.getPrimeiro();
+        Entidades::Entidade *aux = LE.getPrimeiro();
         while (aux != NULL)
         {
             aux->executar();
@@ -23,4 +23,13 @@ namespace Listas
         }
     }
 
+    void ListaEntidades::desenhar()
+    {
+        Entidades::Entidade *aux = LE.getPrimeiro();
+        while (aux != NULL)
+        {
+            aux->desenhar();
+            aux = LE.getProximo();
+        }
+    }
 }

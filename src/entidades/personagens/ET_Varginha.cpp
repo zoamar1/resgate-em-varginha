@@ -39,7 +39,6 @@ namespace Entidades
 
         void ET_Varginha::executar()
         {
-            desenhar();
         }
     }
 }

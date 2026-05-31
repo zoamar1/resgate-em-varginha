@@ -21,7 +21,6 @@ namespace Entidades
         {
             aplicarGravidade();
             mover();
-            desenhar();
         }
 
         void Jogador::salvar()

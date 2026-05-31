@@ -36,7 +36,6 @@ namespace Entidades
 
         void Guarda::executar()
         {
-            desenhar();
         }
     }
 }

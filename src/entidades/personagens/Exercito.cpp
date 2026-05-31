@@ -21,7 +21,6 @@ namespace Entidades
 
         void Exercito::executar()
         {
-            desenhar();
         }
     }
 }

@@ -43,7 +43,7 @@ namespace Entidades
 
         void Plataforma::executar()
         {
-            desenhar();
+            obstaculizar(p);
         }
     }
 }

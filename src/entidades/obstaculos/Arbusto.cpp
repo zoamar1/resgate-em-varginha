@@ -29,7 +29,6 @@ namespace Entidades
         void Arbusto::executar(Entidades::Personagens::Jogador *p)
         {
             obstaculizar(p);
-            desenhar();
         }
     }
 }
