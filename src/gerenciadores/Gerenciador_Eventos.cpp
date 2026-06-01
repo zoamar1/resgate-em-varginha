@@ -76,9 +76,11 @@ namespace Gerenciadores
         }
         if (evento.type == sf::Event::KeyPressed && evento.key.code == sf::Keyboard::G)
         {
-            if (estado == Jogo::FASE1 && pJog1)
+            if ((estado == Jogo::FASE1 || estado == Jogo::FASE2) && pJog1)
             {
-                pJog1->atirar();
+                Entidades::Projetil* novoProjetil = pJog1->atirar();
+                Fases::Fase* pFase = static_cast<Fases::Fase*>(pJogo->getCenarioAtual());
+                pFase->incluirProjetil(novoProjetil);
             }
         }
     }

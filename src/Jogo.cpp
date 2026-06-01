@@ -80,3 +80,15 @@ void Jogo::setEstado(Estados valor)
 {
     estado = valor;
 }
+
+Ente* Jogo::getCenarioAtual()
+{
+    if(estado == MENU)
+    {
+        return pMenu;
+    }
+    if(estado == FASE1)
+    {
+        return pFase1;
+    }
+}

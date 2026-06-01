@@ -31,4 +31,5 @@ public:
     void executar();
     Estados getEstado();
     void setEstado(Estados valor);
+    Ente* getCenarioAtual();
 };
