@@ -6,7 +6,7 @@ namespace Entidades
     {
         if (pFig)
         {
-            pFig->setSize(sf::Vector2f(static_cast<float>(LARGURA), 30.0f));
+            pFig->setSize(sf::Vector2f(static_cast<float>(LARGURA), 70.0f));
             pFig->setOrigin(0.0f, 0.0f);
             pFig->setPosition(getPosicao());
         }
