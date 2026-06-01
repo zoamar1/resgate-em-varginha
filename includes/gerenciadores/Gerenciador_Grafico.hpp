@@ -12,7 +12,9 @@ namespace Gerenciadores
         ET_Varginha,
         Plataforma,
         Projetil,
-        Menu
+        Menu,
+        Arbusto,
+        Chao
     };
 
     class Gerenciador_Grafico

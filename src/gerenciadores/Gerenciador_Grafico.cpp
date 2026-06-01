@@ -7,7 +7,7 @@ namespace Gerenciadores
 
     Gerenciador_Grafico::Gerenciador_Grafico() : window(sf::VideoMode(LARGURA, ALTURA), "Resgate em Varginha")
     {
-        texturas.resize(7);
+        texturas.resize(9);
         window.setFramerateLimit(60);
         if (!texturas[Jogador].loadFromFile("assets/jogador.png"))
         {
@@ -18,6 +18,18 @@ namespace Gerenciadores
             std::cout << "textura do menu nao carregou" << std::endl;
         }
         if (!texturas[Guarda].loadFromFile("assets/guarda.png"))
+        {
+            std::cout << "textura do guarda nao carregou" << std::endl;
+        }
+        if (!texturas[Arbusto].loadFromFile("assets/arbusto.png"))
+        {
+            std::cout << "textura do guarda nao carregou" << std::endl;
+        }
+        if (!texturas[Chao].loadFromFile("assets/chao.png"))
+        {
+            std::cout << "textura do guarda nao carregou" << std::endl;
+        }
+        if (!texturas[Plataforma].loadFromFile("assets/plataforma.png"))
         {
             std::cout << "textura do guarda nao carregou" << std::endl;
         }

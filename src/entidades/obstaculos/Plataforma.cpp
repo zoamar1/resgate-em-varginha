@@ -6,6 +6,7 @@ namespace Entidades
     {
         Plataforma::Plataforma(float posX, float posY, float tamanhoX, float tamanhoY) : Obstaculo(posX, posY, tamanhoX, tamanhoY), altura(tamanhoY)
         {
+            aplicarTextura(Gerenciadores::Plataforma);
         }
 
         Plataforma::~Plataforma()

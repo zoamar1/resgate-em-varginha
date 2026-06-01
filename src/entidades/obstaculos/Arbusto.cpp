@@ -8,7 +8,7 @@ namespace Entidades
         {
             if (pFig)
             {
-                pFig->setFillColor(sf::Color::Green);
+                aplicarTextura(Gerenciadores::Arbusto);
             }
         }
 
