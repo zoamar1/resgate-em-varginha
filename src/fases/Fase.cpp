@@ -83,4 +83,9 @@ namespace Fases
     {
         lista_ents.incluir(pJog1);
     }
+
+    void Fase::incluirProjetil(Entidades::Projetil *pProjetil)
+    {
+        lista_ents.incluir(pProjetil);
+    };
 }

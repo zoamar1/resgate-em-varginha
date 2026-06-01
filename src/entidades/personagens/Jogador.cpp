@@ -45,6 +45,7 @@ namespace Entidades
 
         void Jogador::atirar()
         {
+            Entidades::Projetil *novoProjetil = new Entidades::Projetil(getX(), getY(), false, 5);
         }
 
         void Jogador::setDirecao(int num)

@@ -2,7 +2,7 @@
 
 namespace Entidades
 {
-    Projetil::Projetil(float posX, float posY, bool flag, int dano) : Entidade(sf::Vector2f(posX, posY), sf::Vector2f(0.0f, 0.0f), false), ativo(flag), dano(dano)
+    Projetil::Projetil(float posX, float posY, bool flag, int dano) : Entidade(sf::Vector2f(posX, posY), sf::Vector2f(0.0f, 0.0f), false), ativo(flag), dano(dano), pDono(this)
     {
     }
 
@@ -28,5 +28,19 @@ namespace Entidades
         {
             setPosicao(getPosicao() + deslocamento);
         }
+    }
+
+    void Projetil::executar()
+    {
+        mover();
+    }
+    void Projetil::salvar()
+    {
+
+    }
+
+    Entidades::Entidade *Projetil::getDono()
+    {
+        return pDono;
     }
 }

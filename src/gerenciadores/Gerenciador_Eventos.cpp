@@ -49,6 +49,10 @@ namespace Gerenciadores
             int x = (direita ? 1 : 0) + (esquerda ? -1 : 0);
             float velMax = pJog1->getVel_Max();
 
+            if (x >= 0) pJog1->setDirecao(1);
+            else pJog1->setDirecao(-1);
+            
+            
             float velY = pJog1->getVelY();
             pJog1->setDirecao(x);
             pJog1->setVelocidade(sf::Vector2f(x * velMax, velY));
@@ -68,6 +72,13 @@ namespace Gerenciadores
             if (estado == Jogo::MENU)
             {
                 pJogo->setEstado(Jogo::FASE1);
+            }
+        }
+        if (evento.type == sf::Event::KeyPressed && evento.key.code == sf::Keyboard::G)
+        {
+            if (estado == Jogo::FASE1 && pJog1)
+            {
+                pJog1->atirar();
             }
         }
     }

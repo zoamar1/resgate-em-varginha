@@ -21,7 +21,7 @@ namespace Fases
         virtual ~Fase();
         virtual void executar();
         void incluirJogador(Entidades::Personagens::Jogador *pJog1);
-
+        void incluirProjetil(Entidades::Projetil* pProjetil);
     protected:
         void criarChao();
         void criarInimFaceis(sf::Vector2f pos);
