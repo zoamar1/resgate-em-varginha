@@ -10,14 +10,14 @@ Menu::Menu() : Ente()
         std::cout << "fonte deu erro" << std::endl;
     }
 
-    formataTexto(titulo, "Resgate em Varginha", 60, 200.0f);
-    titulo.setFillColor(sf::Color::Green);
+    formataTexto(titulo, "Resgate em Varginha", 80, 250.0f);
+    titulo.setFillColor(sf::Color::Blue);
 
     sf::Text opcao_jogar;
-    formataTexto(opcao_jogar, "Jogar", 40, 400.0f);
+    formataTexto(opcao_jogar, "Jogar", 40, 600.0f);
     
     sf::Text opcao_sair;
-    formataTexto(opcao_sair, "Sair", 40, 500.0f);
+    formataTexto(opcao_sair, "Sair", 40, 725.0f);
 
     opcoes_menu.push_back(opcao_jogar);
     opcoes_menu.push_back(opcao_sair);
@@ -45,7 +45,7 @@ void Menu::desenhaTexto()
 {
     pGG->desenhaTexto(titulo);
 
-    for (int i = 0; i < opcoes_menu.size(); i++) {
+    for (int i = 0; i < (int) opcoes_menu.size(); i++) {
         pGG->desenhaTexto(opcoes_menu[i]);
     }
 }
