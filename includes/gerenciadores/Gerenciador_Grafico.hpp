@@ -14,7 +14,8 @@ namespace Gerenciadores
         Projetil,
         Menu,
         Arbusto,
-        Chao
+        Chao,
+        FundoFase1
     };
 
     class Gerenciador_Grafico

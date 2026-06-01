@@ -40,6 +40,8 @@ namespace Fases
             }
         }
 
+        desenhar();
+
         lista_ents.desenhar();
     }
 

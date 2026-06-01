@@ -6,6 +6,9 @@ namespace Fases
 
     FasePrimeira::FasePrimeira(Gerenciadores::Gerenciador_Colisoes *pGC) : Fase(pGC), maxInimMedios(50)
     {
+        pFig->setSize({LARGURA-1, ALTURA-1});
+        pFig->setOrigin({0,0});
+        aplicarTextura(Gerenciadores::FundoFase1);
         criarCenario();
     }
     FasePrimeira::~FasePrimeira()
@@ -17,7 +20,7 @@ namespace Fases
     }
     void FasePrimeira::criarArbustos()
     {
-        Entidades::Obstaculos::Arbusto *pArbusto = new Entidades::Obstaculos::Arbusto(400, 440, 100, 40);
+        Entidades::Obstaculos::Arbusto *pArbusto = new Entidades::Obstaculos::Arbusto(400, 445, 100, 40);
 
         if (pArbusto)
         {

@@ -45,6 +45,8 @@ sf::RectangleShape *Ente::getpFig()
 
 sf::Sprite *Ente::getpSprite()
 {
+
+    
     return pSprite;
 }
 
@@ -60,12 +62,14 @@ void Ente::aplicarTextura(Gerenciadores::IDTextura idTextura) {
             float altHitbox  = pFig->getSize().y;
 
             pSprite->setScale(largHitbox / largSprite, altHitbox / altSprite);
+                    pFig->setFillColor(sf::Color::Transparent); 
+
         }
     }
     
-    if (pFig != NULL) {
-        pFig->setFillColor(sf::Color::Transparent); 
+    /*if (pFig != NULL) {
         pFig->setOutlineColor(sf::Color::Green); 
         pFig->setOutlineThickness(2.0f);
-    }
+    }*/
+
 }
