@@ -20,6 +20,7 @@ namespace Entidades
 
         void Personagem::operator++()
         {
+            // fazer a verificação com o limite de vidaas
             num_vidas++;
         }
     }
