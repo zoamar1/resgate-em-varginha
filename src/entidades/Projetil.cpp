@@ -2,8 +2,17 @@
 
 namespace Entidades
 {
-    Projetil::Projetil(float posX, float posY, bool flag, int dano) : Entidade(sf::Vector2f(posX, posY), sf::Vector2f(0.0f, 0.0f), false), ativo(flag), dano(dano), pDono(this)
+    Projetil::Projetil(float posX, float posY, bool flag, int dano) : Entidade(sf::Vector2f(posX, posY), sf::Vector2f(0.0f, 0.0f), true), ativo(flag), dano(dano), pDono(this)
     {
+        if (pFig)
+        {
+            pFig->setSize(sf::Vector2f(16.0f, 6.0f));
+            pFig->setFillColor(sf::Color::Yellow);
+            pFig->setPosition(getPosicao());
+            setVelocidade({10.0f, 0.0f});
+            setVel_Max(10.0f);
+        }
+
     }
 
     Projetil::~Projetil()
@@ -32,6 +41,7 @@ namespace Entidades
 
     void Projetil::executar()
     {
+        aplicarGravidade();
         mover();
     }
     void Projetil::salvar()
