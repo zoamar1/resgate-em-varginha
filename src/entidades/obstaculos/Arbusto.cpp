@@ -9,6 +9,10 @@ namespace Entidades
             if (pFig)
             {
                 aplicarTextura(Gerenciadores::Arbusto);
+
+                pFig->setSize(sf::Vector2f(tamanhoX, tamanhoY));
+                pFig->setOrigin(0.0f, 0.0f);
+                pFig->setPosition(getPosicao());
             }
         }
 
@@ -26,7 +30,7 @@ namespace Entidades
             {
                 sf::Vector2f pos = p->getPosicao();
                 sf::Vector2f vel = p->getVelocidade();
-                
+
                 pos.x -= vel.x * 0.5f;
                 pos.y -= vel.y * 0.5F;
                 p->setPosicao(pos);
@@ -35,7 +39,6 @@ namespace Entidades
 
         void Arbusto::executar()
         {
-            
         }
     }
 }

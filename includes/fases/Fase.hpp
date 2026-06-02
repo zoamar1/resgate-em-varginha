@@ -15,13 +15,15 @@ namespace Fases
         Listas::ListaEntidades lista_ents;
         Gerenciadores::Gerenciador_Colisoes *GC;
         Entidades::Chao *pChao;
+        std::vector<Entidades::Chao *> vChaos;
 
     public:
         Fase(Gerenciadores::Gerenciador_Colisoes *pGC);
         virtual ~Fase();
         virtual void executar();
         void incluirJogador(Entidades::Personagens::Jogador *pJog1);
-        void incluirProjetil(Entidades::Projetil* pProjetil);
+        void incluirProjetil(Entidades::Projetil *pProjetil);
+
     protected:
         void criarChao();
         void criarInimFaceis(sf::Vector2f pos);

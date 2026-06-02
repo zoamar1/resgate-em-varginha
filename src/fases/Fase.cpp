@@ -4,21 +4,53 @@
 
 namespace Fases
 {
-    Fase::Fase(Gerenciadores::Gerenciador_Colisoes *pGC) : lista_ents(), GC(pGC), pChao(NULL)
+    Fase::Fase(Gerenciadores::Gerenciador_Colisoes *pGC) : lista_ents(), GC(pGC), pChao(NULL), vChaos()
     {
     }
     Fase::~Fase()
     {
         GC = NULL;
         pChao = NULL;
+        vChaos.clear();
     }
 
     void Fase::criarChao()
     {
-        if (!pChao)
+        float yChaoBaixo = 990.0f;
+
+        for (float x = 0.0f; x < 1920.0f; x += 200.0f)
         {
-            pChao = new Entidades::Chao();
-            lista_ents.incluir(pChao);
+            Entidades::Chao *pNovoChao = new Entidades::Chao(sf::Vector2f(x, yChaoBaixo), sf::Vector2f(200.0f, 30.0f));
+            if (pNovoChao)
+            {
+                lista_ents.incluir(static_cast<Entidades::Entidade *>(pNovoChao));
+                vChaos.push_back(pNovoChao);
+
+                if (!pChao)
+                {
+                    pChao = pNovoChao;
+                }
+            }
+        }
+
+        for (float x = 250.0f; x <= 1920.0f; x += 200.0f)
+        {
+            Entidades::Chao *pNovoChao = new Entidades::Chao(sf::Vector2f(x, 250.0f), sf::Vector2f(200.0f, 30.0f));
+            if (pNovoChao)
+            {
+                lista_ents.incluir(static_cast<Entidades::Entidade *>(pNovoChao));
+                vChaos.push_back(pNovoChao);
+            }
+        }
+
+        for (float x = 0.0f; x <= 1400.0f; x += 200.0f)
+        {
+            Entidades::Chao *pNovoChao = new Entidades::Chao(sf::Vector2f(x, 620.0f), sf::Vector2f(200.0f, 30.0f));
+            if (pNovoChao)
+            {
+                lista_ents.incluir(static_cast<Entidades::Entidade *>(pNovoChao));
+                vChaos.push_back(pNovoChao);
+            }
         }
     }
 
@@ -33,13 +65,18 @@ namespace Fases
                 GC->getJogador1()->setNoChao(false);
             }
 
-            GC->executar();
+            std::vector<Entidades::Chao *>::iterator it;
 
-            if (pChao)
+            for (it = vChaos.begin(); it < vChaos.end(); it++)
             {
-                GC->colisaoJogadorChao(pChao);
-                GC->colisaoInimigoChao(pChao);
+                if (*it)
+                {
+                    GC->colisaoJogadorChao(*it);
+                    GC->colisaoInimigoChao(*it);
+                }
             }
+
+            GC->executar();
         }
 
         desenhar();

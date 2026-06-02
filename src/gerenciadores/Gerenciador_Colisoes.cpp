@@ -128,20 +128,34 @@ namespace Gerenciadores
 
     void Gerenciador_Colisoes::colisaoJogadorChao(Entidades::Chao *pChao)
     {
-        if (pChao)
+        if (pChao && pJog1)
         {
             if (verificarColisao(pJog1, pChao))
             {
-                float pAlt = static_cast<float>(pJog1->getpFig()->getSize().y);
                 sf::Vector2f posJog = pJog1->getPosicao();
                 sf::Vector2f velJog = pJog1->getVelocidade();
+                float pAlt = static_cast<float>(pJog1->getpFig()->getSize().y);
 
-                float chaoY = pChao->getPosicao().y;
+                sf::Vector2f posChao = pChao->getPosicao();
+                float chaoAlt = static_cast<float>(pChao->getpFig()->getSize().y);
 
-                pJog1->setPosicao(sf::Vector2f(posJog.x, chaoY - pAlt));
-                velJog.y = 0.0f;
+                float centroJogY = posJog.y + (pAlt / 2.0f);
+                float centroChaoY = posChao.y + (chaoAlt / 2.0f);
+
+                if (centroJogY < centroChaoY)
+                {
+                    pJog1->setPosicao(sf::Vector2f(posJog.x, posChao.y - pAlt));
+                    velJog.y = 0.0f;
+                    pJog1->setNoChao(true);
+                }
+
+                else
+                {
+                    pJog1->setPosicao(sf::Vector2f(posJog.x, posChao.y + chaoAlt));
+                    velJog.y = 0.1f;
+                }
+
                 pJog1->setVelocidade(velJog);
-                pJog1->setNoChao(true);
             }
         }
     }

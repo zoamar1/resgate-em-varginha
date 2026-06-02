@@ -6,8 +6,8 @@ namespace Fases
 
     FasePrimeira::FasePrimeira(Gerenciadores::Gerenciador_Colisoes *pGC) : Fase(pGC), maxInimMedios(50)
     {
-        pFig->setSize({LARGURA-1, ALTURA-1});
-        pFig->setOrigin({0,0});
+        pFig->setSize({LARGURA - 1, ALTURA - 1});
+        pFig->setOrigin({0, 0});
         aplicarTextura(Gerenciadores::FundoFase1);
         criarCenario();
     }
@@ -20,7 +20,7 @@ namespace Fases
     }
     void FasePrimeira::criarArbustos()
     {
-        Entidades::Obstaculos::Arbusto *pArbusto = new Entidades::Obstaculos::Arbusto(400, 445, 100, 40);
+        Entidades::Obstaculos::Arbusto *pArbusto = new Entidades::Obstaculos::Arbusto(400.0f, 950.0f, 100.0f, 40.0f);
 
         if (pArbusto)
         {
@@ -43,35 +43,12 @@ namespace Fases
     void FasePrimeira::criarObstaculo()
     {
         criarPlataformas(sf::Vector2f(550.0f, 100.0f), sf::Vector2f(200.0f, 30.0f));
-        criarPlataformas(sf::Vector2f(1300.0f, 100.0f), sf::Vector2f(200.0f, 30.0f));  
-
-        // Plataforma grande superior
-
-        criarPlataformas(sf::Vector2f(250.0f, 250.0f), sf::Vector2f(200.0f, 30.0f));
-        criarPlataformas(sf::Vector2f(450.0f, 250.0f), sf::Vector2f(200.0f, 30.0f));
-        criarPlataformas(sf::Vector2f(650.0f, 250.0f), sf::Vector2f(200.0f, 30.0f));
-        criarPlataformas(sf::Vector2f(850.0f, 250.0f), sf::Vector2f(200.0f, 30.0f));
-        criarPlataformas(sf::Vector2f(1050.0f, 250.0f), sf::Vector2f(200.0f, 30.0f));
-        criarPlataformas(sf::Vector2f(1250.0f, 250.0f), sf::Vector2f(200.0f, 30.0f));
-        criarPlataformas(sf::Vector2f(1450.0f, 250.0f), sf::Vector2f(200.0f, 30.0f));
-
+        criarPlataformas(sf::Vector2f(1300.0f, 100.0f), sf::Vector2f(200.0f, 30.0f));
 
         criarPlataformas(sf::Vector2f(50.0f, 200.0f), sf::Vector2f(120.0f, 30.0f));
         criarPlataformas(sf::Vector2f(150.0f, 380.0f), sf::Vector2f(120.0f, 30.0f));
         criarPlataformas(sf::Vector2f(350.0f, 485.0f), sf::Vector2f(350.0f, 30.0f));
         criarPlataformas(sf::Vector2f(1100.0f, 450.0f), sf::Vector2f(300.0f, 30.0f));
-
-        // Plataforma grande central
-
-        criarPlataformas(sf::Vector2f(0.0f, 650.0f), sf::Vector2f(200.0f, 30.0f));
-        criarPlataformas(sf::Vector2f(200.0f, 650.0f), sf::Vector2f(200.0f, 30.0f));
-        criarPlataformas(sf::Vector2f(400.0f, 650.0f), sf::Vector2f(200.0f, 30.0f));
-        criarPlataformas(sf::Vector2f(600.0f, 650.0f), sf::Vector2f(200.0f, 30.0f));
-        criarPlataformas(sf::Vector2f(800.0f, 650.0f), sf::Vector2f(200.0f, 30.0f));
-        criarPlataformas(sf::Vector2f(1000.0f, 650.0f), sf::Vector2f(200.0f, 30.0f));
-        criarPlataformas(sf::Vector2f(1200.0f, 650.0f), sf::Vector2f(200.0f, 30.0f));
-        criarPlataformas(sf::Vector2f(1400.0f, 650.0f), sf::Vector2f(200.0f, 30.0f));
-
 
         criarPlataformas(sf::Vector2f(400.0f, 850.0f), sf::Vector2f(250.0f, 30.0f));
         criarPlataformas(sf::Vector2f(1100.0f, 850.0f), sf::Vector2f(250.0f, 30.0f));
