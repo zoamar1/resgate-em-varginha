@@ -20,12 +20,6 @@ namespace Entidades
         void Jogador::executar()
         {
             aplicarGravidade();
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-            {
-                pular();
-            }
-
             mover();
         }
 
@@ -46,6 +40,7 @@ namespace Entidades
         Entidades::Projetil* Jogador::atirar()
         {
             Entidades::Projetil *novoProjetil = new Entidades::Projetil(getX(), getY(), false, 5);
+            novoProjetil->setY(getY() * direcao);
             return novoProjetil;
         }
 

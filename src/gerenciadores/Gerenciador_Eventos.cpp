@@ -56,6 +56,10 @@ namespace Gerenciadores
             float velY = pJog1->getVelY();
             pJog1->setDirecao(x);
             pJog1->setVelocidade(sf::Vector2f(x * velMax, velY));
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+            {
+                pJog1->pular();
+            }
         }
     }
 
@@ -83,5 +87,6 @@ namespace Gerenciadores
                 pFase->incluirProjetil(novoProjetil);
             }
         }
+        
     }
 }
