@@ -9,7 +9,7 @@ namespace Entidades
             pFig->setSize(sf::Vector2f(16.0f, 6.0f));
             pFig->setFillColor(sf::Color::Yellow);
             pFig->setPosition(getPosicao());
-            setVelocidade({10.0f, 0.0f});
+            setVelocidade({50.0f, 0.0f});
             setVel_Max(10.0f);
         }
 
