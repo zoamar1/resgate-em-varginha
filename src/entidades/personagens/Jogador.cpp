@@ -20,12 +20,6 @@ namespace Entidades
         void Jogador::executar()
         {
             aplicarGravidade();
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-            {
-                pular();
-            }
-
             mover();
         }
 
