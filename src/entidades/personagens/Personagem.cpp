@@ -5,7 +5,7 @@ namespace Entidades
     namespace Personagens
     {
         Personagem::Personagem(float posX, float posY, float tamanhoX, float tamanhoY, int n) : Entidade(sf::Vector2f(posX, posY), sf::Vector2f(tamanhoX, tamanhoY), true),
-                                                                                        num_vidas(n)
+                                                                                                num_vidas(n)
         {
         }
 
@@ -16,6 +16,11 @@ namespace Entidades
         void Personagem::recebeDano(int dano)
         {
             num_vidas -= dano;
+        }
+
+        void Personagem::operator++()
+        {
+            num_vidas++;
         }
     }
 }

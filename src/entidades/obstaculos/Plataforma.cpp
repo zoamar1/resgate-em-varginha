@@ -21,6 +21,8 @@ namespace Entidades
         {
             if (p && p->getpFig())
             {
+                p->operator++();
+
                 sf::Vector2f posJog = p->getPosicao();
                 sf::Vector2f tamJog = p->getpFig()->getSize();
 
@@ -30,7 +32,7 @@ namespace Entidades
                 sf::Vector2f centroJog = posJog + (tamJog / 2.0f);
                 sf::Vector2f centroPlat = posPlat + (tamPlat / 2.0f);
 
-                float distX = std::abs(centroJog.x - centroPlat.x);//std::abs -> tira módulo
+                float distX = std::abs(centroJog.x - centroPlat.x); // std::abs -> tira módulo
                 float distY = std::abs(centroJog.y - centroPlat.y);
 
                 float somaMetadeLargura = (tamJog.x + tamPlat.x) / 2.0f;
@@ -39,9 +41,9 @@ namespace Entidades
                 float interX = somaMetadeLargura - distX;
                 float interY = somaMetadeAltura - distY;
 
-                if (interX > 0.0f && interY > 0.0f) 
+                if (interX > 0.0f && interY > 0.0f)
                 {
-                    
+
                     if (interX > interY)
                     {
                         if (centroJog.y < centroPlat.y)
@@ -53,14 +55,14 @@ namespace Entidades
                         else
                         {
                             p->setPosicao(sf::Vector2f(posJog.x, posPlat.y + tamPlat.y));
-                            p->setVelY(0.0f); 
+                            p->setVelY(0.0f);
                         }
                     }
                     else
                     {
                         if (centroJog.x < centroPlat.x)
                         {
-                            
+
                             p->setPosicao(sf::Vector2f(posPlat.x - tamJog.x, posJog.y));
                             p->setVelX(0.0f);
                         }

@@ -12,6 +12,7 @@ namespace Fases
         GC = NULL;
         pChao = NULL;
     }
+
     void Fase::criarChao()
     {
         if (!pChao)
@@ -20,6 +21,7 @@ namespace Fases
             lista_ents.incluir(pChao);
         }
     }
+
     void Fase::executar()
     {
         lista_ents.percorrer();
