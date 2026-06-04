@@ -2,6 +2,12 @@
 #include "listas/Lista.hpp"
 #include "entidades/Entidade.hpp"
 
+namespace Entidades {
+    namespace Personagens {
+        class Jogador;
+    }
+}
+
 namespace Listas {
     class ListaEntidades
     {
@@ -13,5 +19,6 @@ namespace Listas {
             void incluir(Entidades::Entidade* pE);
             void percorrer();
             void desenhar();
+            void limparExcetoJogador(Entidades::Personagens::Jogador* pJogador);
     };
 }

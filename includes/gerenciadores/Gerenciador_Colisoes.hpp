@@ -30,6 +30,7 @@ namespace Gerenciadores
         void incluirObstaculo(Entidades::Obstaculos::Obstaculo *po);
         void incluirProjetil(Entidades::Projetil *pj);
         void executar();
+        void limparTudo();
 
         Entidades::Personagens::Jogador *getJogador1() const;
 

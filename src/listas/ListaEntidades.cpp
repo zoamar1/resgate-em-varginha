@@ -1,4 +1,5 @@
 #include "listas/ListaEntidades.hpp"
+#include "entidades/personagens/Jogador.hpp"
 
 namespace Listas
 {
@@ -31,5 +32,20 @@ namespace Listas
             aux->desenhar();
             aux = LE.getProximo();
         }
+    }
+
+    void ListaEntidades::limparExcetoJogador(Entidades::Personagens::Jogador* pJogador)
+    {
+        Entidades::Entidade *aux = LE.getPrimeiro();
+        while (aux != NULL)
+        {
+            if (aux != pJogador)
+            {
+                delete aux;
+            }
+            aux = LE.getProximo();
+        }
+
+        LE.limpar();
     }
 }

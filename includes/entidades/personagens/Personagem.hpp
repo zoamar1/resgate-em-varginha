@@ -10,7 +10,7 @@ namespace Entidades
         class Personagem : public Entidades::Entidade
         {
         protected:
-            int num_vidas;
+            const int num_vidas;
             int vida_atual;
             //adicionar numero max de vidas
 
@@ -23,7 +23,8 @@ namespace Entidades
             virtual void mover() = 0;
             virtual void recebeDano(int dano = 0);
             int get_vida_atual() const;
-
+            void set_vida_atual(int vida);
+            int get_num_vidas() const;
             void operator++();
         };
     }

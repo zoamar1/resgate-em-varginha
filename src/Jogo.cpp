@@ -41,6 +41,7 @@ void Jogo::executar()
     {
         while (pGG->janelaAberta())
         {
+            Fases::Fase *faseDeletada = nullptr;
             pGE->executar();
             pGG->limpaJanela();
             switch (getEstado())
@@ -59,6 +60,13 @@ void Jogo::executar()
                 }
                 
                 pFase1->executar();
+                if (pJog1->get_vida_atual() <= 0)
+                {
+                    estado = MENU;
+                    faseDeletada = pFase1;
+                    pFase1 = NULL;
+                    pJog1->set_vida_atual(pJog1->get_num_vidas());
+                }
                 break;
             }
             case FASE2:
@@ -67,6 +75,12 @@ void Jogo::executar()
             }
             }
             pGG->desenhaJanela();
+
+            if (faseDeletada)
+            {
+                delete faseDeletada;
+                faseDeletada = NULL;
+            }
         }
     }
 };

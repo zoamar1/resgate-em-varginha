@@ -16,14 +16,24 @@ namespace Fases
     }
     Fase::~Fase()
     {
-        GC = NULL;
+        if (GC)
+        {
+            GC->limparTudo();
+        }
+
         pChao = NULL;
+        if (GC) lista_ents.limparExcetoJogador(GC->getJogador1());
+        else lista_ents.limparExcetoJogador(NULL);
+
         vChaos.clear();
+
         for (int i = 0; i < (int)barra_de_vida.size(); i++)
         {
             delete barra_de_vida[i];
         }
         barra_de_vida.clear();
+
+        GC = NULL;
     }
 
     void Fase::criarChao()
@@ -96,7 +106,8 @@ namespace Fases
 
         if (GC && GC->getJogador1())
         {
-            desenharBarraDeVida(GC->getJogador1()->get_vida_atual());
+            if (GC->getJogador1()->get_vida_atual() > 0)
+                desenharBarraDeVida(GC->getJogador1()->get_vida_atual()); 
         }
     }
 
@@ -150,10 +161,11 @@ namespace Fases
         {
             for (int i = 0; i < (int)barra_de_vida.size(); i++)
             {
-                if (vida_atual < i) 
+                if (vida_atual < i)
                 {
                     barra_de_vida[i]->setFillColor(sf::Color::Red);
-                } else
+                }
+                else
                 {
                     barra_de_vida[i]->setFillColor(sf::Color::Green);
                 }

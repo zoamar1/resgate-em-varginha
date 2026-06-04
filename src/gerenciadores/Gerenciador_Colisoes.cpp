@@ -201,4 +201,11 @@ namespace Gerenciadores
         tratarColisoesJogsProjeteis();
     }
 
+    void Gerenciador_Colisoes::limparTudo()
+    {
+        LIs.clear();
+        LOs.clear();
+        LPs.clear();
+    }
+
 }
