@@ -20,19 +20,43 @@ Jogo::Jogo() : pGG(Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico())
 
 Jogo::~Jogo()
 {
-    if (pJog1)
-    {
-        delete pJog1;
-        pJog1 = NULL;
-    }
-
     if (pFase1)
     {
         delete pFase1;
         pFase1 = NULL;
     }
 
-    pGG = NULL;
+    if (pMenu)
+    {
+        delete pMenu;
+        pMenu = NULL;
+    }
+
+    if (pJog1)
+    {
+        delete pJog1;
+        pJog1 = NULL;
+    }
+
+    if (pGE)
+    {
+        delete pGE;
+        pGE = NULL;
+    }
+
+    if (pGC)
+    {
+        delete pGC;
+        pGC = NULL;
+    }
+
+    if (pGG)
+    {
+        Ente::setGG(NULL);
+        delete pGG;
+        pGG = NULL;
+    }
+
 };
 
 void Jogo::executar()
