@@ -56,7 +56,7 @@ void Jogo::executar()
                 if (!pFase1)
                 {
                     pFase1 = new Fases::FasePrimeira(pGC);
-                    pFase1->incluirJogador(pJog1);
+                    pFase1->incluirJogador(pJog1, sf::Vector2f(100.0f, ALTURA - 100));
                 }
                 
                 pFase1->executar();

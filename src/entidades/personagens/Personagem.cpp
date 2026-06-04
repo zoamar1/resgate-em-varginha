@@ -24,8 +24,18 @@ namespace Entidades
 
         void Personagem::set_vida_atual(int vida)
         {
-            if (vida_atual + vida <= num_vidas) vida_atual += vida;
-            else vida_atual = num_vidas;
+            if (vida < 0)
+            {
+                vida_atual = 0;
+            }
+            else if (vida > num_vidas)
+            {
+                vida_atual = num_vidas;
+            }
+            else
+            {
+                vida_atual = vida;
+            }
         }
 
         int Personagem::get_num_vidas() const

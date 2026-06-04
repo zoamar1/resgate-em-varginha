@@ -21,7 +21,7 @@ namespace Fases
         Fase(Gerenciadores::Gerenciador_Colisoes *pGC);
         virtual ~Fase();
         virtual void executar();
-        void incluirJogador(Entidades::Personagens::Jogador *pJog1);
+        void incluirJogador(Entidades::Personagens::Jogador *pJog1, sf::Vector2f pos);
         void incluirProjetil(Entidades::Projetil *pProjetil);
 
     protected:

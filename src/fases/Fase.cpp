@@ -107,7 +107,7 @@ namespace Fases
         if (GC && GC->getJogador1())
         {
             if (GC->getJogador1()->get_vida_atual() > 0)
-                desenharBarraDeVida(GC->getJogador1()->get_vida_atual()); 
+                desenharBarraDeVida(GC->getJogador1()->get_vida_atual());
         }
     }
 
@@ -145,9 +145,15 @@ namespace Fases
         criarObstaculo();
         criarInimigos();
     }
-    void Fase::incluirJogador(Entidades::Personagens::Jogador *pJog1)
+    void Fase::incluirJogador(Entidades::Personagens::Jogador *pJog1, sf::Vector2f pos)
     {
-        lista_ents.incluir(pJog1);
+        if (pJog1)
+        {
+            pJog1->setPosicao(pos);
+            pJog1->setVelocidade(sf::Vector2f(0.0f, 0.0f));
+            pJog1->setNoChao(false);
+            lista_ents.incluir(pJog1);
+        }
     }
 
     void Fase::incluirProjetil(Entidades::Projetil *pProjetil)
