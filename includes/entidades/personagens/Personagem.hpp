@@ -11,6 +11,7 @@ namespace Entidades
         {
         protected:
             int num_vidas;
+            int vida_atual;
             //adicionar numero max de vidas
 
         public:
@@ -20,8 +21,8 @@ namespace Entidades
             virtual void executar() = 0;
             virtual void salvar() = 0;
             virtual void mover() = 0;
-
             virtual void recebeDano(int dano = 0);
+            int get_vida_atual() const;
 
             void operator++();
         };

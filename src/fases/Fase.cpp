@@ -6,12 +6,24 @@ namespace Fases
 {
     Fase::Fase(Gerenciadores::Gerenciador_Colisoes *pGC) : lista_ents(), GC(pGC), pChao(NULL), vChaos()
     {
+        for (int i = 0; i < 100; i++)
+        {
+            sf::RectangleShape *vida = new sf::RectangleShape(sf::Vector2f(5, 30));
+            vida->setFillColor(sf::Color::Green);
+            vida->setPosition(LARGURA - i * 5 - 50, 30);
+            barra_de_vida.push_back(vida);
+        }
     }
     Fase::~Fase()
     {
         GC = NULL;
         pChao = NULL;
         vChaos.clear();
+        for (int i = 0; i < (int)barra_de_vida.size(); i++)
+        {
+            delete barra_de_vida[i];
+        }
+        barra_de_vida.clear();
     }
 
     void Fase::criarChao()
@@ -80,8 +92,12 @@ namespace Fases
         }
 
         desenhar();
-
         lista_ents.desenhar();
+
+        if (GC && GC->getJogador1())
+        {
+            desenharBarraDeVida(GC->getJogador1()->get_vida_atual());
+        }
     }
 
     void Fase::criarInimFaceis(sf::Vector2f pos)
@@ -127,4 +143,23 @@ namespace Fases
     {
         lista_ents.incluir(pProjetil);
     };
+
+    void Fase::desenharBarraDeVida(int vida_atual)
+    {
+        if (pGG)
+        {
+            for (int i = 0; i < (int)barra_de_vida.size(); i++)
+            {
+                if (vida_atual < i) 
+                {
+                    barra_de_vida[i]->setFillColor(sf::Color::Red);
+                } else
+                {
+                    barra_de_vida[i]->setFillColor(sf::Color::Green);
+                }
+                pGG->desenhaRect(*(barra_de_vida[i]));
+            }
+        }
+    }
+
 }
