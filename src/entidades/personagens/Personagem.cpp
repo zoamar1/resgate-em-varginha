@@ -4,7 +4,7 @@ namespace Entidades
 {
     namespace Personagens
     {
-        Personagem::Personagem(float posX, float posY, float tamanhoX, float tamanhoY, int n) : Entidade(sf::Vector2f(posX, posY), sf::Vector2f(tamanhoX, tamanhoY), true),
+        Personagem::Personagem(float posX, float posY, float tamanhoX, float tamanhoY, int n) : Entidade(sf::Vector2f(posX, posY), sf::Vector2f(tamanhoX, tamanhoY)),
                                                                                                 num_vidas(n)
         {
         }

@@ -11,13 +11,12 @@ namespace Entidades
         float vel_max;
         sf::Vector2f velocidade;
         bool noChao;
-        bool sofreEfeitoGravidade;
         static const float valor_gravidade;
 
         // ostream buffer;
 
     public:
-        Entidade(const sf::Vector2f &posicao, const sf::Vector2f &tamanho, bool sofreGravidade);
+        Entidade(const sf::Vector2f &posicao, const sf::Vector2f &tamanho);
         virtual ~Entidade();
 
         virtual void executar() = 0;
@@ -44,7 +43,6 @@ namespace Entidades
 
         void setNoChao(bool flag);
         bool getNoChao() const;
-        void setSofreEfeitoGravidade(bool flag);
         void aplicarGravidade();
     };
 }

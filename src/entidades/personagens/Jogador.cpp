@@ -19,7 +19,6 @@ namespace Entidades
 
         void Jogador::executar()
         {
-            aplicarGravidade();
             mover();
         }
 
@@ -29,12 +28,15 @@ namespace Entidades
 
         void Jogador::mover()
         {
+            aplicarGravidade();
+
             sf::Vector2f deslocamento = getVelocidade();
 
             if (deslocamento.x != 0.0f || deslocamento.y != 0.0f)
             {
                 setPosicao(getPosicao() + deslocamento);
             }
+
         }
 
         Entidades::Projetil* Jogador::atirar()

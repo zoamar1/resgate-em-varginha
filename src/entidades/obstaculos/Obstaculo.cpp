@@ -6,7 +6,7 @@ namespace Entidades
     {
 
         Obstaculo::Obstaculo(float posX, float posY, float tamanhoX, float tamanhoY, bool danoso) : 
-        Entidade(sf::Vector2f(posX, posY), sf::Vector2f(tamanhoX, tamanhoY), false),
+        Entidade(sf::Vector2f(posX, posY), sf::Vector2f(tamanhoX, tamanhoY)),
         danoso(danoso)
         {
         }

@@ -2,7 +2,7 @@
 
 namespace Entidades
 {
-    Chao::Chao(sf::Vector2f pos, sf::Vector2f tam) : Entidade(pos, tam, false),
+    Chao::Chao(sf::Vector2f pos, sf::Vector2f tam) : Entidade(pos, tam),
                                                      largura(tam.x)
     {
         aplicarTextura(Gerenciadores::Chao);

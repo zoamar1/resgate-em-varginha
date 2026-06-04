@@ -4,13 +4,12 @@ namespace Entidades
 {
     const float Entidade::valor_gravidade = 1.0f;
 
-    Entidade::Entidade(const sf::Vector2f &posicao, const sf::Vector2f &tamanho, bool sofreGravidade)
+    Entidade::Entidade(const sf::Vector2f &posicao, const sf::Vector2f &tamanho)
         : Ente(),
           posicao(posicao),
           vel_max(0.0f),
           velocidade(0.0f, 0.0f),
-          noChao(false),
-          sofreEfeitoGravidade(sofreGravidade)
+          noChao(false)
     {
         pFig->setSize(tamanho);
         pFig->setOrigin({0.0f, 0.0f});
@@ -107,7 +106,7 @@ namespace Entidades
 
     void Entidade::aplicarGravidade()
     {
-        if (sofreEfeitoGravidade && !noChao)
+        if (!noChao)
         {
                 velocidade.y += valor_gravidade;
         }
@@ -121,10 +120,5 @@ namespace Entidades
     bool Entidade::getNoChao() const
     {
         return noChao;
-    }
-
-    void Entidade::setSofreEfeitoGravidade(bool flag)
-    {
-        sofreEfeitoGravidade = flag;
     }
 }
