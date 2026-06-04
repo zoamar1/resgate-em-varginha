@@ -5,7 +5,7 @@ namespace Entidades
 {
     namespace Personagens
     {
-        Jogador::Jogador(float posX, float posY, int n, int p) : Personagem(posX, posY, 40.0f, 40.0f, n),
+        Jogador::Jogador(int n, int p) : Personagem(0, 0, 40.0f, 40.0f, n),
                                                                  pontos(p),
                                                                  direcao(1)
         {
