@@ -41,7 +41,7 @@ void Jogo::executar()
     {
         while (pGG->janelaAberta())
         {
-            Fases::Fase *faseDeletada = nullptr;
+            Fases::Fase *faseDeletada = NULL;
             pGE->executar();
             pGG->limpaJanela();
             switch (getEstado())
