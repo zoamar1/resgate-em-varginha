@@ -7,44 +7,8 @@ namespace Gerenciadores
 
     Gerenciador_Grafico::Gerenciador_Grafico() : window(sf::VideoMode(LARGURA, ALTURA), "Resgate em Varginha")
     {
-        texturas.resize(10);
+        carregaTexturas();
         window.setFramerateLimit(60);
-        if (!texturas[Jogador].loadFromFile("assets/jogador.png"))
-        {
-            std::cout << "textura do jogador nao carregou" << std::endl;
-        }
-        if (!texturas[Menu].loadFromFile("assets/menu.png"))
-        {
-            std::cout << "textura do menu nao carregou" << std::endl;
-        }
-        if (!texturas[Guarda].loadFromFile("assets/guarda.png"))
-        {
-            std::cout << "textura do guarda nao carregou" << std::endl;
-        }
-        if (!texturas[Arbusto].loadFromFile("assets/arbusto.png"))
-        {
-            std::cout << "textura do guarda nao carregou" << std::endl;
-        }
-        if (!texturas[Chao].loadFromFile("assets/chao.png"))
-        {
-            std::cout << "textura do guarda nao carregou" << std::endl;
-        }
-        if (!texturas[Plataforma].loadFromFile("assets/plataforma.png"))
-        {
-            std::cout << "textura do guarda nao carregou" << std::endl;
-        }
-        if (!texturas[FundoFase1].loadFromFile("assets/background1.png"))
-        {
-            std::cout << "textura do guarda nao carregou" << std::endl;
-        }
-        if (!texturas[Exercito].loadFromFile("assets/exercito.png"))
-        {
-            std::cout << "textura do guarda nao carregou" << std::endl;
-        }
-        if (!texturas[Projetil].loadFromFile("assets/bala.png"))
-        {
-            std::cout << "textura do projetil nao carregou" << std::endl;
-        }
     }
 
     Gerenciador_Grafico *Gerenciador_Grafico::getGerenciador_Grafico()
@@ -120,6 +84,48 @@ namespace Gerenciadores
         if (window.isOpen())
         {
             window.clear();
+        }
+    }
+
+    void Gerenciador_Grafico::carregaTexturas()
+    {
+        texturas.resize(10);
+
+        if (!texturas[Jogador].loadFromFile("assets/jogador.png"))
+        {
+            std::cout << "textura do jogador nao carregou" << std::endl;
+        }
+        if (!texturas[Menu].loadFromFile("assets/menu.png"))
+        {
+            std::cout << "textura do menu nao carregou" << std::endl;
+        }
+        if (!texturas[Guarda].loadFromFile("assets/guarda.png"))
+        {
+            std::cout << "textura do guarda nao carregou" << std::endl;
+        }
+        if (!texturas[Arbusto].loadFromFile("assets/arbusto.png"))
+        {
+            std::cout << "textura do guarda nao carregou" << std::endl;
+        }
+        if (!texturas[Chao].loadFromFile("assets/chao.png"))
+        {
+            std::cout << "textura do guarda nao carregou" << std::endl;
+        }
+        if (!texturas[Plataforma].loadFromFile("assets/plataforma.png"))
+        {
+            std::cout << "textura do guarda nao carregou" << std::endl;
+        }
+        if (!texturas[FundoFase1].loadFromFile("assets/background1.png"))
+        {
+            std::cout << "textura do guarda nao carregou" << std::endl;
+        }
+        if (!texturas[Exercito].loadFromFile("assets/exercito.png"))
+        {
+            std::cout << "textura do guarda nao carregou" << std::endl;
+        }
+        if (!texturas[Projetil].loadFromFile("assets/bala.png"))
+        {
+            std::cout << "textura do projetil nao carregou" << std::endl;
         }
     }
 

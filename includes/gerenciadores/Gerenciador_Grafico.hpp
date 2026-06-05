@@ -36,6 +36,7 @@ namespace Gerenciadores
             void desenhaEnte(Ente* pE);
             void desenhaJanela();
             void limpaJanela();
+            void carregaTexturas();
             sf::Texture& getTextura(IDTextura id);
     };
 };

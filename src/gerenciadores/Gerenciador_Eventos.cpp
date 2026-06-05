@@ -43,23 +43,7 @@ namespace Gerenciadores
 
         if (pJog1)
         {
-            bool esquerda = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
-            bool direita = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
-
-            int x = (direita ? 1 : 0) + (esquerda ? -1 : 0);
-            float velMax = pJog1->getVel_Max();
-
-            if (x >= 0) pJog1->setDirecao(1);
-            else pJog1->setDirecao(-1);
-            
-            
-            float velY = pJog1->getVelY();
-            pJog1->setDirecao(x);
-            pJog1->setVelocidade(sf::Vector2f(x * velMax, velY));
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-            {
-                pJog1->pular();
-            }
+            controlaMovimentoJogador1();
         }
     }
 
@@ -82,11 +66,32 @@ namespace Gerenciadores
         {
             if ((estado == Jogo::FASE1 || estado == Jogo::FASE2) && pJog1)
             {
-                Entidades::Projetil* novoProjetil = pJog1->atirar();
-                Fases::Fase* pFase = static_cast<Fases::Fase*>(pJogo->getCenarioAtual());
+                Entidades::Projetil *novoProjetil = pJog1->atirar();
+                Fases::Fase *pFase = static_cast<Fases::Fase *>(pJogo->getCenarioAtual());
                 pFase->incluirProjetil(novoProjetil);
             }
         }
-        
+    }
+
+    void Gerenciador_Eventos::controlaMovimentoJogador1()
+    {
+        bool esquerda = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
+        bool direita = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
+
+        int x = (direita ? 1 : 0) + (esquerda ? -1 : 0);
+        float velMax = pJog1->getVel_Max();
+
+        if (x >= 0)
+            pJog1->setDirecao(1);
+        else
+            pJog1->setDirecao(-1);
+
+        float velY = pJog1->getVelY();
+        pJog1->setDirecao(x);
+        pJog1->setVelocidade(sf::Vector2f(x * velMax, velY));
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+        {
+            pJog1->pular();
+        }
     }
 }
