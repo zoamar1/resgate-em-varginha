@@ -37,6 +37,10 @@ namespace Gerenciadores
         {
             std::cout << "textura do guarda nao carregou" << std::endl;
         }
+        if (!texturas[Exercito].loadFromFile("assets/exercito.png"))
+        {
+            std::cout << "textura do guarda nao carregou" << std::endl;
+        }
     }
 
     Gerenciador_Grafico *Gerenciador_Grafico::getGerenciador_Grafico()
@@ -89,7 +93,7 @@ namespace Gerenciadores
                 window.draw(*pSprite);
             }
 
-            //rever essa parte
+            // rever essa parte
 
             /*sf::RectangleShape *pFig = pE->getpFig();
             if (pFig)
