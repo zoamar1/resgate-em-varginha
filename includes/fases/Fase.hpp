@@ -16,7 +16,9 @@ namespace Fases
         Gerenciadores::Gerenciador_Colisoes *GC;
         Entidades::Chao *pChao;
         std::vector<Entidades::Chao *> vChaos;
-        std::vector<sf::RectangleShape*> barra_de_vida;
+        std::vector<sf::RectangleShape *> barra_de_vida;
+        std::vector<sf::Vector2f> posicoesPlataformas;
+
     public:
         Fase(Gerenciadores::Gerenciador_Colisoes *pGC);
         virtual ~Fase();
@@ -27,7 +29,7 @@ namespace Fases
     protected:
         void criarChao();
         void criarInimFaceis(sf::Vector2f pos);
-        void criarPlataformas(const sf::Vector2f pos, const sf::Vector2f tam);
+        void criarPlataformas();
         void criarCenario();
         void desenharBarraDeVida(int vida_atual);
         virtual void criarInimigos() = 0;

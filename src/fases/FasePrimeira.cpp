@@ -13,6 +13,7 @@ namespace Fases
     }
     FasePrimeira::~FasePrimeira()
     {
+        posicoesPlataformas.clear();
     }
 
     void FasePrimeira::criarInimMedios()
@@ -42,19 +43,7 @@ namespace Fases
 
     void FasePrimeira::criarObstaculo()
     {
-       /* criarPlataformas(sf::Vector2f(550.0f, 100.0f), sf::Vector2f(200.0f, 30.0f));
-        criarPlataformas(sf::Vector2f(1300.0f, 100.0f), sf::Vector2f(200.0f, 30.0f));
-
-        criarPlataformas(sf::Vector2f(50.0f, 200.0f), sf::Vector2f(120.0f, 30.0f));
-        criarPlataformas(sf::Vector2f(150.0f, 380.0f), sf::Vector2f(120.0f, 30.0f));
-        criarPlataformas(sf::Vector2f(350.0f, 485.0f), sf::Vector2f(350.0f, 30.0f));
-        criarPlataformas(sf::Vector2f(1100.0f, 450.0f), sf::Vector2f(300.0f, 30.0f));
-
-        criarPlataformas(sf::Vector2f(400.0f, 850.0f), sf::Vector2f(250.0f, 30.0f));
-        criarPlataformas(sf::Vector2f(1100.0f, 850.0f), sf::Vector2f(250.0f, 30.0f));
-        criarPlataformas(sf::Vector2f(1650.0f, 900.0f), sf::Vector2f(120.0f, 30.0f));
-        criarPlataformas(sf::Vector2f(1750.0f, 750.0f), sf::Vector2f(120.0f, 30.0f));*/ 
-
+        criarPlataformas();
         criarArbustos();
     }
 

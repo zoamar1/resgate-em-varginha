@@ -91,7 +91,7 @@ namespace Fases
             vChaos.push_back(p2ApoioBaixoMedio);
         }
 
-        Entidades::Chao *pApoioMedioCima = new Entidades::Chao(sf::Vector2f(100.0f, 465.0f), sf::Vector2f(150.0f, 30.0f));
+        Entidades::Chao *pApoioMedioCima = new Entidades::Chao(sf::Vector2f(100.0f, 475.0f), sf::Vector2f(150.0f, 30.0f));
         if (pApoioMedioCima)
         {
             lista_ents.incluir(static_cast<Entidades::Entidade *>(pApoioMedioCima));
@@ -156,17 +156,39 @@ namespace Fases
         }
     }
 
-    void Fase::criarPlataformas(const sf::Vector2f pos, const sf::Vector2f tam)
+    void Fase::criarPlataformas()
     {
-        Entidades::Obstaculos::Plataforma *pPlat = new Entidades::Obstaculos::Plataforma(pos.x, pos.y, tam.x, tam.y);
+        posicoesPlataformas.push_back(sf::Vector2f(400.0f, 110.0f));
+        posicoesPlataformas.push_back(sf::Vector2f(950.0f, 110.0f));
+        posicoesPlataformas.push_back(sf::Vector2f(1500.0f, 110.0f));
+        posicoesPlataformas.push_back(sf::Vector2f(400.0f, 480.0f));
+        posicoesPlataformas.push_back(sf::Vector2f(800.0f, 480.0f));
+        posicoesPlataformas.push_back(sf::Vector2f(1200.0f, 480.0f));
+        posicoesPlataformas.push_back(sf::Vector2f(200.0f, 850.0f));
+        posicoesPlataformas.push_back(sf::Vector2f(600.0f, 850.0f));
+        posicoesPlataformas.push_back(sf::Vector2f(1000.0f, 850.0f));
 
-        if (pPlat)
+        int quantidade = (rand() % 7) + 3;
+
+        sf::Vector2f tamanhoPadrao(200.0f, 30.0f);
+
+        for (int i = 0; i < quantidade; i++)
         {
-            lista_ents.incluir(static_cast<Entidades::Entidade *>(pPlat));
-            if (GC)
+            int indiceSorteado = rand() % posicoesPlataformas.size();
+            sf::Vector2f posEscolhida = posicoesPlataformas[indiceSorteado];
+
+            Entidades::Obstaculos::Plataforma *pPlat = new Entidades::Obstaculos::Plataforma(posEscolhida.x, posEscolhida.y, tamanhoPadrao.x, tamanhoPadrao.y);
+
+            if (pPlat)
             {
-                GC->incluirObstaculo(pPlat);
+                lista_ents.incluir(static_cast<Entidades::Entidade *>(pPlat));
+                if (GC)
+                {
+                    GC->incluirObstaculo(pPlat);
+                }
             }
+
+            posicoesPlataformas.erase(posicoesPlataformas.begin() + indiceSorteado);
         }
     }
     void Fase::criarCenario()
