@@ -216,6 +216,7 @@ namespace Fases
         criarChao();
         criarObstaculo();
         criarInimigos();
+        criarProjeteis();
     }
     void Fase::incluirJogador(Entidades::Personagens::Jogador *pJog1, sf::Vector2f pos)
     {

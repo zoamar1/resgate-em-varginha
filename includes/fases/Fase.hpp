@@ -19,7 +19,6 @@ namespace Fases
         std::vector<sf::RectangleShape *> barra_de_vida;
         std::vector<sf::Vector2f> posicoesPlataformas;
         std::vector<sf::Vector2f> posicoesInimigosFaceis;
-
     public:
         Fase(Gerenciadores::Gerenciador_Colisoes *pGC);
         virtual ~Fase();

@@ -15,6 +15,7 @@ namespace Entidades
         ~Projetil();
 
         bool getAtivo() const;
+        void setAtivo(bool valor);
         bool getDano() const;
         Entidades::Entidade* getDono();
         void mover();

@@ -26,6 +26,11 @@ namespace Entidades
         return ativo;
     }
 
+    void Projetil::setAtivo(bool valor)
+    {
+        ativo = valor;
+    }
+
     bool Projetil::getDano() const
     {
         return dano;
@@ -33,6 +38,9 @@ namespace Entidades
 
     void Projetil::mover()
     {
+
+        aplicarGravidade();
+
         sf::Vector2f deslocamento = getVelocidade();
 
         if (deslocamento.x != 0.0f || deslocamento.y != 0.0f)
@@ -43,8 +51,7 @@ namespace Entidades
 
     void Projetil::executar()
     {
-        aplicarGravidade();
-        mover();
+        if (ativo) mover();
     }
     void Projetil::salvar()
     {

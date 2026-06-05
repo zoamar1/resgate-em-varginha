@@ -101,7 +101,8 @@ namespace Fases
     {
         for (int i = 0; i<1000; i++)
         {
-            
+            Entidades::Projetil *novoProjetil = new Entidades::Projetil(-500.0f,-500.0f,false, 30);
+            incluirProjetil(novoProjetil);
         }
     }
 }
