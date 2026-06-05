@@ -231,6 +231,9 @@ namespace Fases
     void Fase::incluirProjetil(Entidades::Projetil *pProjetil)
     {
         lista_ents.incluir(pProjetil);
+        if (GC) {
+            GC->incluirProjetil(pProjetil);
+        }
     };
 
     void Fase::desenharBarraDeVida(int vida_atual)

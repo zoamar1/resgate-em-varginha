@@ -24,6 +24,8 @@ namespace Entidades
 
         void setPosicao(const sf::Vector2f &posicao);
         sf::Vector2f getPosicao() const;
+        void setTamanho(const sf::Vector2f &tamanho);
+        sf::Vector2f getTamanho() const;
         void setVelocidade(const sf::Vector2f &velocidade);
         sf::Vector2f getVelocidade() const;
 

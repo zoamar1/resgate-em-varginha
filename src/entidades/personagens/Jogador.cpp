@@ -45,7 +45,7 @@ namespace Entidades
         Entidades::Projetil *Jogador::atirar()
         {
             Entidades::Projetil *novoProjetil = new Entidades::Projetil(getX(), getY(), false, 5);
-            novoProjetil->setY(getY() * direcao);
+            novoProjetil->setVelocidade(sf::Vector2f(novoProjetil->getVelocidade().x * direcao, novoProjetil->getVelocidade().y));
             return novoProjetil;
         }
 

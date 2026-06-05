@@ -13,6 +13,8 @@ namespace Entidades
             setVel_Max(10.0f);
         }
 
+        aplicarTextura(Gerenciadores::Projetil);
+
     }
 
     Projetil::~Projetil()

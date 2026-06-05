@@ -31,6 +31,34 @@ namespace Entidades
         return posicao;
     }
 
+    void Entidade::setTamanho(const sf::Vector2f &tamanho)
+    {
+        if (pFig)
+        {
+            pFig->setSize(tamanho);
+        }
+
+        if (pSprite && pSprite->getTexture() && pFig)
+        {
+            float largSprite = pSprite->getLocalBounds().width;
+            float altSprite = pSprite->getLocalBounds().height;
+            if (largSprite > 0.0f && altSprite > 0.0f)
+            {
+                pSprite->setScale(tamanho.x / largSprite, tamanho.y / altSprite);
+            }
+        }
+    }
+
+    sf::Vector2f Entidade::getTamanho() const
+    {
+        if (pFig)
+        {
+            return pFig->getSize();
+        }
+
+        return sf::Vector2f(0.0f, 0.0f);
+    }
+
     sf::Vector2f Entidade::getVelocidade() const
     {
         return velocidade;

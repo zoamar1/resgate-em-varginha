@@ -41,6 +41,10 @@ namespace Gerenciadores
         {
             std::cout << "textura do guarda nao carregou" << std::endl;
         }
+        if (!texturas[Projetil].loadFromFile("assets/bala.png"))
+        {
+            std::cout << "textura do projetil nao carregou" << std::endl;
+        }
     }
 
     Gerenciador_Grafico *Gerenciador_Grafico::getGerenciador_Grafico()
