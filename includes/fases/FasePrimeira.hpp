@@ -8,6 +8,7 @@ namespace Fases
     private:
         const int maxInimMedios;
         std::vector<sf::Vector2f> posicoesArbustos;
+        std::vector<sf::Vector2f> posicoesInimigosMedios;
 
     public:
         FasePrimeira(Gerenciadores::Gerenciador_Colisoes *pGC);

@@ -1,5 +1,6 @@
 #include "fases/FasePrimeira.hpp"
 #include "entidades/obstaculos/Arbusto.hpp"
+#include "entidades/personagens/Exercito.hpp"
 
 namespace Fases
 {
@@ -14,10 +15,41 @@ namespace Fases
     FasePrimeira::~FasePrimeira()
     {
         posicoesPlataformas.clear();
+        posicoesInimigosMedios.clear();
     }
 
     void FasePrimeira::criarInimMedios()
     {
+        posicoesInimigosMedios.push_back(sf::Vector2f(100.0f, 863.0f));
+        posicoesInimigosMedios.push_back(sf::Vector2f(700.0f, 863.0f));
+        posicoesInimigosMedios.push_back(sf::Vector2f(1200.0f, 863.0f));
+        posicoesInimigosMedios.push_back(sf::Vector2f(200.0f, 493.0f));
+        posicoesInimigosMedios.push_back(sf::Vector2f(1100.0f, 493.0f));
+        posicoesInimigosMedios.push_back(sf::Vector2f(450.0f, 123.0f));
+        posicoesInimigosMedios.push_back(sf::Vector2f(600.0f, 123.0f));
+        posicoesInimigosMedios.push_back(sf::Vector2f(1100.0f, 123.0f));
+
+        int quantidade = (rand() % 3) + 3;
+
+        for (int i = 0; i < quantidade; i++)
+        {
+            int indiceSorteado = rand() % posicoesInimigosMedios.size();
+            sf::Vector2f posEscolhida = posicoesInimigosMedios[indiceSorteado];
+
+            Entidades::Personagens::Exercito *pExercito = new Entidades::Personagens::Exercito(posEscolhida.x, posEscolhida.y, 3, 15, 10);
+
+            if (pExercito)
+            {
+                lista_ents.incluir(static_cast<Entidades::Entidade *>(pExercito));
+
+                if (GC)
+                {
+                    GC->incluirInimigo(static_cast<Entidades::Personagens::Inimigo *>(pExercito));
+                }
+            }
+
+            posicoesInimigosMedios.erase(posicoesInimigosMedios.begin() + indiceSorteado);
+        }
     }
 
     void FasePrimeira::criarArbustos()
@@ -56,7 +88,7 @@ namespace Fases
     void FasePrimeira::criarInimigos()
     {
         criarInimFaceis();
-
+        criarInimMedios();
     }
 
     void FasePrimeira::criarObstaculo()
