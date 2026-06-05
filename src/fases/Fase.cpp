@@ -39,6 +39,41 @@ namespace Fases
         posicoesInimigosFaceis.clear();
     }
 
+    void Fase::executar()
+    {
+        lista_ents.percorrer();
+
+        if (GC)
+        {
+            if (GC->getJogador1())
+            {
+                GC->getJogador1()->setNoChao(false);
+            }
+
+            std::vector<Entidades::Chao *>::iterator it;
+
+            for (it = vChaos.begin(); it < vChaos.end(); it++)
+            {
+                if (*it)
+                {
+                    GC->colisaoJogadorChao(*it);
+                    GC->colisaoInimigoChao(*it);
+                }
+            }
+
+            GC->executar();
+        }
+
+        desenhar();
+        lista_ents.desenhar();
+
+        if (GC && GC->getJogador1())
+        {
+            if (GC->getJogador1()->get_vida_atual() > 0)
+                desenharBarraDeVida(GC->getJogador1()->get_vida_atual());
+        }
+    }
+
     void Fase::criarChao()
     {
         float yChaoBaixo = 990.0f;
@@ -104,41 +139,6 @@ namespace Fases
         {
             lista_ents.incluir(static_cast<Entidades::Entidade *>(p2ApoioMedioCima));
             vChaos.push_back(p2ApoioMedioCima);
-        }
-    }
-
-    void Fase::executar()
-    {
-        lista_ents.percorrer();
-
-        if (GC)
-        {
-            if (GC->getJogador1())
-            {
-                GC->getJogador1()->setNoChao(false);
-            }
-
-            std::vector<Entidades::Chao *>::iterator it;
-
-            for (it = vChaos.begin(); it < vChaos.end(); it++)
-            {
-                if (*it)
-                {
-                    GC->colisaoJogadorChao(*it);
-                    GC->colisaoInimigoChao(*it);
-                }
-            }
-
-            GC->executar();
-        }
-
-        desenhar();
-        lista_ents.desenhar();
-
-        if (GC && GC->getJogador1())
-        {
-            if (GC->getJogador1()->get_vida_atual() > 0)
-                desenharBarraDeVida(GC->getJogador1()->get_vida_atual());
         }
     }
 
@@ -231,7 +231,8 @@ namespace Fases
     void Fase::incluirProjetil(Entidades::Projetil *pProjetil)
     {
         lista_ents.incluir(pProjetil);
-        if (GC) {
+        if (GC)
+        {
             GC->incluirProjetil(pProjetil);
         }
     };

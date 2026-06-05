@@ -56,5 +56,14 @@ namespace Entidades
         {
             mover();
         }
+
+        void Exercito::atirar()
+        {
+
+        }
+        int Exercito::verificaPlayerArea()
+        {
+            
+        }
     }
 }

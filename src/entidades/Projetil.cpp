@@ -6,7 +6,7 @@ namespace Entidades
     {
         if (pFig)
         {
-            pFig->setSize(sf::Vector2f(16.0f, 6.0f));
+            setTamanho(sf::Vector2f(40.0f, 20.0f));
             pFig->setFillColor(sf::Color::Yellow);
             pFig->setPosition(getPosicao());
             setVelocidade({50.0f, 0.0f});

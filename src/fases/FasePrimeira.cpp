@@ -97,4 +97,11 @@ namespace Fases
         criarArbustos();
     }
 
+    void FasePrimeira::criarProjeteis()
+    {
+        for (int i = 0; i<1000; i++)
+        {
+            
+        }
+    }
 }

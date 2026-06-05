@@ -23,6 +23,8 @@ namespace Entidades
             void danificar(Jogador *p);
             void mover();
             void salva();
+            void atirar();
+            int verificaPlayerArea();
         };
     }
 }

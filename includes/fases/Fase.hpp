@@ -35,6 +35,7 @@ namespace Fases
         void desenharBarraDeVida(int vida_atual);
         virtual void criarInimigos() = 0;
         virtual void criarObstaculo() = 0;
+        virtual void criarProjeteis() = 0;
     };
 
 }
