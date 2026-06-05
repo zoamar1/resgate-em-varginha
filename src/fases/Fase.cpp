@@ -141,18 +141,37 @@ namespace Fases
         }
     }
 
-    void Fase::criarInimFaceis(sf::Vector2f pos)
+    void Fase::criarInimFaceis()
     {
-        Entidades::Personagens::Guarda *pGuarda = new Entidades::Personagens::Guarda(pos.x, pos.y, 3, 15, 10);
+        posicoesInimigosFaceis.push_back(sf::Vector2f(300.0f, 863.0f));
+        posicoesInimigosFaceis.push_back(sf::Vector2f(800.0f, 863.0f));
+        posicoesInimigosFaceis.push_back(sf::Vector2f(1300.0f, 863.0f));
+        posicoesInimigosFaceis.push_back(sf::Vector2f(500.0f, 493.0f));
+        posicoesInimigosFaceis.push_back(sf::Vector2f(1100.0f, 493.0f));
+        posicoesInimigosFaceis.push_back(sf::Vector2f(600.0f, 123.0f));
+        posicoesInimigosFaceis.push_back(sf::Vector2f(900.0f, 123.0f));
+        posicoesInimigosFaceis.push_back(sf::Vector2f(1400.0f, 123.0f));
 
-        if (pGuarda)
+        int quantidade = (rand() % 3) + 3;
+
+        for (int i = 0; i < quantidade; i++)
         {
-            lista_ents.incluir(static_cast<Entidades::Entidade *>(pGuarda));
+            int indiceSorteado = rand() % posicoesInimigosFaceis.size();
+            sf::Vector2f posEscolhida = posicoesInimigosFaceis[indiceSorteado];
 
-            if (GC)
+            Entidades::Personagens::Guarda *pGuarda = new Entidades::Personagens::Guarda(posEscolhida.x, posEscolhida.y, 3, 15, 10);
+
+            if (pGuarda)
             {
-                GC->incluirInimigo(static_cast<Entidades::Personagens::Inimigo *>(pGuarda));
+                lista_ents.incluir(static_cast<Entidades::Entidade *>(pGuarda));
+
+                if (GC)
+                {
+                    GC->incluirInimigo(static_cast<Entidades::Personagens::Inimigo *>(pGuarda));
+                }
             }
+
+            posicoesInimigosFaceis.erase(posicoesInimigosFaceis.begin() + indiceSorteado);
         }
     }
 

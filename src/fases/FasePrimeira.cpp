@@ -55,10 +55,8 @@ namespace Fases
 
     void FasePrimeira::criarInimigos()
     {
-        criarInimFaceis(sf::Vector2f(300.0f, 863.0f));
-        criarInimFaceis(sf::Vector2f(800.0f, 863.0f));
-        criarInimFaceis(sf::Vector2f(1200.0f, 323.0f));
-        criarInimFaceis(sf::Vector2f(900.0f, 123.0f));
+        criarInimFaceis();
+
     }
 
     void FasePrimeira::criarObstaculo()
