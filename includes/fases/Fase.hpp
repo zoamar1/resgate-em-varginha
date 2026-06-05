@@ -14,8 +14,6 @@ namespace Fases
     protected:
         Listas::ListaEntidades lista_ents;
         Gerenciadores::Gerenciador_Colisoes *GC;
-        Entidades::Chao *pChao;
-        std::vector<Entidades::Chao *> vChaos;
         std::vector<sf::RectangleShape *> barra_de_vida;
         std::vector<sf::Vector2f> posicoesPlataformas;
         std::vector<sf::Vector2f> posicoesInimigosFaceis;

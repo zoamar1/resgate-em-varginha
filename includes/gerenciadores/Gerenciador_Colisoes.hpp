@@ -16,6 +16,7 @@ namespace Gerenciadores
         std::vector<Entidades::Personagens::Inimigo *> LIs;
         std::list<Entidades::Obstaculos::Obstaculo *> LOs;
         std::set<Entidades::Projetil *> LPs;
+        std::vector<Entidades::Chao *> LCs;
         Entidades::Personagens::Jogador *pJog1;
 
     private:
@@ -28,6 +29,7 @@ namespace Gerenciadores
         void setJogador1(Entidades::Personagens::Jogador *pJ);
         void incluirInimigo(Entidades::Personagens::Inimigo *pi);
         void incluirObstaculo(Entidades::Obstaculos::Obstaculo *po);
+        void incluirChao(Entidades::Chao *pc);
         void incluirProjetil(Entidades::Projetil *pj);
         void executar();
         void limparTudo();

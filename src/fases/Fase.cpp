@@ -4,7 +4,7 @@
 
 namespace Fases
 {
-    Fase::Fase(Gerenciadores::Gerenciador_Colisoes *pGC) : lista_ents(), GC(pGC), pChao(NULL), vChaos()
+    Fase::Fase(Gerenciadores::Gerenciador_Colisoes *pGC) : lista_ents(), GC(pGC)
     {
         for (int i = 0; i < 100; i++)
         {
@@ -20,14 +20,10 @@ namespace Fases
         {
             GC->limparTudo();
         }
-
-        pChao = NULL;
         if (GC)
             lista_ents.limparExcetoJogador(GC->getJogador1());
         else
             lista_ents.limparExcetoJogador(NULL);
-
-        vChaos.clear();
 
         for (int i = 0; i < (int)barra_de_vida.size(); i++)
         {
@@ -48,17 +44,6 @@ namespace Fases
             if (GC->getJogador1())
             {
                 GC->getJogador1()->setNoChao(false);
-            }
-
-            std::vector<Entidades::Chao *>::iterator it;
-
-            for (it = vChaos.begin(); it < vChaos.end(); it++)
-            {
-                if (*it)
-                {
-                    GC->colisaoJogadorChao(*it);
-                    GC->colisaoInimigoChao(*it);
-                }
             }
 
             GC->executar();
@@ -84,11 +69,9 @@ namespace Fases
             if (pNovoChao)
             {
                 lista_ents.incluir(static_cast<Entidades::Entidade *>(pNovoChao));
-                vChaos.push_back(pNovoChao);
-
-                if (!pChao)
+                if (GC)
                 {
-                    pChao = pNovoChao;
+                    GC->incluirChao(pNovoChao);
                 }
             }
         }
@@ -99,7 +82,10 @@ namespace Fases
             if (pNovoChao)
             {
                 lista_ents.incluir(static_cast<Entidades::Entidade *>(pNovoChao));
-                vChaos.push_back(pNovoChao);
+                if (GC)
+                {
+                    GC->incluirChao(pNovoChao);
+                }
             }
         }
 
@@ -109,37 +95,52 @@ namespace Fases
             if (pNovoChao)
             {
                 lista_ents.incluir(static_cast<Entidades::Entidade *>(pNovoChao));
-                vChaos.push_back(pNovoChao);
+                if (GC)
+                {
+                    GC->incluirChao(pNovoChao);
+                }
             }
         }
 
         Entidades::Chao *pApoioBaixoMedio = new Entidades::Chao(sf::Vector2f(1600.0f, 850.0f), sf::Vector2f(150.0f, 30.0f));
-        if (pApoioBaixoMedio)
-        {
-            lista_ents.incluir(static_cast<Entidades::Entidade *>(pApoioBaixoMedio));
-            vChaos.push_back(pApoioBaixoMedio);
-        }
+            if (pApoioBaixoMedio)
+            {
+                lista_ents.incluir(static_cast<Entidades::Entidade *>(pApoioBaixoMedio));
+                if (GC)
+                {
+                    GC->incluirChao(pApoioBaixoMedio);
+                }
+            }
 
         Entidades::Chao *p2ApoioBaixoMedio = new Entidades::Chao(sf::Vector2f(1700.0f, 725.0f), sf::Vector2f(150.0f, 30.0f));
-        if (pApoioBaixoMedio)
-        {
-            lista_ents.incluir(static_cast<Entidades::Entidade *>(p2ApoioBaixoMedio));
-            vChaos.push_back(p2ApoioBaixoMedio);
-        }
+            if (pApoioBaixoMedio)
+            {
+                lista_ents.incluir(static_cast<Entidades::Entidade *>(p2ApoioBaixoMedio));
+                if (GC)
+                {
+                    GC->incluirChao(p2ApoioBaixoMedio);
+                }
+            }
 
         Entidades::Chao *pApoioMedioCima = new Entidades::Chao(sf::Vector2f(100.0f, 475.0f), sf::Vector2f(150.0f, 30.0f));
-        if (pApoioMedioCima)
-        {
-            lista_ents.incluir(static_cast<Entidades::Entidade *>(pApoioMedioCima));
-            vChaos.push_back(pApoioMedioCima);
-        }
+            if (pApoioMedioCima)
+            {
+                lista_ents.incluir(static_cast<Entidades::Entidade *>(pApoioMedioCima));
+                if (GC)
+                {
+                    GC->incluirChao(pApoioMedioCima);
+                }
+            }
 
         Entidades::Chao *p2ApoioMedioCima = new Entidades::Chao(sf::Vector2f(0.0f, 330.0f), sf::Vector2f(150.0f, 30.0f));
-        if (pApoioMedioCima)
-        {
-            lista_ents.incluir(static_cast<Entidades::Entidade *>(p2ApoioMedioCima));
-            vChaos.push_back(p2ApoioMedioCima);
-        }
+            if (pApoioMedioCima)
+            {
+                lista_ents.incluir(static_cast<Entidades::Entidade *>(p2ApoioMedioCima));
+                if (GC)
+                {
+                    GC->incluirChao(p2ApoioMedioCima);
+                }
+            }
     }
 
     void Fase::criarInimFaceis()

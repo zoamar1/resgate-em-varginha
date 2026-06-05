@@ -42,6 +42,14 @@ namespace Gerenciadores
         }
     }
 
+    void Gerenciador_Colisoes::incluirChao(Entidades::Chao *pC)
+    {
+        if (pC)
+        {
+            LCs.push_back(pC);
+        }
+    }
+
     void Gerenciador_Colisoes::incluirProjetil(Entidades::Projetil *pP)
     {
         if (pP)
@@ -202,6 +210,18 @@ namespace Gerenciadores
         tratarColisoesJogsInimgs();
         tratarColisoesJogsObstacs();
         tratarColisoesJogsProjeteis();
+        if (!LCs.empty())
+        {
+            for (auto it = LCs.begin(); it != LCs.end(); ++it)
+            {
+                Entidades::Chao *pChao = *it;
+                if (pChao)
+                {
+                    colisaoJogadorChao(pChao);
+                    colisaoInimigoChao(pChao);
+                }
+            }
+        }
     }
 
     void Gerenciador_Colisoes::limparTudo()
@@ -209,6 +229,7 @@ namespace Gerenciadores
         LIs.clear();
         LOs.clear();
         LPs.clear();
+        LCs.clear();
     }
 
 }
