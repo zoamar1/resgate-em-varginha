@@ -36,6 +36,7 @@ namespace Fases
         barra_de_vida.clear();
 
         GC = NULL;
+        posicoesInimigosFaceis.clear();
     }
 
     void Fase::criarChao()
