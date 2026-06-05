@@ -89,11 +89,13 @@ namespace Gerenciadores
                 window.draw(*pSprite);
             }
 
-            sf::RectangleShape *pFig = pE->getpFig();
+            //rever essa parte
+
+            /*sf::RectangleShape *pFig = pE->getpFig();
             if (pFig)
             {
                 window.draw(*pFig);
-            }
+            }*/
         }
     }
 
