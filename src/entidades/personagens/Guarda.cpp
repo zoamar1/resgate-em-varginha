@@ -9,7 +9,7 @@ namespace Entidades
         Guarda::Guarda(float posX, float posY, int n, int maldade, int f) : Inimigo(posX, posY, n, maldade), forca(f), posicaoInicial(posX, posY)
         {
             setVel_Max(1.0f);
-            setVelocidade(sf::Vector2f(2.0f, 0.0f));
+            setVelocidade(sf::Vector2f(1.0f, 0.0f));
 
             if (pFig)
             {
