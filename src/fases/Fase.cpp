@@ -22,8 +22,10 @@ namespace Fases
         }
 
         pChao = NULL;
-        if (GC) lista_ents.limparExcetoJogador(GC->getJogador1());
-        else lista_ents.limparExcetoJogador(NULL);
+        if (GC)
+            lista_ents.limparExcetoJogador(GC->getJogador1());
+        else
+            lista_ents.limparExcetoJogador(NULL);
 
         vChaos.clear();
 
@@ -73,6 +75,34 @@ namespace Fases
                 lista_ents.incluir(static_cast<Entidades::Entidade *>(pNovoChao));
                 vChaos.push_back(pNovoChao);
             }
+        }
+
+        Entidades::Chao *pApoioBaixoMedio = new Entidades::Chao(sf::Vector2f(1600.0f, 850.0f), sf::Vector2f(150.0f, 30.0f));
+        if (pApoioBaixoMedio)
+        {
+            lista_ents.incluir(static_cast<Entidades::Entidade *>(pApoioBaixoMedio));
+            vChaos.push_back(pApoioBaixoMedio);
+        }
+
+        Entidades::Chao *p2ApoioBaixoMedio = new Entidades::Chao(sf::Vector2f(1700.0f, 725.0f), sf::Vector2f(150.0f, 30.0f));
+        if (pApoioBaixoMedio)
+        {
+            lista_ents.incluir(static_cast<Entidades::Entidade *>(p2ApoioBaixoMedio));
+            vChaos.push_back(p2ApoioBaixoMedio);
+        }
+
+        Entidades::Chao *pApoioMedioCima = new Entidades::Chao(sf::Vector2f(100.0f, 465.0f), sf::Vector2f(150.0f, 30.0f));
+        if (pApoioMedioCima)
+        {
+            lista_ents.incluir(static_cast<Entidades::Entidade *>(pApoioMedioCima));
+            vChaos.push_back(pApoioMedioCima);
+        }
+
+        Entidades::Chao *p2ApoioMedioCima = new Entidades::Chao(sf::Vector2f(0.0f, 330.0f), sf::Vector2f(150.0f, 30.0f));
+        if (pApoioMedioCima)
+        {
+            lista_ents.incluir(static_cast<Entidades::Entidade *>(p2ApoioMedioCima));
+            vChaos.push_back(p2ApoioMedioCima);
         }
     }
 
