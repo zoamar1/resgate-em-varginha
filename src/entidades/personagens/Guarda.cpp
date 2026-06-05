@@ -32,6 +32,8 @@ namespace Entidades
 
         void Guarda::mover()
         {
+            aplicarGravidade();
+
             sf::Vector2f posicaoAtual = getPosicao();
             sf::Vector2f velAtual = getVelocidade();
 

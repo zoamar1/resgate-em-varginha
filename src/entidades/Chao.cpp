@@ -25,6 +25,9 @@ namespace Entidades
 
     void Chao::executar()
     {
+        aplicarGravidade();
+        anularGravidade();
+        atualizarPosicao();
     }
     void Chao::salvar()
     {

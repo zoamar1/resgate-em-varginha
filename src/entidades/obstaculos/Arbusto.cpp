@@ -39,6 +39,9 @@ namespace Entidades
 
         void Arbusto::executar()
         {
+            aplicarGravidade();
+            anularGravidade();
+            atualizarPosicao();
         }
     }
 }

@@ -108,7 +108,7 @@ namespace Entidades
     {
         if (!noChao)
         {
-                velocidade.y += valor_gravidade;
+            velocidade.y += valor_gravidade;
         }
     }
 
@@ -120,5 +120,20 @@ namespace Entidades
     bool Entidade::getNoChao() const
     {
         return noChao;
+    }
+
+    void Entidade::atualizarPosicao()
+    {
+        sf::Vector2f deslocamento = getVelocidade();
+
+        if (deslocamento.x != 0.0f || deslocamento.y != 0.0f)
+        {
+            setPosicao(getPosicao() + deslocamento);
+        }
+    }
+
+    void Entidade::anularGravidade()
+    {
+        setVelY(getVelY() - valor_gravidade);
     }
 }

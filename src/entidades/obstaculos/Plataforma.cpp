@@ -78,6 +78,9 @@ namespace Entidades
 
         void Plataforma::executar()
         {
+            aplicarGravidade();
+            anularGravidade();
+            atualizarPosicao();
         }
     }
 }

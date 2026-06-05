@@ -26,7 +26,9 @@ namespace Entidades
 
         void Espinhos::executar()
         {
-            
+            aplicarGravidade();
+            anularGravidade();
+            atualizarPosicao();
         }
     }
 }

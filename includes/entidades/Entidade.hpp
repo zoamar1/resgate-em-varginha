@@ -44,5 +44,7 @@ namespace Entidades
         void setNoChao(bool flag);
         bool getNoChao() const;
         void aplicarGravidade();
+        virtual void atualizarPosicao();
+        virtual void anularGravidade();
     };
 }
