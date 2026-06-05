@@ -102,8 +102,11 @@ namespace Gerenciadores
 
                 if (pInimigo && verificarColisao(pJog1, pInimigo))
                 {
-                    pInimigo->danificar(pJog1);
-                    pJog1->colidir(pInimigo);
+                    if (!pJog1->getInvencivel())
+                    {
+                        pInimigo->danificar(pJog1);
+                        pJog1->colidir(pInimigo);
+                    }
                 }
             }
         }

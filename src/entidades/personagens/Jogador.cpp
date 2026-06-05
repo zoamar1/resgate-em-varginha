@@ -5,9 +5,12 @@ namespace Entidades
 {
     namespace Personagens
     {
-        Jogador::Jogador(int n, int p) : Personagem(0, 0, 40.0f, 40.0f, n),
-                                                                 pontos(p),
-                                                                 direcao(1)
+        Jogador::Jogador(int n, int p, float tInvencivel, bool inv)
+            : Personagem(0, 0, 40.0f, 40.0f, n),
+              pontos(p),
+              direcao(1),
+              tempoInvencivel(tInvencivel),
+              invencivel(inv)
         {
             setVel_Max(4);
             aplicarTextura(Gerenciadores::Jogador);
@@ -20,6 +23,7 @@ namespace Entidades
         void Jogador::executar()
         {
             mover();
+            atualizarInvencibilidade();
         }
 
         void Jogador::salvar()
@@ -36,10 +40,9 @@ namespace Entidades
             {
                 setPosicao(getPosicao() + deslocamento);
             }
-
         }
 
-        Entidades::Projetil* Jogador::atirar()
+        Entidades::Projetil *Jogador::atirar()
         {
             Entidades::Projetil *novoProjetil = new Entidades::Projetil(getX(), getY(), false, 5);
             novoProjetil->setY(getY() * direcao);
@@ -70,28 +73,43 @@ namespace Entidades
 
         void Jogador::colidir(Entidades::Personagens::Inimigo *pI)
         {
-            if (pI)
+            if (pI && !invencivel)
             {
                 sf::Vector2f posJogador = this->getPosicao();
                 sf::Vector2f posInimigo = pI->getPosicao();
                 float largJogador = static_cast<float>(this->getpFig()->getSize().x);
                 float largInimigo = static_cast<float>(pI->getpFig()->getSize().x);
-
                 float direcaoX;
 
                 if (posJogador.x > posInimigo.x)
                 {
                     direcaoX = 1.0f;
-                    this->setPosicao(sf::Vector2f(posInimigo.x + largInimigo, posJogador.y));
+                    this->setPosicao(sf::Vector2f(posInimigo.x + largInimigo + 18.0f, posJogador.y));
                 }
                 else
                 {
                     direcaoX = -1.0f;
-                    this->setPosicao(sf::Vector2f(posInimigo.x - largJogador, posJogador.y));
+                    this->setPosicao(sf::Vector2f(posInimigo.x - largJogador - 18.0f, posJogador.y));
                 }
 
-                this->setVelocidade(sf::Vector2f(direcaoX * 4.0f, this->getVelocidade().y));
+                this->setVelocidade(sf::Vector2f(direcaoX * 6.0f, -5.0f));
+
+                invencivel = true;
+                clockInvencivel.restart();
             }
+        }
+
+        void Jogador::atualizarInvencibilidade()
+        {
+            if (invencivel && clockInvencivel.getElapsedTime().asSeconds() >= tempoInvencivel)
+            {
+                invencivel = false;
+            }
+        }
+
+        bool Jogador::getInvencivel() const
+        {
+            return invencivel;
         }
 
     }
