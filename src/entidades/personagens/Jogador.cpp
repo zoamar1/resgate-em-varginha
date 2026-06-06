@@ -56,8 +56,8 @@ namespace Entidades
 
             pProjetil->setPosicao(sf::Vector2f(posXProjetil, posYProjetil));
 
-            float velX = 10.0f * static_cast<float>(direcao);
-            pProjetil->setVelocidade(sf::Vector2f(velX, 0.0f));
+            float velX = 30.0f * static_cast<float>(direcao);
+            pProjetil->setVelocidade(sf::Vector2f(velX, -6.7f));
 
             pProjetil->setDono(this);
             pProjetil->setAtivo(true);
