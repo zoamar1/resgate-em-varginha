@@ -50,11 +50,13 @@ namespace Gerenciadores
     void Gerenciador_Eventos::verificaTeclaPressionada(sf::Event &evento)
     {
         Jogo::Estados estado = pJogo->getEstado();
+
         if (evento.type == sf::Event::KeyPressed && evento.key.code == sf::Keyboard::Escape)
         {
             pGG->fecharJanela();
             return;
         }
+
         if (evento.type == sf::Event::KeyPressed && evento.key.code == sf::Keyboard::Enter)
         {
             if (estado == Jogo::MENU)
@@ -62,13 +64,20 @@ namespace Gerenciadores
                 pJogo->setEstado(Jogo::FASE1);
             }
         }
+
         if (evento.type == sf::Event::KeyPressed && evento.key.code == sf::Keyboard::G)
         {
             if ((estado == Jogo::FASE1 || estado == Jogo::FASE2) && pJog1)
             {
-                Entidades::Projetil *novoProjetil = pJog1->atirar();
                 Fases::Fase *pFase = static_cast<Fases::Fase *>(pJogo->getCenarioAtual());
-                pFase->incluirProjetil(novoProjetil);
+                if (pFase)
+                {
+                    Entidades::Projetil *pProjetil = pFase->getProjetilDisponivel();
+                    if (pProjetil)
+                    {
+                        pJog1->atirar(pProjetil);
+                    }
+                }
             }
         }
     }
@@ -76,19 +85,19 @@ namespace Gerenciadores
     void Gerenciador_Eventos::controlaMovimentoJogador1()
     {
         bool esquerda = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
-        bool direita = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
+        bool direita  = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
 
         int x = (direita ? 1 : 0) + (esquerda ? -1 : 0);
+
+        if (x != 0)
+        {
+            pJog1->setDirecao(x);
+        }
+
         float velMax = pJog1->getVel_Max();
-
-        if (x >= 0)
-            pJog1->setDirecao(1);
-        else
-            pJog1->setDirecao(-1);
-
-        float velY = pJog1->getVelY();
-        pJog1->setDirecao(x);
+        float velY   = pJog1->getVelY();
         pJog1->setVelocidade(sf::Vector2f(x * velMax, velY));
+
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
         {
             pJog1->pular();

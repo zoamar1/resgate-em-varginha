@@ -4,6 +4,7 @@
 #include "gerenciadores/Gerenciador_Colisoes.hpp"
 #include "listas/ListaEntidades.hpp"
 #include "entidades/Chao.hpp"
+#include "entidades/Projetil.hpp"
 
 namespace Fases
 {
@@ -17,12 +18,17 @@ namespace Fases
         std::vector<sf::RectangleShape *> barra_de_vida;
         std::vector<sf::Vector2f> posicoesPlataformas;
         std::vector<sf::Vector2f> posicoesInimigosFaceis;
+
+        std::vector<Entidades::Projetil *> ProjeteisPossiveis;
+
     public:
         Fase(Gerenciadores::Gerenciador_Colisoes *pGC);
         virtual ~Fase();
         virtual void executar();
         void incluirJogador(Entidades::Personagens::Jogador *pJog1, sf::Vector2f pos);
         void incluirProjetil(Entidades::Projetil *pProjetil);
+
+        Entidades::Projetil *getProjetilDisponivel();
 
     protected:
         void criarChao();

@@ -14,6 +14,7 @@ namespace Fases
             barra_de_vida.push_back(vida);
         }
     }
+
     Fase::~Fase()
     {
         if (GC)
@@ -30,6 +31,8 @@ namespace Fases
             delete barra_de_vida[i];
         }
         barra_de_vida.clear();
+
+        ProjeteisPossiveis.clear();
 
         GC = NULL;
         posicoesInimigosFaceis.clear();
@@ -57,6 +60,18 @@ namespace Fases
             if (GC->getJogador1()->get_vida_atual() > 0)
                 desenharBarraDeVida(GC->getJogador1()->get_vida_atual());
         }
+    }
+
+    Entidades::Projetil *Fase::getProjetilDisponivel()
+    {
+        for (int i = 0; i < (int)ProjeteisPossiveis.size(); i++)
+        {
+            if (ProjeteisPossiveis[i] && !ProjeteisPossiveis[i]->getAtivo())
+            {
+                return ProjeteisPossiveis[i];
+            }
+        }
+        return NULL;
     }
 
     void Fase::criarChao()
@@ -103,44 +118,44 @@ namespace Fases
         }
 
         Entidades::Chao *pApoioBaixoMedio = new Entidades::Chao(sf::Vector2f(1600.0f, 850.0f), sf::Vector2f(150.0f, 30.0f));
-            if (pApoioBaixoMedio)
+        if (pApoioBaixoMedio)
+        {
+            lista_ents.incluir(static_cast<Entidades::Entidade *>(pApoioBaixoMedio));
+            if (GC)
             {
-                lista_ents.incluir(static_cast<Entidades::Entidade *>(pApoioBaixoMedio));
-                if (GC)
-                {
-                    GC->incluirChao(pApoioBaixoMedio);
-                }
+                GC->incluirChao(pApoioBaixoMedio);
             }
+        }
 
         Entidades::Chao *p2ApoioBaixoMedio = new Entidades::Chao(sf::Vector2f(1700.0f, 725.0f), sf::Vector2f(150.0f, 30.0f));
-            if (pApoioBaixoMedio)
+        if (p2ApoioBaixoMedio)
+        {
+            lista_ents.incluir(static_cast<Entidades::Entidade *>(p2ApoioBaixoMedio));
+            if (GC)
             {
-                lista_ents.incluir(static_cast<Entidades::Entidade *>(p2ApoioBaixoMedio));
-                if (GC)
-                {
-                    GC->incluirChao(p2ApoioBaixoMedio);
-                }
+                GC->incluirChao(p2ApoioBaixoMedio);
             }
+        }
 
         Entidades::Chao *pApoioMedioCima = new Entidades::Chao(sf::Vector2f(100.0f, 475.0f), sf::Vector2f(150.0f, 30.0f));
-            if (pApoioMedioCima)
+        if (pApoioMedioCima)
+        {
+            lista_ents.incluir(static_cast<Entidades::Entidade *>(pApoioMedioCima));
+            if (GC)
             {
-                lista_ents.incluir(static_cast<Entidades::Entidade *>(pApoioMedioCima));
-                if (GC)
-                {
-                    GC->incluirChao(pApoioMedioCima);
-                }
+                GC->incluirChao(pApoioMedioCima);
             }
+        }
 
         Entidades::Chao *p2ApoioMedioCima = new Entidades::Chao(sf::Vector2f(0.0f, 330.0f), sf::Vector2f(150.0f, 30.0f));
-            if (pApoioMedioCima)
+        if (p2ApoioMedioCima)
+        {
+            lista_ents.incluir(static_cast<Entidades::Entidade *>(p2ApoioMedioCima));
+            if (GC)
             {
-                lista_ents.incluir(static_cast<Entidades::Entidade *>(p2ApoioMedioCima));
-                if (GC)
-                {
-                    GC->incluirChao(p2ApoioMedioCima);
-                }
+                GC->incluirChao(p2ApoioMedioCima);
             }
+        }
     }
 
     void Fase::criarInimFaceis()
@@ -212,6 +227,7 @@ namespace Fases
             posicoesPlataformas.erase(posicoesPlataformas.begin() + indiceSorteado);
         }
     }
+
     void Fase::criarCenario()
     {
         criarChao();
@@ -219,6 +235,7 @@ namespace Fases
         criarInimigos();
         criarProjeteis();
     }
+
     void Fase::incluirJogador(Entidades::Personagens::Jogador *pJog1, sf::Vector2f pos)
     {
         if (pJog1)
@@ -232,12 +249,16 @@ namespace Fases
 
     void Fase::incluirProjetil(Entidades::Projetil *pProjetil)
     {
-        lista_ents.incluir(pProjetil);
-        if (GC)
+        if (pProjetil)
         {
-            GC->incluirProjetil(pProjetil);
+            lista_ents.incluir(pProjetil);
+            ProjeteisPossiveis.push_back(pProjetil);
+            if (GC)
+            {
+                GC->incluirProjetil(pProjetil);
+            }
         }
-    };
+    }
 
     void Fase::desenharBarraDeVida(int vida_atual)
     {

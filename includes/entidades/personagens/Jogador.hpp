@@ -22,7 +22,6 @@ namespace Entidades
             bool invencivel;
 
         public:
-            // lembrar de mudar n(numero de vidas) para o padrao do jogador!!!!
             Jogador(int n = 3, int p = 0, float tInvencivel = 1.0f, bool invencivel = false);
             ~Jogador();
 
@@ -30,7 +29,9 @@ namespace Entidades
             void executar();
             void salvar();
             void mover();
-            Entidades::Projetil *atirar();
+
+            void atirar(Entidades::Projetil *pProjetil);
+
             void pular();
             void setDirecao(int num);
             int getDirecao() const;

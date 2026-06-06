@@ -12,6 +12,7 @@ namespace Fases
         aplicarTextura(Gerenciadores::FundoFase1);
         criarCenario();
     }
+
     FasePrimeira::~FasePrimeira()
     {
         posicoesPlataformas.clear();
@@ -99,10 +100,12 @@ namespace Fases
 
     void FasePrimeira::criarProjeteis()
     {
-        for (int i = 0; i<1000; i++)
+
+        for (int i = 0; i < 1000; i++)
         {
-            Entidades::Projetil *novoProjetil = new Entidades::Projetil(-500.0f,-500.0f,false, 30);
+            Entidades::Projetil *novoProjetil = new Entidades::Projetil(-500.0f, -500.0f, false, 30);
             incluirProjetil(novoProjetil);
         }
     }
+
 }

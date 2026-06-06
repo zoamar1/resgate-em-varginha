@@ -42,19 +42,34 @@ namespace Entidades
             }
         }
 
-        Entidades::Projetil *Jogador::atirar()
+        void Jogador::atirar(Entidades::Projetil *pProjetil)
         {
-            Entidades::Projetil *novoProjetil = new Entidades::Projetil(getX(), getY(), false, 5);
-            novoProjetil->setVelocidade(sf::Vector2f(novoProjetil->getVelocidade().x * direcao, novoProjetil->getVelocidade().y));
-            return novoProjetil;
+            if (!pProjetil)
+                return;
+
+            sf::Vector2f tamJog = getpFig()->getSize();
+
+            float offsetX = (direcao > 0) ? tamJog.x + 5.0f : -(40.0f + 5.0f);
+
+            float posXProjetil = getX() + offsetX;
+            float posYProjetil = getY() + (tamJog.y / 2.0f) - 10.0f;
+
+            pProjetil->setPosicao(sf::Vector2f(posXProjetil, posYProjetil));
+
+            float velX = 10.0f * static_cast<float>(direcao);
+            pProjetil->setVelocidade(sf::Vector2f(velX, 0.0f));
+
+            pProjetil->setDono(this);
+            pProjetil->setAtivo(true);
         }
 
         void Jogador::setDirecao(int num)
         {
-            if (num < 0)
-                direcao = -1;
-            else
+
+            if (num > 0)
                 direcao = 1;
+            else if (num < 0)
+                direcao = -1;
         }
 
         int Jogador::getDirecao() const
