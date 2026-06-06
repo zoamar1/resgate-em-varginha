@@ -47,6 +47,7 @@ namespace Entidades
     void Projetil::mover()
     {
         aplicarGravidade();
+        anularGravidade();
 
         sf::Vector2f deslocamento = getVelocidade();
 
