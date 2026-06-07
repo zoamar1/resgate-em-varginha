@@ -1,6 +1,7 @@
 #pragma once
 #include "Header.hpp"
 #include "Inimigo.hpp"
+#include "entidades/Projetil.hpp"
 
 namespace Entidades
 {
@@ -13,18 +14,23 @@ namespace Entidades
         protected:
             int raio;
             sf::Vector2f posicaoInicial;
+            Jogador *pJogador;
+            sf::Clock relogioTiro;
+            float cooldownTiros;
+            bool querAtirar;
 
         public:
             Exercito(float posX = 0.0f, float posY = 0.0f, int n = 3, int maldade = 0, int r = 0);
             ~Exercito();
 
-            // void salvarDataBuffer();
             void executar();
             void danificar(Jogador *p);
             void mover();
             void salva();
-            void atirar();
-            int verificaPlayerArea();
+            void atirar(Entidades::Projetil *pProjetil);
+            bool verificaPlayerArea();
+            bool getQuerAtirar();
+            void setJogador(Jogador *pJ);
         };
     }
 }

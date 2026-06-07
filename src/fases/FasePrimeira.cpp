@@ -17,6 +17,25 @@ namespace Fases
     {
         posicoesPlataformas.clear();
         posicoesInimigosMedios.clear();
+        vetorExercitos.clear();
+    }
+
+    void FasePrimeira::executar()
+    {
+        for (int i = 0; i < (int)vetorExercitos.size(); i++)
+        {
+            Entidades::Personagens::Exercito *pExercito = vetorExercitos[i];
+            if (pExercito && pExercito->getQuerAtirar())
+            {
+                Entidades::Projetil *pProjetil = getProjetilDisponivel();
+                if (pProjetil)
+                {
+                    pExercito->atirar(pProjetil);
+                }
+            }
+        }
+
+        Fase::executar();
     }
 
     void FasePrimeira::criarInimMedios()
@@ -37,11 +56,14 @@ namespace Fases
             int indiceSorteado = rand() % posicoesInimigosMedios.size();
             sf::Vector2f posEscolhida = posicoesInimigosMedios[indiceSorteado];
 
-            Entidades::Personagens::Exercito *pExercito = new Entidades::Personagens::Exercito(posEscolhida.x, posEscolhida.y, 3, 15, 10);
+            Entidades::Personagens::Exercito *pExercito = new Entidades::Personagens::Exercito(posEscolhida.x, posEscolhida.y, 3, 15, 400);
 
             if (pExercito)
             {
+                pExercito->setJogador(GC->getJogador1());
+
                 lista_ents.incluir(static_cast<Entidades::Entidade *>(pExercito));
+                vetorExercitos.push_back(pExercito);
 
                 if (GC)
                 {
@@ -100,7 +122,6 @@ namespace Fases
 
     void FasePrimeira::criarProjeteis()
     {
-
         for (int i = 0; i < 1000; i++)
         {
             Entidades::Projetil *novoProjetil = new Entidades::Projetil(-500.0f, -500.0f, false, 30);
