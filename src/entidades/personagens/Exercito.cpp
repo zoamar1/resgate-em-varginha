@@ -5,7 +5,7 @@ namespace Entidades
 {
     namespace Personagens
     {
-        Exercito::Exercito(float posX, float posY, int n, int maldade, int p) : Inimigo(posX, posY, n, maldade), precisao(p), posicaoInicial(posX, posY)
+        Exercito::Exercito(float posX, float posY, int n, int maldade, int r) : Inimigo(posX, posY, n, maldade), raio(r), posicaoInicial(posX, posY)
         {
             setVel_Max(1.4f);
             setVelocidade(sf::Vector2f(1.4f, 0.0f));
