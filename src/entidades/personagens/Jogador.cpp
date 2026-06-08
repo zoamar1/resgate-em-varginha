@@ -50,7 +50,7 @@ namespace Entidades
 
             sf::Vector2f tamJog = getpFig()->getSize();
 
-            float offsetX = (direcao > 0) ? tamJog.x + 5.0f : -(40.0f + 5.0f);
+            float offsetX = (direcao > 0) ? tamJog.x + 5.0f : -(tamJog.x + 5.0f);
 
             float posXProjetil = getX() + offsetX;
             float posYProjetil = getY() + (tamJog.y / 2.0f) - 10.0f;

@@ -19,7 +19,6 @@ namespace Entidades
             int vida_atual;
             sf::Clock relogioTiro;
             float cooldownTiros;
-            // adicionar numero max de vidas
 
         public:
             Personagem(float posX = 0.0f, float posY = 0.0f, float tamanhoX = 0.0f, float tamanhoY = 0.0f, int n = 0);
