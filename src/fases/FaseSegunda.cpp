@@ -21,12 +21,15 @@ namespace Fases
     {
         sf::Vector2f tamanhoPadrao(100.0f, 40.0f);
 
-        posicoesEspinhos.push_back(sf::Vector2f(500.0f, 210.0f));
-        posicoesEspinhos.push_back(sf::Vector2f(1200.0f, 210.0f));
-        posicoesEspinhos.push_back(sf::Vector2f(300.0f, 580.0f));
-        posicoesEspinhos.push_back(sf::Vector2f(900.0f, 580.0f));
-        posicoesEspinhos.push_back(sf::Vector2f(400.0f, 950.0f));
-        posicoesEspinhos.push_back(sf::Vector2f(1300.0f, 950.0f));
+        posicoesEspinhos.push_back(sf::Vector2f(300.0f, 953.0f));
+        posicoesEspinhos.push_back(sf::Vector2f(700.0f, 953.0f));
+        posicoesEspinhos.push_back(sf::Vector2f(1100.0f, 953.0f));
+        posicoesEspinhos.push_back(sf::Vector2f(200.0f, 583.0f));
+        posicoesEspinhos.push_back(sf::Vector2f(600.0f, 583.0f));
+        posicoesEspinhos.push_back(sf::Vector2f(1000.0f, 583.0f));
+        posicoesEspinhos.push_back(sf::Vector2f(400.0f, 213.0f));
+        posicoesEspinhos.push_back(sf::Vector2f(800.0f, 213.0f));
+        posicoesEspinhos.push_back(sf::Vector2f(1200.0f, 213.0f));
 
         int quantidade = (rand() % 4) + 3;
 
