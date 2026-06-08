@@ -145,21 +145,24 @@ namespace Gerenciadores
 
             if (pProjetil && pProjetil->getAtivo())
             {
-                for (itInim = LIs.begin(); itInim != LIs.end(); itInim++)
+                Entidades::Entidade *dono = pProjetil->getDono();
+                if (dono && dynamic_cast<Entidades::Personagens::Jogador *>(dono))
                 {
-                    Entidades::Personagens::Inimigo *pInimigo = *itInim;
-
-                    if (pInimigo && pProjetil->getDono() != pInimigo)
+                    for (itInim = LIs.begin(); itInim != LIs.end(); itInim++)
                     {
-                        if (verificarColisao(pInimigo, pProjetil))
+                        Entidades::Personagens::Inimigo *pInimigo = *itInim;
+
+                        if (pInimigo && dono != pInimigo)
                         {
-                            pInimigo->recebeDano(pProjetil->getDano());
+                            if (verificarColisao(pInimigo, pProjetil))
+                            {
+                                pInimigo->recebeDano(pProjetil->getDano());
 
-                            pProjetil->setAtivo(false);
-                            pProjetil->setPosicao(sf::Vector2f(-500.0f, -500.0f));
-                            pProjetil->setVelocidade(sf::Vector2f(0.0f, 0.0f));
-
-                            break;
+                                pProjetil->setAtivo(false);
+                                pProjetil->setPosicao(sf::Vector2f(-500.0f, -500.0f));
+                                pProjetil->setVelocidade(sf::Vector2f(0.0f, 0.0f));
+                                break;
+                            }
                         }
                     }
                 }
