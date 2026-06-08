@@ -15,7 +15,8 @@ namespace Gerenciadores
         Menu,
         Arbusto,
         Chao,
-        FundoFase1
+        FundoFase1,
+        Espinhos
     };
 
     class Gerenciador_Grafico

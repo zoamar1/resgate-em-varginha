@@ -1,4 +1,5 @@
 #include "fases/FaseSegunda.hpp"
+#include "entidades/obstaculos/Espinhos.hpp"
 
 namespace Fases
 {
@@ -18,11 +19,44 @@ namespace Fases
 
     void FaseSegunda::criarEspinhos()
     {
+        sf::Vector2f tamanhoPadrao(100.0f, 40.0f);
+
+        posicoesEspinhos.push_back(sf::Vector2f(500.0f, 210.0f));
+        posicoesEspinhos.push_back(sf::Vector2f(1200.0f, 210.0f));
+        posicoesEspinhos.push_back(sf::Vector2f(300.0f, 580.0f));
+        posicoesEspinhos.push_back(sf::Vector2f(900.0f, 580.0f));
+        posicoesEspinhos.push_back(sf::Vector2f(400.0f, 950.0f));
+        posicoesEspinhos.push_back(sf::Vector2f(1300.0f, 950.0f));
+
+        int quantidade = (rand() % 4) + 3;
+
+        for (int i = 0; i < quantidade; i++)
+        {
+            if (posicoesEspinhos.empty())
+                break;
+
+            int indiceSorteado = rand() % posicoesEspinhos.size();
+            sf::Vector2f posEscolhida = posicoesEspinhos[indiceSorteado];
+
+            Entidades::Obstaculos::Espinhos *pEspinho = new Entidades::Obstaculos::Espinhos(posEscolhida.x, posEscolhida.y, tamanhoPadrao.x, tamanhoPadrao.y, 2);
+
+            if (pEspinho)
+            {
+                lista_ents.incluir(static_cast<Entidades::Entidade *>(pEspinho));
+                if (GC)
+                {
+                    GC->incluirObstaculo(static_cast<Entidades::Obstaculos::Obstaculo *>(pEspinho));
+                }
+            }
+
+            posicoesEspinhos.erase(posicoesEspinhos.begin() + indiceSorteado);
+        }
     }
 
     void FaseSegunda::criarObstaculo()
     {
         criarPlataformas();
+        criarEspinhos();
     }
 
     void FaseSegunda::criarInimigos()
