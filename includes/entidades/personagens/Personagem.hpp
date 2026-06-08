@@ -17,6 +17,8 @@ namespace Entidades
         protected:
             const int num_vidas;
             int vida_atual;
+            sf::Clock relogioTiro;
+            float cooldownTiros;
             // adicionar numero max de vidas
 
         public:

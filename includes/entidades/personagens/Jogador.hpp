@@ -15,7 +15,6 @@ namespace Entidades
         protected:
             int pontos;
             int direcao;
-            sf::Clock relogioTiro;
             float tempoRecarga;
             sf::Clock clockInvencivel;
             float tempoInvencivel;
