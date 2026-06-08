@@ -6,11 +6,11 @@ namespace Fases
 {
     Fase::Fase(Gerenciadores::Gerenciador_Colisoes *pGC) : lista_ents(), GC(pGC)
     {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 2; i++)
         {
-            sf::RectangleShape *vida = new sf::RectangleShape(sf::Vector2f(5, 30));
-            vida->setFillColor(sf::Color::Green);
-            vida->setPosition(LARGURA - i * 5 - 50, 30);
+            sf::RectangleShape *vida = new sf::RectangleShape(sf::Vector2f(500, 30));
+            (i % 2) ? vida->setFillColor(sf::Color::Green) : vida->setFillColor(sf::Color::Red);
+            vida->setPosition(LARGURA - 550, 30);
             barra_de_vida.push_back(vida);
         }
     }
@@ -266,18 +266,18 @@ namespace Fases
     {
         if (pGG)
         {
-            for (int i = 0; i < (int)barra_de_vida.size(); i++)
+            if (barra_de_vida.size() < 2)
             {
-                if (vida_atual < i)
-                {
-                    barra_de_vida[i]->setFillColor(sf::Color::Red);
-                }
-                else
-                {
-                    barra_de_vida[i]->setFillColor(sf::Color::Green);
-                }
-                pGG->desenhaRect(*(barra_de_vida[i]));
+                return;
             }
+
+            sf::RectangleShape *fundo = barra_de_vida[0];
+            sf::RectangleShape *vida = barra_de_vida[1];
+
+            vida->setSize({(float)5 * vida_atual, vida->getSize().y});
+
+            pGG->desenhaRect(*fundo);
+            pGG->desenhaRect(*vida);
         }
     }
 
