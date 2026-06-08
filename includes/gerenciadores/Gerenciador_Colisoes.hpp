@@ -28,6 +28,7 @@ namespace Gerenciadores
         static Gerenciador_Colisoes *getGerenciador_Colisoes();
         void setJogador1(Entidades::Personagens::Jogador *pJ);
         void incluirInimigo(Entidades::Personagens::Inimigo *pi);
+        void removerInimigo(Entidades::Personagens::Inimigo *pI);
         void incluirObstaculo(Entidades::Obstaculos::Obstaculo *po);
         void incluirChao(Entidades::Chao *pc);
         void incluirProjetil(Entidades::Projetil *pj);
@@ -44,6 +45,7 @@ namespace Gerenciadores
         void tratarColisoesJogsObstacs();
         void tratarColisoesJogsInimgs();
         void tratarColisoesJogsProjeteis();
+        void tratarColisoesInimProjeteis();
     };
 
 }

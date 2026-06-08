@@ -34,7 +34,7 @@ namespace Entidades
         ativo = valor;
     }
 
-    bool Projetil::getDano() const
+    int Projetil::getDano() const
     {
         return dano;
     }

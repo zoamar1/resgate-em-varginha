@@ -55,6 +55,8 @@ namespace Fases
         desenhar();
         lista_ents.desenhar();
 
+        lista_ents.removerMortos(GC);
+
         if (GC && GC->getJogador1())
         {
             if (GC->getJogador1()->get_vida_atual() > 0)

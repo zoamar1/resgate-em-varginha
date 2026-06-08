@@ -34,6 +34,20 @@ namespace Gerenciadores
         }
     }
 
+    void Gerenciador_Colisoes::removerInimigo(Entidades::Personagens::Inimigo *pI)
+    {
+        if (!pI)
+            return;
+        for (int i = 0; i < (int)LIs.size(); i++)
+        {
+            if (LIs[i] == pI)
+            {
+                LIs.erase(LIs.begin() + i);
+                return;
+            }
+        }
+    }
+
     void Gerenciador_Colisoes::incluirObstaculo(Entidades::Obstaculos::Obstaculo *pO)
     {
         if (pO)
@@ -114,6 +128,39 @@ namespace Gerenciadores
                     {
                         pInimigo->danificar(pJog1);
                         pJog1->colidir(pInimigo);
+                    }
+                }
+            }
+        }
+    }
+
+    void Gerenciador_Colisoes::tratarColisoesInimProjeteis()
+    {
+        std::set<Entidades::Projetil *>::iterator itProj;
+        std::vector<Entidades::Personagens::Inimigo *>::iterator itInim;
+
+        for (itProj = LPs.begin(); itProj != LPs.end(); itProj++)
+        {
+            Entidades::Projetil *pProjetil = *itProj;
+
+            if (pProjetil && pProjetil->getAtivo())
+            {
+                for (itInim = LIs.begin(); itInim != LIs.end(); itInim++)
+                {
+                    Entidades::Personagens::Inimigo *pInimigo = *itInim;
+
+                    if (pInimigo && pProjetil->getDono() != pInimigo)
+                    {
+                        if (verificarColisao(pInimigo, pProjetil))
+                        {
+                            pInimigo->recebeDano(pProjetil->getDano());
+
+                            pProjetil->setAtivo(false);
+                            pProjetil->setPosicao(sf::Vector2f(-500.0f, -500.0f));
+                            pProjetil->setVelocidade(sf::Vector2f(0.0f, 0.0f));
+
+                            break;
+                        }
                     }
                 }
             }
@@ -210,6 +257,7 @@ namespace Gerenciadores
         tratarColisoesJogsInimgs();
         tratarColisoesJogsObstacs();
         tratarColisoesJogsProjeteis();
+        tratarColisoesInimProjeteis();
         if (!LCs.empty())
         {
             for (auto it = LCs.begin(); it != LCs.end(); ++it)
