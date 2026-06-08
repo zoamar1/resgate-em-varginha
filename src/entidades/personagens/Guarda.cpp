@@ -15,12 +15,11 @@ namespace Entidades
 
             if (pFig)
             {
-                pFig->setSize(sf::Vector2f(70.0f, 127.0f));
+                pFig->setSize(sf::Vector2f(70.0f, 197.0f));
                 pFig->setPosition(sf::Vector2f(posX, posY));
             }
 
             aplicarTextura(Gerenciadores::Guarda);
-            std::cout << "Exercito criado" << std::endl;
         }
 
         Guarda::~Guarda() {}
