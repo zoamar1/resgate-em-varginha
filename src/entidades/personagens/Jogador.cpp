@@ -45,23 +45,18 @@ namespace Entidades
 
         void Jogador::atirar(Entidades::Projetil *pProjetil)
         {
-            if (!pProjetil)
+            if (!pProjetil || relogioTiro.getElapsedTime().asSeconds() < cooldownTiros)
                 return;
 
             sf::Vector2f tamJog = getpFig()->getSize();
-
             float offsetX = (direcao > 0) ? tamJog.x + 5.0f : -(tamJog.x + 5.0f);
 
-            float posXProjetil = getX() + offsetX;
-            float posYProjetil = getY() + (tamJog.y / 2.0f) - 10.0f;
+            pProjetil->setPosicao(sf::Vector2f(getX() + offsetX, getY() + (tamJog.y / 2.0f) - 10.0f));
 
-            pProjetil->setPosicao(sf::Vector2f(posXProjetil, posYProjetil));
-
-            float velX = 30.0f * static_cast<float>(direcao);
-            pProjetil->setVelocidade(sf::Vector2f(velX, 0.0f));
-
+            pProjetil->setVelocidade(sf::Vector2f(30.0f * static_cast<float>(direcao), 0.0f));
             pProjetil->setDono(this);
             pProjetil->setAtivo(true);
+            relogioTiro.restart();
         }
 
         void Jogador::setDirecao(int num)
