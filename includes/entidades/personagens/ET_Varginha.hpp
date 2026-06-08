@@ -19,7 +19,7 @@ namespace Entidades
             ~ET_Varginha();
 
             void mover();
-            void salva();
+            void salvar();
 
             // void salvarDataBuffer();
             void executar();

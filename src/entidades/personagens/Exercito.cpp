@@ -111,7 +111,7 @@ namespace Entidades
             relogioTiro.restart();
         }
 
-        void Exercito::salva()
+        void Exercito::salvar()
         {
         }
 

@@ -48,7 +48,7 @@ namespace Entidades
             }
         }
 
-        void ET_Varginha::salva()
+        void ET_Varginha::salvar()
         {
         }
 

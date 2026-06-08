@@ -18,12 +18,11 @@ namespace Entidades
             Inimigo(float posX = 0.0f, float posY = 0.0f, int n = 3, int maldade = 0);
             virtual ~Inimigo();
 
-            void salvar();
+            virtual void salvar() = 0;
 
             // void salvarDataBuffer();
             virtual void executar() = 0;
             virtual void danificar(Jogador *p) = 0;
-            virtual void salva() = 0;
         };
     }
 }

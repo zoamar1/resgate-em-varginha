@@ -26,7 +26,7 @@ namespace Entidades
             void executar();
             void danificar(Jogador *p);
             void mover();
-            void salva();
+            void salvar();
             void atirar(Entidades::Projetil *pProjetil);
             bool verificaPlayerArea();
             bool getQuerAtirar();

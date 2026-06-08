@@ -49,7 +49,7 @@ namespace Entidades
             setPosicao(getPosicao() + getVelocidade());
         }
 
-        void Guarda::salva()
+        void Guarda::salvar()
         {
         }
 

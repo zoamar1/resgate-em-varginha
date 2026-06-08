@@ -20,7 +20,7 @@ namespace Entidades
 
             // void salvarDataBuffer();
             void executar();
-            void salva();
+            void salvar();
             void mover();
             void danificar(Jogador *p);
         };
