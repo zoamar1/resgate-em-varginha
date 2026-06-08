@@ -14,7 +14,7 @@ Jogo::Jogo() : pGG(Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico())
 
     pMenu = new Menu();
 
-    pJog1 = new Entidades::Personagens::Jogador(200, 0);
+    pJog1 = new Entidades::Personagens::Jogador(100, 0);
     pGE->setJogador1(pJog1);
     pGC->setJogador1(pJog1);
 };
