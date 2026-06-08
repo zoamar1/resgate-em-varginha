@@ -273,11 +273,11 @@ namespace Fases
 
             sf::RectangleShape *fundo = barra_de_vida[0];
             sf::RectangleShape *vida = barra_de_vida[1];
-            int tamFundoX = fundo->getSize().x;
-            int vida_atual = pJog->get_vida_atual();
-            int vida_total = pJog->get_num_vidas();
+            float tamFundoX = fundo->getSize().x;
+            float vida_atual = static_cast<float>(pJog->get_vida_atual());
+            float vida_total = static_cast<float>(pJog->get_num_vidas());
 
-            vida->setSize({(float)(tamFundoX / vida_total) * vida_atual, vida->getSize().y});
+            vida->setSize({(tamFundoX / vida_total) * vida_atual, vida->getSize().y});
 
             pGG->desenhaRect(*fundo);
             pGG->desenhaRect(*vida);
