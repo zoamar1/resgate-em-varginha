@@ -12,6 +12,7 @@ namespace Entidades
               tempoInvencivel(tInvencivel),
               invencivel(inv)
         {
+            cooldownTiros = 0.5f;
             setVel_Max(4);
             aplicarTextura(Gerenciadores::Jogador);
         }

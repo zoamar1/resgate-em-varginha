@@ -7,9 +7,10 @@ namespace Entidades
     namespace Personagens
     {
         Exercito::Exercito(float posX, float posY, int n, int maldade, int r)
-            : Inimigo(posX, posY, n, maldade), raio(r),
-              pJogador(NULL), cooldownTiros(0.2f), querAtirar(false)
+            : Inimigo(posX, posY, n, maldade),
+              raio(r)
         {
+            cooldownTiros = 0.2f;
             setVel_Max(1.4f);
             setVelocidade(sf::Vector2f(1.4f, 0.0f));
 

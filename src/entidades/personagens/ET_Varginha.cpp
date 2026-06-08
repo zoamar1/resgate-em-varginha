@@ -5,7 +5,9 @@ namespace Entidades
 {
     namespace Personagens
     {
-        ET_Varginha::ET_Varginha(float posX, float posY, int n, int maldade, int ml) : Inimigo(posX, posY, n, maldade), multiplicador_laser(ml)
+        ET_Varginha::ET_Varginha(float posX, float posY, int n, int maldade, int ml)
+            : Inimigo(posX, posY, n, maldade),
+              multiplicador_laser(ml)
         {
             setVel_Max(2.0f);
             setVelocidade(sf::Vector2f(2.0f, 0.0f));
