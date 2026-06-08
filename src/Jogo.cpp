@@ -13,7 +13,7 @@ Jogo::Jogo() : pGG(Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico())
 
     pMenu = new Menu();
 
-    pJog1 = new Entidades::Personagens::Jogador(100, 0);
+    pJog1 = new Entidades::Personagens::Jogador(200, 0);
     pGE->setJogador1(pJog1);
     pGC->setJogador1(pJog1);
 };
@@ -56,7 +56,6 @@ Jogo::~Jogo()
         delete pGG;
         pGG = NULL;
     }
-
 };
 
 void Jogo::executar()
@@ -82,7 +81,7 @@ void Jogo::executar()
                     pFase1 = new Fases::FasePrimeira(pGC);
                     pFase1->incluirJogador(pJog1, sf::Vector2f(100.0f, ALTURA - 100));
                 }
-                
+
                 pFase1->executar();
                 if (pJog1->get_vida_atual() <= 0)
                 {
@@ -119,13 +118,13 @@ void Jogo::setEstado(Estados valor)
     estado = valor;
 }
 
-Ente* Jogo::getCenarioAtual()
+Ente *Jogo::getCenarioAtual()
 {
-    if(estado == MENU)
+    if (estado == MENU)
     {
         return pMenu;
     }
-    if(estado == FASE1)
+    if (estado == FASE1)
     {
         return pFase1;
     }

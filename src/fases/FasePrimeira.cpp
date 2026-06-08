@@ -22,6 +22,19 @@ namespace Fases
 
     void FasePrimeira::executar()
     {
+
+        for (auto it = vetorExercitos.begin(); it != vetorExercitos.end();)
+        {
+            if (*it == NULL || (*it)->get_vida_atual() <= 0)
+            {
+                it = vetorExercitos.erase(it);
+            }
+            else
+            {
+                it++;
+            }
+        }
+
         for (int i = 0; i < (int)vetorExercitos.size(); i++)
         {
             Entidades::Personagens::Exercito *pExercito = vetorExercitos[i];
@@ -124,7 +137,7 @@ namespace Fases
     {
         for (int i = 0; i < 1000; i++)
         {
-            Entidades::Projetil *novoProjetil = new Entidades::Projetil(-500.0f, -500.0f, false, 30);
+            Entidades::Projetil *novoProjetil = new Entidades::Projetil(-500.0f, -500.0f, false, 1);
             incluirProjetil(novoProjetil);
         }
     }
