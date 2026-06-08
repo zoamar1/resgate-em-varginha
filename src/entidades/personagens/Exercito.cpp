@@ -7,7 +7,7 @@ namespace Entidades
     namespace Personagens
     {
         Exercito::Exercito(float posX, float posY, int n, int maldade, int r)
-            : Inimigo(posX, posY, n, maldade), raio(r), posicaoInicial(posX, posY),
+            : Inimigo(posX, posY, n, maldade), raio(r),
               pJogador(NULL), cooldownTiros(0.2f), querAtirar(false)
         {
             setVel_Max(1.4f);
@@ -66,7 +66,7 @@ namespace Entidades
 
             float x = posJogador.x - posExercito.x;
             float y = posJogador.y - posExercito.y;
-            float distancia = std::sqrt(x * x + y* y);
+            float distancia = std::sqrt(x * x + y * y);
 
             return distancia <= static_cast<float>(raio);
         }
@@ -84,7 +84,7 @@ namespace Entidades
             sf::Vector2f posExercito = getPosicao();
             sf::Vector2f tamExercito = getpFig()->getSize();
 
-            sf::Vector2f centroExercito = sf::Vector2f(posExercito.x + tamExercito.x / 2.0f,posExercito.y + tamExercito.y / 2.0f);
+            sf::Vector2f centroExercito = sf::Vector2f(posExercito.x + tamExercito.x / 2.0f, posExercito.y + tamExercito.y / 2.0f);
 
             sf::Vector2f posJogador = pJogador->getPosicao();
             sf::Vector2f tamJogador = pJogador->getpFig()->getSize();

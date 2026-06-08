@@ -12,6 +12,7 @@ namespace Entidades
         {
         protected:
             int nivel_maldade;
+            sf::Vector2f posicaoInicial;
 
         public:
             // lembrar de mudar n(numero de vidas) para o padrao do INIMIGO!!!!

@@ -6,7 +6,9 @@ namespace Entidades
     namespace Personagens
     {
 
-        Guarda::Guarda(float posX, float posY, int n, int maldade, int f) : Inimigo(posX, posY, n, maldade), forca(f), posicaoInicial(posX, posY)
+        Guarda::Guarda(float posX, float posY, int n, int maldade, int f)
+            : Inimigo(posX, posY, n, maldade),
+              forca(f)
         {
             setVel_Max(1.0f);
             setVelocidade(sf::Vector2f(1.0f, 0.0f));
@@ -18,6 +20,7 @@ namespace Entidades
             }
 
             aplicarTextura(Gerenciadores::Guarda);
+            std::cout << "Exercito criado" << std::endl;
         }
 
         Guarda::~Guarda() {}

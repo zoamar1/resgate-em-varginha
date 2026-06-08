@@ -13,7 +13,6 @@ namespace Entidades
         {
         protected:
             int raio;
-            sf::Vector2f posicaoInicial;
             Jogador *pJogador;
             sf::Clock relogioTiro;
             float cooldownTiros;
