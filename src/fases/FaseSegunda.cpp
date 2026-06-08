@@ -22,10 +22,12 @@ namespace Fases
 
     void FaseSegunda::criarObstaculo()
     {
+        criarPlataformas();
     }
 
     void FaseSegunda::criarInimigos()
     {
+        criarInimFaceis();
     }
 
     void FaseSegunda::criarProjeteis()
