@@ -60,7 +60,7 @@ namespace Fases
         if (GC && GC->getJogador1())
         {
             if (GC->getJogador1()->get_vida_atual() > 0)
-                desenharBarraDeVida(GC->getJogador1()->get_vida_atual());
+                desenharBarraDeVida(GC->getJogador1());
         }
     }
 
@@ -262,7 +262,7 @@ namespace Fases
         }
     }
 
-    void Fase::desenharBarraDeVida(int vida_atual)
+    void Fase::desenharBarraDeVida(Entidades::Personagens::Jogador *pJog)
     {
         if (pGG)
         {
@@ -273,8 +273,11 @@ namespace Fases
 
             sf::RectangleShape *fundo = barra_de_vida[0];
             sf::RectangleShape *vida = barra_de_vida[1];
+            int tamFundoX = fundo->getSize().x;
+            int vida_atual = pJog->get_vida_atual();
+            int vida_total = pJog->get_num_vidas();
 
-            vida->setSize({(float)5 * vida_atual, vida->getSize().y});
+            vida->setSize({(float)(tamFundoX / vida_total) * vida_atual, vida->getSize().y});
 
             pGG->desenhaRect(*fundo);
             pGG->desenhaRect(*vida);

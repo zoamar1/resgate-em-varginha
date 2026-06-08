@@ -35,7 +35,7 @@ namespace Fases
         void criarInimFaceis();
         void criarPlataformas();
         void criarCenario();
-        void desenharBarraDeVida(int vida_atual);
+        void desenharBarraDeVida(Entidades::Personagens::Jogador *pJog);
         virtual void criarInimigos() = 0;
         virtual void criarObstaculo() = 0;
         virtual void criarProjeteis() = 0;
