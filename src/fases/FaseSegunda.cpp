@@ -39,6 +39,7 @@ namespace Fases
 
     void FaseSegunda::executar()
     {
+        Fase::executar();
     }
 
 }

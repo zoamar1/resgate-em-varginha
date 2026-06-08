@@ -4,6 +4,7 @@
 #include "gerenciadores/Gerenciador_Colisoes.hpp"
 #include "entidades/personagens/Jogador.hpp"
 #include "fases/FasePrimeira.hpp"
+#include "fases/FaseSegunda.hpp"
 #include "Menu.hpp"
 
 class Jogo
@@ -21,9 +22,10 @@ private:
     Gerenciadores::Gerenciador_Eventos *pGE;
     Gerenciadores::Gerenciador_Colisoes *pGC;
     Estados estado;
-    Menu* pMenu;
+    Menu *pMenu;
     Entidades::Personagens::Jogador *pJog1;
     Fases::FasePrimeira *pFase1;
+    Fases::FaseSegunda *pFase2;
 
 public:
     Jogo();
@@ -31,5 +33,5 @@ public:
     void executar();
     Estados getEstado();
     void setEstado(Estados valor);
-    Ente* getCenarioAtual();
+    Ente *getCenarioAtual();
 };

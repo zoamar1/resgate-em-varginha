@@ -6,7 +6,8 @@ Jogo::Jogo() : pGG(Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico())
                estado(MENU),
                pMenu(NULL),
                pJog1(NULL),
-               pFase1(NULL)
+               pFase1(NULL),
+               pFase2(NULL)
 {
     Ente::setGG(pGG);
     pGE->setGerenciador_Grafico(pGG);
@@ -24,6 +25,12 @@ Jogo::~Jogo()
     {
         delete pFase1;
         pFase1 = NULL;
+    }
+
+    if (pFase2)
+    {
+        delete pFase2;
+        pFase2 = NULL;
     }
 
     if (pMenu)
@@ -92,8 +99,22 @@ void Jogo::executar()
                 }
                 break;
             }
+
             case FASE2:
             {
+                if (!pFase2)
+                {
+                    pFase2 = new Fases::FaseSegunda(pGC);
+                    pFase2->incluirJogador(pJog1, sf::Vector2f(100.0f, ALTURA - 100));
+                }
+                pFase2->executar();
+                if (pJog1->get_vida_atual() <= 0)
+                {
+                    estado = MENU;
+                    faseDeletada = pFase2;
+                    pFase2 = NULL;
+                    pJog1->set_vida_atual(pJog1->get_num_vidas());
+                }
                 break;
             }
             }
@@ -128,4 +149,10 @@ Ente *Jogo::getCenarioAtual()
     {
         return pFase1;
     }
+    if (estado == FASE2)
+    {
+        return pFase2;
+    }
+
+    return NULL;
 }

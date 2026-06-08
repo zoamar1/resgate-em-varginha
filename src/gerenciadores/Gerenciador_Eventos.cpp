@@ -57,12 +57,15 @@ namespace Gerenciadores
             return;
         }
 
-        if (evento.type == sf::Event::KeyPressed && evento.key.code == sf::Keyboard::Enter)
+        if (evento.type == sf::Event::KeyPressed && evento.key.code == sf::Keyboard::Num1)
         {
             if (estado == Jogo::MENU)
-            {
                 pJogo->setEstado(Jogo::FASE1);
-            }
+        }
+        if (evento.type == sf::Event::KeyPressed && evento.key.code == sf::Keyboard::Num2)
+        {
+            if (estado == Jogo::MENU)
+                pJogo->setEstado(Jogo::FASE2);
         }
 
         if (evento.type == sf::Event::KeyPressed && evento.key.code == sf::Keyboard::G)
@@ -85,7 +88,7 @@ namespace Gerenciadores
     void Gerenciador_Eventos::controlaMovimentoJogador1()
     {
         bool esquerda = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
-        bool direita  = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
+        bool direita = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
 
         int x = (direita ? 1 : 0) + (esquerda ? -1 : 0);
 
@@ -95,7 +98,7 @@ namespace Gerenciadores
         }
 
         float velMax = pJog1->getVel_Max();
-        float velY   = pJog1->getVelY();
+        float velY = pJog1->getVelY();
         pJog1->setVelocidade(sf::Vector2f(x * velMax, velY));
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
