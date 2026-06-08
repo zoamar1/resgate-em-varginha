@@ -24,6 +24,7 @@ namespace Entidades
             // void salvarDataBuffer();
             void executar();
             void danificar(Jogador *p);
+            void atirar(Entidades::Projetil *pProjetil) override;
         };
     }
 }

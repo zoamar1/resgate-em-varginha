@@ -48,6 +48,10 @@ namespace Entidades
             }
         }
 
+        void ET_Varginha::atirar(Entidades::Projetil *pProjetil)
+        {
+        }
+
         void ET_Varginha::salvar()
         {
         }

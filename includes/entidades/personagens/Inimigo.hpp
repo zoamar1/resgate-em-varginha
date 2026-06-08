@@ -23,6 +23,7 @@ namespace Entidades
             // void salvarDataBuffer();
             virtual void executar() = 0;
             virtual void danificar(Jogador *p) = 0;
+            virtual void atirar(Entidades::Projetil *pProjetil) = 0;
         };
     }
 }

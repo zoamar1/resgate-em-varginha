@@ -27,10 +27,10 @@ namespace Entidades
             void danificar(Jogador *p);
             void mover();
             void salvar();
-            void atirar(Entidades::Projetil *pProjetil);
             bool verificaPlayerArea();
             bool getQuerAtirar();
             void setJogador(Jogador *pJ);
+            void atirar(Entidades::Projetil *pProjetil) override;
         };
     }
 }
