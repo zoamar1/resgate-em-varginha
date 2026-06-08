@@ -54,7 +54,7 @@ namespace Entidades
             pProjetil->setPosicao(sf::Vector2f(getX() + offsetX, getY() + (tamJog.y / 2.0f) - 10.0f));
 
             pProjetil->setVelocidade(sf::Vector2f(30.0f * static_cast<float>(direcao), 0.0f));
-            pProjetil->setDono(this);
+            pProjetil->setDeJogador(true);
             pProjetil->setAtivo(true);
             relogioTiro.restart();
         }

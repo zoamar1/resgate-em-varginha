@@ -6,7 +6,7 @@ namespace Entidades
         : Entidade(sf::Vector2f(posX, posY), sf::Vector2f(0.0f, 0.0f)),
           ativo(flag),
           dano(dano),
-          pDono(NULL)
+          deJogador(false)
     {
         if (pFig)
         {
@@ -39,9 +39,14 @@ namespace Entidades
         return dano;
     }
 
-    void Projetil::setDono(Entidades::Entidade *pE)
+    bool Projetil::getDeJogador() const
     {
-        pDono = pE;
+        return deJogador;
+    }
+
+    void Projetil::setDeJogador(bool valor)
+    {
+        deJogador = valor;
     }
 
     void Projetil::mover()
@@ -76,8 +81,5 @@ namespace Entidades
     {
     }
 
-    Entidades::Entidade *Projetil::getDono()
-    {
-        return pDono;
-    }
+
 }

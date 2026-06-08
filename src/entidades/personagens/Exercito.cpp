@@ -105,7 +105,7 @@ namespace Entidades
 
             pProjetil->setPosicao(centroExercito);
             pProjetil->setVelocidade(sf::Vector2f(velX, velY));
-            pProjetil->setDono(this);
+            pProjetil->setDeJogador(false);
             pProjetil->setAtivo(true);
 
             querAtirar = false;

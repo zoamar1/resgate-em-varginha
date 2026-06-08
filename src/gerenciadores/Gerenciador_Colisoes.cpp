@@ -145,14 +145,13 @@ namespace Gerenciadores
 
             if (pProjetil && pProjetil->getAtivo())
             {
-                Entidades::Entidade *dono = pProjetil->getDono();
-                if (dono && dynamic_cast<Entidades::Personagens::Jogador *>(dono))
+                if (pProjetil->getDeJogador())
                 {
                     for (itInim = LIs.begin(); itInim != LIs.end(); itInim++)
                     {
                         Entidades::Personagens::Inimigo *pInimigo = *itInim;
 
-                        if (pInimigo && dono != pInimigo)
+                        if (pInimigo)
                         {
                             if (verificarColisao(pInimigo, pProjetil))
                             {
@@ -179,7 +178,7 @@ namespace Gerenciadores
             for (auto it = LPs.begin(); it != LPs.end(); it++)
             {
                 Entidades::Projetil *pProjetil = *it;
-                if (pProjetil && pProjetil->getAtivo() && verificarColisao(pJog1, pProjetil))
+                if (pProjetil && pProjetil->getAtivo() && !pProjetil->getDeJogador() && verificarColisao(pJog1, pProjetil))
                 {
                     pJog1->recebeDano(pProjetil->getDano());
                 }

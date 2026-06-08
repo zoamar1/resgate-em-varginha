@@ -9,7 +9,7 @@ namespace Entidades
     protected:
         bool ativo;
         int dano;
-        Entidades::Entidade *pDono;
+        bool deJogador;
 
     public:
         Projetil(float posX = 0.0f, float posY = 0.0f, bool flag = true, int dano = 0);
@@ -18,8 +18,8 @@ namespace Entidades
         bool getAtivo() const;
         void setAtivo(bool valor);
         int getDano() const;
-        Entidades::Entidade *getDono();
-        void setDono(Entidades::Entidade *pE);
+        bool getDeJogador() const;
+        void setDeJogador(bool valor);
         void mover();
         void executar();
         void salvar();
