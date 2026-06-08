@@ -8,6 +8,7 @@ namespace Fases
     private:
         const int maxETs;
         std::vector<sf::Vector2f> posicoesEspinhos;
+        std::vector<sf::Vector2f> posicoesChefao;
 
     public:
         FaseSegunda(Gerenciadores::Gerenciador_Colisoes *pGC);
@@ -17,6 +18,7 @@ namespace Fases
     protected:
         void criarEspinhos();
         void criarProjeteis();
+        void criaChefao();
 
         void criarInimigos();
         void criarObstaculo();

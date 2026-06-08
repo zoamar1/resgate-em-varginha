@@ -12,10 +12,14 @@ namespace Entidades
         {
         protected:
             int multiplicador_laser;
+            sf::Vector2f posicaoInicial;
 
         public:
             ET_Varginha(float posX = 0.0f, float posY = 0.0f, int n = 3, int maldade = 0, int ml = 0);
             ~ET_Varginha();
+
+            void mover();
+            void salva();
 
             // void salvarDataBuffer();
             void executar();

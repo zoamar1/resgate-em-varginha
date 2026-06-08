@@ -131,6 +131,10 @@ namespace Gerenciadores
         {
             std::cout << "textura do espinhos nao carregou" << std::endl;
         }
+        if (!texturas[ET_Varginha].loadFromFile("assets/alien.png"))
+        {
+            std::cout << "textura do alien nao carregou" << std::endl;
+        }
     }
 
     sf::Texture &Gerenciadores::Gerenciador_Grafico::getTextura(IDTextura id)

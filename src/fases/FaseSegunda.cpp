@@ -1,5 +1,6 @@
 #include "fases/FaseSegunda.hpp"
 #include "entidades/obstaculos/Espinhos.hpp"
+#include "entidades/personagens/ET_Varginha.hpp"
 
 namespace Fases
 {
@@ -56,6 +57,40 @@ namespace Fases
         }
     }
 
+    void FaseSegunda::criaChefao()
+    {
+        posicoesChefao.push_back(sf::Vector2f(100.0f, 863.0f));
+        posicoesChefao.push_back(sf::Vector2f(700.0f, 863.0f));
+        posicoesChefao.push_back(sf::Vector2f(1200.0f, 863.0f));
+        posicoesChefao.push_back(sf::Vector2f(200.0f, 493.0f));
+        posicoesChefao.push_back(sf::Vector2f(1100.0f, 493.0f));
+        posicoesChefao.push_back(sf::Vector2f(450.0f, 123.0f));
+        posicoesChefao.push_back(sf::Vector2f(600.0f, 123.0f));
+        posicoesChefao.push_back(sf::Vector2f(1100.0f, 123.0f));
+
+        int quantidade = (rand() % 3) + 3;
+
+        for (int i = 0; i < quantidade; i++)
+        {
+            int indiceSorteado = rand() % posicoesChefao.size();
+            sf::Vector2f posEscolhida = posicoesChefao[indiceSorteado];
+
+            Entidades::Personagens::ET_Varginha *pChefao = new Entidades::Personagens::ET_Varginha(posEscolhida.x, posEscolhida.y, 3, 15, 400);
+
+            if (pChefao)
+            {
+                lista_ents.incluir(static_cast<Entidades::Entidade *>(pChefao));
+
+                if (GC)
+                {
+                    GC->incluirInimigo(static_cast<Entidades::Personagens::Inimigo *>(pChefao));
+                }
+            }
+
+            posicoesChefao.erase(posicoesChefao.begin() + indiceSorteado);
+        }
+    }
+
     void FaseSegunda::criarObstaculo()
     {
         criarPlataformas();
@@ -65,6 +100,7 @@ namespace Fases
     void FaseSegunda::criarInimigos()
     {
         criarInimFaceis();
+        criaChefao();
     }
 
     void FaseSegunda::criarProjeteis()
