@@ -51,7 +51,8 @@ namespace Entidades
             sf::Vector2f tamJog = getpFig()->getSize();
             float offsetX = (direcao > 0) ? tamJog.x + 5.0f : -(tamJog.x + 5.0f);
 
-            pProjetil->setPosicao(sf::Vector2f(getX() + offsetX, getY() + (tamJog.y / 2.0f) - 10.0f));
+            sf::Vector2f pos = getPosicao();
+            pProjetil->setPosicao(sf::Vector2f(pos.x + offsetX, pos.y + (tamJog.y / 2.0f) - 10.0f));
 
             pProjetil->setVelocidade(sf::Vector2f(30.0f * static_cast<float>(direcao), 0.0f));
             pProjetil->setDeJogador(true);
@@ -77,7 +78,7 @@ namespace Entidades
         {
             if (getNoChao())
             {
-                setVelY(-18.0f);
+                setVelocidade(sf::Vector2f(getVelocidade().x, -18.0f));
                 setNoChao(false);
             }
         }

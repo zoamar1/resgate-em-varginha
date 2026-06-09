@@ -49,13 +49,13 @@ namespace Entidades
                         if (centroJog.y < centroPlat.y)
                         {
                             p->setPosicao(sf::Vector2f(posJog.x, posPlat.y - tamJog.y));
-                            p->setVelY(0.0f);
+                            p->setVelocidade(sf::Vector2f(p->getVelocidade().x, 0.0f));
                             p->setNoChao(true);
                         }
                         else
                         {
                             p->setPosicao(sf::Vector2f(posJog.x, posPlat.y + tamPlat.y));
-                            p->setVelY(0.0f);
+                            p->setVelocidade(sf::Vector2f(p->getVelocidade().x, 0.0f));
                         }
                     }
                     else
@@ -64,12 +64,12 @@ namespace Entidades
                         {
 
                             p->setPosicao(sf::Vector2f(posPlat.x - tamJog.x, posJog.y));
-                            p->setVelX(0.0f);
+                            p->setVelocidade(sf::Vector2f(0.0f, p->getVelocidade().y));
                         }
                         else
                         {
                             p->setPosicao(sf::Vector2f(posPlat.x + tamPlat.x, posJog.y));
-                            p->setVelX(0.0f);
+                            p->setVelocidade(sf::Vector2f(0.0f, p->getVelocidade().y));
                         }
                     }
                 }
