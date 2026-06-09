@@ -30,15 +30,7 @@ namespace Entidades
         sf::Vector2f getVelocidade() const;
 
         void setPosicao(float posx, float posy);
-        float getX() const;
-        float getY() const;
-        void setX(float posX);
-        void setY(float posY);
-        void setVelX(float x);
-        void setVelY(float y);
         void setVel_Max(float max);
-        float getVelX() const;
-        float getVelY() const;
         float getVel_Max() const;
         // protected:
         // void salvarDataBuffer();

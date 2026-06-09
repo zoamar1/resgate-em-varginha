@@ -98,7 +98,7 @@ namespace Gerenciadores
         }
 
         float velMax = pJog1->getVel_Max();
-        float velY = pJog1->getVelY();
+        float velY = pJog1->getVelocidade().y;
         pJog1->setVelocidade(sf::Vector2f(x * velMax, velY));
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))

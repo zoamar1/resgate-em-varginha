@@ -77,54 +77,14 @@ namespace Entidades
         this->velocidade = velocidade;
     }
 
-    float Entidade::getX() const
-    {
-        return posicao.x;
-    }
-
-    float Entidade::getY() const
-    {
-        return posicao.y;
-    }
-
     void Entidade::setPosicao(float posx, float posy)
     {
         setPosicao(sf::Vector2f(posx, posy));
     }
 
-    void Entidade::setX(float posX)
-    {
-        setPosicao(sf::Vector2f(posX, posicao.y));
-    }
-
-    void Entidade::setY(float posY)
-    {
-        setPosicao(sf::Vector2f(posicao.x, posY));
-    }
-
-    void Entidade::setVelX(float x)
-    {
-        velocidade.x = x;
-    }
-
-    void Entidade::setVelY(float y)
-    {
-        velocidade.y = y;
-    }
-
     void Entidade::setVel_Max(float max)
     {
         vel_max = max;
-    }
-
-    float Entidade::getVelX() const
-    {
-        return velocidade.x;
-    }
-
-    float Entidade::getVelY() const
-    {
-        return velocidade.y;
     }
 
     float Entidade::getVel_Max() const
@@ -162,6 +122,6 @@ namespace Entidades
 
     void Entidade::anularGravidade()
     {
-        setVelY(getVelY() - valor_gravidade);
+        velocidade.y -= valor_gravidade;
     }
 }
