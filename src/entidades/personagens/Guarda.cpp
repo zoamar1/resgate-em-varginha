@@ -28,7 +28,7 @@ namespace Entidades
         {
             if (p)
             {
-                p->recebeDano(nivel_maldade);
+                p->recebeDano(nivel_maldade * forca);
             }
         }
 

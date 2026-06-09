@@ -178,7 +178,7 @@ namespace Fases
             int indiceSorteado = rand() % posicoesInimigosFaceis.size();
             sf::Vector2f posEscolhida = posicoesInimigosFaceis[indiceSorteado];
 
-            Entidades::Personagens::Guarda *pGuarda = new Entidades::Personagens::Guarda(posEscolhida.x, posEscolhida.y, 3, 15, 50);
+            Entidades::Personagens::Guarda *pGuarda = new Entidades::Personagens::Guarda(posEscolhida.x, posEscolhida.y, 3, 15, 3);
 
             if (pGuarda)
             {
