@@ -35,7 +35,7 @@ namespace Fases
             }
         }
 
-        for (int i = 0; i < (int)vetorExercitos.size(); i++)
+        /*for (int i = 0; i < (int)vetorExercitos.size(); i++)
         {
             Entidades::Personagens::Exercito *pExercito = vetorExercitos[i];
             if (pExercito && pExercito->getQuerAtirar())
@@ -46,7 +46,7 @@ namespace Fases
                     pExercito->atirar(pProjetil);
                 }
             }
-        }
+        }*/
 
         Fase::executar();
     }
@@ -73,12 +73,6 @@ namespace Fases
 
             if (pExercito)
             {
-                const std::vector<Entidades::Personagens::Jogador *> &jogadores = GC->getJogadores();
-                if (!jogadores.empty())
-                {
-                    pExercito->setJogador(jogadores[0]);
-                }
-
                 lista_ents.incluir(static_cast<Entidades::Entidade *>(pExercito));
                 vetorExercitos.push_back(pExercito);
 

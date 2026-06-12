@@ -18,7 +18,8 @@ namespace Gerenciadores
         Chao,
         FundoFase1,
         Espinhos,
-        Jogador2
+        Jogador2,
+        Explosao
     };
 
     class Gerenciador_Grafico

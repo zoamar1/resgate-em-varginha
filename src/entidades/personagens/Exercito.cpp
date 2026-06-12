@@ -1,5 +1,7 @@
 #include "personagens/Exercito.hpp"
 #include "personagens/Jogador.hpp"
+#include "gerenciadores/Gerenciador_Colisoes.hpp"
+#include "gerenciadores/Gerenciador_Grafico.hpp" // Adicionado o include do GG para garantir que compile
 #include <cmath>
 
 namespace Entidades
@@ -8,9 +10,8 @@ namespace Entidades
     {
         Exercito::Exercito(float posX, float posY, int n, int maldade, int r)
             : Inimigo(posX, posY, n, maldade),
-              raio(r)
+              raio(r), explodindo(false)
         {
-            cooldownTiros = 0.2f;
             setVel_Max(1.4f);
             setVelocidade(sf::Vector2f(1.4f, 0.0f));
 
@@ -25,17 +26,52 @@ namespace Entidades
 
         Exercito::~Exercito() {}
 
-        void Exercito::setJogador(Jogador *pJ)
-        {
-            pJogador = pJ;
-        }
-
         void Exercito::danificar(Jogador *p)
         {
+            if (explodindo)
+            {
+                return;
+            }
+
             if (p)
             {
                 p->recebeDano(nivel_maldade);
             }
+
+            explodindo = true;
+            relogioExplosao.restart();
+
+            Gerenciadores::Gerenciador_Colisoes *pGC = Gerenciadores::Gerenciador_Colisoes::getGerenciador_Colisoes();
+            sf::Vector2f posExercito = getPosicao();
+
+            if (pGC)
+            {
+                const std::vector<Jogador *> &listaJogadores = pGC->getJogadores();
+
+                for (size_t i = 0; i < listaJogadores.size(); ++i) // Mudado para size_t para evitar warnings de comparação signed/unsigned
+                {
+                    Jogador *outroJogador = listaJogadores[i];
+
+                    if (outroJogador != nullptr && outroJogador != p) // Usando nullptr que é o padrão moderno do C++
+                    {
+                        sf::Vector2f posJogador = outroJogador->getPosicao();
+
+                        float dx = posExercito.x - posJogador.x;
+                        float dy = posExercito.y - posJogador.y;
+                        float distancia = std::sqrt((dx * dx) + (dy * dy));
+
+                        if (distancia <= raio)
+                        {
+                            outroJogador->recebeDano(nivel_maldade);
+                        }
+                    }
+                }
+            }
+        }
+
+        void Exercito::atirar(Entidades::Projetil *pProjetil)
+        {
+            // nao faz nada
         }
 
         void Exercito::mover()
@@ -57,72 +93,56 @@ namespace Entidades
             setPosicao(getPosicao() + getVelocidade());
         }
 
-        bool Exercito::verificaPlayerArea()
-        {
-            if (!pJogador)
-                return false;
-
-            sf::Vector2f posExercito = getPosicao();
-            sf::Vector2f posJogador = pJogador->getPosicao();
-
-            float x = posJogador.x - posExercito.x;
-            float y = posJogador.y - posExercito.y;
-            float distancia = std::sqrt(x * x + y * y);
-
-            return distancia <= static_cast<float>(raio);
-        }
-
-        bool Exercito::getQuerAtirar()
-        {
-            return querAtirar;
-        }
-
-        void Exercito::atirar(Entidades::Projetil *pProjetil)
-        {
-            if (!pProjetil || !pJogador)
-                return;
-
-            sf::Vector2f posExercito = getPosicao();
-            sf::Vector2f tamExercito = getpFig()->getSize();
-
-            sf::Vector2f centroExercito = sf::Vector2f(posExercito.x + tamExercito.x / 2.0f, posExercito.y + tamExercito.y / 2.0f);
-
-            sf::Vector2f posJogador = pJogador->getPosicao();
-            sf::Vector2f tamJogador = pJogador->getpFig()->getSize();
-
-            sf::Vector2f centroJogador = sf::Vector2f(posJogador.x + tamJogador.x / 2.0f, posJogador.y + tamJogador.y / 2.0f);
-
-            float x = centroJogador.x - centroExercito.x;
-            float y = centroJogador.y - centroExercito.y;
-            float distancia = std::sqrt(x * x + y * y);
-
-            if (distancia == 0.0f)
-                return;
-
-            float velocidadeProjetil = 10.0f;
-            float velX = (x / distancia) * velocidadeProjetil;
-            float velY = (y / distancia) * velocidadeProjetil;
-
-            pProjetil->setPosicao(centroExercito);
-            pProjetil->setVelocidade(sf::Vector2f(velX, velY));
-            pProjetil->setDeJogador(false);
-            pProjetil->setAtivo(true);
-
-            querAtirar = false;
-            relogioTiro.restart();
-        }
-
         void Exercito::salvar()
         {
         }
 
         void Exercito::executar()
         {
-            mover();
-
-            if (verificaPlayerArea() && relogioTiro.getElapsedTime().asSeconds() >= cooldownTiros)
+            if (!explodindo)
             {
-                querAtirar = true;
+                mover();
+            }
+            else
+            {
+                // Controla o tempo de exibição do sprite da explosão (0.3 segundos)
+                if (relogioExplosao.getElapsedTime().asSeconds() < 0.3f)
+                {
+                    Gerenciadores::Gerenciador_Grafico *pGrafico = Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico();
+
+                    if (pGrafico)
+                    {
+                        // 1. Cria o sprite e puxa a textura correta do seu Gerenciador Gráfico
+                        sf::Sprite spriteExplosao;
+                        sf::Texture &texturaExplosao = pGrafico->getTextura(Gerenciadores::Explosao);
+                        spriteExplosao.setTexture(texturaExplosao);
+
+                        // 2. Centraliza a origem do sprite (para expandir a partir do meio exato do Exercito)
+                        sf::Vector2u tamanhoTextura = texturaExplosao.getSize();
+                        spriteExplosao.setOrigin((float)tamanhoTextura.x / 2.0f, (float)tamanhoTextura.y / 2.0f);
+                        spriteExplosao.setPosition(getPosicao());
+
+                        // 3. Calcula a escala para que o sprite ocupe o tamanho do diâmetro (raio * 2)
+                        float diametroAlvo = (float)raio * 2.0f;
+                        float escalaX = diametroAlvo / (float)tamanhoTextura.x;
+                        float escalaY = diametroAlvo / (float)tamanhoTextura.y;
+                        spriteExplosao.setScale(escalaX, escalaY);
+
+                        // 4. O Gerenciador_Grafico só tem 'desenhaRect', 'desenhaTexto' e 'desenhaEnte'.
+                        // Como um sprite não é um Ente puro e nem um Rect, você pode desenhar direto usando a window:
+                        sf::RenderWindow *janela = pGrafico->getWindow();
+                        if (janela)
+                        {
+                            janela->draw(spriteExplosao);
+                        }
+                    }
+                }
+                else
+                {
+                    explodindo = false;
+                    // Se o inimigo deve sumir permanentemente após a explosão acabar,
+                    // você pode setar uma flag de destruição aqui (ex: destruir = true;)
+                }
             }
         }
     }

@@ -23,6 +23,8 @@ namespace Entidades
             // void salvarDataBuffer();
             void executar();
             void danificar(Jogador *p);
+            //bool verificaPlayerArea();
+            bool getQuerAtirar();
             void atirar(Entidades::Projetil *pProjetil) override;
         };
     }

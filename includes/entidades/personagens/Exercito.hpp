@@ -13,7 +13,9 @@ namespace Entidades
         {
         protected:
             int raio;
-        
+            sf::Clock relogioExplosao;
+            bool explodindo;
+
         public:
             Exercito(float posX = 0.0f, float posY = 0.0f, int n = 3, int maldade = 0, int r = 0);
             ~Exercito();
@@ -22,9 +24,6 @@ namespace Entidades
             void danificar(Jogador *p);
             void mover();
             void salvar();
-            bool verificaPlayerArea();
-            bool getQuerAtirar();
-            void setJogador(Jogador *pJ);
             void atirar(Entidades::Projetil *pProjetil) override;
         };
     }
