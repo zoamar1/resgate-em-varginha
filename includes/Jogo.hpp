@@ -24,6 +24,7 @@ private:
     Estados estado;
     Menu *pMenu;
     Entidades::Personagens::Jogador *pJog1;
+    Entidades::Personagens::Jogador *pJog2;
     Fases::FasePrimeira *pFase1;
     Fases::FaseSegunda *pFase2;
 

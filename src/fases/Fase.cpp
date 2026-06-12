@@ -13,6 +13,14 @@ namespace Fases
             vida->setPosition(LARGURA - 550, 30);
             barra_de_vida.push_back(vida);
         }
+
+        for (int i = 0; i < 2; i++)
+        {
+            sf::RectangleShape *vida = new sf::RectangleShape(sf::Vector2f(500, 30));
+            (i % 2) ? vida->setFillColor(sf::Color::Green) : vida->setFillColor(sf::Color::Red);
+            vida->setPosition(50, 30);
+            barra_de_vida.push_back(vida);
+        }
     }
 
     Fase::~Fase()
@@ -21,10 +29,19 @@ namespace Fases
         {
             GC->limparTudo();
         }
+
         if (GC)
-            lista_ents.limparExcetoJogador(GC->getJogador1());
+        {
+            const std::vector<Entidades::Personagens::Jogador *> &jogadores = GC->getJogadores();
+            for (int i = 0; i < (int)jogadores.size(); i++)
+            {
+                lista_ents.limparExcetoJogador(jogadores[i]);
+            }
+        }
         else
+        {
             lista_ents.limparExcetoJogador(NULL);
+        }
 
         for (int i = 0; i < (int)barra_de_vida.size(); i++)
         {
@@ -44,9 +61,13 @@ namespace Fases
 
         if (GC)
         {
-            if (GC->getJogador1())
+            const std::vector<Entidades::Personagens::Jogador *> &jogadores = GC->getJogadores();
+            for (int i = 0; i < (int)jogadores.size(); i++)
             {
-                GC->getJogador1()->setNoChao(false);
+                if (jogadores[i])
+                {
+                    jogadores[i]->setNoChao(false);
+                }
             }
 
             GC->executar();
@@ -57,10 +78,16 @@ namespace Fases
 
         lista_ents.removerMortos(GC);
 
-        if (GC && GC->getJogador1())
+        if (GC)
         {
-            if (GC->getJogador1()->get_vida_atual() > 0)
-                desenharBarraDeVida(GC->getJogador1());
+            const std::vector<Entidades::Personagens::Jogador *> &jogadores = GC->getJogadores();
+            for (int i = 0; i < (int)jogadores.size(); i++)
+            {
+                if (jogadores[i] && jogadores[i]->get_vida_atual() > 0)
+                {
+                    desenharBarraDeVida(jogadores[i], i);
+                }
+            }
         }
     }
 
@@ -238,14 +265,14 @@ namespace Fases
         criarProjeteis();
     }
 
-    void Fase::incluirJogador(Entidades::Personagens::Jogador *pJog1, sf::Vector2f pos)
+    void Fase::incluirJogador(Entidades::Personagens::Jogador *pJogador, sf::Vector2f pos)
     {
-        if (pJog1)
+        if (pJogador)
         {
-            pJog1->setPosicao(pos);
-            pJog1->setVelocidade(sf::Vector2f(0.0f, 0.0f));
-            pJog1->setNoChao(false);
-            lista_ents.incluir(pJog1);
+            pJogador->setPosicao(pos);
+            pJogador->setVelocidade(sf::Vector2f(0.0f, 0.0f));
+            pJogador->setNoChao(false);
+            lista_ents.incluir(pJogador);
         }
     }
 
@@ -262,17 +289,19 @@ namespace Fases
         }
     }
 
-    void Fase::desenharBarraDeVida(Entidades::Personagens::Jogador *pJog)
+    void Fase::desenharBarraDeVida(Entidades::Personagens::Jogador *pJog, int indiceJogador)
     {
         if (pGG)
         {
-            if (barra_de_vida.size() < 2)
+            int base = indiceJogador * 2;
+
+            if ((int)barra_de_vida.size() < base + 2)
             {
                 return;
             }
 
-            sf::RectangleShape *fundo = barra_de_vida[0];
-            sf::RectangleShape *vida = barra_de_vida[1];
+            sf::RectangleShape *fundo = barra_de_vida[base];
+            sf::RectangleShape *vida = barra_de_vida[base + 1];
             float tamFundoX = fundo->getSize().x;
             float vida_atual = static_cast<float>(pJog->get_vida_atual());
             float vida_total = static_cast<float>(pJog->get_num_vidas());

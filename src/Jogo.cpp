@@ -16,7 +16,11 @@ Jogo::Jogo() : pGG(Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico())
 
     pJog1 = new Entidades::Personagens::Jogador(500, 0);
     pGE->setJogador1(pJog1);
-    pGC->setJogador1(pJog1);
+    pGC->incluirJogador(pJog1);
+
+    pJog2 = new Entidades::Personagens::Jogador(500, 0);
+    pGE->setJogador2(pJog2);
+    pGC->incluirJogador(pJog2);
 };
 
 Jogo::~Jogo()
@@ -43,6 +47,12 @@ Jogo::~Jogo()
     {
         delete pJog1;
         pJog1 = NULL;
+    }
+
+    if (pJog2)
+    {
+        delete pJog2;
+        pJog2 = NULL;
     }
 
     if (pGE)
@@ -87,6 +97,7 @@ void Jogo::executar()
                 {
                     pFase1 = new Fases::FasePrimeira(pGC);
                     pFase1->incluirJogador(pJog1, sf::Vector2f(100.0f, ALTURA - 100));
+                    pFase1->incluirJogador(pJog2, sf::Vector2f(200.0f, ALTURA - 100));
                 }
 
                 pFase1->executar();
@@ -106,6 +117,7 @@ void Jogo::executar()
                 {
                     pFase2 = new Fases::FaseSegunda(pGC);
                     pFase2->incluirJogador(pJog1, sf::Vector2f(100.0f, ALTURA - 100));
+                    pFase2->incluirJogador(pJog2, sf::Vector2f(200.0f, ALTURA - 100));
                 }
                 pFase2->executar();
                 if (pJog1->get_vida_atual() <= 0)

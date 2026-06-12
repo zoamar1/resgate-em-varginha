@@ -16,6 +16,7 @@ namespace Gerenciadores
         Gerenciador_Grafico *pGG;
         Jogo *pJogo;
         Entidades::Personagens::Jogador *pJog1;
+        Entidades::Personagens::Jogador *pJog2;
         Gerenciador_Eventos(Jogo *pJ);
 
     public:
@@ -23,8 +24,10 @@ namespace Gerenciadores
         static Gerenciador_Eventos *getGerenciador_Eventos(Jogo *pJ);
         void setGerenciador_Grafico(Gerenciador_Grafico *pGG);
         void setJogador1(Entidades::Personagens::Jogador *pJogador1);
+        void setJogador2(Entidades::Personagens::Jogador *pJogador2);
         void executar();
         void verificaTeclaPressionada(sf::Event &evento);
         void controlaMovimentoJogador1();
+        void controlaMovimentoJogador2();
     };
 };

@@ -21,9 +21,12 @@ namespace Gerenciadores
         return pColisao;
     }
 
-    void Gerenciador_Colisoes::setJogador1(Entidades::Personagens::Jogador *pJ)
+    void Gerenciador_Colisoes::incluirJogador(Entidades::Personagens::Jogador *pJ)
     {
-        pJog1 = pJ;
+        if (pJ)
+        {
+            LJs.push_back(pJ);
+        }
     }
 
     void Gerenciador_Colisoes::incluirInimigo(Entidades::Personagens::Inimigo *pI)
@@ -97,16 +100,18 @@ namespace Gerenciadores
 
     void Gerenciador_Colisoes::tratarColisoesJogsObstacs()
     {
-        if (pJog1)
+        for (size_t i = 0; i < LJs.size(); i++)
         {
-            std::list<Entidades::Obstaculos::Obstaculo *>::iterator it;
-
-            for (auto it = LOs.begin(); it != LOs.end(); it++)
+            Entidades::Personagens::Jogador *pJog = LJs[i];
+            if (pJog)
             {
-                Entidades::Obstaculos::Obstaculo *pObstaculo = *it;
-                if (pObstaculo && verificarColisao(pJog1, pObstaculo))
+                for (std::list<Entidades::Obstaculos::Obstaculo *>::iterator it = LOs.begin(); it != LOs.end(); ++it)
                 {
-                    pObstaculo->obstaculizar(pJog1);
+                    Entidades::Obstaculos::Obstaculo *pObstaculo = *it;
+                    if (pObstaculo && verificarColisao(pJog, pObstaculo))
+                    {
+                        pObstaculo->obstaculizar(pJog);
+                    }
                 }
             }
         }
@@ -114,20 +119,21 @@ namespace Gerenciadores
 
     void Gerenciador_Colisoes::tratarColisoesJogsInimgs()
     {
-        if (pJog1)
+        for (size_t i = 0; i < LJs.size(); i++)
         {
-            std::vector<Entidades::Personagens::Inimigo *>::iterator it;
-
-            for (auto it = LIs.begin(); it != LIs.end(); it++)
+            Entidades::Personagens::Jogador *pJog = LJs[i];
+            if (pJog)
             {
-                Entidades::Personagens::Inimigo *pInimigo = *it;
-
-                if (pInimigo && verificarColisao(pJog1, pInimigo))
+                for (size_t j = 0; j < LIs.size(); j++)
                 {
-                    if (!pJog1->getInvencivel())
+                    Entidades::Personagens::Inimigo *pInimigo = LIs[j];
+                    if (pInimigo && verificarColisao(pJog, pInimigo))
                     {
-                        pInimigo->danificar(pJog1);
-                        pJog1->colidir(pInimigo);
+                        if (!pJog->getInvencivel())
+                        {
+                            pInimigo->danificar(pJog);
+                            pJog->colidir(pInimigo);
+                        }
                     }
                 }
             }
@@ -136,32 +142,24 @@ namespace Gerenciadores
 
     void Gerenciador_Colisoes::tratarColisoesInimProjeteis()
     {
-        std::set<Entidades::Projetil *>::iterator itProj;
-        std::vector<Entidades::Personagens::Inimigo *>::iterator itInim;
-
-        for (itProj = LPs.begin(); itProj != LPs.end(); itProj++)
+        for (std::set<Entidades::Projetil *>::iterator itProj = LPs.begin(); itProj != LPs.end(); ++itProj)
         {
             Entidades::Projetil *pProjetil = *itProj;
-
             if (pProjetil && pProjetil->getAtivo())
             {
                 if (pProjetil->getDeJogador())
                 {
-                    for (itInim = LIs.begin(); itInim != LIs.end(); itInim++)
+                    for (size_t i = 0; i < LIs.size(); i++)
                     {
-                        Entidades::Personagens::Inimigo *pInimigo = *itInim;
-
-                        if (pInimigo)
+                        Entidades::Personagens::Inimigo *pInimigo = LIs[i];
+                        if (pInimigo && verificarColisao(pInimigo, pProjetil))
                         {
-                            if (verificarColisao(pInimigo, pProjetil))
-                            {
-                                pInimigo->recebeDano(pProjetil->getDano());
+                            pInimigo->recebeDano(pProjetil->getDano());
 
-                                pProjetil->setAtivo(false);
-                                pProjetil->setPosicao(sf::Vector2f(-500.0f, -500.0f));
-                                pProjetil->setVelocidade(sf::Vector2f(0.0f, 0.0f));
-                                break;
-                            }
+                            pProjetil->setAtivo(false);
+                            pProjetil->setPosicao(sf::Vector2f(-500.0f, -500.0f));
+                            pProjetil->setVelocidade(sf::Vector2f(0.0f, 0.0f));
+                            break;
                         }
                     }
                 }
@@ -171,16 +169,18 @@ namespace Gerenciadores
 
     void Gerenciador_Colisoes::tratarColisoesJogsProjeteis()
     {
-        if (pJog1)
+        for (size_t i = 0; i < LJs.size(); i++)
         {
-            std::set<Entidades::Projetil *>::iterator it;
-
-            for (auto it = LPs.begin(); it != LPs.end(); it++)
+            Entidades::Personagens::Jogador *pJog = LJs[i];
+            if (pJog)
             {
-                Entidades::Projetil *pProjetil = *it;
-                if (pProjetil && pProjetil->getAtivo() && !pProjetil->getDeJogador() && verificarColisao(pJog1, pProjetil))
+                for (std::set<Entidades::Projetil *>::iterator itProj = LPs.begin(); itProj != LPs.end(); ++itProj)
                 {
-                    pJog1->recebeDano(pProjetil->getDano());
+                    Entidades::Projetil *pProjetil = *itProj;
+                    if (pProjetil && pProjetil->getAtivo() && !pProjetil->getDeJogador() && verificarColisao(pJog, pProjetil))
+                    {
+                        pJog->recebeDano(pProjetil->getDano());
+                    }
                 }
             }
         }
@@ -188,13 +188,17 @@ namespace Gerenciadores
 
     void Gerenciador_Colisoes::colisaoJogadorChao(Entidades::Chao *pChao)
     {
-        if (pChao && pJog1)
+        if (!pChao)
+            return;
+
+        for (size_t i = 0; i < LJs.size(); i++)
         {
-            if (verificarColisao(pJog1, pChao))
+            Entidades::Personagens::Jogador *pJog = LJs[i];
+            if (pJog && verificarColisao(pJog, pChao))
             {
-                sf::Vector2f posJog = pJog1->getPosicao();
-                sf::Vector2f velJog = pJog1->getVelocidade();
-                float pAlt = static_cast<float>(pJog1->getpFig()->getSize().y);
+                sf::Vector2f posJog = pJog->getPosicao();
+                sf::Vector2f velJog = pJog->getVelocidade();
+                float pAlt = static_cast<float>(pJog->getpFig()->getSize().y);
 
                 sf::Vector2f posChao = pChao->getPosicao();
                 float chaoAlt = static_cast<float>(pChao->getpFig()->getSize().y);
@@ -204,54 +208,47 @@ namespace Gerenciadores
 
                 if (centroJogY < centroChaoY)
                 {
-                    pJog1->setPosicao(sf::Vector2f(posJog.x, posChao.y - pAlt));
+                    pJog->setPosicao(sf::Vector2f(posJog.x, posChao.y - pAlt));
                     velJog.y = 0.0f;
-                    pJog1->setNoChao(true);
+                    pJog->setNoChao(true);
                 }
-
                 else
                 {
-                    pJog1->setPosicao(sf::Vector2f(posJog.x, posChao.y + chaoAlt));
+                    pJog->setPosicao(sf::Vector2f(posJog.x, posChao.y + chaoAlt));
                     velJog.y = 0.1f;
                 }
 
-                pJog1->setVelocidade(velJog);
+                pJog->setVelocidade(velJog);
             }
         }
     }
 
     void Gerenciador_Colisoes::colisaoInimigoChao(Entidades::Chao *pChao)
     {
-        if (pChao)
+        if (!pChao)
+            return;
+
+        for (size_t i = 0; i < LIs.size(); i++)
         {
-            std::vector<Entidades::Personagens::Inimigo *>::iterator it;
-
-            for (auto it = LIs.begin(); it != LIs.end(); it++)
+            Entidades::Personagens::Inimigo *pInimigo = LIs[i];
+            if (pInimigo && verificarColisao(pInimigo, pChao))
             {
-                Entidades::Personagens::Inimigo *pInimigo = *it;
+                float pAlt = static_cast<float>(pInimigo->getpFig()->getSize().y);
+                sf::Vector2f posInimigo = pInimigo->getPosicao();
+                sf::Vector2f velInimigo = pInimigo->getVelocidade();
 
-                if (pInimigo)
-                {
-                    if (verificarColisao(pInimigo, pChao))
-                    {
-                        float pAlt = static_cast<float>(pInimigo->getpFig()->getSize().y);
-                        sf::Vector2f posInimigo = pInimigo->getPosicao();
-                        sf::Vector2f velInimigo = pInimigo->getVelocidade();
+                float chaoY = pChao->getPosicao().y;
 
-                        float chaoY = pChao->getPosicao().y;
-
-                        pInimigo->setPosicao(sf::Vector2f(posInimigo.x, chaoY - pAlt));
-                        velInimigo.y = 0.0f;
-                        pInimigo->setVelocidade(velInimigo);
-                    }
-                }
+                pInimigo->setPosicao(sf::Vector2f(posInimigo.x, chaoY - pAlt));
+                velInimigo.y = 0.0f;
+                pInimigo->setVelocidade(velInimigo);
             }
         }
     }
 
-    Entidades::Personagens::Jogador *Gerenciador_Colisoes::getJogador1() const
+    std::vector<Entidades::Personagens::Jogador *> &Gerenciador_Colisoes::getJogadores() const
     {
-        return pJog1;
+        return LJs;
     }
 
     void Gerenciador_Colisoes::executar()
@@ -260,11 +257,12 @@ namespace Gerenciadores
         tratarColisoesJogsObstacs();
         tratarColisoesJogsProjeteis();
         tratarColisoesInimProjeteis();
+
         if (!LCs.empty())
         {
-            for (auto it = LCs.begin(); it != LCs.end(); ++it)
+            for (size_t i = 0; i < LCs.size(); i++)
             {
-                Entidades::Chao *pChao = *it;
+                Entidades::Chao *pChao = LCs[i];
                 if (pChao)
                 {
                     colisaoJogadorChao(pChao);
@@ -281,5 +279,4 @@ namespace Gerenciadores
         LPs.clear();
         LCs.clear();
     }
-
 }

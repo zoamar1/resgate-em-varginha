@@ -135,6 +135,10 @@ namespace Gerenciadores
         {
             std::cout << "textura do alien nao carregou" << std::endl;
         }
+        if (!texturas[Jogador2].loadFromFile("assets/jogador2.png"))
+        {
+            std::cout << "textura do jogador2 nao carregou" << std::endl;
+        }
     }
 
     sf::Texture &Gerenciadores::Gerenciador_Grafico::getTextura(IDTextura id)

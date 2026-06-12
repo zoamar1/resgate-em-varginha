@@ -17,7 +17,7 @@ namespace Gerenciadores
         std::list<Entidades::Obstaculos::Obstaculo *> LOs;
         std::set<Entidades::Projetil *> LPs;
         std::vector<Entidades::Chao *> LCs;
-        Entidades::Personagens::Jogador *pJog1;
+        std::vector<Entidades::Personagens::Jogador *> LJs;
 
     private:
         Gerenciador_Colisoes();
@@ -26,7 +26,7 @@ namespace Gerenciadores
         ~Gerenciador_Colisoes();
 
         static Gerenciador_Colisoes *getGerenciador_Colisoes();
-        void setJogador1(Entidades::Personagens::Jogador *pJ);
+        void incluirJogador(Entidades::Personagens::Jogador *pJ);
         void incluirInimigo(Entidades::Personagens::Inimigo *pi);
         void removerInimigo(Entidades::Personagens::Inimigo *pI);
         void incluirObstaculo(Entidades::Obstaculos::Obstaculo *po);
@@ -35,10 +35,10 @@ namespace Gerenciadores
         void executar();
         void limparTudo();
 
-        Entidades::Personagens::Jogador *getJogador1() const;
-
         void colisaoJogadorChao(Entidades::Chao *chao);
         void colisaoInimigoChao(Entidades::Chao *chao);
+
+        std::vector<Entidades::Personagens::Jogador *> &getJogadores() const;
 
     private:
         bool verificarColisao(Entidades::Entidade *pe1, Entidades::Entidade *pe2) const;
