@@ -92,6 +92,22 @@ namespace Gerenciadores
                 }
             }
         }
+
+        if (evento.type == sf::Event::KeyPressed && evento.key.code == sf::Keyboard::P)
+        {
+            if ((estado == Jogo::FASE1 || estado == Jogo::FASE2) && pJog1 && pJog2)
+            {
+                Fases::Fase *pFase = static_cast<Fases::Fase *>(pJogo->getCenarioAtual());
+                if (pFase)
+                {
+                    Entidades::Projetil *pProjetil = pFase->getProjetilDisponivel();
+                    if (pProjetil)
+                    {
+                        pJog2->atirar(pProjetil);
+                    }
+                }
+            }
+        }
     }
 
     void Gerenciador_Eventos::controlaMovimentoJogador1()
