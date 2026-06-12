@@ -75,7 +75,7 @@ namespace Fases
             int indiceSorteado = rand() % posicoesChefao.size();
             sf::Vector2f posEscolhida = posicoesChefao[indiceSorteado];
 
-            Entidades::Personagens::ET_Varginha *pChefao = new Entidades::Personagens::ET_Varginha(posEscolhida.x, posEscolhida.y, 3, 15, 400);
+            Entidades::Personagens::ET_Varginha *pChefao = new Entidades::Personagens::ET_Varginha(posEscolhida.x, posEscolhida.y, 3, 15, 1);
 
             if (pChefao)
             {
