@@ -18,6 +18,8 @@ namespace Entidades
             sf::Clock clockInvencivel;
             float tempoInvencivel;
             bool invencivel;
+            sf::Clock relogioTiro;
+            float cooldownTiros;
 
         public:
             Jogador(int n = 3, int p = 0, float tInvencivel = 1.0f, bool invencivel = false);

@@ -69,11 +69,6 @@ namespace Entidades
             }
         }
 
-        void Exercito::atirar(Entidades::Projetil *pProjetil)
-        {
-            // nao faz nada
-        }
-
         void Exercito::mover()
         {
             aplicarGravidade();

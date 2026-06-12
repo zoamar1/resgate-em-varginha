@@ -24,7 +24,6 @@ namespace Entidades
             void danificar(Jogador *p);
             void mover();
             void salvar();
-            void atirar(Entidades::Projetil *pProjetil) override;
             void desenharExplosao();
             bool getExplodindo() const;
         };

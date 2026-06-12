@@ -32,11 +32,6 @@ namespace Entidades
             }
         }
 
-        void Guarda::atirar(Entidades::Projetil *pProjetil)
-        {
-            // nao faz nada
-        }
-
         void Guarda::mover()
         {
             aplicarGravidade();

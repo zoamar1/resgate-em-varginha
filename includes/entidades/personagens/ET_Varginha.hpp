@@ -12,6 +12,8 @@ namespace Entidades
         {
         protected:
             int multiplicador_laser;
+            sf::Clock relogioTiro;
+            float cooldownTiros;
 
         public:
             ET_Varginha(float posX = 0.0f, float posY = 0.0f, int n = 3, int maldade = 0, int ml = 0);
@@ -23,9 +25,9 @@ namespace Entidades
             // void salvarDataBuffer();
             void executar();
             void danificar(Jogador *p);
-            //bool verificaPlayerArea();
+            // bool verificaPlayerArea();
             bool getQuerAtirar();
-            void atirar(Entidades::Projetil *pProjetil) override;
+            void atirar(Entidades::Projetil *pProjetil);
         };
     }
 }
