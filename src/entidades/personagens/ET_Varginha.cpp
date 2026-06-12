@@ -76,7 +76,7 @@ namespace Entidades
             float menorDistancia = -1.0f;
             float raioDesejado = 400.0f;
 
-            for (size_t i = 0; i < jogadores.size(); ++i)
+            for (int i = 0; i < jogadores.size(); ++i)
             {
                 Jogador *pJog = jogadores[i];
                 if (pJog)
