@@ -11,7 +11,7 @@ namespace Entidades
         class ET_Varginha : public Inimigo
         {
         protected:
-            int multiplicador_laser;
+            int multiplicador_forca;
             sf::Clock relogioTiro;
             float cooldownTiros;
 
@@ -25,7 +25,7 @@ namespace Entidades
             // void salvarDataBuffer();
             void executar();
             void danificar(Jogador *p);
-            // bool verificaPlayerArea();
+            bool verificaPlayerArea();
             bool getQuerAtirar();
             void atirar(Entidades::Projetil *pProjetil);
         };

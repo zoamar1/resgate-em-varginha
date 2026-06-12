@@ -7,7 +7,7 @@ namespace Entidades
     {
         ET_Varginha::ET_Varginha(float posX, float posY, int n, int maldade, int ml)
             : Inimigo(posX, posY, n, maldade),
-              multiplicador_laser(ml)
+              multiplicador_forca(ml)
         {
             cooldownTiros = 0.2f;
             setVel_Max(2.0f);
@@ -47,7 +47,8 @@ namespace Entidades
         {
             if (p)
             {
-                // falta concluir essa parte
+                multiplicador_forca++;
+                p->recebeDano(nivel_maldade * multiplicador_forca);
             }
         }
 
