@@ -1,6 +1,7 @@
 #include "fases/Fase.hpp"
 #include "entidades/obstaculos/Plataforma.hpp"
 #include "entidades/personagens/Guarda.hpp"
+#include "entidades/personagens/Exercito.hpp"
 
 namespace Fases
 {
@@ -75,6 +76,19 @@ namespace Fases
 
         desenhar();
         lista_ents.desenhar();
+
+        if (GC)
+        {
+            const std::vector<Entidades::Personagens::Inimigo *> &inimigos = GC->getInimigos();
+            for (int i = 0; i < (int)inimigos.size(); i++)
+            {
+                Entidades::Personagens::Exercito *pExercito = dynamic_cast<Entidades::Personagens::Exercito *>(inimigos[i]);
+                if (pExercito)
+                {
+                    pExercito->desenharExplosao();
+                }
+            }
+        }
 
         lista_ents.removerMortos(GC);
 

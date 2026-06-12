@@ -97,6 +97,11 @@ namespace Entidades
         {
         }
 
+        bool Exercito::getExplodindo() const
+        {
+            return explodindo;
+        }
+
         void Exercito::executar()
         {
             if (!explodindo)
@@ -105,43 +110,55 @@ namespace Entidades
             }
             else
             {
-                // Controla o tempo de exibição do sprite da explosão (0.3 segundos)
-                if (relogioExplosao.getElapsedTime().asSeconds() < 0.3f)
-                {
-                    Gerenciadores::Gerenciador_Grafico *pGrafico = Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico();
-
-                    if (pGrafico)
-                    {
-                        // 1. Cria o sprite e puxa a textura correta do seu Gerenciador Gráfico
-                        sf::Sprite spriteExplosao;
-                        sf::Texture &texturaExplosao = pGrafico->getTextura(Gerenciadores::Explosao);
-                        spriteExplosao.setTexture(texturaExplosao);
-
-                        // 2. Centraliza a origem do sprite (para expandir a partir do meio exato do Exercito)
-                        sf::Vector2u tamanhoTextura = texturaExplosao.getSize();
-                        spriteExplosao.setOrigin((float)tamanhoTextura.x / 2.0f, (float)tamanhoTextura.y / 2.0f);
-                        spriteExplosao.setPosition(getPosicao());
-
-                        // 3. Calcula a escala para que o sprite ocupe o tamanho do diâmetro (raio * 2)
-                        float diametroAlvo = (float)raio * 2.0f;
-                        float escalaX = diametroAlvo / (float)tamanhoTextura.x;
-                        float escalaY = diametroAlvo / (float)tamanhoTextura.y;
-                        spriteExplosao.setScale(escalaX, escalaY);
-
-                        // 4. O Gerenciador_Grafico só tem 'desenhaRect', 'desenhaTexto' e 'desenhaEnte'.
-                        // Como um sprite não é um Ente puro e nem um Rect, você pode desenhar direto usando a window:
-                        sf::RenderWindow *janela = pGrafico->getWindow();
-                        if (janela)
-                        {
-                            janela->draw(spriteExplosao);
-                        }
-                    }
-                }
-                else
+                if (relogioExplosao.getElapsedTime().asSeconds() >= 0.3f)
                 {
                     explodindo = false;
-                    // Se o inimigo deve sumir permanentemente após a explosão acabar,
-                    // você pode setar uma flag de destruição aqui (ex: destruir = true;)
+                }
+            }
+        }
+
+        void Exercito::desenharExplosao()
+        {
+            if (!explodindo)
+            {
+                return;
+            }
+
+            if (relogioExplosao.getElapsedTime().asSeconds() >= 0.3f)
+            {
+                return;
+            }
+
+            Gerenciadores::Gerenciador_Grafico *pGrafico = Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico();
+
+            if (pGrafico && pFig)
+            {
+                sf::Sprite spriteExplosao;
+                sf::Texture &texturaExplosao = pGrafico->getTextura(Gerenciadores::Explosao);
+                spriteExplosao.setTexture(texturaExplosao);
+
+                sf::Vector2u tamanhoTextura = texturaExplosao.getSize();
+                spriteExplosao.setOrigin((float)tamanhoTextura.x / 2.0f, (float)tamanhoTextura.y / 2.0f);
+
+                sf::Vector2f posFig = getPosicao();
+                sf::Vector2f tamFig = pFig->getSize();
+                sf::Vector2f centro = posFig + (tamFig / 2.0f);
+
+                spriteExplosao.setPosition(centro);
+
+                float fatorExplosao = 3.0f;
+                float larguraAlvo = tamFig.x * fatorExplosao;
+                float alturaAlvo = tamFig.y * fatorExplosao;
+
+                float escalaX = larguraAlvo / (float)tamanhoTextura.x;
+                float escalaY = alturaAlvo / (float)tamanhoTextura.y;
+
+                spriteExplosao.setScale(escalaX, escalaY);
+
+                sf::RenderWindow *janela = pGrafico->getWindow();
+                if (janela)
+                {
+                    janela->draw(spriteExplosao);
                 }
             }
         }

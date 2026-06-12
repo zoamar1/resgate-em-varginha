@@ -251,6 +251,11 @@ namespace Gerenciadores
         return LJs;
     }
 
+    const std::vector<Entidades::Personagens::Inimigo *> &Gerenciador_Colisoes::getInimigos() const
+    {
+        return LIs;
+    }
+
     void Gerenciador_Colisoes::executar()
     {
         tratarColisoesJogsInimgs();
