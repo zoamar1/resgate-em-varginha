@@ -50,6 +50,10 @@ namespace Gerenciadores
         {
             controlaMovimentoJogador1();
         }
+        if (pJog2)
+        {
+            controlaMovimentoJogador2();
+        }
     }
 
     void Gerenciador_Eventos::verificaTeclaPressionada(sf::Event &evento)
@@ -121,16 +125,16 @@ namespace Gerenciadores
 
         if (x != 0)
         {
-            pJog1->setDirecao(x);
+            pJog2->setDirecao(x);
         }
 
-        float velMax = pJog1->getVel_Max();
-        float velY = pJog1->getVelocidade().y;
-        pJog1->setVelocidade(sf::Vector2f(x * velMax, velY));
+        float velMax = pJog2->getVel_Max();
+        float velY = pJog2->getVelocidade().y;
+        pJog2->setVelocidade(sf::Vector2f(x * velMax, velY));
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         {
-            pJog1->pular();
+            pJog2->pular();
         }
     }
 }

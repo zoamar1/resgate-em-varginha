@@ -73,7 +73,11 @@ namespace Fases
 
             if (pExercito)
             {
-                pExercito->setJogador(GC->getJogador1());
+                const std::vector<Entidades::Personagens::Jogador *> &jogadores = GC->getJogadores();
+                if (!jogadores.empty())
+                {
+                    pExercito->setJogador(jogadores[0]);
+                }
 
                 lista_ents.incluir(static_cast<Entidades::Entidade *>(pExercito));
                 vetorExercitos.push_back(pExercito);

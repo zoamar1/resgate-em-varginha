@@ -246,7 +246,7 @@ namespace Gerenciadores
         }
     }
 
-    std::vector<Entidades::Personagens::Jogador *> &Gerenciador_Colisoes::getJogadores() const
+    const std::vector<Entidades::Personagens::Jogador *> &Gerenciador_Colisoes::getJogadores() const
     {
         return LJs;
     }

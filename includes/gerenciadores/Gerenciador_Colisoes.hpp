@@ -38,7 +38,7 @@ namespace Gerenciadores
         void colisaoJogadorChao(Entidades::Chao *chao);
         void colisaoInimigoChao(Entidades::Chao *chao);
 
-        std::vector<Entidades::Personagens::Jogador *> &getJogadores() const;
+        const std::vector<Entidades::Personagens::Jogador *> &getJogadores() const;
 
     private:
         bool verificarColisao(Entidades::Entidade *pe1, Entidades::Entidade *pe2) const;
@@ -47,5 +47,4 @@ namespace Gerenciadores
         void tratarColisoesJogsProjeteis();
         void tratarColisoesInimProjeteis();
     };
-
 }
