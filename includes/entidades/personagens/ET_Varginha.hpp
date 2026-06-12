@@ -14,6 +14,8 @@ namespace Entidades
             int multiplicador_forca;
             sf::Clock relogioTiro;
             float cooldownTiros;
+            bool querAtirar;
+            static Jogador *pJogador;
 
         public:
             ET_Varginha(float posX = 0.0f, float posY = 0.0f, int n = 3, int maldade = 0, int ml = 0);

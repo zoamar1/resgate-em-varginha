@@ -1,15 +1,19 @@
 #include "personagens/ET_Varginha.hpp"
 #include "personagens/Jogador.hpp"
+#include "gerenciadores/Gerenciador_Colisoes.hpp"
+#include <cmath>
 
 namespace Entidades
 {
     namespace Personagens
     {
+        Jogador *ET_Varginha::pJogador = NULL;
+
         ET_Varginha::ET_Varginha(float posX, float posY, int n, int maldade, int ml)
             : Inimigo(posX, posY, n, maldade),
-              multiplicador_forca(ml)
+              multiplicador_forca(ml), querAtirar(false)
         {
-            cooldownTiros = 0.2f;
+            cooldownTiros = 0.8f;
             setVel_Max(2.0f);
             setVelocidade(sf::Vector2f(2.0f, 0.0f));
 
@@ -20,6 +24,7 @@ namespace Entidades
             }
 
             aplicarTextura(Gerenciadores::ET_Varginha);
+            relogioTiro.restart();
         }
 
         ET_Varginha::~ET_Varginha() {}
@@ -56,20 +61,47 @@ namespace Entidades
         {
         }
 
-        /*bool ET_Varginha::verificaPlayerArea()
+        bool ET_Varginha::verificaPlayerArea()
         {
-            if (!pJogador)
+            Gerenciadores::Gerenciador_Colisoes *pGC = Gerenciadores::Gerenciador_Colisoes::getGerenciador_Colisoes();
+            if (!pGC)
                 return false;
 
-            sf::Vector2f posExercito = getPosicao();
-            sf::Vector2f posJogador = pJogador->getPosicao();
+            const std::vector<Jogador *> &jogadores = pGC->getJogadores();
+            if (jogadores.empty())
+                return false;
 
-            float x = posJogador.x - posExercito.x;
-            float y = posJogador.y - posExercito.y;
-            float distancia = std::sqrt(x * x + y * y);
+            sf::Vector2f posInimigo = getPosicao();
+            Jogador *jogadorMaisProximo = NULL;
+            float menorDistancia = -1.0f;
+            float raioDesejado = 400.0f;
 
-            return distancia <= static_cast<float>(raio);
-        }*/
+            for (size_t i = 0; i < jogadores.size(); ++i)
+            {
+                Jogador *pJog = jogadores[i];
+                if (pJog)
+                {
+                    sf::Vector2f posJogador = pJog->getPosicao();
+                    float x = posJogador.x - posInimigo.x;
+                    float y = posJogador.y - posInimigo.y;
+                    float distancia = std::sqrt(x * x + y * y);
+
+                    if (menorDistancia < 0.0f || distancia < menorDistancia)
+                    {
+                        menorDistancia = distancia;
+                        jogadorMaisProximo = pJog;
+                    }
+                }
+            }
+
+            if (jogadorMaisProximo && menorDistancia <= raioDesejado)
+            {
+                pJogador = jogadorMaisProximo;
+                return true;
+            }
+
+            return false;
+        }
 
         bool ET_Varginha::getQuerAtirar()
         {
@@ -78,7 +110,7 @@ namespace Entidades
 
         void ET_Varginha::atirar(Entidades::Projetil *pProjetil)
         {
-            /*if (!pProjetil || !pJogador)
+            if (!pProjetil || !pJogador)
                 return;
 
             sf::Vector2f posExercito = getPosicao();
@@ -108,17 +140,17 @@ namespace Entidades
             pProjetil->setAtivo(true);
 
             querAtirar = false;
-            relogioTiro.restart();*/
+            relogioTiro.restart();
         }
 
         void ET_Varginha::executar()
         {
             mover();
 
-            /* if (verificaPlayerArea() && relogioTiro.getElapsedTime().asSeconds() >= cooldownTiros)
-             {
-                 querAtirar = true;
-             }*/
+            if (verificaPlayerArea() && relogioTiro.getElapsedTime().asSeconds() >= cooldownTiros)
+            {
+                querAtirar = true;
+            }
         }
     }
 }

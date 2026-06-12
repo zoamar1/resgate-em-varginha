@@ -1,6 +1,14 @@
 #pragma once
 #include "fases/Fase.hpp"
 
+namespace Entidades
+{
+    namespace Personagens
+    {
+        class ET_Varginha;
+    }
+}
+
 namespace Fases
 {
     class FaseSegunda : public Fase
@@ -9,6 +17,7 @@ namespace Fases
         const int maxETs;
         std::vector<sf::Vector2f> posicoesEspinhos;
         std::vector<sf::Vector2f> posicoesChefao;
+        std::vector<Entidades::Personagens::ET_Varginha *> vetorETs;
 
     public:
         FaseSegunda(Gerenciadores::Gerenciador_Colisoes *pGC);

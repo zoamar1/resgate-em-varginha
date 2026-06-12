@@ -1,6 +1,7 @@
 #include "fases/FasePrimeira.hpp"
 #include "entidades/obstaculos/Arbusto.hpp"
 #include "entidades/personagens/Exercito.hpp"
+#include "entidades/personagens/ET_Varginha.hpp"
 
 namespace Fases
 {
@@ -34,19 +35,6 @@ namespace Fases
                 it++;
             }
         }
-
-        /*for (int i = 0; i < (int)vetorExercitos.size(); i++)
-        {
-            Entidades::Personagens::Exercito *pExercito = vetorExercitos[i];
-            if (pExercito && pExercito->getQuerAtirar())
-            {
-                Entidades::Projetil *pProjetil = getProjetilDisponivel();
-                if (pProjetil)
-                {
-                    pExercito->atirar(pProjetil);
-                }
-            }
-        }*/
 
         Fase::executar();
     }

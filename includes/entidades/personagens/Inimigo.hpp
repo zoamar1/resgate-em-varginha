@@ -13,8 +13,6 @@ namespace Entidades
         protected:
             int nivel_maldade;
             sf::Vector2f posicaoInicial;
-            bool querAtirar;
-            static Jogador *pJogador;
 
         public:
             // lembrar de mudar n(numero de vidas) para o padrao do INIMIGO!!!!

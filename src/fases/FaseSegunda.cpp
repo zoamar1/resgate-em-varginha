@@ -16,6 +16,8 @@ namespace Fases
     FaseSegunda::~FaseSegunda()
     {
         posicoesEspinhos.clear();
+        posicoesChefao.clear();
+        vetorETs.clear();
     }
 
     void FaseSegunda::criarEspinhos()
@@ -81,6 +83,8 @@ namespace Fases
             {
                 lista_ents.incluir(static_cast<Entidades::Entidade *>(pChefao));
 
+                vetorETs.push_back(pChefao);
+
                 if (GC)
                 {
                     GC->incluirInimigo(static_cast<Entidades::Personagens::Inimigo *>(pChefao));
@@ -114,6 +118,31 @@ namespace Fases
 
     void FaseSegunda::executar()
     {
+        for (auto it = vetorETs.begin(); it != vetorETs.end();)
+        {
+            if (*it == NULL || (*it)->get_vida_atual() <= 0)
+            {
+                it = vetorETs.erase(it);
+            }
+            else
+            {
+                it++;
+            }
+        }
+
+        for (int i = 0; i < (int)vetorETs.size(); i++)
+        {
+            Entidades::Personagens::ET_Varginha *pET = vetorETs[i];
+            if (pET && pET->getQuerAtirar())
+            {
+                Entidades::Projetil *pProjetil = getProjetilDisponivel();
+                if (pProjetil)
+                {
+                    pET->atirar(pProjetil);
+                }
+            }
+        }
+
         Fase::executar();
     }
 
