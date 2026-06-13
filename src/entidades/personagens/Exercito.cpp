@@ -1,7 +1,7 @@
 #include "personagens/Exercito.hpp"
 #include "personagens/Jogador.hpp"
 #include "gerenciadores/Gerenciador_Colisoes.hpp"
-#include "gerenciadores/Gerenciador_Grafico.hpp" 
+#include "gerenciadores/Gerenciador_Grafico.hpp"
 #include <cmath>
 
 namespace Entidades
@@ -48,11 +48,11 @@ namespace Entidades
             {
                 const std::vector<Jogador *> &listaJogadores = pGC->getJogadores();
 
-                for (int i = 0; i < listaJogadores.size(); ++i) 
+                for (int i = 0; i < listaJogadores.size(); ++i)
                 {
                     Jogador *outroJogador = listaJogadores[i];
 
-                    if (outroJogador != nullptr && outroJogador != p) /
+                    if (outroJogador != nullptr && outroJogador != p)
                     {
                         sf::Vector2f posJogador = outroJogador->getPosicao();
 
