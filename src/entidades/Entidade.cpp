@@ -69,7 +69,16 @@ namespace Entidades
         this->posicao = posicao;
         pFig->setPosition(posicao);
         if (pSprite)
-            pSprite->setPosition(posicao);
+        {
+            if (pSprite->getScale().x < 0.0f)
+            {
+                pSprite->setPosition(posicao.x + pFig->getSize().x, posicao.y);
+            }
+            else
+            {
+                pSprite->setPosition(posicao);
+            }
+        }
     }
 
     void Entidade::setVelocidade(const sf::Vector2f &velocidade)

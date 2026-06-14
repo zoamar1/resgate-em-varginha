@@ -39,13 +39,16 @@ namespace Entidades
             if (posicaoAtual.x > (posicaoInicial.x + 100) && velAtual.x > 0.0f)
             {
                 setVelocidade(sf::Vector2f(-getVel_Max(), velAtual.y));
+                pSprite->setScale(-pSprite->getScale().x, pSprite->getScale().y);
             }
             else if (posicaoAtual.x < (posicaoInicial.x - 100) && velAtual.x < 0.0f)
             {
                 setVelocidade(sf::Vector2f(getVel_Max(), velAtual.y));
+                pSprite->setScale(-pSprite->getScale().x, pSprite->getScale().y);
             }
 
             setPosicao(getPosicao() + getVelocidade());
+
         }
 
         void ET_Varginha::danificar(Jogador *p)

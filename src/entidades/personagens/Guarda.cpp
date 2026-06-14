@@ -15,7 +15,7 @@ namespace Entidades
 
             if (pFig)
             {
-                pFig->setSize(sf::Vector2f(70.0f, 197.0f));
+                pFig->setSize(sf::Vector2f(70.0f, 140.0f));
                 pFig->setPosition(sf::Vector2f(posX, posY));
             }
 
@@ -42,13 +42,16 @@ namespace Entidades
             if (posicaoAtual.x > (posicaoInicial.x + 100) && velAtual.x > 0.0f)
             {
                 setVelocidade(sf::Vector2f(-getVel_Max(), velAtual.y));
+                pSprite->setScale(-pSprite->getScale().x, pSprite->getScale().y);
             }
             else if (posicaoAtual.x < (posicaoInicial.x - 100) && velAtual.x < 0.0f)
             {
                 setVelocidade(sf::Vector2f(getVel_Max(), velAtual.y));
+                pSprite->setScale(-pSprite->getScale().x, pSprite->getScale().y);
             }
 
             setPosicao(getPosicao() + getVelocidade());
+
         }
 
         void Guarda::salvar()
