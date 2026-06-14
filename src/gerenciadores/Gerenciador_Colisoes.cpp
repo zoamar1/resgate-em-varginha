@@ -1,4 +1,5 @@
 #include "gerenciadores/Gerenciador_Colisoes.hpp"
+#include "entidades/Portal.hpp"
 
 namespace Gerenciadores
 {
@@ -72,6 +73,14 @@ namespace Gerenciadores
         if (pP)
         {
             LPs.insert(pP);
+        }
+    }
+
+    void Gerenciador_Colisoes::incluirPortal(Entidades::Portal *pPortal)
+    {
+        if (pPortal)
+        {
+            LPo.push_back(pPortal);
         }
     }
 
@@ -262,6 +271,7 @@ namespace Gerenciadores
         tratarColisoesJogsObstacs();
         tratarColisoesJogsProjeteis();
         tratarColisoesInimProjeteis();
+        tratarColisoesJogsPortal();
 
         if (!LCs.empty())
         {
@@ -283,5 +293,25 @@ namespace Gerenciadores
         LOs.clear();
         LPs.clear();
         LCs.clear();
+        LPo.clear();
+    }
+
+    void Gerenciador_Colisoes::tratarColisoesJogsPortal()
+    {
+        for (int i = 0; i < (int)LJs.size(); i++)
+        {
+            Entidades::Personagens::Jogador *pJog = LJs[i];
+            if (pJog)
+            {
+                for (int j = 0; j < (int)LPo.size(); j++)
+                {
+                    Entidades::Portal *pPortal = LPo[j];
+                    if (pPortal && verificarColisao(pJog, pPortal))
+                    {
+                        pPortal->teleportar(pJog);
+                    }
+                }
+            }
+        }
     }
 }

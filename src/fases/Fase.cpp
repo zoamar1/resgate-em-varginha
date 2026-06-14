@@ -285,6 +285,10 @@ namespace Fases
         if (pPortal)
         {
             lista_ents.incluir(static_cast<Entidades::Entidade*>(pPortal));
+            if (GC)
+            {
+                GC->incluirPortal(pPortal);
+            }
         }
     }
 

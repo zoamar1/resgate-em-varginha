@@ -7,6 +7,11 @@
 #include "entidades/Chao.hpp"
 #include "entidades/personagens/Personagem.hpp"
 
+namespace Entidades
+{
+    class Portal;
+}
+
 namespace Gerenciadores
 {
     class Gerenciador_Colisoes
@@ -18,6 +23,7 @@ namespace Gerenciadores
         std::set<Entidades::Projetil *> LPs;
         std::vector<Entidades::Chao *> LCs;
         std::vector<Entidades::Personagens::Jogador *> LJs;
+        std::vector<Entidades::Portal *> LPo;
 
     private:
         Gerenciador_Colisoes();
@@ -32,6 +38,7 @@ namespace Gerenciadores
         void incluirObstaculo(Entidades::Obstaculos::Obstaculo *po);
         void incluirChao(Entidades::Chao *pc);
         void incluirProjetil(Entidades::Projetil *pj);
+        void incluirPortal(Entidades::Portal *pPortal);
         void executar();
         void limparTudo();
 
@@ -47,5 +54,6 @@ namespace Gerenciadores
         void tratarColisoesJogsInimgs();
         void tratarColisoesJogsProjeteis();
         void tratarColisoesInimProjeteis();
+        void tratarColisoesJogsPortal();
     };
 }
