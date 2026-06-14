@@ -117,6 +117,7 @@ namespace Fases
     {
         criarPlataformas();
         criarArbustos();
+        criarPortal(1750.0f, 110.0f, sf::Color::Cyan); 
     }
 
     void FasePrimeira::criarProjeteis()

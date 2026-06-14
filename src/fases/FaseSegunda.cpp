@@ -99,6 +99,7 @@ namespace Fases
     {
         criarPlataformas();
         criarEspinhos();
+        criarPortal(1750.0f, 110.0f, sf::Color::Cyan); 
     }
 
     void FaseSegunda::criarInimigos()

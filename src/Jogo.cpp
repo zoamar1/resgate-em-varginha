@@ -101,7 +101,13 @@ void Jogo::executar()
                 }
 
                 pFase1->executar();
-                if (pJog1->get_vida_atual() <= 0 || pJog2->get_vida_atual() <= 0)
+                if (pFase1->getFaseConcluida())
+                {
+                    estado = FASE2;
+                    faseDeletada = pFase1;
+                    pFase1 = NULL;
+                }
+                else if (pJog1->get_vida_atual() <= 0 || pJog2->get_vida_atual() <= 0)
                 {
                     estado = MENU;
                     faseDeletada = pFase1;
@@ -121,7 +127,15 @@ void Jogo::executar()
                     pFase2->incluirJogador(pJog2, sf::Vector2f(200.0f, ALTURA - 100));
                 }
                 pFase2->executar();
-                if (pJog1->get_vida_atual() <= 0 || pJog2->get_vida_atual() <= 0)
+                if (pFase2->getFaseConcluida())
+                {
+                    estado = MENU;
+                    faseDeletada = pFase2;
+                    pFase2 = NULL;
+                    pJog1->set_vida_atual(pJog1->get_num_vidas());
+                    pJog2->set_vida_atual(pJog2->get_num_vidas());
+                }
+                else if (pJog1->get_vida_atual() <= 0 || pJog2->get_vida_atual() <= 0)
                 {
                     estado = MENU;
                     faseDeletada = pFase2;

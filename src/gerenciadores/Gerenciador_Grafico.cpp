@@ -89,7 +89,7 @@ namespace Gerenciadores
 
     void Gerenciador_Grafico::carregaTexturas()
     {
-        texturas.resize(13);
+        texturas.resize(14);
 
         if (!texturas[Jogador].loadFromFile("assets/jogador.png"))
         {
@@ -142,6 +142,9 @@ namespace Gerenciadores
         if (!texturas[Explosao].loadFromFile("assets/explosao.png"))
         {
             std::cout << "textura do explosao nao carregou" << std::endl;
+        }
+        if(!texturas[Portal].loadFromFile("assets/portal.png")){
+            std::cout << "textura do portal nao carregou" << std::endl;
         }
     }
 

@@ -2,10 +2,11 @@
 #include "entidades/obstaculos/Plataforma.hpp"
 #include "entidades/personagens/Guarda.hpp"
 #include "entidades/personagens/Exercito.hpp"
+#include "entidades/Portal.hpp"
 
 namespace Fases
 {
-    Fase::Fase(Gerenciadores::Gerenciador_Colisoes *pGC) : lista_ents(), GC(pGC)
+    Fase::Fase(Gerenciadores::Gerenciador_Colisoes *pGC) : lista_ents(), GC(pGC), faseConcluida(false)
     {
         for (int i = 0; i < 2; i++)
         {
@@ -31,18 +32,7 @@ namespace Fases
             GC->limparTudo();
         }
 
-        if (GC)
-        {
-            const std::vector<Entidades::Personagens::Jogador *> &jogadores = GC->getJogadores();
-            for (int i = 0; i < (int)jogadores.size(); i++)
-            {
-                lista_ents.limparExcetoJogador(jogadores[i]);
-            }
-        }
-        else
-        {
-            lista_ents.limparExcetoJogador(NULL);
-        }
+        lista_ents.limparExcetoJogadores();
 
         for (int i = 0; i < (int)barra_de_vida.size(); i++)
         {
@@ -115,6 +105,16 @@ namespace Fases
             }
         }
         return NULL;
+    }
+
+    bool Fase::getFaseConcluida() const
+    {
+        return faseConcluida;
+    }
+
+    void Fase::setFaseConcluida(bool c)
+    {
+        faseConcluida = c;
     }
 
     void Fase::criarChao()
@@ -277,6 +277,15 @@ namespace Fases
         criarObstaculo();
         criarInimigos();
         criarProjeteis();
+    }
+
+    void Fase::criarPortal(float posX, float posY, sf::Color cor)
+    {
+        Entidades::Portal* pPortal = new Entidades::Portal(posX, posY, this, cor); 
+        if (pPortal)
+        {
+            lista_ents.incluir(static_cast<Entidades::Entidade*>(pPortal));
+        }
     }
 
     void Fase::incluirJogador(Entidades::Personagens::Jogador *pJogador, sf::Vector2f pos)

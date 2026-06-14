@@ -37,12 +37,13 @@ namespace Listas
         }
     }
 
-    void ListaEntidades::limparExcetoJogador(Entidades::Personagens::Jogador *pJogador)
+    void ListaEntidades::limparExcetoJogadores()
     {
         Entidades::Entidade *aux = LE.getPrimeiro();
         while (aux != NULL)
         {
-            if (aux != pJogador)
+            Entidades::Personagens::Jogador *jog = dynamic_cast<Entidades::Personagens::Jogador *>(aux);
+            if (!jog)
             {
                 delete aux;
             }

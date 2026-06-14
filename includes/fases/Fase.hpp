@@ -16,6 +16,7 @@ namespace Fases
         std::vector<sf::Vector2f> posicoesPlataformas;
         std::vector<sf::Vector2f> posicoesInimigosFaceis;
         std::vector<Entidades::Projetil *> ProjeteisPossiveis;
+        bool faseConcluida;
 
     public:
         Fase(Gerenciadores::Gerenciador_Colisoes *pGC);
@@ -24,12 +25,16 @@ namespace Fases
         void incluirJogador(Entidades::Personagens::Jogador *pJogador, sf::Vector2f pos);
         void incluirProjetil(Entidades::Projetil *pProjetil);
         Entidades::Projetil *getProjetilDisponivel();
+        
+        bool getFaseConcluida() const;
+        void setFaseConcluida(bool c);
 
     protected:
         void criarChao();
         void criarInimFaceis();
         void criarPlataformas();
         void criarCenario();
+        void criarPortal(float posX, float posY, sf::Color cor);
         void desenharBarraDeVida(Entidades::Personagens::Jogador *pJog, int indiceJogador);
         virtual void criarInimigos() = 0;
         virtual void criarObstaculo() = 0;

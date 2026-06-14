@@ -19,7 +19,8 @@ namespace Gerenciadores
         FundoFase1,
         Espinhos,
         Jogador2,
-        Explosao
+        Explosao,
+        Portal
     };
 
     class Gerenciador_Grafico

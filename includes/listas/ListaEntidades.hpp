@@ -28,7 +28,7 @@ namespace Listas
         void incluir(Entidades::Entidade *pE);
         void percorrer();
         void desenhar();
-        void limparExcetoJogador(Entidades::Personagens::Jogador *pJogador);
+        void limparExcetoJogadores();
         void removerMortos(Gerenciadores::Gerenciador_Colisoes *GC);
     };
 }
