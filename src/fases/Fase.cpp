@@ -119,11 +119,27 @@ namespace Fases
 
     void Fase::criarChao()
     {
-        float yChaoBaixo = 990.0f;
 
-        for (float x = 0.0f; x < 1920.0f; x += 200.0f)
+        dividirChao({0, 1050}, {1920, 30});
+        dividirChao({250, 250}, {1920, 30});
+        dividirChao({250, 250}, {1670, 30});
+        dividirChao({0, 620}, {1520, 30});
+        dividirChao({1450, 950}, {150, 30});
+        dividirChao({1550, 830}, {150, 30});
+        dividirChao({1650, 725}, {150, 30});
+        dividirChao({50, 475}, {150, 30});
+        dividirChao({0, 330}, {150, 30});
+    }
+
+    void Fase::dividirChao(sf::Vector2f pos, sf::Vector2f tam)
+    {
+
+        int divisaoX = 100;
+        int divisaoY = 30;
+
+        for (float x = 0.0f; x < tam.x; x += divisaoX)
         {
-            Entidades::Chao *pNovoChao = new Entidades::Chao(sf::Vector2f(x, yChaoBaixo), sf::Vector2f(200.0f, 30.0f));
+            Entidades::Chao *pNovoChao = new Entidades::Chao({pos.x + x, pos.y}, {divisaoX, divisaoY});
             if (pNovoChao)
             {
                 lista_ents.incluir(static_cast<Entidades::Entidade *>(pNovoChao));
@@ -131,72 +147,6 @@ namespace Fases
                 {
                     GC->incluirChao(pNovoChao);
                 }
-            }
-        }
-
-        for (float x = 250.0f; x <= 1920.0f; x += 200.0f)
-        {
-            Entidades::Chao *pNovoChao = new Entidades::Chao(sf::Vector2f(x, 250.0f), sf::Vector2f(200.0f, 30.0f));
-            if (pNovoChao)
-            {
-                lista_ents.incluir(static_cast<Entidades::Entidade *>(pNovoChao));
-                if (GC)
-                {
-                    GC->incluirChao(pNovoChao);
-                }
-            }
-        }
-
-        for (float x = 0.0f; x <= 1400.0f; x += 200.0f)
-        {
-            Entidades::Chao *pNovoChao = new Entidades::Chao(sf::Vector2f(x, 620.0f), sf::Vector2f(200.0f, 30.0f));
-            if (pNovoChao)
-            {
-                lista_ents.incluir(static_cast<Entidades::Entidade *>(pNovoChao));
-                if (GC)
-                {
-                    GC->incluirChao(pNovoChao);
-                }
-            }
-        }
-
-        Entidades::Chao *pApoioBaixoMedio = new Entidades::Chao(sf::Vector2f(1600.0f, 850.0f), sf::Vector2f(150.0f, 30.0f));
-        if (pApoioBaixoMedio)
-        {
-            lista_ents.incluir(static_cast<Entidades::Entidade *>(pApoioBaixoMedio));
-            if (GC)
-            {
-                GC->incluirChao(pApoioBaixoMedio);
-            }
-        }
-
-        Entidades::Chao *p2ApoioBaixoMedio = new Entidades::Chao(sf::Vector2f(1700.0f, 725.0f), sf::Vector2f(150.0f, 30.0f));
-        if (p2ApoioBaixoMedio)
-        {
-            lista_ents.incluir(static_cast<Entidades::Entidade *>(p2ApoioBaixoMedio));
-            if (GC)
-            {
-                GC->incluirChao(p2ApoioBaixoMedio);
-            }
-        }
-
-        Entidades::Chao *pApoioMedioCima = new Entidades::Chao(sf::Vector2f(100.0f, 475.0f), sf::Vector2f(150.0f, 30.0f));
-        if (pApoioMedioCima)
-        {
-            lista_ents.incluir(static_cast<Entidades::Entidade *>(pApoioMedioCima));
-            if (GC)
-            {
-                GC->incluirChao(pApoioMedioCima);
-            }
-        }
-
-        Entidades::Chao *p2ApoioMedioCima = new Entidades::Chao(sf::Vector2f(0.0f, 330.0f), sf::Vector2f(150.0f, 30.0f));
-        if (p2ApoioMedioCima)
-        {
-            lista_ents.incluir(static_cast<Entidades::Entidade *>(p2ApoioMedioCima));
-            if (GC)
-            {
-                GC->incluirChao(p2ApoioMedioCima);
             }
         }
     }
@@ -243,9 +193,9 @@ namespace Fases
         posicoesPlataformas.push_back(sf::Vector2f(400.0f, 480.0f));
         posicoesPlataformas.push_back(sf::Vector2f(800.0f, 480.0f));
         posicoesPlataformas.push_back(sf::Vector2f(1200.0f, 480.0f));
-        posicoesPlataformas.push_back(sf::Vector2f(200.0f, 850.0f));
-        posicoesPlataformas.push_back(sf::Vector2f(600.0f, 850.0f));
-        posicoesPlataformas.push_back(sf::Vector2f(1000.0f, 850.0f));
+        posicoesPlataformas.push_back(sf::Vector2f(200.0f, 910.0f));
+        posicoesPlataformas.push_back(sf::Vector2f(600.0f, 910.0f));
+        posicoesPlataformas.push_back(sf::Vector2f(1000.0f, 910.0f));
 
         int quantidade = (rand() % 7) + 3;
 

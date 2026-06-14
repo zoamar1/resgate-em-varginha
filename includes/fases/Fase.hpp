@@ -29,6 +29,9 @@ namespace Fases
         bool getFaseConcluida() const;
         void setFaseConcluida(bool c);
 
+    private:
+        void dividirChao(sf::Vector2f pos, sf::Vector2f tam);
+
     protected:
         void criarChao();
         void criarInimFaceis();

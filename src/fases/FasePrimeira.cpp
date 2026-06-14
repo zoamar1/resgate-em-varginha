@@ -80,8 +80,8 @@ namespace Fases
         posicoesArbustos.push_back(sf::Vector2f(1200.0f, 210.0f));
         posicoesArbustos.push_back(sf::Vector2f(300.0f, 580.0f));
         posicoesArbustos.push_back(sf::Vector2f(900.0f, 580.0f));
-        posicoesArbustos.push_back(sf::Vector2f(400.0f, 950.0f));
-        posicoesArbustos.push_back(sf::Vector2f(1300.0f, 950.0f));
+        posicoesArbustos.push_back(sf::Vector2f(400.0f, 1010.0f));
+        posicoesArbustos.push_back(sf::Vector2f(1300.0f, 1010.0f));
 
         int quantidade = (rand() % 4) + 3;
 
