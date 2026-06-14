@@ -134,8 +134,8 @@ namespace Fases
     void Fase::dividirChao(sf::Vector2f pos, sf::Vector2f tam)
     {
 
-        int divisaoX = 100;
-        int divisaoY = 30;
+        float divisaoX = 32.0f;
+        float divisaoY = 32.0f;
 
         for (float x = 0.0f; x < tam.x; x += divisaoX)
         {
@@ -205,9 +205,20 @@ namespace Fases
         {
             int indiceSorteado = rand() % posicoesPlataformas.size();
             sf::Vector2f posEscolhida = posicoesPlataformas[indiceSorteado];
+            dividirPlataforma(posEscolhida, tamanhoPadrao);
+            posicoesPlataformas.erase(posicoesPlataformas.begin() + indiceSorteado);
+        }
+    }
 
-            Entidades::Obstaculos::Plataforma *pPlat = new Entidades::Obstaculos::Plataforma(posEscolhida.x, posEscolhida.y, tamanhoPadrao.x, tamanhoPadrao.y);
+    void Fase::dividirPlataforma(sf::Vector2f pos, sf::Vector2f tam)
+    {
 
+        float divisaoX = 32.0f;
+        float divisaoY = 32.0f;
+
+        for (float x = 0.0f; x < tam.x; x += divisaoX)
+        {
+            Entidades::Obstaculos::Plataforma *pPlat = new Entidades::Obstaculos::Plataforma(pos.x + x, pos.y, divisaoX, divisaoY);
             if (pPlat)
             {
                 lista_ents.incluir(static_cast<Entidades::Entidade *>(pPlat));
@@ -216,8 +227,6 @@ namespace Fases
                     GC->incluirObstaculo(pPlat);
                 }
             }
-
-            posicoesPlataformas.erase(posicoesPlataformas.begin() + indiceSorteado);
         }
     }
 

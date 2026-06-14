@@ -31,7 +31,7 @@ namespace Fases
 
     private:
         void dividirChao(sf::Vector2f pos, sf::Vector2f tam);
-
+        void dividirPlataforma(sf::Vector2f pos, sf::Vector2f tam);
     protected:
         void criarChao();
         void criarInimFaceis();
