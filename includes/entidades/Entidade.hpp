@@ -16,7 +16,7 @@ namespace Entidades
         // ostream buffer;
 
     public:
-        Entidade(const sf::Vector2f &posicao, const sf::Vector2f &tamanho);
+        Entidade(const sf::Vector2f &posicao = {0,0}, const sf::Vector2f &tamanho = {0,0});
         virtual ~Entidade();
 
         virtual void executar() = 0;
