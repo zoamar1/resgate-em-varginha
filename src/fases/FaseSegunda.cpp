@@ -9,7 +9,7 @@ namespace Fases
     {
         pFig->setSize({LARGURA - 1, ALTURA - 1});
         pFig->setOrigin({0, 0});
-        aplicarTextura(Gerenciadores::FundoFase1);
+        aplicarTextura(Gerenciadores::FundoFase2);
         criarCenario();
     }
 

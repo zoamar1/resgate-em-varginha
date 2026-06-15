@@ -17,10 +17,11 @@ namespace Gerenciadores
         Arbusto,
         Chao,
         FundoFase1,
+        FundoFase2,
         Espinhos,
         Jogador2,
         Explosao,
-        Portal
+        Portal,
     };
 
     class Gerenciador_Grafico
