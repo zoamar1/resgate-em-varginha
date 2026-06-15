@@ -1,4 +1,5 @@
 #include "entidades/Projetil.hpp"
+#include "entidades/personagens/ET_Varginha.hpp"
 
 namespace Entidades
 {
@@ -49,6 +50,19 @@ namespace Entidades
         deJogador = valor;
     }
 
+    void Projetil::setpAlien(Personagens::ET_Varginha *pA)
+    {
+        if (pA)
+        {
+            pAlien = pA;
+            aplicarTextura(Gerenciadores::Projetil_Alien);
+        } else
+        {
+            pAlien = NULL;
+            aplicarTextura(Gerenciadores::Projetil);
+        }
+    }
+
     void Projetil::mover()
     {
         aplicarGravidade();
@@ -68,6 +82,20 @@ namespace Entidades
             setAtivo(false);
             setPosicao(sf::Vector2f(-500.0f, -500.0f));
             setVelocidade(sf::Vector2f(0.0f, 0.0f));
+            if (pAlien)
+            {
+                std::vector<Projetil*>* pVetorProjeteis = pAlien->getVetorProjeteis();
+                if (pVetorProjeteis)
+                {
+                    
+                std::vector<Projetil*>::iterator it = std::find(pVetorProjeteis->begin(), pVetorProjeteis->end(), this);
+
+                if (it != pVetorProjeteis->end()) {
+                    pVetorProjeteis->erase(it);
+                }
+                }
+            }
+            setpAlien(NULL);
         }
     }
 
@@ -75,6 +103,10 @@ namespace Entidades
     {
         if (ativo)
             mover();
+        if (pAlien)
+        {
+            pFig->setFillColor(sf::Color::Red);
+        }
     }
 
     void Projetil::salvar()

@@ -48,7 +48,7 @@ namespace Entidades
             {
                 const std::vector<Jogador *> &listaJogadores = pGC->getJogadores();
 
-                for (int i = 0; i < listaJogadores.size(); ++i)
+                for (int i = 0; i < (int) listaJogadores.size(); ++i)
                 {
                     Jogador *outroJogador = listaJogadores[i];
 

@@ -24,13 +24,14 @@ namespace Entidades
 
         void Personagem::set_vida_atual(int vida)
         {
+            int max_vidas = get_num_vidas();
             if (vida < 0)
             {
                 vida_atual = 0;
             }
-            else if (vida > num_vidas)
+            else if (vida > max_vidas)
             {
-                vida_atual = num_vidas;
+                vida_atual = max_vidas;
             }
             else
             {
@@ -45,7 +46,7 @@ namespace Entidades
 
         void Personagem::operator++()
         {
-            if (vida_atual < num_vidas) vida_atual++;
+            if (vida_atual < get_num_vidas()) vida_atual++;
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Entidades
             virtual void recebeDano(int dano = 0);
             int get_vida_atual() const;
             void set_vida_atual(int vida);
-            int get_num_vidas() const;
+            virtual int get_num_vidas() const;
             void operator++();
         };
     }

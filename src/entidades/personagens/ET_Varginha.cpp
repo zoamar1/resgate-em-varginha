@@ -11,7 +11,7 @@ namespace Entidades
 
         ET_Varginha::ET_Varginha(float posX, float posY, int n, int maldade, int ml)
             : Inimigo(posX, posY, n, maldade),
-              multiplicador_forca(ml), querAtirar(false)
+              multiplicador_forca(ml), querAtirar(false), estressado(false)
         {
             cooldownTiros = 0.8f;
             setVel_Max(2.0f);
@@ -79,7 +79,7 @@ namespace Entidades
             float menorDistancia = -1.0f;
             float raioDesejado = 400.0f;
 
-            for (int i = 0; i < jogadores.size(); ++i)
+            for (int i = 0; i < (int)jogadores.size(); ++i)
             {
                 Jogador *pJog = jogadores[i];
                 if (pJog)
@@ -141,9 +141,22 @@ namespace Entidades
             pProjetil->setVelocidade(sf::Vector2f(velX, velY));
             pProjetil->setDeJogador(false);
             pProjetil->setAtivo(true);
+            pProjetil->setpAlien(this);
+            vetorProjeteis.push_back(pProjetil);
+            vida_atual++;
 
             querAtirar = false;
             relogioTiro.restart();
+        }
+
+        std::vector<Projetil*>* ET_Varginha::getVetorProjeteis()
+        {
+            return &vetorProjeteis;
+        }
+
+        int ET_Varginha::get_num_vidas() const
+        {
+            return num_vidas + vetorProjeteis.size();
         }
 
         void ET_Varginha::executar()
@@ -153,6 +166,27 @@ namespace Entidades
             if (verificaPlayerArea() && relogioTiro.getElapsedTime().asSeconds() >= cooldownTiros)
             {
                 querAtirar = true;
+            }
+
+            int max_vidas = get_num_vidas();
+            if (vida_atual > max_vidas)
+            {
+                vida_atual = max_vidas;
+            }
+
+            bool estressadoAtual = !vetorProjeteis.empty();
+            if (estressadoAtual != estressado)
+            {
+                estressado = estressadoAtual;
+
+                float direcao = (pSprite->getScale().x < 0.0f) ? -1.0f : 1.0f;
+
+                if (estressado)
+                    aplicarTextura(Gerenciadores::ET_Varginha_Estressado);
+                else
+                    aplicarTextura(Gerenciadores::ET_Varginha);
+
+                pSprite->setScale(direcao * std::abs(pSprite->getScale().x), pSprite->getScale().y);
             }
         }
     }

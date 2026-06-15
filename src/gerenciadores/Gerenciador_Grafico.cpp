@@ -89,7 +89,7 @@ namespace Gerenciadores
 
     void Gerenciador_Grafico::carregaTexturas()
     {
-        texturas.resize(15);
+        texturas.resize(17);
 
         if (!texturas[Jogador].loadFromFile("assets/jogador.png"))
         {
@@ -125,9 +125,13 @@ namespace Gerenciadores
         }
         if (!texturas[Exercito].loadFromFile("assets/exercito.png"))
         {
-            std::cout << "textura do guarda nao carregou" << std::endl;
+            std::cout << "textura do exercito nao carregou" << std::endl;
         }
         if (!texturas[Projetil].loadFromFile("assets/bala.png"))
+        {
+            std::cout << "textura do projetil nao carregou" << std::endl;
+        }
+        if (!texturas[Projetil_Alien].loadFromFile("assets/bala_alien.png"))
         {
             std::cout << "textura do projetil nao carregou" << std::endl;
         }
@@ -138,6 +142,10 @@ namespace Gerenciadores
         if (!texturas[ET_Varginha].loadFromFile("assets/alien.png"))
         {
             std::cout << "textura do alien nao carregou" << std::endl;
+        }
+        if (!texturas[ET_Varginha_Estressado].loadFromFile("assets/alien_nervoso.png"))
+        {
+            std::cout << "textura do alien estressado nao carregou" << std::endl;
         }
         if (!texturas[Jogador2].loadFromFile("assets/jogador2.png"))
         {
