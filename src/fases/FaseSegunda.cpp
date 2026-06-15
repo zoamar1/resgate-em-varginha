@@ -24,8 +24,8 @@ namespace Fases
     {
         sf::Vector2f tamanhoPadrao(100.0f, 40.0f);
 
-        posicoesEspinhos.push_back(sf::Vector2f(300.0f, 1013.0f));
-        posicoesEspinhos.push_back(sf::Vector2f(700.0f, 1013.0f));
+        posicoesEspinhos.push_back(sf::Vector2f(300.0f, 963.0f));
+        posicoesEspinhos.push_back(sf::Vector2f(700.0f, 963.0f));
         posicoesEspinhos.push_back(sf::Vector2f(1100.0f, 1013.0f));
         posicoesEspinhos.push_back(sf::Vector2f(200.0f, 583.0f));
         posicoesEspinhos.push_back(sf::Vector2f(600.0f, 583.0f));

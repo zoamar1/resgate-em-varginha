@@ -120,12 +120,11 @@ namespace Fases
     void Fase::criarChao()
     {
 
-        dividirChao({0, 1050}, {1920, 30});
+        dividirChao({0, 1000}, {1920, 30});
         dividirChao({250, 250}, {1920, 30});
         dividirChao({250, 250}, {1670, 30});
         dividirChao({0, 620}, {1520, 30});
-        dividirChao({1450, 950}, {150, 30});
-        dividirChao({1550, 830}, {150, 30});
+        dividirChao({1550, 860}, {150, 30});
         dividirChao({1650, 725}, {150, 30});
         dividirChao({50, 475}, {150, 30});
         dividirChao({0, 330}, {150, 30});
@@ -193,9 +192,9 @@ namespace Fases
         posicoesPlataformas.push_back(sf::Vector2f(400.0f, 480.0f));
         posicoesPlataformas.push_back(sf::Vector2f(800.0f, 480.0f));
         posicoesPlataformas.push_back(sf::Vector2f(1200.0f, 480.0f));
-        posicoesPlataformas.push_back(sf::Vector2f(200.0f, 910.0f));
-        posicoesPlataformas.push_back(sf::Vector2f(600.0f, 910.0f));
-        posicoesPlataformas.push_back(sf::Vector2f(1000.0f, 910.0f));
+        posicoesPlataformas.push_back(sf::Vector2f(200.0f, 860.0f));
+        posicoesPlataformas.push_back(sf::Vector2f(600.0f, 860.0f));
+        posicoesPlataformas.push_back(sf::Vector2f(1000.0f, 860.0f));
 
         int quantidade = (rand() % 7) + 3;
 
