@@ -5,6 +5,9 @@
 
 class Ranking
 {
+private:
+    static const std::string caminhoArquivo;
+
 public:
     static void salvar(const std::vector<std::pair<std::string, int>> &novasEntradas);
 

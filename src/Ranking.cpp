@@ -5,7 +5,7 @@
 #include "nlohmann/json.hpp"
 
 using json = nlohmann::json;
-const std::string CAMINHO_ARQUIVO = "ranking.json";
+const std::string Ranking::caminhoArquivo = "ranking.json";
 
 void Ranking::salvar(const std::vector<std::pair<std::string, int>> &novasEntradas)
 {
@@ -28,7 +28,7 @@ void Ranking::salvar(const std::vector<std::pair<std::string, int>> &novasEntrad
         j.push_back({{"nome", rankingAtual[i].first}, {"pontuacao", rankingAtual[i].second}});
     }
 
-    std::ofstream arquivo(CAMINHO_ARQUIVO);
+    std::ofstream arquivo(caminhoArquivo);
     if (arquivo.is_open())
     {
         arquivo << j.dump(4);
@@ -39,7 +39,7 @@ void Ranking::salvar(const std::vector<std::pair<std::string, int>> &novasEntrad
 std::vector<std::pair<std::string, int>> Ranking::carregar()
 {
     std::vector<std::pair<std::string, int>> entradas;
-    std::ifstream arquivo(CAMINHO_ARQUIVO);
+    std::ifstream arquivo(caminhoArquivo);
 
     if (!arquivo.is_open())
     {
