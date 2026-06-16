@@ -33,22 +33,25 @@ namespace Entidades
         {
             aplicarGravidade();
 
-            sf::Vector2f posicaoAtual = getPosicao();
-            sf::Vector2f velAtual = getVelocidade();
-
-            if (posicaoAtual.x > (posicaoInicial.x + 100) && velAtual.x > 0.0f)
+            if (relogioTeleporte.getElapsedTime().asSeconds() >= 1.0f)
             {
-                setVelocidade(sf::Vector2f(-getVel_Max(), velAtual.y));
-                pSprite->setScale(-pSprite->getScale().x, pSprite->getScale().y);
-            }
-            else if (posicaoAtual.x < (posicaoInicial.x - 100) && velAtual.x < 0.0f)
-            {
-                setVelocidade(sf::Vector2f(getVel_Max(), velAtual.y));
-                pSprite->setScale(-pSprite->getScale().x, pSprite->getScale().y);
-            }
+                float range = 100.0f;
+                float deslocamentoAleatorio = (((float)std::rand() / (float)RAND_MAX) * (2.0f * range)) - range;
 
-            setPosicao(getPosicao() + getVelocidade());
+                float novoX = posicaoInicial.x + deslocamentoAleatorio;
 
+                setPosicao(sf::Vector2f(novoX, getPosicao().y));
+
+                setVelocidade(sf::Vector2f(0.0f, getVelocidade().y));
+
+                if (pJogador)
+                {
+                    float direcaoX = (pJogador->getPosicao().x < getPosicao().x) ? -1.0f : 1.0f;
+                    pSprite->setScale(direcaoX * std::abs(pSprite->getScale().x), pSprite->getScale().y);
+                }
+
+                relogioTeleporte.restart();
+            }
         }
 
         void ET_Varginha::danificar(Jogador *p)
@@ -149,7 +152,7 @@ namespace Entidades
             relogioTiro.restart();
         }
 
-        std::vector<Projetil*>* ET_Varginha::getVetorProjeteis()
+        std::vector<Projetil *> *ET_Varginha::getVetorProjeteis()
         {
             return &vetorProjeteis;
         }
