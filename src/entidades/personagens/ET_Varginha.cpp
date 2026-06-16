@@ -60,6 +60,7 @@ namespace Entidades
             {
                 multiplicador_forca++;
                 p->recebeDano(nivel_maldade * multiplicador_forca);
+                p->ficarConfuso();
             }
         }
 

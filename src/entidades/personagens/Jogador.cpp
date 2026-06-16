@@ -11,9 +11,11 @@ namespace Entidades
               pontos(p),
               direcao(1),
               tempoInvencivel(tInvencivel),
-              invencivel(inv)
+              invencivel(inv),
+              confuso(false)
         {
             cooldownTiros = 0.5f;
+            tempoConfusao = 3.0f;
             setVel_Max(4);
             aplicarTextura(Gerenciadores::Jogador);
         }
@@ -37,7 +39,6 @@ namespace Entidades
             aplicarGravidade();
 
             sf::Vector2f deslocamento = getVelocidade();
-
             if (deslocamento.x != 0.0f || deslocamento.y != 0.0f)
             {
                 setPosicao(getPosicao() + deslocamento);
@@ -62,8 +63,8 @@ namespace Entidades
             Gerenciadores::Gerenciador_Colisoes *pGC = Gerenciadores::Gerenciador_Colisoes::getGerenciador_Colisoes();
             if (pGC)
             {
-                pGC->incluirProjetil(pProjetil);                
-                pGC->registrarProjetilJogador(pProjetil, this); 
+                pGC->incluirProjetil(pProjetil);
+                pGC->registrarProjetilJogador(pProjetil, this);
             }
 
             relogioTiro.restart();
@@ -133,5 +134,19 @@ namespace Entidades
             return invencivel;
         }
 
+        void Jogador::ficarConfuso()
+        {
+            confuso = true;
+            relogioConfusao.restart();
+        }
+
+        bool Jogador::getConfuso()
+        {
+            if (confuso && relogioConfusao.getElapsedTime().asSeconds() >= tempoConfusao)
+            {
+                confuso = false;
+            }
+            return confuso;
+        }
     }
 }

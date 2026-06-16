@@ -26,6 +26,9 @@ namespace Entidades
             sf::Clock relogioTiro;
             float cooldownTiros;
             std::string nome;
+            bool confuso;
+            sf::Clock relogioConfusao;
+            float tempoConfusao;
 
         public:
             Jogador(int n = 3, int p = 0, float tInvencivel = 1.0f, bool invencivel = false);
@@ -48,6 +51,9 @@ namespace Entidades
             const std::string &getNome() const { return nome; }
             void adicionarPontos(int pts) { pontos += pts; }
             int getPontos() const { return pontos; }
+
+            void ficarConfuso();
+            bool getConfuso();
         };
     }
 }

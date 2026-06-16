@@ -129,6 +129,14 @@ namespace Gerenciadores
 
         bool esquerda = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
         bool direita = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
+
+        if (pJog1->getConfuso())
+        {
+            bool temp = esquerda;
+            esquerda = direita;
+            direita = temp;
+        }
+
         int x = (direita ? 1 : 0) + (esquerda ? -1 : 0);
         if (x != 0)
             pJog1->setDirecao(x);
@@ -148,6 +156,14 @@ namespace Gerenciadores
 
         bool esquerda = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
         bool direita = sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
+
+        if (pJog2->getConfuso())
+        {
+            bool temp = esquerda;
+            esquerda = direita;
+            direita = temp;
+        }
+
         int x = (direita ? 1 : 0) + (esquerda ? -1 : 0);
         if (x != 0)
             pJog2->setDirecao(x);
