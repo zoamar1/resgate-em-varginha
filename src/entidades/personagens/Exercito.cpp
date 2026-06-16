@@ -48,7 +48,7 @@ namespace Entidades
             {
                 const std::vector<Jogador *> &listaJogadores = pGC->getJogadores();
 
-                for (int i = 0; i < (int) listaJogadores.size(); ++i)
+                for (int i = 0; i < (int)listaJogadores.size(); ++i)
                 {
                     Jogador *outroJogador = listaJogadores[i];
 
@@ -76,21 +76,60 @@ namespace Entidades
             sf::Vector2f posicaoAtual = getPosicao();
             sf::Vector2f velAtual = getVelocidade();
 
-            if (posicaoAtual.x > (posicaoInicial.x + 100) && velAtual.x > 0.0f)
+            float raioPercepcao = 300.0f;
+
+            Gerenciadores::Gerenciador_Colisoes *pGC = Gerenciadores::Gerenciador_Colisoes::getGerenciador_Colisoes();
+            Jogador *jogadorAlvo = NULL;
+
+            if (pGC)
             {
-                setVelocidade(sf::Vector2f(-getVel_Max(), velAtual.y));
-                pSprite->setScale(-pSprite->getScale().x, pSprite->getScale().y);
+                const std::vector<Jogador *> &jogadores = pGC->getJogadores();
+                float menorDistancia = -1.0f;
+
+                for (int i = 0; i < (int)jogadores.size(); i++)
+                {
+                    Jogador *pJog = jogadores[i];
+                    if (!pJog)
+                        continue;
+
+                    float dx = pJog->getPosicao().x - posicaoAtual.x;
+                    float dy = pJog->getPosicao().y - posicaoAtual.y;
+                    float distancia = std::sqrt(dx * dx + dy * dy);
+
+                    if (distancia <= raioPercepcao && (menorDistancia < 0.0f || distancia < menorDistancia))
+                    {
+                        menorDistancia = distancia;
+                        jogadorAlvo = pJog;
+                    }
+                }
             }
-            else if (posicaoAtual.x < (posicaoInicial.x - 100) && velAtual.x < 0.0f)
+
+            if (jogadorAlvo)
             {
-                setVelocidade(sf::Vector2f(getVel_Max(), velAtual.y));
-                pSprite->setScale(-pSprite->getScale().x, pSprite->getScale().y);
+                float dx = jogadorAlvo->getPosicao().x - posicaoAtual.x;
+                float direcaoX = (dx > 0.0f) ? 1.0f : -1.0f;
+
+                if ((direcaoX > 0.0f) != (pSprite->getScale().x > 0.0f))
+                    pSprite->setScale(-pSprite->getScale().x, pSprite->getScale().y);
+
+                setVelocidade(sf::Vector2f(direcaoX * getVel_Max(), velAtual.y));
+            }
+            else
+            {
+                if (posicaoAtual.x > (posicaoInicial.x + 100) && velAtual.x > 0.0f)
+                {
+                    setVelocidade(sf::Vector2f(-getVel_Max(), velAtual.y));
+                    pSprite->setScale(-pSprite->getScale().x, pSprite->getScale().y);
+                }
+                else if (posicaoAtual.x < (posicaoInicial.x - 100) && velAtual.x < 0.0f)
+                {
+                    setVelocidade(sf::Vector2f(getVel_Max(), velAtual.y));
+                    pSprite->setScale(-pSprite->getScale().x, pSprite->getScale().y);
+                }
             }
 
             setPosicao(getPosicao() + getVelocidade());
-
         }
-
         void Exercito::salvar()
         {
         }
