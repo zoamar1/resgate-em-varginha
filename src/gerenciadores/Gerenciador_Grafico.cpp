@@ -11,6 +11,11 @@ namespace Gerenciadores
         window.setFramerateLimit(60);
     }
 
+    Gerenciador_Grafico::~Gerenciador_Grafico()
+    {
+        pGrafico = NULL;
+    }
+
     Gerenciador_Grafico *Gerenciador_Grafico::getGerenciador_Grafico()
     {
         if (!pGrafico)

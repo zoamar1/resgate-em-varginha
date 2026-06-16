@@ -27,7 +27,17 @@ namespace Entidades
             relogioTiro.restart();
         }
 
-        ET_Varginha::~ET_Varginha() {}
+        ET_Varginha::~ET_Varginha()
+        {
+            for (size_t i = 0; i < vetorProjeteis.size(); ++i)
+            {
+                if (vetorProjeteis[i])
+                {
+                    vetorProjeteis[i]->setpAlien(NULL);
+                }
+            }
+            vetorProjeteis.clear();
+        }
 
         void ET_Varginha::mover()
         {

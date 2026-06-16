@@ -37,6 +37,7 @@ namespace Gerenciadores
         Gerenciador_Grafico();
 
     public:
+        ~Gerenciador_Grafico();
         static Gerenciador_Grafico *getGerenciador_Grafico();
         bool janelaAberta();
         sf::RenderWindow *getWindow();
