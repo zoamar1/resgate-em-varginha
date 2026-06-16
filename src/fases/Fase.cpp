@@ -81,8 +81,6 @@ namespace Fases
             }
         }
 
-        lista_ents.removerMortos(GC);
-
         if (GC)
         {
             const std::vector<Entidades::Personagens::Jogador *> &jogadores = GC->getJogadores();

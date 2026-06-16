@@ -26,6 +26,7 @@ namespace Entidades
         bool getDeJogador() const;
         void setDeJogador(bool valor);
         void setpAlien(Personagens::ET_Varginha *pA);
+        Personagens::ET_Varginha* getpAlien() const { return pAlien; }
         void mover();
         void executar();
         void salvar();

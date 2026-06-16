@@ -121,6 +121,8 @@ namespace Fases
 
     void FaseSegunda::executar()
     {
+        Fase::executar();
+
         for (auto it = vetorETs.begin(); it != vetorETs.end();)
         {
             if (*it == NULL || (*it)->get_vida_atual() <= 0)
@@ -146,7 +148,7 @@ namespace Fases
             }
         }
 
-        Fase::executar();
+        lista_ents.removerMortos(GC);
     }
 
 }

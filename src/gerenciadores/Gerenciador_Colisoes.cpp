@@ -360,6 +360,7 @@ namespace Gerenciadores
                     {
                         pPortal->teleportar(pJog);
                     }
+                    
                 }
             }
         }

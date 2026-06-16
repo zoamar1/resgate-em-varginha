@@ -117,6 +117,7 @@ namespace Entidades
                 return true;
             }
 
+            pJogador = NULL;
             return false;
         }
 
@@ -175,9 +176,11 @@ namespace Entidades
 
         void ET_Varginha::executar()
         {
+            bool playerNoRaio = verificaPlayerArea();
+
             mover();
 
-            if (verificaPlayerArea() && relogioTiro.getElapsedTime().asSeconds() >= cooldownTiros)
+            if (playerNoRaio && relogioTiro.getElapsedTime().asSeconds() >= cooldownTiros)
             {
                 querAtirar = true;
             }
@@ -188,7 +191,13 @@ namespace Entidades
                 vida_atual = max_vidas;
             }
 
-            bool estressadoAtual = !vetorProjeteis.empty();
+            bool estressadoAtual = false;
+            for (size_t i = 0; i < vetorProjeteis.size(); ++i) {
+                if (vetorProjeteis[i] && vetorProjeteis[i]->getAtivo() && vetorProjeteis[i]->getpAlien() == this) {
+                    estressadoAtual = true;
+                    break;
+                }
+            }
             if (estressadoAtual != estressado)
             {
                 estressado = estressadoAtual;

@@ -23,6 +23,7 @@ namespace Entidades
 
     Projetil::~Projetil()
     {
+        pAlien = NULL;
     }
 
     bool Projetil::getAtivo() const
@@ -82,19 +83,6 @@ namespace Entidades
             setAtivo(false);
             setPosicao(sf::Vector2f(-500.0f, -500.0f));
             setVelocidade(sf::Vector2f(0.0f, 0.0f));
-            if (pAlien)
-            {
-                std::vector<Projetil*>* pVetorProjeteis = pAlien->getVetorProjeteis();
-                if (pVetorProjeteis)
-                {
-                    
-                std::vector<Projetil*>::iterator it = std::find(pVetorProjeteis->begin(), pVetorProjeteis->end(), this);
-
-                if (it != pVetorProjeteis->end()) {
-                    pVetorProjeteis->erase(it);
-                }
-                }
-            }
             setpAlien(NULL);
         }
     }

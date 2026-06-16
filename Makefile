@@ -2,7 +2,7 @@
 CXX = g++
 # Atualizado para C++17 (exigido pelo SFML 2.6 e para aceitar nullptr)
 # -Iincludes e -Isrc mapeiam as pastas para simplificar os #include no código
-CXXFLAGS = -std=c++17 -Wall -Wextra -Iincludes -Iincludes/entidades -Isrc
+CXXFLAGS = -std=c++17 -Wall -Wextra -g -Iincludes -Iincludes/entidades -Isrc
 LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system
 
 # Diretórios

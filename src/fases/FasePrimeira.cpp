@@ -23,6 +23,7 @@ namespace Fases
 
     void FasePrimeira::executar()
     {
+        Fase::executar();
 
         for (auto it = vetorExercitos.begin(); it != vetorExercitos.end();)
         {
@@ -36,7 +37,7 @@ namespace Fases
             }
         }
 
-        Fase::executar();
+        lista_ents.removerMortos(GC);
     }
 
     void FasePrimeira::criarInimMedios()
