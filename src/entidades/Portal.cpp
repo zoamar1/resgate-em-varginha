@@ -4,9 +4,9 @@
 
 namespace Entidades
 {
-    Portal::Portal(float posX, float posY, Fases::Fase* pFase, sf::Color cor) : Entidade({posX, posY}, {70, 110}), cor(cor), pFase(pFase)
+    Portal::Portal(float posX, float posY, Fases::Fase* pFase) : Entidade({posX, posY}, {70, 110}), pFase(pFase)
     {
-        aplicarTextura(Gerenciadores::Portal);
+        aplicarTextura(Gerenciadores::Portal); 
     };
 
     Portal::~Portal()

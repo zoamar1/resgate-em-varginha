@@ -25,6 +25,8 @@ namespace Gerenciadores
         std::vector<Entidades::Personagens::Jogador *> LJs;
         std::vector<Entidades::Portal *> LPo;
 
+        std::map<Entidades::Projetil *, Entidades::Personagens::Jogador *> donosProjeteis;
+
     private:
         Gerenciador_Colisoes();
 
@@ -40,7 +42,10 @@ namespace Gerenciadores
         void incluirProjetil(Entidades::Projetil *pj);
         void incluirPortal(Entidades::Portal *pPortal);
         void executar();
+        void limparColisoes();
         void limparTudo();
+
+        void registrarProjetilJogador(Entidades::Projetil *pProj, Entidades::Personagens::Jogador *pJog);
 
         void colisaoJogadorChao(Entidades::Chao *chao);
         void colisaoInimigoChao(Entidades::Chao *chao);

@@ -1,5 +1,6 @@
 #include "personagens/Jogador.hpp"
 #include "entidades/Projetil.hpp"
+#include "gerenciadores/Gerenciador_Colisoes.hpp"
 
 namespace Entidades
 {
@@ -57,6 +58,14 @@ namespace Entidades
             pProjetil->setVelocidade(sf::Vector2f(30.0f * static_cast<float>(direcao), 0.0f));
             pProjetil->setDeJogador(true);
             pProjetil->setAtivo(true);
+
+            Gerenciadores::Gerenciador_Colisoes *pGC = Gerenciadores::Gerenciador_Colisoes::getGerenciador_Colisoes();
+            if (pGC)
+            {
+                pGC->incluirProjetil(pProjetil);                
+                pGC->registrarProjetilJogador(pProjetil, this); 
+            }
+
             relogioTiro.restart();
         }
 

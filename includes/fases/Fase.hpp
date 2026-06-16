@@ -25,19 +25,20 @@ namespace Fases
         void incluirJogador(Entidades::Personagens::Jogador *pJogador, sf::Vector2f pos);
         void incluirProjetil(Entidades::Projetil *pProjetil);
         Entidades::Projetil *getProjetilDisponivel();
-        
+
         bool getFaseConcluida() const;
         void setFaseConcluida(bool c);
 
     private:
         void dividirChao(sf::Vector2f pos, sf::Vector2f tam);
         void dividirPlataforma(sf::Vector2f pos, sf::Vector2f tam);
+
     protected:
         void criarChao();
         void criarInimFaceis();
         void criarPlataformas();
         void criarCenario();
-        void criarPortal(float posX, float posY, sf::Color cor);
+        void criarPortal(float posX, float posY);
         void desenharBarraDeVida(Entidades::Personagens::Jogador *pJog, int indiceJogador);
         virtual void criarInimigos() = 0;
         virtual void criarObstaculo() = 0;

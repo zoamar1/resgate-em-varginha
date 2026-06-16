@@ -29,7 +29,7 @@ namespace Fases
     {
         if (GC)
         {
-            GC->limparTudo();
+            GC->limparColisoes();
         }
 
         lista_ents.limparExcetoJogadores();
@@ -237,12 +237,12 @@ namespace Fases
         criarProjeteis();
     }
 
-    void Fase::criarPortal(float posX, float posY, sf::Color cor)
+    void Fase::criarPortal(float posX, float posY)
     {
-        Entidades::Portal* pPortal = new Entidades::Portal(posX, posY, this, cor); 
+        Entidades::Portal *pPortal = new Entidades::Portal(posX, posY, this);
         if (pPortal)
         {
-            lista_ents.incluir(static_cast<Entidades::Entidade*>(pPortal));
+            lista_ents.incluir(static_cast<Entidades::Entidade *>(pPortal));
             if (GC)
             {
                 GC->incluirPortal(pPortal);

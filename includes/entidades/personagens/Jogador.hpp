@@ -4,6 +4,11 @@
 #include "entidades/personagens/Inimigo.hpp"
 #include "entidades/Projetil.hpp"
 
+namespace Gerenciadores
+{
+    class Gerenciador_Colisoes;
+}
+
 namespace Entidades
 {
     namespace Personagens
@@ -20,6 +25,7 @@ namespace Entidades
             bool invencivel;
             sf::Clock relogioTiro;
             float cooldownTiros;
+            std::string nome;
 
         public:
             Jogador(int n = 3, int p = 0, float tInvencivel = 1.0f, bool invencivel = false);
@@ -37,6 +43,11 @@ namespace Entidades
             int getDirecao() const;
             void atualizarInvencibilidade();
             bool getInvencivel() const;
+
+            void setNome(const std::string &n) { nome = n; }
+            const std::string &getNome() const { return nome; }
+            void adicionarPontos(int pts) { pontos += pts; }
+            int getPontos() const { return pontos; }
         };
     }
 }

@@ -1,6 +1,10 @@
 #include "gerenciadores/Gerenciador_Colisoes.hpp"
 #include "entidades/Portal.hpp"
 
+#include "entidades/personagens/Guarda.hpp"
+#include "entidades/personagens/Exercito.hpp"
+#include "entidades/personagens/ET_Varginha.hpp"
+
 namespace Gerenciadores
 {
     Gerenciador_Colisoes *Gerenciador_Colisoes::pColisao = NULL;
@@ -26,6 +30,11 @@ namespace Gerenciadores
     {
         if (pJ)
         {
+            for (size_t i = 0; i < LJs.size(); i++)
+            {
+                if (LJs[i] == pJ)
+                    return; 
+            }
             LJs.push_back(pJ);
         }
     }
@@ -149,6 +158,14 @@ namespace Gerenciadores
         }
     }
 
+    void Gerenciador_Colisoes::registrarProjetilJogador(Entidades::Projetil *pProj, Entidades::Personagens::Jogador *pJog)
+    {
+        if (pProj && pJog)
+        {
+            donosProjeteis[pProj] = pJog;
+        }
+    }
+
     void Gerenciador_Colisoes::tratarColisoesInimProjeteis()
     {
         for (std::set<Entidades::Projetil *>::iterator itProj = LPs.begin(); itProj != LPs.end(); ++itProj)
@@ -161,9 +178,36 @@ namespace Gerenciadores
                     for (size_t i = 0; i < LIs.size(); i++)
                     {
                         Entidades::Personagens::Inimigo *pInimigo = LIs[i];
-                        if (pInimigo && verificarColisao(pInimigo, pProjetil))
+
+                        if (pInimigo && pInimigo->get_vida_atual() > 0 && verificarColisao(pInimigo, pProjetil))
                         {
                             pInimigo->recebeDano(pProjetil->getDano());
+
+                            if (pInimigo->get_vida_atual() <= 0)
+                            {
+                                if (donosProjeteis.find(pProjetil) != donosProjeteis.end())
+                                {
+                                    Entidades::Personagens::Jogador *pJog = donosProjeteis[pProjetil];
+                                    if (pJog)
+                                    {
+
+                                        if (dynamic_cast<Entidades::Personagens::Guarda *>(pInimigo) != NULL)
+                                        {
+                                            pJog->adicionarPontos(100);
+                                        }
+                                        
+                                        else if (dynamic_cast<Entidades::Personagens::Exercito *>(pInimigo) != NULL)
+                                        {
+                                            pJog->adicionarPontos(200);
+                                        }
+                                       
+                                        else if (dynamic_cast<Entidades::Personagens::ET_Varginha *>(pInimigo) != NULL)
+                                        {
+                                            pJog->adicionarPontos(400);
+                                        }
+                                    }
+                                }
+                            }
 
                             pProjetil->setAtivo(false);
                             pProjetil->setPosicao(sf::Vector2f(-500.0f, -500.0f));
@@ -286,14 +330,20 @@ namespace Gerenciadores
             }
         }
     }
+    void Gerenciador_Colisoes::limparColisoes()
+    {
+        LIs.clear();           
+        LOs.clear();            
+        LPs.clear();            
+        LCs.clear();            
+        LPo.clear();          
+        donosProjeteis.clear(); 
+    }
 
     void Gerenciador_Colisoes::limparTudo()
     {
-        LIs.clear();
-        LOs.clear();
-        LPs.clear();
-        LCs.clear();
-        LPo.clear();
+        LJs.clear();
+        limparColisoes();
     }
 
     void Gerenciador_Colisoes::tratarColisoesJogsPortal()
