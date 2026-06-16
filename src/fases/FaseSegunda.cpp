@@ -24,6 +24,7 @@ namespace Fases
     {
         sf::Vector2f tamanhoPadrao(100.0f, 40.0f);
 
+        posicoesEspinhos.clear();
         posicoesEspinhos.push_back(sf::Vector2f(300.0f, 963.0f));
         posicoesEspinhos.push_back(sf::Vector2f(700.0f, 963.0f));
         posicoesEspinhos.push_back(sf::Vector2f(1100.0f, 1013.0f));
@@ -61,6 +62,7 @@ namespace Fases
 
     void FaseSegunda::criaChefao()
     {
+        posicoesChefao.clear();
         posicoesChefao.push_back(sf::Vector2f(100.0f, 863.0f));
         posicoesChefao.push_back(sf::Vector2f(700.0f, 863.0f));
         posicoesChefao.push_back(sf::Vector2f(1200.0f, 863.0f));

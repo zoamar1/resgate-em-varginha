@@ -16,9 +16,9 @@ namespace Fases
 
     FasePrimeira::~FasePrimeira()
     {
-        posicoesPlataformas.clear();
         posicoesInimigosMedios.clear();
         vetorExercitos.clear();
+        posicoesArbustos.clear();
     }
 
     void FasePrimeira::executar()
@@ -41,6 +41,7 @@ namespace Fases
 
     void FasePrimeira::criarInimMedios()
     {
+        posicoesInimigosMedios.clear();
         posicoesInimigosMedios.push_back(sf::Vector2f(100.0f, 863.0f));
         posicoesInimigosMedios.push_back(sf::Vector2f(700.0f, 863.0f));
         posicoesInimigosMedios.push_back(sf::Vector2f(1200.0f, 863.0f));
@@ -76,6 +77,7 @@ namespace Fases
 
     void FasePrimeira::criarArbustos()
     {
+        posicoesArbustos.clear();
         posicoesArbustos.push_back(sf::Vector2f(500.0f, 210.0f));
         posicoesArbustos.push_back(sf::Vector2f(1200.0f, 210.0f));
         posicoesArbustos.push_back(sf::Vector2f(300.0f, 580.0f));

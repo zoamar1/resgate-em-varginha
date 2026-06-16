@@ -44,6 +44,7 @@ namespace Fases
 
         GC = NULL;
         posicoesInimigosFaceis.clear();
+        posicoesPlataformas.clear();
     }
 
     void Fase::executar()
@@ -152,6 +153,7 @@ namespace Fases
 
     void Fase::criarInimFaceis()
     {
+        posicoesInimigosFaceis.clear();
         posicoesInimigosFaceis.push_back(sf::Vector2f(300.0f, 863.0f));
         posicoesInimigosFaceis.push_back(sf::Vector2f(800.0f, 863.0f));
         posicoesInimigosFaceis.push_back(sf::Vector2f(1300.0f, 863.0f));
