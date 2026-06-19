@@ -2,7 +2,7 @@
 #include "personagens/Jogador.hpp"
 #include "gerenciadores/Gerenciador_Colisoes.hpp"
 #include "gerenciadores/Gerenciador_Grafico.hpp"
-#include <cmath>
+
 
 namespace Entidades
 {

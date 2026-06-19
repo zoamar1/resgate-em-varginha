@@ -1,7 +1,7 @@
 #pragma once
 #include "Header.hpp"
 #include "Ente.hpp"
-#include <string>
+
 
 namespace Entidades
 {

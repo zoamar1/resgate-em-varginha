@@ -1,6 +1,6 @@
 #include "Menu.hpp"
 #include "Jogo.hpp"
-#include <sstream>
+
 
 Menu::Menu() : Ente(), pJogo(NULL), telaAtual(TelaMenu::PRINCIPAL), indice_cadastro(1)
 {

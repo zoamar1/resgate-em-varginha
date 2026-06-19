@@ -1,8 +1,7 @@
 #pragma once
 #include "Header.hpp"
 #include "Ente.hpp"
-#include <vector>
-#include <string>
+
 
 class Jogo;
 

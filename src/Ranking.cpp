@@ -1,8 +1,5 @@
 #include "Ranking.hpp"
-#include <fstream>
-#include <algorithm>
-#include <iostream>
-#include "nlohmann/json.hpp"
+
 
 using json = nlohmann::json;
 const std::string Ranking::caminhoArquivo = "ranking.json";

@@ -1,5 +1,5 @@
 #include "Jogo.hpp"
-#include <sstream>
+
 
 Jogo::Jogo()
     : pGG(Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico()),

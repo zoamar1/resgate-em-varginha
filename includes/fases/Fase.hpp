@@ -5,8 +5,7 @@
 #include "listas/ListaEntidades.hpp"
 #include "entidades/Chao.hpp"
 #include "entidades/Projetil.hpp"
-#include <string>
-#include <vector>
+
 
 namespace Fases
 {

@@ -11,4 +11,11 @@
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
 #include <ctime>
+#include <sstream>
+#include <cmath>
+#include <fstream>
+#include <algorithm>
+#include <map>
+#include <string>
+#include <utility>
 #include "nlohmann/json.hpp"

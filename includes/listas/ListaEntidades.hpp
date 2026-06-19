@@ -2,8 +2,7 @@
 #include "Header.hpp"
 #include "listas/Lista.hpp"
 #include "entidades/Entidade.hpp"
-#include <string>
-#include <vector>
+
 
 namespace Entidades
 {

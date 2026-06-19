@@ -1,7 +1,7 @@
 #include "personagens/ET_Varginha.hpp"
 #include "personagens/Jogador.hpp"
 #include "gerenciadores/Gerenciador_Colisoes.hpp"
-#include <cmath>
+
 
 namespace Entidades
 {
