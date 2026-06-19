@@ -35,6 +35,9 @@ private:
 
     std::vector<sf::Text> textos_ranking;
 
+    std::vector<sf::Text> textos_continuar;
+    std::vector<std::string> chavesSalvamento;
+
 public:
     Menu();
     ~Menu();
@@ -59,4 +62,7 @@ public:
     void executar();
     void setTela(TelaMenu t);
     TelaMenu getTela() const;
+
+    void atualizaListaSalvamentos();
+    const std::vector<std::string> &getChavesSalvamento() const;
 };

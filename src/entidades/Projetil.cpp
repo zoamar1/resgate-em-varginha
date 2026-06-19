@@ -57,7 +57,8 @@ namespace Entidades
         {
             pAlien = pA;
             aplicarTextura(Gerenciadores::Projetil_Alien);
-        } else
+        }
+        else
         {
             pAlien = NULL;
             aplicarTextura(Gerenciadores::Projetil);
@@ -99,7 +100,13 @@ namespace Entidades
 
     void Projetil::salvar()
     {
+        salvarDataBuffer();
+        nlohmann::json j = nlohmann::json::parse(bufferDados);
+        j["tipo"] = "Projetil";
+        j["dano"] = dano;
+        j["ativo"] = ativo;
+        j["deJogador"] = deJogador;
+        bufferDados = j.dump();
     }
-
 
 }

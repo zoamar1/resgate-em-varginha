@@ -4,21 +4,24 @@
 
 namespace Entidades
 {
-    Portal::Portal(float posX, float posY, Fases::Fase* pFase) : Entidade({posX, posY}, {70, 110}), pFase(pFase)
+    Portal::Portal(float posX, float posY, Fases::Fase *pFase) : Entidade({posX, posY}, {70, 110}), pFase(pFase)
     {
-        aplicarTextura(Gerenciadores::Portal); 
-    };
+        aplicarTextura(Gerenciadores::Portal);
+    }
 
     Portal::~Portal()
     {
-    };
+    }
 
     void Portal::salvar()
     {
+        salvarDataBuffer();
+        nlohmann::json j = nlohmann::json::parse(bufferDados);
+        j["tipo"] = "Portal";
+        bufferDados = j.dump();
+    }
 
-    };
-    
-    void Portal::teleportar(Entidades::Personagens::Jogador* pJog)
+    void Portal::teleportar(Entidades::Personagens::Jogador *pJog)
     {
         if (pJog && pFase)
         {

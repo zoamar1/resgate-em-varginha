@@ -18,7 +18,8 @@ namespace Entidades
             vida_atual -= dano;
         }
 
-        int Personagem::get_vida_atual() const{
+        int Personagem::get_vida_atual() const
+        {
             return vida_atual;
         }
 
@@ -46,7 +47,17 @@ namespace Entidades
 
         void Personagem::operator++()
         {
-            if (vida_atual < get_num_vidas()) vida_atual++;
+            if (vida_atual < get_num_vidas())
+                vida_atual++;
+        }
+
+        void Personagem::salvarDataBuffer()
+        {
+            Entidade::salvarDataBuffer();
+            nlohmann::json j = nlohmann::json::parse(bufferDados);
+            j["vida_atual"] = vida_atual;
+            j["num_vidas"] = num_vidas;
+            bufferDados = j.dump();
         }
     }
 }

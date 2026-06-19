@@ -32,6 +32,12 @@ namespace Entidades
 
         void Jogador::salvar()
         {
+            salvarDataBuffer();
+            nlohmann::json j = nlohmann::json::parse(bufferDados);
+            j["tipo"] = "Jogador";
+            j["nome"] = nome;
+            j["pontos"] = pontos;
+            bufferDados = j.dump();
         }
 
         void Jogador::mover()

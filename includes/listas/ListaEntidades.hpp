@@ -1,6 +1,9 @@
 #pragma once
+#include "Header.hpp"
 #include "listas/Lista.hpp"
 #include "entidades/Entidade.hpp"
+#include <string>
+#include <vector>
 
 namespace Entidades
 {
@@ -9,12 +12,10 @@ namespace Entidades
         class Jogador;
     }
 }
-
 namespace Gerenciadores
 {
     class Gerenciador_Colisoes;
 }
-
 namespace Listas
 {
     class ListaEntidades
@@ -30,5 +31,6 @@ namespace Listas
         void desenhar();
         void limparExcetoJogadores();
         void removerMortos(Gerenciadores::Gerenciador_Colisoes *GC);
+        std::vector<std::string> coletarDadosSalvamento();
     };
 }

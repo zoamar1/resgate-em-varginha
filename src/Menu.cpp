@@ -143,28 +143,11 @@ void Menu::desenhaSelecaoModo()
 
 void Menu::desenhaContinuarJogo()
 {
-    formataTexto(titulo, "Continuar Partida", 70, 180.0f, sf::Color::Green);
+    formataTexto(titulo, "Continuar Partida", 70, 150.0f, sf::Color::Green);
     pGG->desenhaTexto(titulo);
 
-    sf::Text info;
-    if (pJogo && pJogo->temJogadoresCriados())
-    {
-        std::string listagem = "1 - Usar: " + pJogo->getNomeJogador1();
-        if (pJogo->getModo2Jogadores() && pJogo->getJogador2() != NULL)
-        {
-            listagem += " & " + pJogo->getNomeJogador2();
-        }
-        formataTexto(info, listagem, 38, 450.0f, sf::Color::Yellow);
-    }
-    else
-    {
-        formataTexto(info, "Nao ha jogadores salvos nesta sessao.", 35, 450.0f, sf::Color::Red);
-    }
-    pGG->desenhaTexto(info);
-
-    sf::Text voltar;
-    formataTexto(voltar, "Pressione ESC para voltar", 30, 850.0f, sf::Color(200, 200, 200));
-    pGG->desenhaTexto(voltar);
+    for (size_t i = 0; i < textos_continuar.size(); i++)
+        pGG->desenhaTexto(textos_continuar[i]);
 }
 
 void Menu::desenhaSelecaoFase()
@@ -231,9 +214,50 @@ void Menu::setTela(TelaMenu t)
     telaAtual = t;
     if (t == TelaMenu::RANKING)
         atualizaRanking();
+    else if (t == TelaMenu::CONTINUAR_JOGO)
+        atualizaListaSalvamentos();
 }
 
 TelaMenu Menu::getTela() const
 {
     return telaAtual;
+}
+
+void Menu::atualizaListaSalvamentos()
+{
+    textos_continuar.clear();
+    chavesSalvamento.clear();
+
+    sf::Text tituloR;
+    formataTexto(tituloR, "Escolha o jogo salvo", 50, 250.0f, sf::Color::Yellow);
+    textos_continuar.push_back(tituloR);
+
+    std::vector<std::pair<std::string, std::string>> resumos = Salvamento::listarResumos();
+    int limite = (resumos.size() < 9) ? (int)resumos.size() : 9;
+
+    for (int i = 0; i < limite; i++)
+    {
+        chavesSalvamento.push_back(resumos[i].first);
+        std::ostringstream ss;
+        ss << (i + 1) << " - " << resumos[i].second;
+        sf::Text linha;
+        formataTexto(linha, ss.str(), 32, 350.0f + i * 55.0f);
+        textos_continuar.push_back(linha);
+    }
+
+    if (resumos.empty())
+    {
+        sf::Text vazio;
+        formataTexto(vazio, "Nenhum jogo salvo encontrado.", 36, 400.0f, sf::Color(180, 180, 180));
+        textos_continuar.push_back(vazio);
+    }
+
+    sf::Text voltar;
+    formataTexto(voltar, "Pressione ESC para voltar", 30, 900.0f, sf::Color(200, 200, 200));
+    textos_continuar.push_back(voltar);
+}
+
+const std::vector<std::string> &Menu::getChavesSalvamento() const
+{
+    return chavesSalvamento;
 }

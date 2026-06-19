@@ -5,6 +5,9 @@
 #include "listas/ListaEntidades.hpp"
 #include "entidades/Chao.hpp"
 #include "entidades/Projetil.hpp"
+#include <string>
+#include <vector>
+
 namespace Fases
 {
     class Fase : public Ente
@@ -28,6 +31,9 @@ namespace Fases
 
         bool getFaseConcluida() const;
         void setFaseConcluida(bool c);
+
+        void desenharCena();
+        std::vector<std::string> coletarDadosSalvamento();
 
     private:
         void dividirChao(sf::Vector2f pos, sf::Vector2f tam);

@@ -9,14 +9,17 @@ namespace Listas
     ListaEntidades::ListaEntidades() : LE()
     {
     }
+
     ListaEntidades::~ListaEntidades()
     {
         LE.limpar();
     }
+
     void ListaEntidades::incluir(Entidades::Entidade *pE)
     {
         LE.incluir(pE);
     }
+
     void ListaEntidades::percorrer()
     {
         Entidades::Entidade *aux = LE.getPrimeiro();
@@ -61,7 +64,6 @@ namespace Listas
             Entidades::Entidade *proximo = LE.getProximo();
 
             Entidades::Personagens::Personagem *p = dynamic_cast<Entidades::Personagens::Personagem *>(aux);
-
             Entidades::Personagens::Jogador *jog = dynamic_cast<Entidades::Personagens::Jogador *>(aux);
 
             if (p && !jog && p->get_vida_atual() <= 0)
@@ -76,5 +78,18 @@ namespace Listas
 
             aux = proximo;
         }
+    }
+
+    std::vector<std::string> ListaEntidades::coletarDadosSalvamento()
+    {
+        std::vector<std::string> dados;
+        Entidades::Entidade *aux = LE.getPrimeiro();
+        while (aux != NULL)
+        {
+            aux->salvar();
+            dados.push_back(aux->getBufferDados());
+            aux = LE.getProximo();
+        }
+        return dados;
     }
 }

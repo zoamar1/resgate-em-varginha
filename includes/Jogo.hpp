@@ -7,6 +7,7 @@
 #include "fases/FaseSegunda.hpp"
 #include "Menu.hpp"
 #include "Ranking.hpp"
+#include "Salvamento.hpp"
 
 class Jogo
 {
@@ -22,7 +23,8 @@ public:
         CADASTRO_J2,
         RANKING_TELA,
         FASE1,
-        FASE2
+        FASE2,
+        PAUSADO
     };
 
 private:
@@ -31,6 +33,7 @@ private:
     Gerenciadores::Gerenciador_Colisoes *pGC;
 
     Estados estado;
+    Estados faseAoPausar;
     Menu *pMenu;
     bool modo2Jogadores;
 
@@ -52,6 +55,10 @@ public:
     void executar();
     void salvarRanking();
     void desenharPlacar();
+
+    void salvarProgresso();
+    void carregarSalvamento(const std::string &chave);
+    void desenharMenuPausa();
 
     Estados getEstado();
     void setEstado(Estados valor);

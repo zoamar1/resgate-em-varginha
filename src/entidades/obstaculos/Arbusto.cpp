@@ -22,6 +22,11 @@ namespace Entidades
 
         void Arbusto::salvar()
         {
+            salvarDataBuffer();
+            nlohmann::json j = nlohmann::json::parse(bufferDados);
+            j["tipo"] = "Arbusto";
+            j["largura"] = largura;
+            bufferDados = j.dump();
         }
 
         void Arbusto::obstaculizar(Entidades::Personagens::Jogador *p)

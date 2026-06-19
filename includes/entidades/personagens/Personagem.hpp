@@ -11,12 +11,13 @@ namespace Entidades
 {
     namespace Personagens
     {
-
         class Personagem : public Entidades::Entidade
         {
         protected:
             const int num_vidas;
             int vida_atual;
+
+            void salvarDataBuffer();
 
         public:
             Personagem(float posX = 0.0f, float posY = 0.0f, float tamanhoX = 0.0f, float tamanhoY = 0.0f, int n = 0);

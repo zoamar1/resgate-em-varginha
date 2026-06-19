@@ -76,6 +76,11 @@ namespace Entidades
 
         void ET_Varginha::salvar()
         {
+            salvarDataBuffer();
+            nlohmann::json j = nlohmann::json::parse(bufferDados);
+            j["tipo"] = "ET_Varginha";
+            j["multiplicador_forca"] = multiplicador_forca;
+            bufferDados = j.dump();
         }
 
         bool ET_Varginha::verificaPlayerArea()
@@ -192,8 +197,10 @@ namespace Entidades
             }
 
             bool estressadoAtual = false;
-            for (size_t i = 0; i < vetorProjeteis.size(); ++i) {
-                if (vetorProjeteis[i] && vetorProjeteis[i]->getAtivo() && vetorProjeteis[i]->getpAlien() == this) {
+            for (size_t i = 0; i < vetorProjeteis.size(); ++i)
+            {
+                if (vetorProjeteis[i] && vetorProjeteis[i]->getAtivo() && vetorProjeteis[i]->getpAlien() == this)
+                {
                     estressadoAtual = true;
                     break;
                 }

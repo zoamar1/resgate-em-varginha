@@ -130,8 +130,14 @@ namespace Entidades
 
             setPosicao(getPosicao() + getVelocidade());
         }
+
         void Exercito::salvar()
         {
+            salvarDataBuffer();
+            nlohmann::json j = nlohmann::json::parse(bufferDados);
+            j["tipo"] = "Exercito";
+            j["raio"] = raio;
+            bufferDados = j.dump();
         }
 
         bool Exercito::getExplodindo() const

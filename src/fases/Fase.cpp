@@ -65,6 +65,11 @@ namespace Fases
             GC->executar();
         }
 
+        desenharCena();
+    }
+
+    void Fase::desenharCena()
+    {
         desenhar();
         lista_ents.desenhar();
 
@@ -92,6 +97,11 @@ namespace Fases
                 }
             }
         }
+    }
+
+    std::vector<std::string> Fase::coletarDadosSalvamento()
+    {
+        return lista_ents.coletarDadosSalvamento();
     }
 
     Entidades::Projetil *Fase::getProjetilDisponivel()

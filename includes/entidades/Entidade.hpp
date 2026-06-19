@@ -1,6 +1,7 @@
 #pragma once
 #include "Header.hpp"
 #include "Ente.hpp"
+#include <string>
 
 namespace Entidades
 {
@@ -13,10 +14,10 @@ namespace Entidades
         bool noChao;
         static const float valor_gravidade;
 
-        // ostream buffer;
+        std::string bufferDados;
 
     public:
-        Entidade(const sf::Vector2f &posicao = {0,0}, const sf::Vector2f &tamanho = {0,0});
+        Entidade(const sf::Vector2f &posicao = {0, 0}, const sf::Vector2f &tamanho = {0, 0});
         virtual ~Entidade();
 
         virtual void executar() = 0;
@@ -32,13 +33,14 @@ namespace Entidades
         void setPosicao(float posx, float posy);
         void setVel_Max(float max);
         float getVel_Max() const;
-        // protected:
-        // void salvarDataBuffer();
 
         void setNoChao(bool flag);
         bool getNoChao() const;
         void aplicarGravidade();
         virtual void atualizarPosicao();
         virtual void anularGravidade();
+
+        void salvarDataBuffer();
+        const std::string &getBufferDados() const;
     };
 }

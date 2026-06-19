@@ -51,11 +51,15 @@ namespace Entidades
             }
 
             setPosicao(getPosicao() + getVelocidade());
-
         }
 
         void Guarda::salvar()
         {
+            salvarDataBuffer();
+            nlohmann::json j = nlohmann::json::parse(bufferDados);
+            j["tipo"] = "Guarda";
+            j["forca"] = forca;
+            bufferDados = j.dump();
         }
 
         void Guarda::executar()

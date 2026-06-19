@@ -27,8 +27,6 @@ namespace Entidades
 
             void mover();
             void salvar();
-
-            // void salvarDataBuffer();
             void executar();
             void danificar(Jogador *p);
             bool verificaPlayerArea();

@@ -51,6 +51,7 @@ namespace Entidades
             const std::string &getNome() const { return nome; }
             void adicionarPontos(int pts) { pontos += pts; }
             int getPontos() const { return pontos; }
+            void setPontos(int pts) { pontos = pts; }
 
             void ficarConfuso();
             bool getConfuso();

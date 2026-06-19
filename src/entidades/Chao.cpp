@@ -29,8 +29,14 @@ namespace Entidades
         anularGravidade();
         atualizarPosicao();
     }
+
     void Chao::salvar()
     {
+        salvarDataBuffer();
+        nlohmann::json j = nlohmann::json::parse(bufferDados);
+        j["tipo"] = "Chao";
+        j["largura"] = largura;
+        bufferDados = j.dump();
     }
 
     float Chao::getLargura() const

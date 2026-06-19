@@ -11,3 +11,4 @@
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
 #include <ctime>
+#include "nlohmann/json.hpp"
