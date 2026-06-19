@@ -38,20 +38,17 @@ Jogo::~Jogo()
         delete pJog2;
 }
 
-void Jogo::iniciarFase1()
+void Jogo::iniciarFase1(const std::vector<std::string> &dadosCenario)
 {
     if (pFase1)
     {
         delete pFase1;
         pFase1 = NULL;
     }
-
     if (pGC)
-    {
         pGC->limparColisoes();
-    }
 
-    pFase1 = new Fases::FasePrimeira(pGC);
+    pFase1 = new Fases::FasePrimeira(pGC, dadosCenario);
 
     pFase1->incluirJogador(pJog1, sf::Vector2f(100.0f, ALTURA - 100));
     if (pGC)
@@ -65,20 +62,17 @@ void Jogo::iniciarFase1()
     }
 }
 
-void Jogo::iniciarFase2()
+void Jogo::iniciarFase2(const std::vector<std::string> &dadosCenario)
 {
     if (pFase2)
     {
         delete pFase2;
         pFase2 = NULL;
     }
-
     if (pGC)
-    {
         pGC->limparColisoes();
-    }
 
-    pFase2 = new Fases::FaseSegunda(pGC);
+    pFase2 = new Fases::FaseSegunda(pGC, dadosCenario);
 
     pFase2->incluirJogador(pJog1, sf::Vector2f(100.0f, ALTURA - 100));
     if (pGC)
@@ -133,8 +127,9 @@ void Jogo::carregarSalvamento(const std::string &chave)
 
     bool modo2 = false;
     int faseSalva = 1;
+    std::vector<std::string> dadosCenario;
 
-    bool ok = Salvamento::carregarJogo(chave, pJog1, pJog2, modo2, faseSalva);
+    bool ok = Salvamento::carregarJogo(chave, pJog1, pJog2, modo2, faseSalva, dadosCenario);
     if (!ok)
     {
         delete pJog1;
@@ -158,12 +153,12 @@ void Jogo::carregarSalvamento(const std::string &chave)
     if (faseSalva == 2)
     {
         estado = FASE2;
-        iniciarFase2();
+        iniciarFase2(dadosCenario);
     }
     else
     {
         estado = FASE1;
-        iniciarFase1();
+        iniciarFase1(dadosCenario);
     }
 }
 

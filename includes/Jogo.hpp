@@ -50,8 +50,8 @@ public:
     Jogo();
     ~Jogo();
 
-    void iniciarFase1();
-    void iniciarFase2();
+    void iniciarFase1(const std::vector<std::string> &dadosCenario = std::vector<std::string>());
+    void iniciarFase2(const std::vector<std::string> &dadosCenario = std::vector<std::string>());
     void executar();
     void salvarRanking();
     void desenharPlacar();

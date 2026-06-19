@@ -106,6 +106,8 @@ namespace Entidades
         j["dano"] = dano;
         j["ativo"] = ativo;
         j["deJogador"] = deJogador;
+        j["velX"] = getVelocidade().x;
+        j["velY"] = getVelocidade().y;
         bufferDados = j.dump();
     }
 

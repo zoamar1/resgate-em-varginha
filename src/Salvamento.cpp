@@ -178,3 +178,48 @@ std::vector<std::pair<std::string, std::string>> Salvamento::listarResumos()
 
     return resultado;
 }
+
+bool Salvamento::carregarJogo(const std::string &chave,
+                              Entidades::Personagens::Jogador *pJog1,
+                              Entidades::Personagens::Jogador *pJog2,
+                              bool &modo2Jogadores,
+                              int &faseAtual,
+                              std::vector<std::string> &dadosCenario)
+{
+    json raiz = carregarTudo();
+
+    if (raiz.find(chave) == raiz.end())
+        return false;
+
+    json registro = raiz[chave];
+
+    modo2Jogadores = registro.value("modo2", false);
+    faseAtual = registro.value("fase", 1);
+
+    if (pJog1 && registro.contains("jogador1") && !registro["jogador1"].is_null())
+    {
+        json j1 = registro["jogador1"];
+        pJog1->setNome(j1.value("nome", pJog1->getNome()));
+        pJog1->setPontos(j1.value("pontos", 0));
+        pJog1->set_vida_atual(j1.value("vida_atual", pJog1->get_num_vidas()));
+    }
+
+    if (modo2Jogadores && pJog2 && registro.contains("jogador2") && !registro["jogador2"].is_null())
+    {
+        json j2 = registro["jogador2"];
+        pJog2->setNome(j2.value("nome", pJog2->getNome()));
+        pJog2->setPontos(j2.value("pontos", 0));
+        pJog2->set_vida_atual(j2.value("vida_atual", pJog2->get_num_vidas()));
+    }
+
+    dadosCenario.clear();
+    if (registro.contains("cenario") && registro["cenario"].is_array())
+    {
+        for (auto &item : registro["cenario"])
+        {
+            dadosCenario.push_back(item.dump());
+        }
+    }
+
+    return true;
+}

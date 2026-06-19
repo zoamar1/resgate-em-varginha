@@ -6,12 +6,51 @@
 namespace Fases
 {
 
-    FasePrimeira::FasePrimeira(Gerenciadores::Gerenciador_Colisoes *pGC) : Fase(pGC), maxInimMedios(50)
+    FasePrimeira::FasePrimeira(Gerenciadores::Gerenciador_Colisoes *pGC,
+                               const std::vector<std::string> &dadosCenario)
+        : Fase(pGC), maxInimMedios(50)
     {
         pFig->setSize({LARGURA - 1, ALTURA - 1});
         pFig->setOrigin({0, 0});
         aplicarTextura(Gerenciadores::FundoFase1);
-        criarCenario();
+
+        if (dadosCenario.empty())
+            criarCenario();
+        else
+            carregarCenario(dadosCenario);
+    }
+
+    void FasePrimeira::carregarInimigoEspecial(const std::string &dadoJson)
+    {
+        try
+        {
+            nlohmann::json j = nlohmann::json::parse(dadoJson);
+            if (j.value("tipo", "") != "Exercito")
+                return;
+
+            int vidaAtual = j.value("vida_atual", 0);
+            if (vidaAtual <= 0)
+                return;
+
+            float posX = j.value("posX", 0.0f);
+            float posY = j.value("posY", 0.0f);
+            int numVidas = j.value("num_vidas", 3);
+            int raio = j.value("raio", 400);
+
+            Entidades::Personagens::Exercito *pExercito =
+                new Entidades::Personagens::Exercito(posX, posY, numVidas, 15, raio);
+            pExercito->set_vida_atual(vidaAtual);
+
+            lista_ents.incluir(static_cast<Entidades::Entidade *>(pExercito));
+            vetorExercitos.push_back(pExercito);
+
+            if (GC)
+                GC->incluirInimigo(static_cast<Entidades::Personagens::Inimigo *>(pExercito));
+        }
+        catch (...)
+        {
+            std::cerr << "Erro ao carregar Exercito salvo." << std::endl;
+        }
     }
 
     FasePrimeira::~FasePrimeira()

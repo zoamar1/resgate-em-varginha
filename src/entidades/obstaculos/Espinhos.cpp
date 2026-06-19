@@ -26,6 +26,8 @@ namespace Entidades
             nlohmann::json j = nlohmann::json::parse(bufferDados);
             j["tipo"] = "Espinhos";
             j["danosidade"] = danosidade;
+            j["tamanhoX"] = pFig->getSize().x;
+            j["tamanhoY"] = pFig->getSize().y;
             bufferDados = j.dump();
         }
 

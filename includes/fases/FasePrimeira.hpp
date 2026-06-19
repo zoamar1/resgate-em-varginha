@@ -13,7 +13,8 @@ namespace Fases
         std::vector<Entidades::Personagens::Exercito *> vetorExercitos;
 
     public:
-        FasePrimeira(Gerenciadores::Gerenciador_Colisoes *pGC);
+        FasePrimeira(Gerenciadores::Gerenciador_Colisoes *pGC,
+                     const std::vector<std::string> &dadosCenario = std::vector<std::string>());
         ~FasePrimeira();
         void executar();
 
@@ -24,5 +25,7 @@ namespace Fases
 
         void criarInimigos();
         void criarObstaculo();
+
+        void carregarInimigoEspecial(const std::string &dadoJson) override;
     };
 }

@@ -20,7 +20,8 @@ namespace Fases
         std::vector<Entidades::Personagens::ET_Varginha *> vetorETs;
 
     public:
-        FaseSegunda(Gerenciadores::Gerenciador_Colisoes *pGC);
+        FaseSegunda(Gerenciadores::Gerenciador_Colisoes *pGC,
+                    const std::vector<std::string> &dadosCenario = std::vector<std::string>());
         ~FaseSegunda();
         void executar();
 
@@ -31,5 +32,7 @@ namespace Fases
 
         void criarInimigos();
         void criarObstaculo();
+
+        void carregarInimigoEspecial(const std::string &dadoJson) override;
     };
 }

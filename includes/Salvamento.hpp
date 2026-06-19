@@ -28,5 +28,12 @@ public:
 
     static void removerJogo(const std::string &chave);
 
+    static bool carregarJogo(const std::string &chave,
+                             Entidades::Personagens::Jogador *pJog1,
+                             Entidades::Personagens::Jogador *pJog2,
+                             bool &modo2Jogadores,
+                             int &faseAtual,
+                             std::vector<std::string> &dadosCenario);
+
     static std::vector<std::pair<std::string, std::string>> listarResumos();
 };

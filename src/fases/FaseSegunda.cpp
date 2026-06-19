@@ -5,12 +5,51 @@
 namespace Fases
 {
 
-    FaseSegunda::FaseSegunda(Gerenciadores::Gerenciador_Colisoes *pGC) : Fase(pGC), maxETs(50)
+    FaseSegunda::FaseSegunda(Gerenciadores::Gerenciador_Colisoes *pGC,
+                             const std::vector<std::string> &dadosCenario)
+        : Fase(pGC), maxETs(50)
     {
         pFig->setSize({LARGURA - 1, ALTURA - 1});
         pFig->setOrigin({0, 0});
         aplicarTextura(Gerenciadores::FundoFase2);
-        criarCenario();
+
+        if (dadosCenario.empty())
+            criarCenario();
+        else
+            carregarCenario(dadosCenario);
+    }
+
+    void FaseSegunda::carregarInimigoEspecial(const std::string &dadoJson)
+    {
+        try
+        {
+            nlohmann::json j = nlohmann::json::parse(dadoJson);
+            if (j.value("tipo", "") != "ET_Varginha")
+                return;
+
+            int vidaAtual = j.value("vida_atual", 0);
+            if (vidaAtual <= 0)
+                return;
+
+            float posX = j.value("posX", 0.0f);
+            float posY = j.value("posY", 0.0f);
+            int numVidas = j.value("num_vidas", 3);
+            int multiplicadorForca = j.value("multiplicador_forca", 1);
+
+            Entidades::Personagens::ET_Varginha *pChefao =
+                new Entidades::Personagens::ET_Varginha(posX, posY, numVidas, 15, multiplicadorForca);
+            pChefao->set_vida_atual(vidaAtual);
+
+            lista_ents.incluir(static_cast<Entidades::Entidade *>(pChefao));
+            vetorETs.push_back(pChefao);
+
+            if (GC)
+                GC->incluirInimigo(static_cast<Entidades::Personagens::Inimigo *>(pChefao));
+        }
+        catch (...)
+        {
+            std::cerr << "Erro ao carregar ET_Varginha salvo." << std::endl;
+        }
     }
 
     FaseSegunda::~FaseSegunda()

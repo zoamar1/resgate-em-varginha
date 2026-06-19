@@ -3,6 +3,8 @@
 #include "entidades/personagens/Guarda.hpp"
 #include "entidades/personagens/Exercito.hpp"
 #include "entidades/Portal.hpp"
+#include "entidades/obstaculos/Arbusto.hpp"
+#include "entidades/obstaculos/Espinhos.hpp"
 
 namespace Fases
 {
@@ -128,7 +130,6 @@ namespace Fases
 
     void Fase::criarChao()
     {
-
         dividirChao({0, 1000}, {1920, 30});
         dividirChao({250, 250}, {1920, 30});
         dividirChao({250, 250}, {1670, 30});
@@ -141,7 +142,6 @@ namespace Fases
 
     void Fase::dividirChao(sf::Vector2f pos, sf::Vector2f tam)
     {
-
         float divisaoX = 32.0f;
         float divisaoY = 32.0f;
 
@@ -221,7 +221,6 @@ namespace Fases
 
     void Fase::dividirPlataforma(sf::Vector2f pos, sf::Vector2f tam)
     {
-
         float divisaoX = 32.0f;
         float divisaoY = 32.0f;
 
@@ -308,4 +307,92 @@ namespace Fases
         }
     }
 
+    void Fase::carregarCenario(const std::vector<std::string> &dadosCenario)
+    {
+        criarChao();
+        criarProjeteis();
+
+        for (size_t i = 0; i < dadosCenario.size(); i++)
+        {
+            try
+            {
+                nlohmann::json j = nlohmann::json::parse(dadosCenario[i]);
+                std::string tipo = j.value("tipo", "");
+                float posX = j.value("posX", 0.0f);
+                float posY = j.value("posY", 0.0f);
+
+                if (tipo == "Plataforma")
+                {
+                    float altura = j.value("altura", 32.0f);
+                    Entidades::Obstaculos::Plataforma *pPlat =
+                        new Entidades::Obstaculos::Plataforma(posX, posY, 32.0f, altura);
+                    lista_ents.incluir(static_cast<Entidades::Entidade *>(pPlat));
+                    if (GC)
+                        GC->incluirObstaculo(pPlat);
+                }
+                else if (tipo == "Arbusto")
+                {
+                    float largura = j.value("largura", 100.0f);
+                    float altura = j.value("altura", 40.0f);
+                    Entidades::Obstaculos::Arbusto *pArbusto =
+                        new Entidades::Obstaculos::Arbusto(posX, posY, largura, altura);
+                    lista_ents.incluir(static_cast<Entidades::Entidade *>(pArbusto));
+                    if (GC)
+                        GC->incluirObstaculo(pArbusto);
+                }
+                else if (tipo == "Espinhos")
+                {
+                    float tamX = j.value("tamanhoX", 100.0f);
+                    float tamY = j.value("tamanhoY", 40.0f);
+                    short int dano = (short int)j.value("danosidade", 2);
+                    Entidades::Obstaculos::Espinhos *pEsp =
+                        new Entidades::Obstaculos::Espinhos(posX, posY, tamX, tamY, dano);
+                    lista_ents.incluir(static_cast<Entidades::Entidade *>(pEsp));
+                    if (GC)
+                        GC->incluirObstaculo(pEsp);
+                }
+                else if (tipo == "Guarda")
+                {
+                    int vidaAtual = j.value("vida_atual", 0);
+                    if (vidaAtual > 0)
+                    {
+                        int numVidas = j.value("num_vidas", 3);
+                        int forca = j.value("forca", 3);
+                        Entidades::Personagens::Guarda *pG =
+                            new Entidades::Personagens::Guarda(posX, posY, numVidas, 15, forca);
+                        pG->set_vida_atual(vidaAtual);
+                        lista_ents.incluir(static_cast<Entidades::Entidade *>(pG));
+                        if (GC)
+                            GC->incluirInimigo(static_cast<Entidades::Personagens::Inimigo *>(pG));
+                    }
+                }
+                else if (tipo == "Projetil")
+                {
+                    bool ativo = j.value("ativo", false);
+                    if (ativo)
+                    {
+                        int dano = j.value("dano", 0);
+                        bool deJogador = j.value("deJogador", false);
+                        float velX = j.value("velX", 0.0f);
+                        float velY = j.value("velY", 0.0f);
+
+                        Entidades::Projetil *pProj = new Entidades::Projetil(posX, posY, true, dano);
+                        pProj->setDeJogador(deJogador);
+                        pProj->setVelocidade(sf::Vector2f(velX, velY));
+                        incluirProjetil(pProj);
+                    }
+                }
+                else
+                {
+                    carregarInimigoEspecial(dadosCenario[i]);
+                }
+            }
+            catch (...)
+            {
+                std::cerr << "Erro ao carregar entidade salva do cenario." << std::endl;
+            }
+        }
+
+        criarPortal(1750.0f, 110.0f);
+    }
 }

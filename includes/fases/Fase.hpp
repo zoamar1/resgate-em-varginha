@@ -34,6 +34,8 @@ namespace Fases
 
         void desenharCena();
         std::vector<std::string> coletarDadosSalvamento();
+        void carregarCenario(const std::vector<std::string> &dadosCenario);
+        virtual void carregarInimigoEspecial(const std::string &dadoJson) = 0;
 
     private:
         void dividirChao(sf::Vector2f pos, sf::Vector2f tam);
