@@ -94,7 +94,6 @@ namespace Gerenciadores
 
     void Gerenciador_Grafico::carregaTexturas()
     {
-        texturas.resize(17);
 
         if (!texturas[Jogador].loadFromFile("assets/jogador.png"))
         {

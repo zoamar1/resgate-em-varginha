@@ -1,5 +1,6 @@
 #pragma once
 #include "Header.hpp"
+#include <map>
 
 class Ente;
 
@@ -31,7 +32,7 @@ namespace Gerenciadores
     private:
         static Gerenciador_Grafico *pGrafico;
         sf::RenderWindow window;
-        std::vector<sf::Texture> texturas;
+        std::map<IDTextura, sf::Texture> texturas;
 
     private:
         Gerenciador_Grafico();
