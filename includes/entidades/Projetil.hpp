@@ -16,6 +16,9 @@ namespace Entidades
         int dano;
         bool deJogador;
         Personagens::ET_Varginha *pAlien;
+        int idDonoJogador;
+        int idAlienDono;
+
     public:
         Projetil(float posX = 0.0f, float posY = 0.0f, bool flag = true, int dano = 0);
         ~Projetil();
@@ -26,7 +29,10 @@ namespace Entidades
         bool getDeJogador() const;
         void setDeJogador(bool valor);
         void setpAlien(Personagens::ET_Varginha *pA);
-        Personagens::ET_Varginha* getpAlien() const { return pAlien; }
+        Personagens::ET_Varginha *getpAlien() const { return pAlien; }
+        void setIdDonoJogador(int idx) { idDonoJogador = idx; }
+        int getIdDonoJogador() const { return idDonoJogador; }
+        int getIdAlienDono() const { return idAlienDono; }
         void mover();
         void executar();
         void salvar();

@@ -2,7 +2,6 @@
 #include "personagens/Jogador.hpp"
 #include "gerenciadores/Gerenciador_Colisoes.hpp"
 
-
 namespace Entidades
 {
     namespace Personagens
@@ -77,10 +76,10 @@ namespace Entidades
         void ET_Varginha::salvar()
         {
             salvarDataBuffer();
-            nlohmann::json j = nlohmann::json::parse(bufferDados);
+            nlohmann::json j = nlohmann::json::parse(getBufferDados());
             j["tipo"] = "ET_Varginha";
             j["multiplicador_forca"] = multiplicador_forca;
-            bufferDados = j.dump();
+            escreverBuffer(j);
         }
 
         bool ET_Varginha::verificaPlayerArea()

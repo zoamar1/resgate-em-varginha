@@ -54,10 +54,10 @@ namespace Entidades
         void Personagem::salvarDataBuffer()
         {
             Entidade::salvarDataBuffer();
-            nlohmann::json j = nlohmann::json::parse(bufferDados);
+            nlohmann::json j = nlohmann::json::parse(getBufferDados());
             j["vida_atual"] = vida_atual;
             j["num_vidas"] = num_vidas;
-            bufferDados = j.dump();
+            escreverBuffer(j);
         }
     }
 }

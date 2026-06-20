@@ -14,7 +14,7 @@ namespace Entidades
         public:
             Obstaculo(float posX = 0.0f, float posY = 0.0f, float tamanhoX = 0.0f, float tamanhoY = 0.0f, bool dano = false);
             virtual ~Obstaculo();
-            void salvarDataBuffer();
+            void salvarDataBuffer() override;
             virtual void executar() = 0;
             virtual void salvar() = 0;
             virtual void obstaculizar(Entidades::Personagens::Jogador *p) = 0;

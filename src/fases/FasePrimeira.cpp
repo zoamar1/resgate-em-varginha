@@ -36,10 +36,14 @@ namespace Fases
             float posY = j.value("posY", 0.0f);
             int numVidas = j.value("num_vidas", 3);
             int raio = j.value("raio", 400);
+            int maldade = j.value("nivel_maldade", 15);
+            float posIniX = j.value("posicaoInicialX", posX);
+            float posIniY = j.value("posicaoInicialY", posY);
 
             Entidades::Personagens::Exercito *pExercito =
-                new Entidades::Personagens::Exercito(posX, posY, numVidas, 15, raio);
+                new Entidades::Personagens::Exercito(posX, posY, numVidas, maldade, raio);
             pExercito->set_vida_atual(vidaAtual);
+            pExercito->setPosicaoInicial(sf::Vector2f(posIniX, posIniY));
 
             lista_ents.incluir(static_cast<Entidades::Entidade *>(pExercito));
             vetorExercitos.push_back(pExercito);

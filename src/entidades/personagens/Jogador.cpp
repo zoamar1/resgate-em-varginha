@@ -12,7 +12,8 @@ namespace Entidades
               direcao(1),
               tempoInvencivel(tInvencivel),
               invencivel(inv),
-              confuso(false)
+              confuso(false),
+              indiceJogador(0)
         {
             cooldownTiros = 0.5f;
             tempoConfusao = 3.0f;
@@ -33,11 +34,15 @@ namespace Entidades
         void Jogador::salvar()
         {
             salvarDataBuffer();
-            nlohmann::json j = nlohmann::json::parse(bufferDados);
+            nlohmann::json j = nlohmann::json::parse(getBufferDados());
             j["tipo"] = "Jogador";
             j["nome"] = nome;
             j["pontos"] = pontos;
-            bufferDados = j.dump();
+            j["direcao"] = direcao;
+            j["invencivel"] = invencivel;
+            j["confuso"] = confuso;
+            j["indiceJogador"] = indiceJogador;
+            escreverBuffer(j);
         }
 
         void Jogador::mover()
@@ -65,6 +70,7 @@ namespace Entidades
             pProjetil->setVelocidade(sf::Vector2f(30.0f * static_cast<float>(direcao), 0.0f));
             pProjetil->setDeJogador(true);
             pProjetil->setAtivo(true);
+            pProjetil->setIdDonoJogador(indiceJogador);
 
             Gerenciadores::Gerenciador_Colisoes *pGC = Gerenciadores::Gerenciador_Colisoes::getGerenciador_Colisoes();
             if (pGC)

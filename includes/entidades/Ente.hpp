@@ -11,6 +11,7 @@ protected:
     sf::RectangleShape *pFig;
     sf::Sprite *pSprite;
     void aplicarTextura(Gerenciadores::IDTextura idTextura);
+
 public:
     Ente();
     virtual ~Ente();
@@ -19,4 +20,5 @@ public:
     static void setGG(Gerenciadores::Gerenciador_Grafico *pG);
     sf::RectangleShape *getpFig();
     sf::Sprite *getpSprite();
+    int getId() const;
 };

@@ -29,6 +29,7 @@ namespace Entidades
             bool confuso;
             sf::Clock relogioConfusao;
             float tempoConfusao;
+            int indiceJogador;
 
         public:
             Jogador(int n = 3, int p = 0, float tInvencivel = 1.0f, bool invencivel = false);
@@ -46,6 +47,7 @@ namespace Entidades
             int getDirecao() const;
             void atualizarInvencibilidade();
             bool getInvencivel() const;
+            void setInvencivel(bool valor) { invencivel = valor; }
 
             void setNome(const std::string &n) { nome = n; }
             const std::string &getNome() const { return nome; }
@@ -55,6 +57,10 @@ namespace Entidades
 
             void ficarConfuso();
             bool getConfuso();
+            void setConfusoEstado(bool valor) { confuso = valor; }
+
+            void setIndiceJogador(int idx) { indiceJogador = idx; }
+            int getIndiceJogador() const { return indiceJogador; }
         };
     }
 }

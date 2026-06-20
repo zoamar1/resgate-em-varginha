@@ -23,11 +23,11 @@ namespace Entidades
         void Arbusto::salvar()
         {
             salvarDataBuffer();
-            nlohmann::json j = nlohmann::json::parse(bufferDados);
+            nlohmann::json j = nlohmann::json::parse(getBufferDados());
             j["tipo"] = "Arbusto";
             j["largura"] = largura;
             j["altura"] = pFig->getSize().y;
-            bufferDados = j.dump();
+            escreverBuffer(j);
         }
 
         void Arbusto::obstaculizar(Entidades::Personagens::Jogador *p)

@@ -23,12 +23,12 @@ namespace Entidades
         void Espinhos::salvar()
         {
             salvarDataBuffer();
-            nlohmann::json j = nlohmann::json::parse(bufferDados);
+            nlohmann::json j = nlohmann::json::parse(getBufferDados());
             j["tipo"] = "Espinhos";
             j["danosidade"] = danosidade;
             j["tamanhoX"] = pFig->getSize().x;
             j["tamanhoY"] = pFig->getSize().y;
-            bufferDados = j.dump();
+            escreverBuffer(j);
         }
 
         void Espinhos::obstaculizar(Entidades::Personagens::Jogador *p)

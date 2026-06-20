@@ -134,16 +134,27 @@ namespace Entidades
         velocidade.y -= valor_gravidade;
     }
 
+    void Entidade::escreverBuffer(const nlohmann::json &j)
+    {
+        bufferDados.str("");
+        bufferDados.clear();
+        bufferDados << j.dump();
+    }
+
     void Entidade::salvarDataBuffer()
     {
         nlohmann::json j;
+        j["id"] = id;
         j["posX"] = posicao.x;
         j["posY"] = posicao.y;
-        bufferDados = j.dump();
+        j["velX"] = velocidade.x;
+        j["velY"] = velocidade.y;
+        j["noChao"] = noChao;
+        escreverBuffer(j);
     }
 
-    const std::string &Entidade::getBufferDados() const
+    std::string Entidade::getBufferDados() const
     {
-        return bufferDados;
+        return bufferDados.str();
     }
 }

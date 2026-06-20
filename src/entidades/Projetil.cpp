@@ -7,7 +7,10 @@ namespace Entidades
         : Entidade(sf::Vector2f(posX, posY), sf::Vector2f(0.0f, 0.0f)),
           ativo(flag),
           dano(dano),
-          deJogador(false)
+          deJogador(false),
+          pAlien(NULL),
+          idDonoJogador(-1),
+          idAlienDono(-1)
     {
         if (pFig)
         {
@@ -56,11 +59,13 @@ namespace Entidades
         if (pA)
         {
             pAlien = pA;
+            idAlienDono = pA->getId();
             aplicarTextura(Gerenciadores::Projetil_Alien);
         }
         else
         {
             pAlien = NULL;
+            idAlienDono = -1;
             aplicarTextura(Gerenciadores::Projetil);
         }
     }
@@ -101,14 +106,13 @@ namespace Entidades
     void Projetil::salvar()
     {
         salvarDataBuffer();
-        nlohmann::json j = nlohmann::json::parse(bufferDados);
+        nlohmann::json j = nlohmann::json::parse(getBufferDados());
         j["tipo"] = "Projetil";
         j["dano"] = dano;
         j["ativo"] = ativo;
         j["deJogador"] = deJogador;
-        j["velX"] = getVelocidade().x;
-        j["velY"] = getVelocidade().y;
-        bufferDados = j.dump();
+        j["idDonoJogador"] = idDonoJogador;
+        j["idAlienDono"] = idAlienDono;
+        escreverBuffer(j);
     }
-
 }

@@ -17,9 +17,9 @@ namespace Entidades
         void Obstaculo::salvarDataBuffer()
         {
             Entidade::salvarDataBuffer();
-            nlohmann::json j = nlohmann::json::parse(bufferDados);
+            nlohmann::json j = nlohmann::json::parse(getBufferDados());
             j["danoso"] = danoso;
-            bufferDados = j.dump();
+            escreverBuffer(j);
         }
     }
 }

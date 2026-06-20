@@ -16,10 +16,10 @@ namespace Entidades
         void Plataforma::salvar()
         {
             salvarDataBuffer();
-            nlohmann::json j = nlohmann::json::parse(bufferDados);
+            nlohmann::json j = nlohmann::json::parse(getBufferDados());
             j["tipo"] = "Plataforma";
             j["altura"] = altura;
-            bufferDados = j.dump();
+            escreverBuffer(j);
         }
 
         void Plataforma::obstaculizar(Entidades::Personagens::Jogador *p)

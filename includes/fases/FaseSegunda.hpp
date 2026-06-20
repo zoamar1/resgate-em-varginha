@@ -18,6 +18,7 @@ namespace Fases
         std::vector<sf::Vector2f> posicoesEspinhos;
         std::vector<sf::Vector2f> posicoesChefao;
         std::vector<Entidades::Personagens::ET_Varginha *> vetorETs;
+        std::map<int, Entidades::Personagens::ET_Varginha *> mapaAliensPorIdSalvo;
 
     public:
         FaseSegunda(Gerenciadores::Gerenciador_Colisoes *pGC,
@@ -34,5 +35,6 @@ namespace Fases
         void criarObstaculo();
 
         void carregarInimigoEspecial(const std::string &dadoJson) override;
+        void relacionarProjetilAlien(Entidades::Projetil *pProj, int idAlienSalvo) override;
     };
 }

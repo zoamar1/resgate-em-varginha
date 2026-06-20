@@ -43,6 +43,7 @@ namespace Fases
         barra_de_vida.clear();
 
         ProjeteisPossiveis.clear();
+        projeteisPendentesDono.clear();
 
         GC = NULL;
         posicoesInimigosFaceis.clear();
@@ -358,9 +359,14 @@ namespace Fases
                     {
                         int numVidas = j.value("num_vidas", 3);
                         int forca = j.value("forca", 3);
+                        int maldade = j.value("nivel_maldade", 15);
+                        float posIniX = j.value("posicaoInicialX", posX);
+                        float posIniY = j.value("posicaoInicialY", posY);
+
                         Entidades::Personagens::Guarda *pG =
-                            new Entidades::Personagens::Guarda(posX, posY, numVidas, 15, forca);
+                            new Entidades::Personagens::Guarda(posX, posY, numVidas, maldade, forca);
                         pG->set_vida_atual(vidaAtual);
+                        pG->setPosicaoInicial(sf::Vector2f(posIniX, posIniY));
                         lista_ents.incluir(static_cast<Entidades::Entidade *>(pG));
                         if (GC)
                             GC->incluirInimigo(static_cast<Entidades::Personagens::Inimigo *>(pG));
@@ -375,11 +381,23 @@ namespace Fases
                         bool deJogador = j.value("deJogador", false);
                         float velX = j.value("velX", 0.0f);
                         float velY = j.value("velY", 0.0f);
+                        int idDonoJogador = j.value("idDonoJogador", -1);
+                        int idAlienDono = j.value("idAlienDono", -1);
 
                         Entidades::Projetil *pProj = new Entidades::Projetil(posX, posY, true, dano);
                         pProj->setDeJogador(deJogador);
                         pProj->setVelocidade(sf::Vector2f(velX, velY));
                         incluirProjetil(pProj);
+
+                        if (idDonoJogador > 0)
+                        {
+                            projeteisPendentesDono.push_back(std::make_pair(pProj, idDonoJogador));
+                        }
+
+                        if (idAlienDono >= 0)
+                        {
+                            relacionarProjetilAlien(pProj, idAlienDono);
+                        }
                     }
                 }
                 else
@@ -394,5 +412,33 @@ namespace Fases
         }
 
         criarPortal(1750.0f, 110.0f);
+    }
+
+    void Fase::relacionarProjetilAlien(Entidades::Projetil *pProj, int idAlienSalvo)
+    {
+        (void)pProj;
+        (void)idAlienSalvo;
+    }
+
+    void Fase::vincularDonosProjeteis(Entidades::Personagens::Jogador *pJog1, Entidades::Personagens::Jogador *pJog2)
+    {
+        for (size_t i = 0; i < projeteisPendentesDono.size(); i++)
+        {
+            Entidades::Projetil *pProj = projeteisPendentesDono[i].first;
+            int idx = projeteisPendentesDono[i].second;
+
+            Entidades::Personagens::Jogador *pDono = NULL;
+            if (idx == 1)
+                pDono = pJog1;
+            else if (idx == 2)
+                pDono = pJog2;
+
+            if (pProj && pDono && GC)
+            {
+                GC->registrarProjetilJogador(pProj, pDono);
+                pProj->setIdDonoJogador(idx);
+            }
+        }
+        projeteisPendentesDono.clear();
     }
 }

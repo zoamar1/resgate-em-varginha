@@ -56,10 +56,10 @@ namespace Entidades
         void Guarda::salvar()
         {
             salvarDataBuffer();
-            nlohmann::json j = nlohmann::json::parse(bufferDados);
+            nlohmann::json j = nlohmann::json::parse(getBufferDados());
             j["tipo"] = "Guarda";
             j["forca"] = forca;
-            bufferDados = j.dump();
+            escreverBuffer(j);
         }
 
         void Guarda::executar()

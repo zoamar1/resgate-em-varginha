@@ -16,9 +16,9 @@ namespace Entidades
     void Portal::salvar()
     {
         salvarDataBuffer();
-        nlohmann::json j = nlohmann::json::parse(bufferDados);
+        nlohmann::json j = nlohmann::json::parse(getBufferDados());
         j["tipo"] = "Portal";
-        bufferDados = j.dump();
+        escreverBuffer(j);
     }
 
     void Portal::teleportar(Entidades::Personagens::Jogador *pJog)

@@ -3,7 +3,6 @@
 #include "gerenciadores/Gerenciador_Colisoes.hpp"
 #include "gerenciadores/Gerenciador_Grafico.hpp"
 
-
 namespace Entidades
 {
     namespace Personagens
@@ -134,10 +133,10 @@ namespace Entidades
         void Exercito::salvar()
         {
             salvarDataBuffer();
-            nlohmann::json j = nlohmann::json::parse(bufferDados);
+            nlohmann::json j = nlohmann::json::parse(getBufferDados());
             j["tipo"] = "Exercito";
             j["raio"] = raio;
-            bufferDados = j.dump();
+            escreverBuffer(j);
         }
 
         bool Exercito::getExplodindo() const

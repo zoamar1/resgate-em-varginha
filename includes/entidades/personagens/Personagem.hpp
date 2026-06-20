@@ -17,7 +17,7 @@ namespace Entidades
             const int num_vidas;
             int vida_atual;
 
-            void salvarDataBuffer();
+            void salvarDataBuffer() override;
 
         public:
             Personagem(float posX = 0.0f, float posY = 0.0f, float tamanhoX = 0.0f, float tamanhoY = 0.0f, int n = 0);

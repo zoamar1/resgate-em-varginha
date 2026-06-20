@@ -1,7 +1,6 @@
 #include "Salvamento.hpp"
 #include "entidades/personagens/Jogador.hpp"
 
-
 using json = nlohmann::json;
 
 namespace
@@ -115,6 +114,9 @@ bool Salvamento::carregarJogo(const std::string &chave,
         pJog1->setNome(j1.value("nome", pJog1->getNome()));
         pJog1->setPontos(j1.value("pontos", 0));
         pJog1->set_vida_atual(j1.value("vida_atual", pJog1->get_num_vidas()));
+        pJog1->setDirecao(j1.value("direcao", 1));
+        pJog1->setInvencivel(j1.value("invencivel", false));
+        pJog1->setConfusoEstado(j1.value("confuso", false));
     }
 
     if (modo2Jogadores && pJog2 && registro.contains("jogador2") && !registro["jogador2"].is_null())
@@ -123,6 +125,9 @@ bool Salvamento::carregarJogo(const std::string &chave,
         pJog2->setNome(j2.value("nome", pJog2->getNome()));
         pJog2->setPontos(j2.value("pontos", 0));
         pJog2->set_vida_atual(j2.value("vida_atual", pJog2->get_num_vidas()));
+        pJog2->setDirecao(j2.value("direcao", 1));
+        pJog2->setInvencivel(j2.value("invencivel", false));
+        pJog2->setConfusoEstado(j2.value("confuso", false));
     }
 
     return true;
@@ -199,6 +204,9 @@ bool Salvamento::carregarJogo(const std::string &chave,
         pJog1->setNome(j1.value("nome", pJog1->getNome()));
         pJog1->setPontos(j1.value("pontos", 0));
         pJog1->set_vida_atual(j1.value("vida_atual", pJog1->get_num_vidas()));
+        pJog1->setDirecao(j1.value("direcao", 1));
+        pJog1->setInvencivel(j1.value("invencivel", false));
+        pJog1->setConfusoEstado(j1.value("confuso", false));
     }
 
     if (modo2Jogadores && pJog2 && registro.contains("jogador2") && !registro["jogador2"].is_null())
@@ -207,6 +215,9 @@ bool Salvamento::carregarJogo(const std::string &chave,
         pJog2->setNome(j2.value("nome", pJog2->getNome()));
         pJog2->setPontos(j2.value("pontos", 0));
         pJog2->set_vida_atual(j2.value("vida_atual", pJog2->get_num_vidas()));
+        pJog2->setDirecao(j2.value("direcao", 1));
+        pJog2->setInvencivel(j2.value("invencivel", false));
+        pJog2->setConfusoEstado(j2.value("confuso", false));
     }
 
     dadosCenario.clear();

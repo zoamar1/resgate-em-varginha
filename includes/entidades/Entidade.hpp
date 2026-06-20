@@ -2,7 +2,6 @@
 #include "Header.hpp"
 #include "Ente.hpp"
 
-
 namespace Entidades
 {
     class Entidade : public Ente
@@ -14,7 +13,9 @@ namespace Entidades
         bool noChao;
         static const float valor_gravidade;
 
-        std::string bufferDados;
+        std::ostringstream bufferDados;
+
+        void escreverBuffer(const nlohmann::json &j);
 
     public:
         Entidade(const sf::Vector2f &posicao = {0, 0}, const sf::Vector2f &tamanho = {0, 0});
@@ -40,7 +41,7 @@ namespace Entidades
         virtual void atualizarPosicao();
         virtual void anularGravidade();
 
-        void salvarDataBuffer();
-        const std::string &getBufferDados() const;
+        virtual void salvarDataBuffer();
+        std::string getBufferDados() const;
     };
 }

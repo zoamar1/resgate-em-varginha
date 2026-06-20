@@ -35,20 +35,38 @@ namespace Fases
             float posY = j.value("posY", 0.0f);
             int numVidas = j.value("num_vidas", 3);
             int multiplicadorForca = j.value("multiplicador_forca", 1);
+            int maldade = j.value("nivel_maldade", 15);
+            float posIniX = j.value("posicaoInicialX", posX);
+            float posIniY = j.value("posicaoInicialY", posY);
+            int idSalvo = j.value("id", -1);
 
             Entidades::Personagens::ET_Varginha *pChefao =
-                new Entidades::Personagens::ET_Varginha(posX, posY, numVidas, 15, multiplicadorForca);
+                new Entidades::Personagens::ET_Varginha(posX, posY, numVidas, maldade, multiplicadorForca);
             pChefao->set_vida_atual(vidaAtual);
+            pChefao->setPosicaoInicial(sf::Vector2f(posIniX, posIniY));
 
             lista_ents.incluir(static_cast<Entidades::Entidade *>(pChefao));
             vetorETs.push_back(pChefao);
 
             if (GC)
                 GC->incluirInimigo(static_cast<Entidades::Personagens::Inimigo *>(pChefao));
+
+            if (idSalvo >= 0)
+                mapaAliensPorIdSalvo[idSalvo] = pChefao;
         }
         catch (...)
         {
             std::cerr << "Erro ao carregar ET_Varginha salvo." << std::endl;
+        }
+    }
+
+    void FaseSegunda::relacionarProjetilAlien(Entidades::Projetil *pProj, int idAlienSalvo)
+    {
+        std::map<int, Entidades::Personagens::ET_Varginha *>::iterator it = mapaAliensPorIdSalvo.find(idAlienSalvo);
+        if (it != mapaAliensPorIdSalvo.end() && it->second && pProj)
+        {
+            pProj->setpAlien(it->second);
+            it->second->getVetorProjeteis()->push_back(pProj);
         }
     }
 
@@ -57,6 +75,7 @@ namespace Fases
         posicoesEspinhos.clear();
         posicoesChefao.clear();
         vetorETs.clear();
+        mapaAliensPorIdSalvo.clear();
     }
 
     void FaseSegunda::criarEspinhos()

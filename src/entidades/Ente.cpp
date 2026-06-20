@@ -46,30 +46,30 @@ sf::RectangleShape *Ente::getpFig()
 sf::Sprite *Ente::getpSprite()
 {
 
-    
     return pSprite;
 }
 
-void Ente::aplicarTextura(Gerenciadores::IDTextura idTextura) {
-    if (pGG != NULL && pSprite != NULL) {
-        sf::Texture* tex = &(pGG->getTextura(idTextura));
+void Ente::aplicarTextura(Gerenciadores::IDTextura idTextura)
+{
+    if (pGG != NULL && pSprite != NULL)
+    {
+        sf::Texture *tex = &(pGG->getTextura(idTextura));
         pSprite->setTexture(*tex);
 
-        if (pFig != NULL) {
+        if (pFig != NULL)
+        {
             float largSprite = pSprite->getLocalBounds().width;
-            float altSprite  = pSprite->getLocalBounds().height;
+            float altSprite = pSprite->getLocalBounds().height;
             float largHitbox = pFig->getSize().x;
-            float altHitbox  = pFig->getSize().y;
+            float altHitbox = pFig->getSize().y;
 
             pSprite->setScale(largHitbox / largSprite, altHitbox / altSprite);
-                    pFig->setFillColor(sf::Color::Transparent); 
-
+            pFig->setFillColor(sf::Color::Transparent);
         }
     }
-    
-    /*if (pFig != NULL) {
-        pFig->setOutlineColor(sf::Color::Green); 
-        pFig->setOutlineThickness(2.0f);
-    }*/
+}
 
+int Ente::getId() const
+{
+    return id;
 }
