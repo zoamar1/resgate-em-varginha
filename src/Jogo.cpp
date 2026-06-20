@@ -49,13 +49,15 @@ void Jogo::iniciarFase1(const std::vector<std::string> &dadosCenario)
 
     pFase1 = new Fases::FasePrimeira(pGC, dadosCenario);
 
-    pFase1->incluirJogador(pJog1, sf::Vector2f(100.0f, ALTURA - 100));
+    sf::Vector2f posJog1 = (dadosCenario.empty()) ? sf::Vector2f(100.0f, ALTURA - 100) : pJog1->getPosicao();
+    pFase1->incluirJogador(pJog1, posJog1);
     if (pGC)
         pGC->incluirJogador(pJog1);
 
     if (modo2Jogadores && pJog2)
     {
-        pFase1->incluirJogador(pJog2, sf::Vector2f(200.0f, ALTURA - 100));
+        sf::Vector2f posJog2 = (dadosCenario.empty()) ? sf::Vector2f(200.0f, ALTURA - 100) : pJog2->getPosicao();
+        pFase1->incluirJogador(pJog2, posJog2);
         if (pGC)
             pGC->incluirJogador(pJog2);
     }
@@ -75,13 +77,15 @@ void Jogo::iniciarFase2(const std::vector<std::string> &dadosCenario)
 
     pFase2 = new Fases::FaseSegunda(pGC, dadosCenario);
 
-    pFase2->incluirJogador(pJog1, sf::Vector2f(100.0f, ALTURA - 100));
+    sf::Vector2f posJog1 = (dadosCenario.empty()) ? sf::Vector2f(100.0f, ALTURA - 100) : pJog1->getPosicao();
+    pFase2->incluirJogador(pJog1, posJog1);
     if (pGC)
         pGC->incluirJogador(pJog1);
 
     if (modo2Jogadores && pJog2)
     {
-        pFase2->incluirJogador(pJog2, sf::Vector2f(200.0f, ALTURA - 100));
+        sf::Vector2f posJog2 = (dadosCenario.empty()) ? sf::Vector2f(200.0f, ALTURA - 100) : pJog2->getPosicao();
+        pFase2->incluirJogador(pJog2, posJog2);
         if (pGC)
             pGC->incluirJogador(pJog2);
     }
@@ -114,6 +118,8 @@ void Jogo::salvarProgresso()
 
 void Jogo::carregarSalvamento(const std::string &chave)
 {
+    if (pGC) pGC->limparTudo();
+
     if (pJog1)
     {
         delete pJog1;
@@ -310,6 +316,7 @@ void Jogo::executar()
                     {
                         if (pJog1)
                         {
+                            if (pGC) pGC->limparTudo();
                             delete pJog1;
                             pJog1 = NULL;
                         }
@@ -327,6 +334,7 @@ void Jogo::executar()
                     {
                         if (pJog1)
                         {
+                            if (pGC) pGC->limparTudo();
                             delete pJog1;
                             pJog1 = NULL;
                         }
@@ -343,6 +351,7 @@ void Jogo::executar()
                     {
                         if (pJog2)
                         {
+                            if (pGC) pGC->limparTudo();
                             delete pJog2;
                             pJog2 = NULL;
                         }
@@ -454,87 +463,87 @@ void Jogo::executar()
             {
                 pGE->verificaTeclaPressionada(evento);
             }
+        }
 
-            if (estado == FASE1 || estado == FASE2)
+        if (estado == FASE1 || estado == FASE2)
+        {
+            pGE->executar();
+        }
+
+        pGG->limpaJanela();
+        Fases::Fase *faseDeletada = NULL;
+
+        switch (estado)
+        {
+        case MENU:
+        case SUB_SELECAO_MODO:
+        case SUB_CONTINUAR_JOGO:
+        case SUB_SELECAO_FASE:
+        case CADASTRO_J1:
+        case CADASTRO_J1_2P:
+        case CADASTRO_J2:
+        case RANKING_TELA:
+            pMenu->executar();
+            break;
+
+        case FASE1:
+            if (!pFase1)
+                iniciarFase1();
+
+            pFase1->executar();
+            desenharPlacar();
+
+            if (pFase1->getFaseConcluida())
             {
-                pGE->executar();
-            }
+                delete pFase1;
+                pFase1 = NULL;
 
-            pGG->limpaJanela();
-            Fases::Fase *faseDeletada = NULL;
-
-            switch (estado)
-            {
-            case MENU:
-            case SUB_SELECAO_MODO:
-            case SUB_CONTINUAR_JOGO:
-            case SUB_SELECAO_FASE:
-            case CADASTRO_J1:
-            case CADASTRO_J1_2P:
-            case CADASTRO_J2:
-            case RANKING_TELA:
-                pMenu->executar();
-                break;
-
-            case FASE1:
-                if (!pFase1)
-                    iniciarFase1();
-
-                pFase1->executar();
-                desenharPlacar();
-
-                if (pFase1->getFaseConcluida())
-                {
-                    delete pFase1;
-                    pFase1 = NULL;
-
-                    faseDeletada = NULL;
-
-                    estado = FASE2;
-                    iniciarFase2();
-                }
-                else if ((pJog1 && pJog1->get_vida_atual() <= 0) || (modo2Jogadores && pJog2 && pJog2->get_vida_atual() <= 0))
-                {
-                    salvarRanking();
-                    faseDeletada = pFase1;
-                    pFase1 = NULL;
-                    estado = MENU;
-                    pMenu->setTela(TelaMenu::PRINCIPAL);
-                }
-                break;
-
-            case FASE2:
-                if (!pFase2)
-                    iniciarFase2();
-                pFase2->executar();
-                desenharPlacar();
-
-                if (pFase2->getFaseConcluida() || (pJog1 && pJog1->get_vida_atual() <= 0) || (modo2Jogadores && pJog2 && pJog2->get_vida_atual() <= 0))
-                {
-                    salvarRanking();
-                    faseDeletada = pFase2;
-                    pFase2 = NULL;
-                    estado = MENU;
-                    pMenu->setTela(TelaMenu::PRINCIPAL);
-                }
-                break;
-
-            case PAUSADO:
-                if (faseAoPausar == FASE1 && pFase1)
-                    pFase1->desenharCena();
-                else if (faseAoPausar == FASE2 && pFase2)
-                    pFase2->desenharCena();
-                desenharPlacar();
-                desenharMenuPausa();
-                break;
-            }
-
-            pGG->desenhaJanela();
-            if (faseDeletada)
-            {
-                delete faseDeletada;
                 faseDeletada = NULL;
+
+                estado = FASE2;
+                iniciarFase2();
             }
+            else if ((pJog1 && pJog1->get_vida_atual() <= 0) || (modo2Jogadores && pJog2 && pJog2->get_vida_atual() <= 0))
+            {
+                salvarRanking();
+                faseDeletada = pFase1;
+                pFase1 = NULL;
+                estado = MENU;
+                pMenu->setTela(TelaMenu::PRINCIPAL);
+            }
+            break;
+
+        case FASE2:
+            if (!pFase2)
+                iniciarFase2();
+            pFase2->executar();
+            desenharPlacar();
+
+            if (pFase2->getFaseConcluida() || (pJog1 && pJog1->get_vida_atual() <= 0) || (modo2Jogadores && pJog2 && pJog2->get_vida_atual() <= 0))
+            {
+                salvarRanking();
+                faseDeletada = pFase2;
+                pFase2 = NULL;
+                estado = MENU;
+                pMenu->setTela(TelaMenu::PRINCIPAL);
+            }
+            break;
+
+        case PAUSADO:
+            if (faseAoPausar == FASE1 && pFase1)
+                pFase1->desenharCena();
+            else if (faseAoPausar == FASE2 && pFase2)
+                pFase2->desenharCena();
+            desenharPlacar();
+            desenharMenuPausa();
+            break;
+        }
+
+        pGG->desenhaJanela();
+        if (faseDeletada)
+        {
+            delete faseDeletada;
+            faseDeletada = NULL;
         }
     }
 }

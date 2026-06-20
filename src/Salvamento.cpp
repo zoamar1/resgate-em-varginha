@@ -117,6 +117,7 @@ bool Salvamento::carregarJogo(const std::string &chave,
         pJog1->setDirecao(j1.value("direcao", 1));
         pJog1->setInvencivel(j1.value("invencivel", false));
         pJog1->setConfusoEstado(j1.value("confuso", false));
+        pJog1->setPosicao(sf::Vector2f(j1.value("posX", 0.0f), j1.value("posY", 0.0f)));
     }
 
     if (modo2Jogadores && pJog2 && registro.contains("jogador2") && !registro["jogador2"].is_null())
@@ -128,6 +129,7 @@ bool Salvamento::carregarJogo(const std::string &chave,
         pJog2->setDirecao(j2.value("direcao", 1));
         pJog2->setInvencivel(j2.value("invencivel", false));
         pJog2->setConfusoEstado(j2.value("confuso", false));
+        pJog2->setPosicao(sf::Vector2f(j2.value("posX", 0.0f), j2.value("posY", 0.0f)));
     }
 
     return true;
@@ -207,6 +209,7 @@ bool Salvamento::carregarJogo(const std::string &chave,
         pJog1->setDirecao(j1.value("direcao", 1));
         pJog1->setInvencivel(j1.value("invencivel", false));
         pJog1->setConfusoEstado(j1.value("confuso", false));
+        pJog1->setPosicao(sf::Vector2f(j1.value("posX", 0.0f), j1.value("posY", 0.0f)));
     }
 
     if (modo2Jogadores && pJog2 && registro.contains("jogador2") && !registro["jogador2"].is_null())
@@ -218,6 +221,7 @@ bool Salvamento::carregarJogo(const std::string &chave,
         pJog2->setDirecao(j2.value("direcao", 1));
         pJog2->setInvencivel(j2.value("invencivel", false));
         pJog2->setConfusoEstado(j2.value("confuso", false));
+        pJog2->setPosicao(sf::Vector2f(j2.value("posX", 0.0f), j2.value("posY", 0.0f)));
     }
 
     dadosCenario.clear();
