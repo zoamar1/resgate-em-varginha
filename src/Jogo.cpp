@@ -356,103 +356,103 @@ void Jogo::executar()
                     }
                     continue;
                 }
+            }
 
-                if (evento.type == sf::Event::KeyPressed)
+            if (evento.type == sf::Event::KeyPressed)
+            {
+                if (estado == MENU)
                 {
-                    if (estado == MENU)
+                    if (evento.key.code == sf::Keyboard::Num1)
                     {
-                        if (evento.key.code == sf::Keyboard::Num1)
-                        {
-                            estado = SUB_CONTINUAR_JOGO;
-                            pMenu->setTela(TelaMenu::CONTINUAR_JOGO);
-                        }
-                        else if (evento.key.code == sf::Keyboard::Num2)
-                        {
-                            estado = SUB_SELECAO_MODO;
-                            pMenu->setTela(TelaMenu::SELECAO_MODO);
-                        }
-                        else if (evento.key.code == sf::Keyboard::Num3)
-                        {
-                            estado = RANKING_TELA;
-                            pMenu->setTela(TelaMenu::RANKING);
-                        }
+                        estado = SUB_CONTINUAR_JOGO;
+                        pMenu->setTela(TelaMenu::CONTINUAR_JOGO);
                     }
-                    else if (estado == SUB_SELECAO_MODO)
+                    else if (evento.key.code == sf::Keyboard::Num2)
                     {
-                        if (evento.key.code == sf::Keyboard::Num1)
-                        {
-                            modo2Jogadores = false;
-                            if (pJog2)
-                            {
-                                delete pJog2;
-                                pJog2 = NULL;
-                            }
-                            pMenu->iniciarCadastro(1);
-                            estado = CADASTRO_J1;
-                        }
-                        else if (evento.key.code == sf::Keyboard::Num2)
-                        {
-                            modo2Jogadores = true;
-                            pMenu->iniciarCadastro(1);
-                            estado = CADASTRO_J1_2P;
-                        }
+                        estado = SUB_SELECAO_MODO;
+                        pMenu->setTela(TelaMenu::SELECAO_MODO);
                     }
-                    else if (estado == SUB_CONTINUAR_JOGO)
+                    else if (evento.key.code == sf::Keyboard::Num3)
                     {
-                        if (evento.key.code >= sf::Keyboard::Num1 && evento.key.code <= sf::Keyboard::Num9)
-                        {
-                            int indice = evento.key.code - sf::Keyboard::Num1;
-                            const std::vector<std::string> &chaves = pMenu->getChavesSalvamento();
-                            if (indice >= 0 && indice < (int)chaves.size())
-                            {
-                                carregarSalvamento(chaves[indice]);
-                            }
-                        }
+                        estado = RANKING_TELA;
+                        pMenu->setTela(TelaMenu::RANKING);
                     }
-                    else if (estado == SUB_SELECAO_FASE)
+                }
+                else if (estado == SUB_SELECAO_MODO)
+                {
+                    if (evento.key.code == sf::Keyboard::Num1)
                     {
-                        if (evento.key.code == sf::Keyboard::Num1)
+                        modo2Jogadores = false;
+                        if (pJog2)
                         {
-                            estado = FASE1;
-                            iniciarFase1();
+                            delete pJog2;
+                            pJog2 = NULL;
                         }
-                        else if (evento.key.code == sf::Keyboard::Num2)
-                        {
-                            estado = FASE2;
-                            iniciarFase2();
-                        }
+                        pMenu->iniciarCadastro(1);
+                        estado = CADASTRO_J1;
                     }
-                    else if (estado == PAUSADO)
+                    else if (evento.key.code == sf::Keyboard::Num2)
                     {
-                        if (evento.key.code == sf::Keyboard::Num1)
+                        modo2Jogadores = true;
+                        pMenu->iniciarCadastro(1);
+                        estado = CADASTRO_J1_2P;
+                    }
+                }
+                else if (estado == SUB_CONTINUAR_JOGO)
+                {
+                    if (evento.key.code >= sf::Keyboard::Num1 && evento.key.code <= sf::Keyboard::Num9)
+                    {
+                        int indice = evento.key.code - sf::Keyboard::Num1;
+                        const std::vector<std::string> &chaves = pMenu->getChavesSalvamento();
+                        if (indice >= 0 && indice < (int)chaves.size())
                         {
-                            estado = faseAoPausar;
-                        }
-                        else if (evento.key.code == sf::Keyboard::Num2)
-                        {
-                            salvarProgresso();
-
-                            if (faseAoPausar == FASE1 && pFase1)
-                            {
-                                delete pFase1;
-                                pFase1 = NULL;
-                            }
-                            else if (faseAoPausar == FASE2 && pFase2)
-                            {
-                                delete pFase2;
-                                pFase2 = NULL;
-                            }
-
-                            estado = MENU;
-                            pMenu->setTela(TelaMenu::PRINCIPAL);
+                            carregarSalvamento(chaves[indice]);
                         }
                     }
                 }
-
-                if (estado == FASE1 || estado == FASE2)
+                else if (estado == SUB_SELECAO_FASE)
                 {
-                    pGE->verificaTeclaPressionada(evento);
+                    if (evento.key.code == sf::Keyboard::Num1)
+                    {
+                        estado = FASE1;
+                        iniciarFase1();
+                    }
+                    else if (evento.key.code == sf::Keyboard::Num2)
+                    {
+                        estado = FASE2;
+                        iniciarFase2();
+                    }
                 }
+                else if (estado == PAUSADO)
+                {
+                    if (evento.key.code == sf::Keyboard::Num1)
+                    {
+                        estado = faseAoPausar;
+                    }
+                    else if (evento.key.code == sf::Keyboard::Num2)
+                    {
+                        salvarProgresso();
+
+                        if (faseAoPausar == FASE1 && pFase1)
+                        {
+                            delete pFase1;
+                            pFase1 = NULL;
+                        }
+                        else if (faseAoPausar == FASE2 && pFase2)
+                        {
+                            delete pFase2;
+                            pFase2 = NULL;
+                        }
+
+                        estado = MENU;
+                        pMenu->setTela(TelaMenu::PRINCIPAL);
+                    }
+                }
+            }
+
+            if (estado == FASE1 || estado == FASE2)
+            {
+                pGE->verificaTeclaPressionada(evento);
             }
 
             if (estado == FASE1 || estado == FASE2)
