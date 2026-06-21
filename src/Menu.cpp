@@ -82,7 +82,7 @@ void Menu::atualizaRanking()
     formataTexto(tituloR, "-- RANKING --", 60, 100.0f, sf::Color::Yellow);
     textos_ranking.push_back(tituloR);
 
-    std::vector<std::pair<std::string, int>> entradas = Ranking::carregar();
+    std::vector<std::pair<std::string, int>> entradas = Armazenamento::Ranking::carregar();
     int limite = (entradas.size() < 10) ? (int)entradas.size() : 10;
 
     for (int i = 0; i < limite; i++)
@@ -232,7 +232,7 @@ void Menu::atualizaListaSalvamentos()
     formataTexto(tituloR, "Escolha o jogo salvo", 50, 250.0f, sf::Color::Yellow);
     textos_continuar.push_back(tituloR);
 
-    std::vector<std::pair<std::string, std::string>> resumos = Salvamento::listarResumos();
+    std::vector<std::pair<std::string, std::string>> resumos = Armazenamento::Salvamento::listarResumos();
     int limite = (resumos.size() < 9) ? (int)resumos.size() : 9;
 
     for (int i = 0; i < limite; i++)

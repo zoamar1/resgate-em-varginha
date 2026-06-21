@@ -1,7 +1,7 @@
-#include "Ranking.hpp"
+#include "Armazenamento/Ranking.hpp"
 
 using json = nlohmann::json;
-const std::string Ranking::caminhoArquivo = "ranking.json";
+const std::string Armazenamento::Ranking::caminhoArquivo = "ranking.json";
 
 namespace Armazenamento
 {

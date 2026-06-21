@@ -1,4 +1,4 @@
-#include "Salvamento.hpp"
+#include "Armazenamento/Salvamento.hpp"
 #include "entidades/personagens/Jogador.hpp"
 
 using json = nlohmann::json;
@@ -45,7 +45,7 @@ namespace Armazenamento
     }
 }
 
-void Salvamento::salvarJogo(Entidades::Personagens::Jogador *pJog1,
+void Armazenamento::Salvamento::salvarJogo(Entidades::Personagens::Jogador *pJog1,
                             Entidades::Personagens::Jogador *pJog2,
                             bool modo2Jogadores,
                             int faseAtual,
@@ -92,7 +92,7 @@ void Salvamento::salvarJogo(Entidades::Personagens::Jogador *pJog1,
     salvarTudo(raiz);
 }
 
-bool Salvamento::carregarJogo(const std::string &chave,
+bool Armazenamento::Salvamento::carregarJogo(const std::string &chave,
                               Entidades::Personagens::Jogador *pJog1,
                               Entidades::Personagens::Jogador *pJog2,
                               bool &modo2Jogadores,
@@ -135,7 +135,7 @@ bool Salvamento::carregarJogo(const std::string &chave,
     return true;
 }
 
-void Salvamento::removerJogo(const std::string &chave)
+void Armazenamento::Salvamento::removerJogo(const std::string &chave)
 {
     json raiz = carregarTudo();
     if (raiz.find(chave) != raiz.end())
@@ -145,7 +145,7 @@ void Salvamento::removerJogo(const std::string &chave)
     }
 }
 
-std::vector<std::pair<std::string, std::string>> Salvamento::listarResumos()
+std::vector<std::pair<std::string, std::string>> Armazenamento::Salvamento::listarResumos()
 {
     std::vector<std::pair<std::string, std::string>> resultado;
     json raiz = carregarTudo();
@@ -183,7 +183,7 @@ std::vector<std::pair<std::string, std::string>> Salvamento::listarResumos()
     return resultado;
 }
 
-bool Salvamento::carregarJogo(const std::string &chave,
+bool Armazenamento::Salvamento::carregarJogo(const std::string &chave,
                               Entidades::Personagens::Jogador *pJog1,
                               Entidades::Personagens::Jogador *pJog2,
                               bool &modo2Jogadores,

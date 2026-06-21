@@ -100,7 +100,7 @@ void Jogo::salvarRanking()
         novas.push_back({pJog1->getNome(), pJog1->getPontos()});
     if (modo2Jogadores && pJog2)
         novas.push_back({pJog2->getNome(), pJog2->getPontos()});
-    Ranking::salvar(novas);
+    Armazenamento::Ranking::salvar(novas);
 }
 
 void Jogo::salvarProgresso()
@@ -113,7 +113,7 @@ void Jogo::salvarProgresso()
     else if (faseAoPausar == FASE2 && pFase2)
         dadosCenario = pFase2->coletarDadosSalvamento();
 
-    Salvamento::salvarJogo(pJog1, pJog2, modo2Jogadores, faseNum, dadosCenario);
+    Armazenamento::Salvamento::salvarJogo(pJog1, pJog2, modo2Jogadores, faseNum, dadosCenario);
 }
 
 void Jogo::carregarSalvamento(const std::string &chave)
@@ -140,7 +140,7 @@ void Jogo::carregarSalvamento(const std::string &chave)
     int faseSalva = 1;
     std::vector<std::string> dadosCenario;
 
-    bool ok = Salvamento::carregarJogo(chave, pJog1, pJog2, modo2, faseSalva, dadosCenario);
+    bool ok = Armazenamento::Salvamento::carregarJogo(chave, pJog1, pJog2, modo2, faseSalva, dadosCenario);
     if (!ok)
     {
         delete pJog1;

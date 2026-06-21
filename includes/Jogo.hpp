@@ -6,8 +6,8 @@
 #include "fases/FasePrimeira.hpp"
 #include "fases/FaseSegunda.hpp"
 #include "Menu.hpp"
-#include "Ranking.hpp"
-#include "Salvamento.hpp"
+#include "Armazenamento/Ranking.hpp"
+#include "Armazenamento/Salvamento.hpp"
 
 class Jogo
 {
