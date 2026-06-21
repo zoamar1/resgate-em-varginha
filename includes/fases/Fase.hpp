@@ -26,7 +26,7 @@ namespace Fases
         bool faseConcluida;
 
     public:
-        Fase(Gerenciadores::Gerenciador_Colisoes *pGC);
+        Fase(Gerenciadores::Gerenciador_Colisoes *pGC = NULL);
         virtual ~Fase();
         virtual void executar();
         void incluirJogador(Entidades::Personagens::Jogador *pJogador, sf::Vector2f pos);

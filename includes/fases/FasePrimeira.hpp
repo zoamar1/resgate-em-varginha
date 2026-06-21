@@ -16,7 +16,7 @@ namespace Fases
         std::vector<Entidades::Personagens::Exercito *> vetorExercitos;
 
     public:
-        FasePrimeira(Gerenciadores::Gerenciador_Colisoes *pGC, const dC &dadosCenario = dC());
+        FasePrimeira(Gerenciadores::Gerenciador_Colisoes *pGC = NULL, const dC &dadosCenario = dC());
         ~FasePrimeira();
         void executar();
 

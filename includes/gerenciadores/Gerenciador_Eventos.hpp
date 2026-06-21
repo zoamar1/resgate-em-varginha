@@ -17,7 +17,7 @@ namespace Gerenciadores
         Jogo *pJogo;
         Entidades::Personagens::Jogador *pJog1;
         Entidades::Personagens::Jogador *pJog2;
-        Gerenciador_Eventos(Jogo *pJ);
+        Gerenciador_Eventos(Jogo *pJ = NULL);
 
     public:
         ~Gerenciador_Eventos();
