@@ -6,11 +6,9 @@ namespace Entidades
 {
     namespace Personagens
     {
-        Jogador *ET_Varginha::pJogador = NULL;
-
         ET_Varginha::ET_Varginha(float posX, float posY, int n, int maldade, int ml)
             : Inimigo(posX, posY, n, maldade),
-              multiplicador_forca(ml), querAtirar(false), estressado(false)
+              multiplicador_forca(ml), querAtirar(false), pJogador(NULL), estressado(false)
         {
             cooldownTiros = 0.8f;
             setVel_Max(2.0f);

@@ -16,7 +16,7 @@ namespace Entidades
             sf::Clock relogioTiro;
             float cooldownTiros;
             bool querAtirar;
-            static Jogador *pJogador;
+            Jogador *pJogador;
             std::vector<Projetil *> vetorProjeteis;
             bool estressado;
             sf::Clock relogioTeleporte;

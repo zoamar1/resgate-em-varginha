@@ -85,7 +85,7 @@ namespace Fases
         posicoesEspinhos.clear();
         posicoesEspinhos.push_back(sf::Vector2f(300.0f, 963.0f));
         posicoesEspinhos.push_back(sf::Vector2f(700.0f, 963.0f));
-        posicoesEspinhos.push_back(sf::Vector2f(1100.0f, 1013.0f));
+        posicoesEspinhos.push_back(sf::Vector2f(1100.0f, 963.0f));
         posicoesEspinhos.push_back(sf::Vector2f(200.0f, 583.0f));
         posicoesEspinhos.push_back(sf::Vector2f(600.0f, 583.0f));
         posicoesEspinhos.push_back(sf::Vector2f(1000.0f, 583.0f));
@@ -126,7 +126,6 @@ namespace Fases
         posicoesChefao.push_back(sf::Vector2f(1200.0f, 863.0f));
         posicoesChefao.push_back(sf::Vector2f(200.0f, 493.0f));
         posicoesChefao.push_back(sf::Vector2f(1100.0f, 493.0f));
-        posicoesChefao.push_back(sf::Vector2f(450.0f, 123.0f));
         posicoesChefao.push_back(sf::Vector2f(600.0f, 123.0f));
         posicoesChefao.push_back(sf::Vector2f(1100.0f, 123.0f));
 
