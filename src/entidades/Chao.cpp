@@ -32,11 +32,7 @@ namespace Entidades
 
     void Chao::salvar()
     {
-        salvarDataBuffer();
-        nlohmann::json j = nlohmann::json::parse(getBufferDados());
-        j["tipo"] = "Chao";
-        j["largura"] = largura;
-        escreverBuffer(j);
+       //
     }
 
     float Chao::getLargura() const
