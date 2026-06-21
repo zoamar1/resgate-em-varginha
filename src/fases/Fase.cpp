@@ -8,7 +8,7 @@
 
 namespace Fases
 {
-    Fase::Fase(Gerenciadores::Gerenciador_Colisoes *pGC) : lista_ents(), GC(pGC), faseConcluida(false)
+    Fase::Fase(Gerenciadores::Gerenciador_Colisoes *pGC) : minInimFaceis(3), maxInimFaceis(5), minPlataformas(3), maxPlataformas(9), lista_ents(), GC(pGC), faseConcluida(false)
     {
         for (int i = 0; i < 2; i++)
         {
@@ -172,7 +172,7 @@ namespace Fases
         posicoesInimigosFaceis.push_back(sf::Vector2f(900.0f, 123.0f));
         posicoesInimigosFaceis.push_back(sf::Vector2f(1400.0f, 123.0f));
 
-        int quantidade = (rand() % 3) + 3;
+        int quantidade = (rand() % (maxInimFaceis - minInimFaceis + 1)) + minInimFaceis;
 
         for (int i = 0; i < quantidade; i++)
         {
@@ -207,7 +207,7 @@ namespace Fases
         posicoesPlataformas.push_back(sf::Vector2f(600.0f, 860.0f));
         posicoesPlataformas.push_back(sf::Vector2f(1000.0f, 860.0f));
 
-        int quantidade = (rand() % 7) + 3;
+        int quantidade = (rand() % (maxPlataformas - minPlataformas + 1)) + minPlataformas;
 
         sf::Vector2f tamanhoPadrao(200.0f, 30.0f);
 

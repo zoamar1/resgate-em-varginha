@@ -7,7 +7,7 @@ namespace Fases
 {
 
     FasePrimeira::FasePrimeira(Gerenciadores::Gerenciador_Colisoes *pGC, const dC &dadosCenario)
-        : Fase(pGC), maxInimMedios(50)
+        : Fase(pGC), minInimMedios(3), maxInimMedios(5), minArbustos(3), maxArbustos(6)
     {
         pFig->setSize({LARGURA - 1, ALTURA - 1});
         pFig->setOrigin({0, 0});
@@ -94,7 +94,7 @@ namespace Fases
         posicoesInimigosMedios.push_back(sf::Vector2f(600.0f, 123.0f));
         posicoesInimigosMedios.push_back(sf::Vector2f(1100.0f, 123.0f));
 
-        int quantidade = (rand() % 3) + 3;
+        int quantidade = (rand() % (maxInimMedios - minInimMedios + 1)) + minInimMedios;
 
         for (int i = 0; i < quantidade; i++)
         {
@@ -128,7 +128,7 @@ namespace Fases
         posicoesArbustos.push_back(sf::Vector2f(400.0f, 960.0f));
         posicoesArbustos.push_back(sf::Vector2f(1300.0f, 960.0f));
 
-        int quantidade = (rand() % 4) + 3;
+        int quantidade = (rand() % (maxArbustos - minArbustos + 1)) + minArbustos;
 
         sf::Vector2f tamanhoPadrao(100.0f, 40.0f);
 

@@ -7,7 +7,10 @@ namespace Fases
     class FasePrimeira : public Fase
     {
     private:
+        const int minInimMedios;
         const int maxInimMedios;
+        const int minArbustos;
+        const int maxArbustos;
         std::vector<sf::Vector2f> posicoesArbustos;
         std::vector<sf::Vector2f> posicoesInimigosMedios;
         std::vector<Entidades::Personagens::Exercito *> vetorExercitos;

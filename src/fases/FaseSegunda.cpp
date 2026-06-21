@@ -6,7 +6,7 @@ namespace Fases
 {
 
     FaseSegunda::FaseSegunda(Gerenciadores::Gerenciador_Colisoes *pGC, const dC &dadosCenario)
-        : Fase(pGC), maxETs(50)
+        : Fase(pGC), minETs(3), maxETs(5), minEspinhos(3), maxEspinhos(6)
     {
         pFig->setSize({LARGURA - 1, ALTURA - 1});
         pFig->setOrigin({0, 0});
@@ -92,7 +92,7 @@ namespace Fases
         posicoesEspinhos.push_back(sf::Vector2f(800.0f, 213.0f));
         posicoesEspinhos.push_back(sf::Vector2f(1200.0f, 213.0f));
 
-        int quantidade = (rand() % 4) + 3;
+        int quantidade = (rand() % (maxEspinhos - minEspinhos + 1)) + minEspinhos;
 
         for (int i = 0; i < quantidade; i++)
         {
@@ -128,7 +128,7 @@ namespace Fases
         posicoesChefao.push_back(sf::Vector2f(600.0f, 123.0f));
         posicoesChefao.push_back(sf::Vector2f(1100.0f, 123.0f));
 
-        int quantidade = (rand() % 3) + 3;
+        int quantidade = (rand() % (maxETs - minETs + 1)) + minETs;
 
         for (int i = 0; i < quantidade; i++)
         {

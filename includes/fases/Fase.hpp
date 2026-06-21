@@ -11,6 +11,11 @@ namespace Fases
     class Fase : public Ente
     {
     protected:
+        const int minInimFaceis;
+        const int maxInimFaceis;
+        const int minPlataformas;
+        const int maxPlataformas;
+        
         Listas::ListaEntidades lista_ents;
         Gerenciadores::Gerenciador_Colisoes *GC;
         std::vector<sf::RectangleShape *> barra_de_vida;

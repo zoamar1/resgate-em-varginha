@@ -15,7 +15,7 @@ namespace Armazenamento
         }
 
         std::sort(rankingAtual.begin(), rankingAtual.end(),
-                  [](const std::pair<std::string, int> &a, const std::pair<std::string, int> &b)
+        [](const std::pair<std::string, int> &a, const std::pair<std::string, int> &b)
                   {
                       return a.second > b.second;
                   });

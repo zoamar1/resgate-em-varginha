@@ -14,7 +14,10 @@ namespace Fases
     class FaseSegunda : public Fase
     {
     private:
+        const int minETs;
         const int maxETs;
+        const int minEspinhos;
+        const int maxEspinhos;
         std::vector<sf::Vector2f> posicoesEspinhos;
         std::vector<sf::Vector2f> posicoesChefao;
         std::vector<Entidades::Personagens::ET_Varginha *> vetorETs;
