@@ -29,10 +29,10 @@ namespace Entidades
         bool getDeJogador() const;
         void setDeJogador(bool valor);
         void setpAlien(Personagens::ET_Varginha *pA);
-        Personagens::ET_Varginha *getpAlien() const { return pAlien; }
-        void setIdDonoJogador(int idx) { idDonoJogador = idx; }
-        int getIdDonoJogador() const { return idDonoJogador; }
-        int getIdAlienDono() const { return idAlienDono; }
+        Personagens::ET_Varginha *getpAlien() const;
+        void setIdDonoJogador(int idx);
+        int getIdDonoJogador() const;
+        int getIdAlienDono() const;
         void mover();
         void executar();
         void salvar();

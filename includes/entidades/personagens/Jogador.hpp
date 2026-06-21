@@ -47,20 +47,19 @@ namespace Entidades
             int getDirecao() const;
             void atualizarInvencibilidade();
             bool getInvencivel() const;
-            void setInvencivel(bool valor) { invencivel = valor; }
-
-            void setNome(const std::string &n) { nome = n; }
-            const std::string &getNome() const { return nome; }
-            void adicionarPontos(int pts) { pontos += pts; }
-            int getPontos() const { return pontos; }
-            void setPontos(int pts) { pontos = pts; }
+            void setInvencivel(bool valor);
+            void setNome(const std::string &n);
+            const std::string &getNome() const;
+            void adicionarPontos(int pts);
+            int getPontos() const;
+            void setPontos(int pts);
 
             void ficarConfuso();
             bool getConfuso();
-            void setConfusoEstado(bool valor) { confuso = valor; }
+            void setConfusoEstado(bool valor);
 
-            void setIndiceJogador(int idx) { indiceJogador = idx; }
-            int getIndiceJogador() const { return indiceJogador; }
+            void setIndiceJogador(int idx);
+            int getIndiceJogador() const;
 
             Jogador &operator+=(int pts);
         };

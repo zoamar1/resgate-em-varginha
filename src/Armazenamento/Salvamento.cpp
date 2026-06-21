@@ -43,6 +43,11 @@ namespace Armazenamento
         }
         return nome1;
     }
+
+     const dC& Salvamento::getCenarioAtual() 
+    { 
+        return cenarioAtual; 
+    }
 }
 
 dC Armazenamento::Salvamento::cenarioAtual;
@@ -240,3 +245,4 @@ bool Armazenamento::Salvamento::carregarJogo(const std::string &chave,
     cenarioAtual = dadosCenario;
     return true;
 }
+

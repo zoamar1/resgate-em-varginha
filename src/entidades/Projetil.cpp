@@ -115,4 +115,22 @@ namespace Entidades
         j["idAlienDono"] = idAlienDono;
         escreverBuffer(j);
     }
+
+    Personagens::ET_Varginha *Projetil::getpAlien() const 
+    { 
+        return pAlien; 
+    }
+
+    void Projetil::setIdDonoJogador(int idx) 
+    { 
+        idDonoJogador = idx; 
+    }
+    int Projetil::getIdDonoJogador() const 
+    { 
+        return idDonoJogador; 
+    }
+    int Projetil::getIdAlienDono() const 
+    { 
+        return idAlienDono; 
+    }
 }

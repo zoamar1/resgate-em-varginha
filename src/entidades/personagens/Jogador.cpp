@@ -192,5 +192,51 @@ namespace Entidades
             pontos += pts;
             return *this;
         }
+
+        void Jogador::setInvencivel(bool valor) 
+        { 
+            invencivel = valor; 
+        }
+
+        void Jogador::setNome(const std::string &n) 
+        { 
+            nome = n; 
+        }
+
+        const std::string &Jogador::getNome() const 
+        { 
+            return nome; 
+        }
+
+        void Jogador::adicionarPontos(int pts) 
+        { 
+            pontos += pts; 
+        }
+
+        int Jogador::getPontos() const 
+        { 
+            return pontos; 
+        }
+
+        void Jogador::setPontos(int pts)
+        { 
+            pontos = pts; 
+        }
+
+        void Jogador::setConfusoEstado(bool valor) 
+        { 
+            confuso = valor; 
+        }
+        
+        void Jogador::setIndiceJogador(int idx) 
+        { 
+            indiceJogador = idx; 
+        }
+
+        int Jogador::getIndiceJogador() const 
+        { 
+            return indiceJogador; 
+        }
     }
 }
+

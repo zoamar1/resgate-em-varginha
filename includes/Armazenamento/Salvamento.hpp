@@ -40,6 +40,6 @@ namespace Armazenamento
 
         static std::vector<std::pair<std::string, std::string>> listarResumos();
 
-        static const dC& getCenarioAtual() { return cenarioAtual; }
+        static const dC& getCenarioAtual();
     };
 }
