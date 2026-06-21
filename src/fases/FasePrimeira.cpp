@@ -6,8 +6,7 @@
 namespace Fases
 {
 
-    FasePrimeira::FasePrimeira(Gerenciadores::Gerenciador_Colisoes *pGC,
-                               const std::vector<std::string> &dadosCenario)
+    FasePrimeira::FasePrimeira(Gerenciadores::Gerenciador_Colisoes *pGC, const dC &dadosCenario)
         : Fase(pGC), maxInimMedios(50)
     {
         pFig->setSize({LARGURA - 1, ALTURA - 1});

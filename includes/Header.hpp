@@ -19,3 +19,5 @@
 #include <string>
 #include <utility>
 #include "nlohmann/json.hpp"
+
+using dC = std::vector<std::string>;

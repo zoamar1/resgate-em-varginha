@@ -21,8 +21,7 @@ namespace Fases
         std::map<int, Entidades::Personagens::ET_Varginha *> mapaAliensPorIdSalvo;
 
     public:
-        FaseSegunda(Gerenciadores::Gerenciador_Colisoes *pGC,
-                    const std::vector<std::string> &dadosCenario = std::vector<std::string>());
+        FaseSegunda(Gerenciadores::Gerenciador_Colisoes *pGC, const dC &dadosCenario = dC());
         ~FaseSegunda();
         void executar();
 
