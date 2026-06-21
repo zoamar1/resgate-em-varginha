@@ -34,7 +34,7 @@ namespace Entidades
 
             if (p)
             {
-                p->recebeDano(nivel_maldade);
+                p->recebeDano(nivel_maldade*20);
             }
 
             explodindo = true;
@@ -155,6 +155,7 @@ namespace Entidades
                 if (relogioExplosao.getElapsedTime().asSeconds() >= 0.3f)
                 {
                     explodindo = false;
+                    set_vida_atual(0);
                 }
             }
         }

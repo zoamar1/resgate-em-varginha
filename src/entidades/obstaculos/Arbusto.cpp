@@ -38,7 +38,6 @@ namespace Entidades
                 sf::Vector2f vel = p->getVelocidade();
 
                 pos.x -= vel.x * 0.5f;
-                pos.y -= vel.y * 0.5F;
                 p->setPosicao(pos);
             }
         }

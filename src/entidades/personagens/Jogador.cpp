@@ -52,7 +52,33 @@ namespace Entidades
             sf::Vector2f deslocamento = getVelocidade();
             if (deslocamento.x != 0.0f || deslocamento.y != 0.0f)
             {
-                setPosicao(getPosicao() + deslocamento);
+                sf::Vector2f novaPos = getPosicao() + deslocamento;
+                sf::Vector2f tamJog = getpFig()->getSize();
+
+                if (novaPos.x < 0.0f)
+                {
+                    novaPos.x = 0.0f;
+                    setVelocidade(sf::Vector2f(0.0f, getVelocidade().y));
+                }
+                else if (novaPos.x + tamJog.x > LARGURA)
+                {
+                    novaPos.x = LARGURA - tamJog.x;
+                    setVelocidade(sf::Vector2f(0.0f, getVelocidade().y));
+                }
+
+                if (novaPos.y < 0.0f)
+                {
+                    novaPos.y = 0.0f;
+                    setVelocidade(sf::Vector2f(getVelocidade().x, 0.0f));
+                }
+                else if (novaPos.y + tamJog.y > ALTURA)
+                {
+                    novaPos.y = ALTURA - tamJog.y;
+                    setVelocidade(sf::Vector2f(getVelocidade().x, 0.0f));
+                    setNoChao(true);
+                }
+
+                setPosicao(novaPos);
             }
         }
 
