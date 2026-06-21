@@ -3,7 +3,7 @@
 
 using json = nlohmann::json;
 
-namespace
+namespace Armazenamento
 {
     const std::string ARQUIVO_SALVAMENTOS = "salvamentos.json";
 
