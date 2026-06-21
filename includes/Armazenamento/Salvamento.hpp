@@ -13,12 +13,15 @@ namespace Armazenamento
 {
     class Salvamento
     {
+    private:
+        static dC cenarioAtual;
+
     public:
         static void salvarJogo(Entidades::Personagens::Jogador *pJog1,
                                Entidades::Personagens::Jogador *pJog2,
                                bool modo2Jogadores,
                                int faseAtual,
-                               const std::vector<std::string> &dadosCenario);
+                               const dC &dadosCenario);
 
         static bool carregarJogo(const std::string &chave,
                                  Entidades::Personagens::Jogador *pJog1,
@@ -33,8 +36,10 @@ namespace Armazenamento
                                  Entidades::Personagens::Jogador *pJog2,
                                  bool &modo2Jogadores,
                                  int &faseAtual,
-                                 std::vector<std::string> &dadosCenario);
+                                 dC &dadosCenario);
 
         static std::vector<std::pair<std::string, std::string>> listarResumos();
+
+        static const dC& getCenarioAtual() { return cenarioAtual; }
     };
 }

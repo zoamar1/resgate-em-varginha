@@ -45,11 +45,13 @@ namespace Armazenamento
     }
 }
 
+dC Armazenamento::Salvamento::cenarioAtual;
+
 void Armazenamento::Salvamento::salvarJogo(Entidades::Personagens::Jogador *pJog1,
                             Entidades::Personagens::Jogador *pJog2,
                             bool modo2Jogadores,
                             int faseAtual,
-                            const std::vector<std::string> &dadosCenario)
+                            const dC &dadosCenario)
 {
     if (!pJog1)
         return;
@@ -90,6 +92,8 @@ void Armazenamento::Salvamento::salvarJogo(Entidades::Personagens::Jogador *pJog
     json raiz = carregarTudo();
     raiz[chave] = registro;
     salvarTudo(raiz);
+
+    cenarioAtual = dadosCenario;
 }
 
 bool Armazenamento::Salvamento::carregarJogo(const std::string &chave,
@@ -188,7 +192,7 @@ bool Armazenamento::Salvamento::carregarJogo(const std::string &chave,
                               Entidades::Personagens::Jogador *pJog2,
                               bool &modo2Jogadores,
                               int &faseAtual,
-                              std::vector<std::string> &dadosCenario)
+                              dC &dadosCenario)
 {
     json raiz = carregarTudo();
 
@@ -233,5 +237,6 @@ bool Armazenamento::Salvamento::carregarJogo(const std::string &chave,
         }
     }
 
+    cenarioAtual = dadosCenario;
     return true;
 }
