@@ -441,4 +441,13 @@ namespace Fases
         }
         projeteisPendentesDono.clear();
     }
+
+    void Fase::criarProjeteis()
+    {
+        for (int i = 0; i < 50; i++)
+        {
+            Entidades::Projetil *pProjetil = new Entidades::Projetil(-500.0f, -500.0f, false, 1);
+            incluirProjetil(pProjetil);
+        }
+    }
 }

@@ -30,7 +30,6 @@ namespace Fases
 
     protected:
         void criarEspinhos();
-        void criarProjeteis();
         void criaChefao();
 
         void criarInimigos();

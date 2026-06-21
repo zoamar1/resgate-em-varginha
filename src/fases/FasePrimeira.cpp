@@ -165,13 +165,4 @@ namespace Fases
         criarPortal(1750.0f, 110.0f);
     }
 
-    void FasePrimeira::criarProjeteis()
-    {
-        for (int i = 0; i < 50; i++)
-        {
-            Entidades::Projetil *novoProjetil = new Entidades::Projetil(-500.0f, -500.0f, false, 1);
-            incluirProjetil(novoProjetil);
-        }
-    }
-
 }

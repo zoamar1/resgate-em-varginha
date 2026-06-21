@@ -55,7 +55,7 @@ namespace Fases
         void desenharBarraDeVida(Entidades::Personagens::Jogador *pJog, int indiceJogador);
         virtual void criarInimigos() = 0;
         virtual void criarObstaculo() = 0;
-        virtual void criarProjeteis() = 0;
+        void criarProjeteis();
         virtual void relacionarProjetilAlien(Entidades::Projetil *pProj, int idAlienSalvo);
     };
 }
