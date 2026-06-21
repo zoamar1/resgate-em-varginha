@@ -61,6 +61,8 @@ namespace Entidades
 
             void setIndiceJogador(int idx) { indiceJogador = idx; }
             int getIndiceJogador() const { return indiceJogador; }
+
+            Jogador &operator+=(int pts);
         };
     }
 }

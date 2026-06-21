@@ -33,7 +33,7 @@ namespace Gerenciadores
             for (size_t i = 0; i < LJs.size(); i++)
             {
                 if (LJs[i] == pJ)
-                    return; 
+                    return;
             }
             LJs.push_back(pJ);
         }
@@ -193,17 +193,17 @@ namespace Gerenciadores
 
                                         if (dynamic_cast<Entidades::Personagens::Guarda *>(pInimigo) != NULL)
                                         {
-                                            pJog->adicionarPontos(100);
+                                            *pJog += 100;
                                         }
-                                        
+
                                         else if (dynamic_cast<Entidades::Personagens::Exercito *>(pInimigo) != NULL)
                                         {
-                                            pJog->adicionarPontos(200);
+                                            *pJog += 200;
                                         }
-                                       
+
                                         else if (dynamic_cast<Entidades::Personagens::ET_Varginha *>(pInimigo) != NULL)
                                         {
-                                            pJog->adicionarPontos(400);
+                                            *pJog += 400;
                                         }
                                     }
                                 }
@@ -332,12 +332,12 @@ namespace Gerenciadores
     }
     void Gerenciador_Colisoes::limparColisoes()
     {
-        LIs.clear();           
-        LOs.clear();            
-        LPs.clear();            
-        LCs.clear();            
-        LPo.clear();          
-        donosProjeteis.clear(); 
+        LIs.clear();
+        LOs.clear();
+        LPs.clear();
+        LCs.clear();
+        LPo.clear();
+        donosProjeteis.clear();
     }
 
     void Gerenciador_Colisoes::limparTudo()
@@ -360,7 +360,6 @@ namespace Gerenciadores
                     {
                         pPortal->teleportar(pJog);
                     }
-                    
                 }
             }
         }

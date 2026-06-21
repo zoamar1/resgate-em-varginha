@@ -186,5 +186,11 @@ namespace Entidades
             }
             return confuso;
         }
+
+        Jogador &Jogador::operator+=(int pts)
+        {
+            pontos += pts;
+            return *this;
+        }
     }
 }
