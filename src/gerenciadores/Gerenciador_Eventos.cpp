@@ -176,15 +176,37 @@ namespace Gerenciadores
             }
             else if (estado == Jogo::SUB_SELECAO_FASE)
             {
-                if (evento.key.code == sf::Keyboard::Num1)
+                if (evento.key.code == sf::Keyboard::Num1 || evento.key.code == sf::Keyboard::Numpad1)
                 {
                     pJogo->setEstado(Jogo::FASE1);
                     pJogo->iniciarFase1();
                 }
-                else if (evento.key.code == sf::Keyboard::Num2)
+                else if (evento.key.code == sf::Keyboard::Num2 || evento.key.code == sf::Keyboard::Numpad2)
                 {
                     pJogo->setEstado(Jogo::FASE2);
                     pJogo->iniciarFase2();
+                }
+            }
+            else if (estado == Jogo::SUB_CONTINUAR_JOGO)
+            {
+                int idx = -1;
+                if (evento.key.code == sf::Keyboard::Num1 || evento.key.code == sf::Keyboard::Numpad1) idx = 0;
+                else if (evento.key.code == sf::Keyboard::Num2 || evento.key.code == sf::Keyboard::Numpad2) idx = 1;
+                else if (evento.key.code == sf::Keyboard::Num3 || evento.key.code == sf::Keyboard::Numpad3) idx = 2;
+                else if (evento.key.code == sf::Keyboard::Num4 || evento.key.code == sf::Keyboard::Numpad4) idx = 3;
+                else if (evento.key.code == sf::Keyboard::Num5 || evento.key.code == sf::Keyboard::Numpad5) idx = 4;
+                else if (evento.key.code == sf::Keyboard::Num6 || evento.key.code == sf::Keyboard::Numpad6) idx = 5;
+                else if (evento.key.code == sf::Keyboard::Num7 || evento.key.code == sf::Keyboard::Numpad7) idx = 6;
+                else if (evento.key.code == sf::Keyboard::Num8 || evento.key.code == sf::Keyboard::Numpad8) idx = 7;
+                else if (evento.key.code == sf::Keyboard::Num9 || evento.key.code == sf::Keyboard::Numpad9) idx = 8;
+                
+                if (idx >= 0)
+                {
+                    const std::vector<std::string>& chaves = pJogo->getMenu()->getChavesSalvamento();
+                    if (idx < (int)chaves.size())
+                    {
+                        pJogo->carregarSalvamento(chaves[idx]);
+                    }
                 }
             }
             else if (estado == Jogo::PAUSADO)
@@ -195,6 +217,7 @@ namespace Gerenciadores
                 }
                 else if (evento.key.code == sf::Keyboard::Num2)
                 {
+                    pJogo->salvarProgresso();
                     pJogo->deletarFases();
                     pJogo->setEstado(Jogo::MENU);
                     pJogo->getMenu()->setTela(TelaMenu::PRINCIPAL);
