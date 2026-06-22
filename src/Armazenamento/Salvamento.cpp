@@ -91,49 +91,6 @@ namespace Armazenamento
         salvarTudo(raiz);
     }
 
-    bool Salvamento::carregarJogo(const std::string &chave,
-                                  Entidades::Personagens::Jogador *pJog1,
-                                  Entidades::Personagens::Jogador *pJog2,
-                                  bool &modo2Jogadores,
-                                  int &faseAtual)
-    {
-        json raiz = carregarTudo();
-
-        if (raiz.find(chave) == raiz.end())
-            return false;
-
-        json registro = raiz[chave];
-
-        modo2Jogadores = registro.value("modo2", false);
-        faseAtual = registro.value("fase", 1);
-
-        if (pJog1 && registro.contains("jogador1") && !registro["jogador1"].is_null())
-        {
-            json j1 = registro["jogador1"];
-            pJog1->setNome(j1.value("nome", pJog1->getNome()));
-            pJog1->setPontos(j1.value("pontos", 0));
-            pJog1->set_vida_atual(j1.value("vida_atual", pJog1->get_num_vidas()));
-            pJog1->setDirecao(j1.value("direcao", 1));
-            pJog1->setInvencivel(j1.value("invencivel", false));
-            pJog1->setConfusoEstado(j1.value("confuso", false));
-            pJog1->setPosicao(sf::Vector2f(j1.value("posX", 0.0f), j1.value("posY", 0.0f)));
-        }
-
-        if (modo2Jogadores && pJog2 && registro.contains("jogador2") && !registro["jogador2"].is_null())
-        {
-            json j2 = registro["jogador2"];
-            pJog2->setNome(j2.value("nome", pJog2->getNome()));
-            pJog2->setPontos(j2.value("pontos", 0));
-            pJog2->set_vida_atual(j2.value("vida_atual", pJog2->get_num_vidas()));
-            pJog2->setDirecao(j2.value("direcao", 1));
-            pJog2->setInvencivel(j2.value("invencivel", false));
-            pJog2->setConfusoEstado(j2.value("confuso", false));
-            pJog2->setPosicao(sf::Vector2f(j2.value("posX", 0.0f), j2.value("posY", 0.0f)));
-        }
-
-        return true;
-    }
-
     void Salvamento::removerJogo(const std::string &chave)
     {
         json raiz = carregarTudo();
