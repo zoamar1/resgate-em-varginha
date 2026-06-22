@@ -69,4 +69,13 @@ public:
     std::string getNomeJogador1() const;
     std::string getNomeJogador2() const;
     Entidades::Personagens::Jogador *getJogador2() const;
+
+    Menu* getMenu() const;
+    void setModo2Jogadores(bool modo);
+    void limparJogadores();
+    void configurarJogador1(const std::string& nome);
+    void configurarJogador2(const std::string& nome);
+    void deletarFases();
+    void pausarJogo();
+    void despausarJogo();
 };

@@ -57,65 +57,175 @@ namespace Gerenciadores
 
         Jogo::Estados estado = pJogo->getEstado();
 
-        if (evento.type == sf::Event::KeyPressed &&
-            evento.key.code == sf::Keyboard::Escape)
+        if (evento.type == sf::Event::KeyPressed && evento.key.code == sf::Keyboard::Escape)
         {
-            if (estado != Jogo::RANKING_TELA)
+            if (estado == Jogo::RANKING_TELA || estado == Jogo::SUB_SELECAO_MODO || estado == Jogo::SUB_CONTINUAR_JOGO)
             {
-                pGG->fecharJanela();
+                pJogo->setEstado(Jogo::MENU);
+                pJogo->getMenu()->setTela(TelaMenu::PRINCIPAL);
+                return;
+            }
+            else if (estado == Jogo::SUB_SELECAO_FASE)
+            {
+                pJogo->setEstado(Jogo::MENU);
+                pJogo->getMenu()->setTela(TelaMenu::PRINCIPAL);
+                return;
+            }
+            else if (estado == Jogo::CADASTRO_J1 || estado == Jogo::CADASTRO_J1_2P)
+            {
+                pJogo->setEstado(Jogo::SUB_SELECAO_MODO);
+                pJogo->getMenu()->setTela(TelaMenu::SELECAO_MODO);
+                return;
+            }
+            else if (estado == Jogo::CADASTRO_J2)
+            {
+                pJogo->setEstado(Jogo::CADASTRO_J1_2P);
+                pJogo->getMenu()->iniciarCadastro(1);
+                return;
+            }
+            else if (estado == Jogo::FASE1 || estado == Jogo::FASE2)
+            {
+                pJogo->pausarJogo();
+                return;
+            }
+            else if (estado == Jogo::PAUSADO)
+            {
+                pJogo->despausarJogo();
+                return;
+            }
+
+            pGG->fecharJanela();
+            return;
+        }
+
+        if (estado == Jogo::CADASTRO_J1 || estado == Jogo::CADASTRO_J1_2P || estado == Jogo::CADASTRO_J2)
+        {
+            if (evento.type == sf::Event::TextEntered)
+            {
+                sf::Uint32 c = evento.text.unicode;
+                if (c == 8)
+                    pJogo->getMenu()->apagarUltimoChar();
+                else if (c != 13)
+                    pJogo->getMenu()->processarEventoTexto(c);
+            }
+
+            if (evento.type == sf::Event::KeyPressed && evento.key.code == sf::Keyboard::Return)
+            {
+                pJogo->getMenu()->confirmarNome();
+                std::string nome = pJogo->getMenu()->getNomeDigitado();
+
+                if (estado == Jogo::CADASTRO_J1)
+                {
+                    pJogo->setModo2Jogadores(false);
+                    pJogo->configurarJogador1(nome);
+                    pJogo->setEstado(Jogo::SUB_SELECAO_FASE);
+                    pJogo->getMenu()->setTela(TelaMenu::SELECAO_FASE);
+                }
+                else if (estado == Jogo::CADASTRO_J1_2P)
+                {
+                    pJogo->setModo2Jogadores(true);
+                    pJogo->configurarJogador1(nome);
+                    pJogo->getMenu()->iniciarCadastro(2);
+                    pJogo->setEstado(Jogo::CADASTRO_J2);
+                }
+                else if (estado == Jogo::CADASTRO_J2)
+                {
+                    pJogo->configurarJogador2(nome);
+                    pJogo->setEstado(Jogo::SUB_SELECAO_FASE);
+                    pJogo->getMenu()->setTela(TelaMenu::SELECAO_FASE);
+                }
                 return;
             }
         }
 
         if (evento.type == sf::Event::KeyPressed)
         {
-            if (evento.key.code == sf::Keyboard::Num1 && estado == Jogo::MENU)
+            if (estado == Jogo::MENU)
             {
-                pJogo->setEstado(Jogo::CADASTRO_J1);
-            }
-            else if (evento.key.code == sf::Keyboard::Num2 && estado == Jogo::MENU)
-            {
-                pJogo->setEstado(Jogo::CADASTRO_J1_2P);
-            }
-            else if (evento.key.code == sf::Keyboard::Num3 && estado == Jogo::MENU)
-            {
-                pJogo->setEstado(Jogo::RANKING_TELA);
-            }
-        }
-
-        if (evento.type == sf::Event::KeyPressed &&
-            evento.key.code == sf::Keyboard::G)
-        {
-            if ((estado == Jogo::FASE1 || estado == Jogo::FASE2) && pJog1)
-            {
-                Fases::Fase *pFase = static_cast<Fases::Fase *>(pJogo->getCenarioAtual());
-                if (pFase)
+                if (evento.key.code == sf::Keyboard::Num1)
                 {
-                    Entidades::Projetil *pProjetil = pFase->getProjetilDisponivel();
-                    if (pProjetil)
-                    {
-                        pJog1->atirar(pProjetil);
-                        Gerenciador_Colisoes::getGerenciador_Colisoes()
-                            ->registrarProjetilJogador(pProjetil, pJog1);
-                    }
+                    pJogo->setEstado(Jogo::SUB_CONTINUAR_JOGO);
+                    pJogo->getMenu()->setTela(TelaMenu::CONTINUAR_JOGO);
+                }
+                else if (evento.key.code == sf::Keyboard::Num2)
+                {
+                    pJogo->setEstado(Jogo::SUB_SELECAO_MODO);
+                    pJogo->getMenu()->setTela(TelaMenu::SELECAO_MODO);
+                }
+                else if (evento.key.code == sf::Keyboard::Num3)
+                {
+                    pJogo->setEstado(Jogo::RANKING_TELA);
+                    pJogo->getMenu()->setTela(TelaMenu::RANKING);
                 }
             }
-        }
-
-        if (evento.type == sf::Event::KeyPressed &&
-            evento.key.code == sf::Keyboard::P)
-        {
-            if ((estado == Jogo::FASE1 || estado == Jogo::FASE2) && pJog2)
+            else if (estado == Jogo::SUB_SELECAO_MODO)
             {
-                Fases::Fase *pFase = static_cast<Fases::Fase *>(pJogo->getCenarioAtual());
-                if (pFase)
+                if (evento.key.code == sf::Keyboard::Num1)
                 {
-                    Entidades::Projetil *pProjetil = pFase->getProjetilDisponivel();
-                    if (pProjetil)
+                    pJogo->setModo2Jogadores(false);
+                    pJogo->limparJogadores();
+                    pJogo->getMenu()->iniciarCadastro(1);
+                    pJogo->setEstado(Jogo::CADASTRO_J1);
+                }
+                else if (evento.key.code == sf::Keyboard::Num2)
+                {
+                    pJogo->setModo2Jogadores(true);
+                    pJogo->getMenu()->iniciarCadastro(1);
+                    pJogo->setEstado(Jogo::CADASTRO_J1_2P);
+                }
+            }
+            else if (estado == Jogo::SUB_SELECAO_FASE)
+            {
+                if (evento.key.code == sf::Keyboard::Num1)
+                {
+                    pJogo->setEstado(Jogo::FASE1);
+                    pJogo->iniciarFase1();
+                }
+                else if (evento.key.code == sf::Keyboard::Num2)
+                {
+                    pJogo->setEstado(Jogo::FASE2);
+                    pJogo->iniciarFase2();
+                }
+            }
+            else if (estado == Jogo::PAUSADO)
+            {
+                if (evento.key.code == sf::Keyboard::Num1)
+                {
+                    pJogo->despausarJogo();
+                }
+                else if (evento.key.code == sf::Keyboard::Num2)
+                {
+                    pJogo->deletarFases();
+                    pJogo->setEstado(Jogo::MENU);
+                    pJogo->getMenu()->setTela(TelaMenu::PRINCIPAL);
+                }
+            }
+            else if (estado == Jogo::FASE1 || estado == Jogo::FASE2)
+            {
+                if (evento.key.code == sf::Keyboard::G && pJog1)
+                {
+                    Fases::Fase *pFase = static_cast<Fases::Fase *>(pJogo->getCenarioAtual());
+                    if (pFase)
                     {
-                        pJog2->atirar(pProjetil);
-                        Gerenciador_Colisoes::getGerenciador_Colisoes()
-                            ->registrarProjetilJogador(pProjetil, pJog2);
+                        Entidades::Projetil *pProjetil = pFase->getProjetilDisponivel();
+                        if (pProjetil)
+                        {
+                            pJog1->atirar(pProjetil);
+                            Gerenciador_Colisoes::getGerenciador_Colisoes()->registrarProjetilJogador(pProjetil, pJog1);
+                        }
+                    }
+                }
+                else if (evento.key.code == sf::Keyboard::P && pJog2)
+                {
+                    Fases::Fase *pFase = static_cast<Fases::Fase *>(pJogo->getCenarioAtual());
+                    if (pFase)
+                    {
+                        Entidades::Projetil *pProjetil = pFase->getProjetilDisponivel();
+                        if (pProjetil)
+                        {
+                            pJog2->atirar(pProjetil);
+                            Gerenciador_Colisoes::getGerenciador_Colisoes()->registrarProjetilJogador(pProjetil, pJog2);
+                        }
                     }
                 }
             }
