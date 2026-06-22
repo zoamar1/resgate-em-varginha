@@ -1,0 +1,12 @@
+O projeto foi compilado no Linux Ubuntu 24.04.3 LTS (64-bits) utilizando o compilador GNU C++ Compiler 13.3.0 e a versão C++17.
+As bibliotecas usadas foram a SFML 2.6.1, a nlohmann/json. 
+Para compilar o código usamos um arquivo makefile gerado por inteligência artificial (Gemini).
+
+   Para compilar:
+       make
+
+   Para executar:
+       ./app_sfml
+
+   Para limpar o executável:
+       make clean

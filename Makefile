@@ -1,3 +1,5 @@
+# ARQUIVO MAKEFILE GERADO POR INTELIGÊNCIA ARTIFICIAL (GEMINI)
+
 # Compilador e flags
 CXX = g++
 # Atualizado para C++17 (exigido pelo SFML 2.6 e para aceitar nullptr)
