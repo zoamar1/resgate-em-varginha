@@ -39,6 +39,7 @@ namespace Entidades
         void ET_Varginha::mover()
         {
             aplicarGravidade();
+            anularGravidade();
 
             if (relogioTeleporte.getElapsedTime().asSeconds() >= 1.0f)
             {
@@ -59,6 +60,8 @@ namespace Entidades
 
                 relogioTeleporte.restart();
             }
+
+            atualizarPosicao();
         }
 
         void ET_Varginha::danificar(Jogador *p)
