@@ -271,6 +271,17 @@ void Jogo::executar()
 
         switch (estado)
         {
+        case MENU:
+        case SUB_SELECAO_MODO:
+        case SUB_CONTINUAR_JOGO:
+        case SUB_SELECAO_FASE:
+        case CADASTRO_J1:
+        case CADASTRO_J1_2P:
+        case CADASTRO_J2:
+        case RANKING_TELA:
+            pMenu->executar();
+            break;
+
         case FASE1:
             if (!pFase1)
                 iniciarFase1();
@@ -321,10 +332,6 @@ void Jogo::executar()
                 pFase2->desenharCena();
             desenharPlacar();
             desenharMenuPausa();
-            break;
-
-        default:
-            pMenu->executar();
             break;
         }
 
