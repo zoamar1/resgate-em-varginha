@@ -14,7 +14,11 @@ namespace Armazenamento
     class Salvamento
     {
     private:
-        static dC cenarioAtual;
+        static const std::string caminhoArquivo;
+
+        static nlohmann::json carregarTudo();
+        static void salvarTudo(const nlohmann::json &raiz);
+        static std::string montarChave(const std::string &nome1, const std::string &nome2, bool modo2);
 
     public:
         static void salvarJogo(Entidades::Personagens::Jogador *pJog1,
@@ -39,7 +43,5 @@ namespace Armazenamento
                                  dC &dadosCenario);
 
         static std::vector<std::pair<std::string, std::string>> listarResumos();
-
-        static const dC& getCenarioAtual();
     };
 }
